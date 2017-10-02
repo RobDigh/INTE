@@ -1,1 +1,4 @@
 language: java
+
+notifications:
+   slack: inte-workspace:lgiyWi0N8x8apYVZelnKHAb2

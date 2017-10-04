@@ -1,7 +1,7 @@
 public class Main {
 
     public String maja() {
-        return "Simpa";
+        return "SimpaTest";
 
     }
 

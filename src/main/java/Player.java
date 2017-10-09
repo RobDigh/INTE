@@ -11,6 +11,6 @@ public class Player {
     }
 
     public int getLives(){
-        return 0;
+        return 5;
     }
 }

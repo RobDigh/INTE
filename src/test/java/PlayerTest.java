@@ -40,6 +40,16 @@ public class PlayerTest {
 	}
 	
 	@Test
+	public void decreaseHealthAttributeToNegative(){
+		//given
+		Player sut = new Player(1,1,"Tourmaline",1);
+		//when
+		sut.decreasePlayerHealth(150);
+		//then
+		assertEquals(0, sut.getHealthPoint());
+	}
+	
+	@Test
 	public void playerIsAliveOrDead(){
 		//given
 		Player sut = new Player(1, 1, "Dietrich", 1);

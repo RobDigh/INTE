@@ -43,7 +43,7 @@ public class Player {
 	}
 	
 	public void decreasePlayerHealth(int numberToDecrease){
-		healthPoint = numberToDecrease;
+		healthPoint = healthPoint - numberToDecrease;
 	}
 	
 	public void checkHealthStatus(){

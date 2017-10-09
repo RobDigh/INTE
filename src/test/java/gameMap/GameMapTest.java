@@ -153,4 +153,18 @@ public class GameMapTest {
         assertEquals(gameMap.getPosition(player), new Point(0, 0));
 
     }
+
+    @Test
+    public void movePlayerEastOverEdge() {
+
+        Player player = mock(Player.class);
+
+        GameMap gameMap = createDefaultSizedGameMap();
+
+        gameMap.place(player, new Point(0, 0));
+
+        assertFalse(gameMap.move(player, GameMap.EAST));
+        assertEquals(gameMap.getPosition(player), new Point(0, 0));
+
+    }
 }

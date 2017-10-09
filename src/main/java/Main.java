@@ -9,7 +9,7 @@ public class Main {
         return "Chumu";
     }
 
-    public String testingTant() {
+    public String getTant() {
         return "Saint BraveHeart's Tant";
     }
 

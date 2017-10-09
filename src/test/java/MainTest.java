@@ -7,15 +7,21 @@ import static org.mockito.Mockito.when;
 public class MainTest {
 
     @Test
-    public void testTrue(){
+    public void testTrue() {
         assertTrue(true);
     }
 
     @Test
-    public void testMockMain(){
+    public void testMockMain() {
         Main main = mock(Main.class);
         when(main.maja()).thenReturn("Robert");
         assertEquals("Robert", main.maja());
+    }
+
+    @Test
+    public void testTant() {
+        Main main = new Main();
+        assertEquals("Saint BraveHeart's Tant", main.getTant());
     }
 
 

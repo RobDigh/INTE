@@ -2,6 +2,8 @@ package player;
 
 public class Player {
 
+    private int hp;
+
     public Player(int hp, int speed) {
 
         if (hp <= 0) {
@@ -12,10 +14,12 @@ public class Player {
             throw new IllegalArgumentException("Speed must be positive.");
         }
 
+        this.hp = hp;
+
     }
 
     public int getHP() {
-        return 100;
+        return hp;
     }
 
     public int getSpeed() {

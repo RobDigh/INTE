@@ -18,12 +18,17 @@ public class PlayerTest {
         return player;
     }
 
+    public Player createPlayer(String name, int life) {
+        this.player = new Player(name, life);
+        return player;
+    }
+
     public void addPlayerToPlayerList(Player player){
         playerList.add(player);
     }
 
     @Test
-    public void testCreateOnePlayer(){
+    public void testCreateOnePlayerLifeNotSpecified(){
 
         createPlayer("player1");
         addPlayerToPlayerList(player);
@@ -31,7 +36,15 @@ public class PlayerTest {
     }
 
     @Test
-    public void testCreateTwoPlayers() {
+    public void testCreateOnePlayerLifeSpecified(){
+
+        createPlayer("player1", 150);
+        addPlayerToPlayerList(player);
+        assertEquals(player, playerList.get(0));
+    }
+
+    @Test
+    public void testCreateTwoPlayersLivesNotSpecified() {
         int ctr = 0;
         for (int i = 0; i < 2; i++) {
             createPlayer("player" + ctr);
@@ -45,7 +58,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testCreateRandomAmountOfPlayersInterval1to100(){
+    public void testCreateRandomAmountOfPlayersInterval1to100LivesNotSpecified(){
 
         Random rnd = new Random();
         int rndInt = rnd.nextInt(100);

@@ -7,7 +7,6 @@ import player.Player;
 import java.awt.*;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -86,6 +85,16 @@ public class GameMapTest {
     @Test(expected = IllegalArgumentException.class)
     public void placePlayerAtNegativeY() {
         createGameMapAndPlacePlayer(0, -1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void placePlayerAtTooGreatX() {
+        createGameMapAndPlacePlayer(GameMap.DEFAULT_X_LENGTH, 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void placePlayerAtTooGreatY() {
+        createGameMapAndPlacePlayer(0, GameMap.DEFAULT_Y_LENGTH);
     }
 
     @Test

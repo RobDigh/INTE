@@ -67,7 +67,12 @@ public class GameMap {
             playerPosition.y += distanceToTravel;
 
         } else if (direction == SOUTH && playerPosition.y > 0) {
-            playerPosition.y -= 1;
+
+            int toSubtract = Math.max(0, Math.abs((playerPosition.y - player.getSpeed())));
+            int distanceToTravel = player.getSpeed() - toSubtract;
+
+            playerPosition.y -= distanceToTravel;
+
         } else if (direction == WEST && playerPosition.x < xLength - 2) {
             playerPosition.x += 1;
         } else if (direction == EAST && playerPosition.x > 0) {

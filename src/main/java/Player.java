@@ -2,10 +2,12 @@ public class Player {
 
     private String name;
     private int lives;
+    private int speed;
 
     public Player(String name){
         this.name = name;
         lives = 5;
+        speed = 100;
     }
 
     public String getName(){
@@ -21,6 +23,6 @@ public class Player {
     }
 
     public int getSpeed(){
-        return 100;
+        return speed;
     }
 }

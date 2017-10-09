@@ -63,7 +63,7 @@ public class GameMap {
             playerPosition.y += 1;
         } else if (direction == SOUTH && playerPosition.y > 0) {
             playerPosition.y -= 1;
-        } else if (direction == WEST && playerPosition.x < DEFAULT_X_LENGTH - 2) {
+        } else if (direction == WEST && playerPosition.x < xLength - 2) {
             playerPosition.x += 1;
         } else if (direction == EAST && playerPosition.x > 0) {
             playerPosition.x -= 1;

@@ -1,12 +1,14 @@
 
 public class Entity {
     private int lives;
+    private int speed;
 
-    public Entity(int initialValueLives) {
+    public Entity(int initialValueLives, int initialSpeed) {
         this.lives = initialValueLives;
         if (initialValueLives < 1) {
             throw new IllegalArgumentException("starting lives can't be less than 1");
         }
+        this.speed = initialSpeed;
     }
 
     public int getLives() {
@@ -22,6 +24,6 @@ public class Entity {
     }
 
     public int getSpeed(){
-        return 2;
+        return speed;
     }
 }

@@ -11,20 +11,20 @@ public class TestingEntity {
 
     @Test
     public void testLives(){
-        Entity entity = new Entity(10);
+        Entity entity = new Entity(10, 2);
         assertEquals(10, entity.getLives());
     }
 
     @Test
     public void testRemoveLives(){
-        Entity entity = new Entity(10);
+        Entity entity = new Entity(10, 2);
         entity.removeLife(1);
         assertEquals(9, entity.getLives());
     }
 
     @Test
     public void testNegativeLives(){
-        Entity entity = new Entity(10);
+        Entity entity = new Entity(10, 2);
         entity.removeLife(12);
         assertEquals(0, entity.getLives());
     }
@@ -32,12 +32,12 @@ public class TestingEntity {
     @Test
     public void testNegativeStartingLives(){
         thrown.expect(IllegalArgumentException.class);
-        new Entity(-1);
+        new Entity(-1, 2);
     }
 
     @Test
     public void testSpeed(){
-        Entity entity = new Entity(10);
+        Entity entity = new Entity(10, 2);
         assertEquals(2, entity.getSpeed());
     }
 

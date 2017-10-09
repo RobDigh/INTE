@@ -68,7 +68,7 @@ public class GameMap {
 
         } else if (direction == SOUTH && playerPosition.y > 0) {
 
-            int toSubtract = Math.max(0, Math.abs((playerPosition.y - player.getSpeed())));
+            int toSubtract = Math.abs(Math.min(0, (playerPosition.y - player.getSpeed())));
             int distanceToTravel = player.getSpeed() - toSubtract;
 
             playerPosition.y -= distanceToTravel;

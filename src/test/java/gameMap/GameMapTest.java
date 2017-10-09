@@ -6,11 +6,10 @@ import player.Player;
 
 import java.awt.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+// ToDo: Should this really be a superclass?
 public class GameMapTest {
 
     protected final GameMap DEFAULT_SIZED_MAP = createDefaultSizedGameMap();

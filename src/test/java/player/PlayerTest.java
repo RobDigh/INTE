@@ -47,4 +47,12 @@ public class PlayerTest {
         assertEquals(500, player.getHP());
 
     }
+
+    @Test
+    public void testGetSpeed() {
+
+        Player player = createPlayerWithCustomHPAndSpeed(500, 10);
+        assertEquals(10, player.getSpeed());
+
+    }
 }

@@ -11,4 +11,13 @@ public class PlayerTest {
         assertEquals(5, player.getLives());
     }
 
+    @Test
+    public void increaseLives(){
+        Player player = new Player("Maja");
+        player.addLife();
+
+        assertEquals(6, player.getLives());
+
+    }
+
 }

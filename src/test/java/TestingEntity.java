@@ -15,4 +15,11 @@ public class TestingEntity {
         assertEquals(9, entity.getLives());
     }
 
+    @Test
+    public void testNegativeLives(){
+        Entity entity = new Entity(10);
+        entity.removeLife(12);
+        assertEquals(0, entity.getLives());
+    }
+
 }

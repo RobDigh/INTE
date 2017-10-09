@@ -39,4 +39,12 @@ public class PlayerTest {
     public void testConstructPlayerWithZeroSpeed() {
         createPlayerWithCustomHPAndSpeed(100,0);
     }
+
+    @Test
+    public void testGetHP() {
+
+        Player player = createPlayerWithCustomHPAndSpeed(500, 10);
+        assertEquals(500, player.getHP());
+
+    }
 }

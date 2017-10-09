@@ -12,6 +12,9 @@ import static org.mockito.Mockito.mock;
 
 public class GameMapTest {
 
+    private final GameMap DEFAULT_SIZED_MAP = createDefaultSizedGameMap();
+    private Player mockPlayer = mock(Player.class);
+
     private GameMap createDefaultSizedGameMap() {
         return new GameMap();
     }
@@ -28,6 +31,13 @@ public class GameMapTest {
         gameMap.place(player, new Point(x, y));
 
         return gameMap;
+    }
+
+    private boolean placeAndMovePlayer(GameMap gameMap, int x, int y, int direction) {
+
+        gameMap.place(mockPlayer, new Point(x, y));
+        return gameMap.move(mockPlayer, direction);
+
     }
 
     @Test
@@ -87,140 +97,84 @@ public class GameMapTest {
     @Test
     public void movePlayerNorth() {
 
-        Player player = mock(Player.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        gameMap.place(player, new Point(0, 0));
-
-        assertTrue(gameMap.move(player, GameMap.NORTH));
-        assertEquals(gameMap.getPosition(player), new Point(0, 1));
+        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 0, GameMap.NORTH));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 1));
 
     }
 
     @Test
     public void movePlayerNorthOverEdge() {
 
-        Player player = mock(Player.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        gameMap.place(player, new Point(0, GameMap.DEFAULT_Y_LENGTH - 1));
-
-        assertFalse(gameMap.move(player, GameMap.NORTH));
-        assertEquals(gameMap.getPosition(player), new Point(0,GameMap.DEFAULT_Y_LENGTH - 1));
+        assertFalse(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, GameMap.DEFAULT_Y_LENGTH - 1, GameMap.NORTH));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0,GameMap.DEFAULT_Y_LENGTH - 1));
 
     }
 
     @Test
     public void movePlayerNorthOverEdgeOnCustomSizedMap() {
 
-        Player player = mock(Player.class);
-
         GameMap gameMap = createCustomSizedGameMap(5, 5);
 
-        gameMap.place(player, new Point(0, 4));
-
-        assertFalse(gameMap.move(player, GameMap.NORTH));
-        assertEquals(gameMap.getPosition(player), new Point(0,4));
+        assertFalse(placeAndMovePlayer(gameMap, 0, 4, GameMap.NORTH));
+        assertEquals(gameMap.getPosition(mockPlayer), new Point(0,4));
 
     }
 
     @Test
     public void movePlayerSouth() {
 
-        Player player = mock(Player.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        gameMap.place(player, new Point(0, 1));
-
-        assertTrue(gameMap.move(player, GameMap.SOUTH));
-        assertEquals(gameMap.getPosition(player), new Point(0, 0));
+        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 1, GameMap.SOUTH));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 0));
 
     }
 
     @Test
     public void movePlayerOverSouthEdge() {
 
-        Player player = mock(Player.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        gameMap.place(player, new Point(0,0));
-
-        assertFalse(gameMap.move(player, GameMap.SOUTH));
-        assertEquals(gameMap.getPosition(player), new Point(0, 0));
+        assertFalse(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0,0, GameMap.SOUTH));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 0));
 
     }
 
     @Test
     public void movePlayerWest() {
 
-        Player player = mock(Player.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        gameMap.place(player, new Point(0, 0));
-
-        assertTrue(gameMap.move(player, GameMap.WEST));
-        assertEquals(gameMap.getPosition(player), new Point(1, 0));
+        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0,0, GameMap.WEST));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(1, 0));
 
     }
 
     @Test
     public void movePlayerWestOverEdge() {
 
-        Player player = mock(Player.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        gameMap.place(player, new Point(GameMap.DEFAULT_X_LENGTH - 1, 0));
-
-        assertFalse(gameMap.move(player, GameMap.WEST));
-        assertEquals(gameMap.getPosition(player), new Point(GameMap.DEFAULT_X_LENGTH - 1, 0));
+        assertFalse(placeAndMovePlayer(DEFAULT_SIZED_MAP, GameMap.DEFAULT_X_LENGTH - 1,0, GameMap.WEST));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(GameMap.DEFAULT_X_LENGTH - 1, 0));
 
     }
 
     @Test
     public void movePlayerWestOverEdgeOnCustomSizedMap() {
 
-        Player player = mock(Player.class);
-
         GameMap gameMap = createCustomSizedGameMap(5, 5);
 
-        gameMap.place(player, new Point(4, 0));
-
-        assertFalse(gameMap.move(player, GameMap.WEST));
-        assertEquals(gameMap.getPosition(player), new Point(4,0));
+        assertFalse(placeAndMovePlayer(gameMap, 4,0, GameMap.WEST));
+        assertEquals(gameMap.getPosition(mockPlayer), new Point(4, 0));
 
     }
 
     @Test
     public void movePlayerEast() {
 
-        Player player = mock(Player.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        gameMap.place(player, new Point(1, 0));
-
-        assertTrue(gameMap.move(player, GameMap.EAST));
-        assertEquals(gameMap.getPosition(player), new Point(0, 0));
+        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 1,0, GameMap.EAST));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 0));
 
     }
 
     @Test
     public void movePlayerEastOverEdge() {
 
-        Player player = mock(Player.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        gameMap.place(player, new Point(0, 0));
-
-        assertFalse(gameMap.move(player, GameMap.EAST));
-        assertEquals(gameMap.getPosition(player), new Point(0, 0));
+        assertFalse(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0,0, GameMap.EAST));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 0));
 
     }
 }

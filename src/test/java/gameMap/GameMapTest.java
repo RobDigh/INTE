@@ -269,6 +269,60 @@ public class GameMapTest {
     }
 
     @Test
+    public void moveHighSpeedPlayerWest() {
+
+        when(mockPlayer.getSpeed()).thenReturn(2);
+
+        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 0, GameMap.WEST));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(2, 0));
+
+    }
+
+    @Test
+    public void moveHighSpeedPlayerWestOverEdge() {
+
+        when(mockPlayer.getSpeed()).thenReturn(2);
+
+        assertFalse(placeAndMovePlayer(DEFAULT_SIZED_MAP, GameMap.DEFAULT_X_LENGTH - 1, 0, GameMap.WEST));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(GameMap.DEFAULT_X_LENGTH - 1, 0));
+
+    }
+
+    @Test
+    public void moveHighSpeedPlayerWestOverEdgeOnCustomSizedMap() {
+
+        when(mockPlayer.getSpeed()).thenReturn(2);
+
+        GameMap gameMap = createCustomSizedGameMap(5, 5);
+
+        assertFalse(placeAndMovePlayer(gameMap, 4, 0, GameMap.WEST));
+        assertEquals(gameMap.getPosition(mockPlayer), new Point(4,0));
+
+    }
+
+    @Test
+    public void moveHighSpeedPlayerWestToEdge() {
+
+        when(mockPlayer.getSpeed()).thenReturn(2);
+
+        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP,  GameMap.DEFAULT_X_LENGTH - 2, 0, GameMap.WEST));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(GameMap.DEFAULT_X_LENGTH - 1, 0));
+
+    }
+
+    @Test
+    public void moveHighSpeedPlayerWestToEdgeOnCustomSizedMap() {
+
+        when(mockPlayer.getSpeed()).thenReturn(2);
+
+        GameMap gameMap = createCustomSizedGameMap(5, 5);
+
+        assertTrue(placeAndMovePlayer(gameMap, 3, 0, GameMap.WEST));
+        assertEquals(new Point(4, 0), gameMap.getPosition(mockPlayer));
+
+    }
+
+    @Test
     public void movePlayerEast() {
 
         assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 1,0, GameMap.EAST));

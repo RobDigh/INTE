@@ -62,15 +62,7 @@ public class GameMap {
 
     }
 
-    public boolean place(Monster monster, Point point) {
-
-        if (point.x < 0 || point.y < 0) {
-            throw new IllegalArgumentException("Point may only have positive coordinates.");
-        }
-
-        if (point.x >= xLength || point.y >= yLength) {
-            throw new IllegalArgumentException("Point must be less than the map's size.");
-        }
+    private boolean addMonster(Monster monster, Point point) {
 
         if (monstersByPosition.get(point) == null) {
 
@@ -82,6 +74,20 @@ public class GameMap {
         }
 
         return false;
+
+    }
+
+    public boolean place(Monster monster, Point point) {
+
+        if (point.x < 0 || point.y < 0) {
+            throw new IllegalArgumentException("Point may only have positive coordinates.");
+        }
+
+        if (point.x >= xLength || point.y >= yLength) {
+            throw new IllegalArgumentException("Point must be less than the map's size.");
+        }
+
+        return addMonster(monster, point);
 
     }
 

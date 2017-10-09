@@ -185,4 +185,18 @@ public class PlacementTest extends GameMapTest {
         assertEquals(new Point(1, 8), gameMap.getPosition(m3));
 
     }
+
+    @Test
+    public void placePlayerOnMonster() {
+
+        Monster m1 = mock(Monster.class);
+        Player player = mock(Player.class);
+
+        GameMap gameMap = createDefaultSizedGameMap();
+
+        gameMap.place(m1, new Point(0, 0));
+        assertFalse(gameMap.place(player, new Point(0, 0)));
+
+    }
+
 }

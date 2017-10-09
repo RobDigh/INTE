@@ -16,8 +16,6 @@ public class Player {
 	public Player(){
 		
 	}
-	
-	
 	//Fully Dressed Player constructor for testing purposes
 	public Player(int pX, int pY, String name, int speed, int health, int level, int gold, boolean alive){
 		
@@ -42,6 +40,10 @@ public class Player {
 			this.setAlive(true);
 		}
 		
+	}
+	
+	public void decreasePlayerHealth(){
+		healthPoint = 50;
 	}
 	
 	public void checkHealthStatus(){

@@ -1,7 +1,14 @@
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
 import static org.junit.Assert.*;
 
 public class TestingEntity {
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+
     @Test
     public void testLives(){
         Entity entity = new Entity(10);
@@ -20,6 +27,12 @@ public class TestingEntity {
         Entity entity = new Entity(10);
         entity.removeLife(12);
         assertEquals(0, entity.getLives());
+    }
+
+    @Test
+    public void testNegativeStartingLives(){
+        new Entity(-1);
+        thrown.expect(IllegalArgumentException.class);
     }
 
 }

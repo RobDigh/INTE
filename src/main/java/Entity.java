@@ -12,5 +12,9 @@ public class Entity {
 
     public void removeLife(int nrOfLivesToRemove) {
         this.lives = lives - nrOfLivesToRemove;
+
+        if (lives < 0) {
+            lives = 0;
+        }
     }
 }

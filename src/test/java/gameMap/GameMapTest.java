@@ -64,4 +64,9 @@ public class GameMapTest {
     public void placePlayerAtNegativeX() {
         createGameMapAndPlacePlayer(-1, 0);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void placePlayerAtNegativeY() {
+        createGameMapAndPlacePlayer(0, -1);
+    }
 }

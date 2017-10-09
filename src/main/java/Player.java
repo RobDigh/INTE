@@ -9,6 +9,7 @@ public class Player {
 	private int healthPoint = STARTHEALTH;
 	private int levelPoint = 1;
 	private int gold = 0;
+	private boolean isAlive = true;
 	
 	private static final int STARTHEALTH = 100;
 	
@@ -16,15 +17,14 @@ public class Player {
 		
 	}
 	
-	public Player(int pX, int pY, String name, int speed, int gold){
+	public Player(int pX, int pY, String name, int speed, int gold, boolean alive){
 		
 		this.setPositionX(pX);
 		this.setPositionY(pY);
 		this.setName(name);
 		this.setSpeedPoint(speed);
-//		this.healthPoint = hp;
-//		this.levelPoint = level;
-//		this.gold = gold;
+		this.setGold(gold);
+		this.setAlive(alive);
 		
 	}
 
@@ -82,6 +82,14 @@ public class Player {
 
 	public void setGold(int gold) {
 		this.gold = gold;
+	}
+
+	public boolean isAlive() {
+		return isAlive;
+	}
+
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
 	}
 	
 }

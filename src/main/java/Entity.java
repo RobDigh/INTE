@@ -9,4 +9,8 @@ public class Entity {
     public int getLives() {
         return lives;
     }
+
+    public void removeLife(int nrOfLivesToRemove) {
+        this.lives = lives - nrOfLivesToRemove;
+    }
 }

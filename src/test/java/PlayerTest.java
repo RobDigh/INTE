@@ -32,7 +32,7 @@ public class PlayerTest {
     public void testDefaultSpeedWhenCreatingNewPlayer(){
         Player p1 = new Player("Henrik");
         assertEquals(100, player.getSpeed());
-        assertEquals(100, player.getSpeed());
+        assertEquals(100, p1.getSpeed());
     }
 
     @Test

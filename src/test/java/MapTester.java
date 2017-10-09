@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
@@ -6,7 +7,15 @@ import static junit.framework.TestCase.assertEquals;
 
 public class MapTester {
 
-    Map map = new Map(10, 20);
+    Map map;
+    Player player;
+
+    @Before
+    public void setUp() {
+        map = new Map(10, 20);
+        player = new Player("Maja");
+        map.placePlayer(player, new Point(10, 10));
+    }
 
     @Test
     public void testCreateMap(){
@@ -16,11 +25,11 @@ public class MapTester {
 
     @Test
     public void testPlacePlayer(){
-        Point position = new Point(10,10);
-        Player player = new Player("Maja");
-        map.placePlayer(player, position);
-
         assertEquals(new Point(10,10), map.getPosition(player));
+    }
 
+    @Test
+    public void testMovePlayer(){
+        map.placePlayer(player, new Point(20, 30));
     }
 }

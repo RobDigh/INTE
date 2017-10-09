@@ -4,6 +4,9 @@ public class Entity {
 
     public Entity(int initialValueLives) {
         this.lives = initialValueLives;
+        if (initialValueLives < 1) {
+            throw new IllegalArgumentException("starting lives can't be less than 1");
+        }
     }
 
     public int getLives() {

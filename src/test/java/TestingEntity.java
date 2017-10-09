@@ -31,8 +31,8 @@ public class TestingEntity {
 
     @Test
     public void testNegativeStartingLives(){
-        new Entity(-1);
         thrown.expect(IllegalArgumentException.class);
+        new Entity(-1);
     }
 
 }

@@ -4,6 +4,7 @@ import npc.Monster;
 import player.Player;
 
 import java.awt.*;
+import java.util.HashMap;
 
 public class GameMap {
 
@@ -19,7 +20,7 @@ public class GameMap {
     private int yLength;
 
     private Point playerPosition;
-    private Point monsterPosition;
+    private HashMap<Monster, Point> monsterPositions = new HashMap<>();
 
     public GameMap() {
 
@@ -69,7 +70,7 @@ public class GameMap {
             throw new IllegalArgumentException("Point must be less than the map's size.");
         }
 
-        monsterPosition = new Point(point);
+        monsterPositions.put(monster, new Point(point));
 
         return true;
 
@@ -80,7 +81,7 @@ public class GameMap {
     }
 
     public Point getPosition(Monster monster) {
-        return new Point(monsterPosition);
+        return new Point(monsterPositions.get(monster));
     }
 
     private int calculateDistanceToTravelRising(int playerPosition, int speed, int edge) {

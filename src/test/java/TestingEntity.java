@@ -23,6 +23,13 @@ public class TestingEntity {
     }
 
     @Test
+    public void testAddLives(){
+        Entity entity = new Entity(10, 2);
+        entity.addLife(7);
+        assertEquals(17, entity.getLives());
+    }
+
+    @Test
     public void testNegativeLives(){
         Entity entity = new Entity(10, 2);
         entity.removeLife(12);

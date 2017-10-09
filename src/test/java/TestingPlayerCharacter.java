@@ -23,6 +23,13 @@ public class TestingPlayerCharacter {
     }
 
     @Test
+    public void testAddLives(){
+        PlayerCharacter pc = new PlayerCharacter(10, 2);
+        pc.addLife(2);
+        assertEquals(12, pc.getLives());
+    }
+
+    @Test
     public void testNegativeLives(){
         PlayerCharacter pc = new PlayerCharacter(10, 2);
         pc.removeLife(12);

@@ -26,6 +26,10 @@ public class Entity {
         }
     }
 
+    public void addLife(int nrOfLivesToAdd){
+        this.lives = lives + nrOfLivesToAdd;
+    }
+
     public int getSpeed(){
         return speed;
     }

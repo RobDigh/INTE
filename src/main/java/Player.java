@@ -27,5 +27,6 @@ public class Player {
     }
 
     public void increaseSpeed(int speed){
+        this.speed += speed;
     }
 }

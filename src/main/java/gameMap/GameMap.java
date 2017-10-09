@@ -1,5 +1,7 @@
 package gameMap;
 
+import player.Player;
+
 public class GameMap {
 
     public static final int DEFAULT_X_LENGTH = 10;

@@ -59,22 +59,16 @@ public class GameMap {
 
     public boolean move(Player player, int direction) {
 
-        switch(direction) {
-
-            case NORTH:
-                playerPosition.y += 1;
-                break;
-            case SOUTH:
-                playerPosition.y -= 1;
-                break;
-            case WEST:
-                playerPosition.x += 1;
-                break;
-            case EAST:
-                playerPosition.x -= 1;
-                break;
-            default:
-                break;
+        if (direction == NORTH) {
+            playerPosition.y += 1;
+        } else if (direction == SOUTH && playerPosition.y > 0) {
+            playerPosition.y -= 1;
+        } else if (direction == WEST) {
+            playerPosition.x += 1;
+        } else if (direction == EAST) {
+            playerPosition.x -= 1;
+        } else {
+            return false;
         }
 
         return true;

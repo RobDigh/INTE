@@ -24,4 +24,9 @@ public class PlayerTest {
     public void testConstructPlayerWithNegativeHP() {
         createPlayerWithCustomHPAndSpeed(-1, 1);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructPlayerWithNegativeSpeed() {
+        createPlayerWithCustomHPAndSpeed(100, -1);
+    }
 }

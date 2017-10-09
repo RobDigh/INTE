@@ -2,6 +2,7 @@ package entity.creature;
 
 import entity.item.Item;
 
+<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,5 +20,11 @@ public class Inventory {
 
     public Map<String, Item> getInventory() {
         return inventoryMap;
+=======
+public class Inventory {
+
+    public void addItem(Item item, String key) {
+
+>>>>>>> origin/dev
     }
 }

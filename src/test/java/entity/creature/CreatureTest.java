@@ -1,18 +1,27 @@
 package entity.creature;
 
+<<<<<<< HEAD
 import entity.item.Item;
+=======
+>>>>>>> origin/dev
 import entity.item.consumable.hp.HealthPotion;
 import entity.item.consumable.speed.SpeedPotion;
 import entity.item.wearable.armor.Armor;
 import entity.item.wearable.weapon.Weapon;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/dev
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.Map;
+=======
+>>>>>>> origin/dev
 import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
@@ -23,7 +32,10 @@ import static org.mockito.Mockito.when;
 
 public class CreatureTest {
     private Creature testCreature;
+<<<<<<< HEAD
     private Inventory inventory;
+=======
+>>>>>>> origin/dev
 
     private Inventory mockInventory = mock(Inventory.class);
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
@@ -32,9 +44,12 @@ public class CreatureTest {
     private Weapon mockWeapon = mock(Weapon.class);
     private HealthPotion mockHealthPotion = mock(HealthPotion.class);
     private SpeedPotion mockSpeedPotion = mock(SpeedPotion.class);
+<<<<<<< HEAD
     private Item mockItem = mock(Item.class);
 
     private Map<String, Item> testItemMap = new HashMap<>();
+=======
+>>>>>>> origin/dev
 
     private Creature createPlayerWithCustomHPAndSpeed(int hp, int speed) {
         return new Creature(hp, speed, mockInventoryFactory);
@@ -678,12 +693,17 @@ public class CreatureTest {
     }
 
     @Test
+<<<<<<< HEAD
     public void testAddSpeedPotionToInventory() throws Exception{
+=======
+    public void testAddSpeedPotion() throws Exception{
+>>>>>>> origin/dev
 
         testCreature.addItemToInventory(mockSpeedPotion, "speed potion");
         verify(mockInventory).addItem(mockSpeedPotion, "speed potion");
     }
 
+<<<<<<< HEAD
 //    @Test
 //    public void testInventoryMapOneItem(){
 //
@@ -692,5 +712,7 @@ public class CreatureTest {
 //        assertTrue(inventory.getInventory().containsKey("armor"));
 //    }
 
+=======
+>>>>>>> origin/dev
 }
 

@@ -24,6 +24,15 @@ public class GameMapTest {
         return new GameMap(xLength, yLength);
     }
 
+    private GameMap placePlayer(GameMap gameMap, int x, int y) {
+
+        Player player = mock(Player.class);
+        gameMap.place(player, new Point(x, y));
+
+        return gameMap;
+
+    }
+
     private GameMap createGameMapAndPlacePlayer(int x, int y) {
 
         Player player = mock(Player.class);
@@ -95,6 +104,16 @@ public class GameMapTest {
     @Test(expected = IllegalArgumentException.class)
     public void placePlayerAtTooGreatY() {
         createGameMapAndPlacePlayer(0, GameMap.DEFAULT_Y_LENGTH);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void placePlayerAtTooGreatXOnCustomSizedMap() {
+        placePlayer(createCustomSizedGameMap(5, 5), 5, 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void placePlayerAtTooGreatYOnCustomSizedMap() {
+        placePlayer(createCustomSizedGameMap(5, 5), 0, 5);
     }
 
     @Test

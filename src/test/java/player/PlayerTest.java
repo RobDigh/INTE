@@ -17,7 +17,7 @@ public class PlayerTest {
         return player;
     }
 
-    public void addPlayerToPlayerList(){
+    public void addPlayerToPlayerList(Player player){
         playerList.add(player);
     }
 
@@ -25,7 +25,7 @@ public class PlayerTest {
     public void testCreateOnePlayer(){
 
         createPlayer("player1");
-        playerList.add(player);
+        addPlayerToPlayerList(player);
         assertEquals(player, playerList.get(0));
     }
 
@@ -33,9 +33,9 @@ public class PlayerTest {
     public void testCreateTwoPlayers() {
 
         createPlayer("player1");
-        playerList.add(player);
+        addPlayerToPlayerList(player);
         createPlayer("player2");
-        playerList.add(player);
+        addPlayerToPlayerList(player);
 
         for (Player player : playerList) {
             assertTrue(playerList.contains(player));

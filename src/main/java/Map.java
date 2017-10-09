@@ -1,14 +1,18 @@
 public class Map {
 
-    public Map(int width, int height){
+    private int width;
+    private int height;
 
+    public Map(int width, int height){
+        this.width = width;
+        this.height = height;
     }
 
     public int getWidth(){
-        return 0;
+        return width;
     }
 
     public int getHeight(){
-        return 0;
+        return height;
     }
 }

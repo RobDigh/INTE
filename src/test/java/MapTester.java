@@ -8,6 +8,6 @@ public class MapTester {
     public void testCreateMap(){
         Map map = new Map(10, 20);
         assertEquals(10, map.getWidth());
-        assertEquals(10, map.getHeight());
+        assertEquals(20, map.getHeight());
     }
 }

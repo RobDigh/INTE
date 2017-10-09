@@ -20,7 +20,9 @@ public class GameMap {
     private int yLength;
 
     private Point playerPosition;
-    private HashMap<Monster, Point> monsterPositions = new HashMap<>();
+
+    private HashMap<Monster, Point> positionsByMonster = new HashMap<>();
+    private HashMap<Point, Monster> monstersByPosition = new HashMap<>();
 
     public GameMap() {
 
@@ -70,9 +72,16 @@ public class GameMap {
             throw new IllegalArgumentException("Point must be less than the map's size.");
         }
 
-        monsterPositions.put(monster, new Point(point));
+        if (monstersByPosition.get(point) == null) {
 
-        return true;
+            positionsByMonster.put(monster, new Point(point));
+            monstersByPosition.put(new Point(point), monster);
+
+            return true;
+
+        }
+
+        return false;
 
     }
 
@@ -81,7 +90,7 @@ public class GameMap {
     }
 
     public Point getPosition(Monster monster) {
-        return new Point(monsterPositions.get(monster));
+        return new Point(positionsByMonster.get(monster));
     }
 
     private int calculateDistanceToTravelRising(int playerPosition, int speed, int edge) {

@@ -29,17 +29,19 @@ public class PlayerTest {
         assertEquals(player, playerList.get(0));
     }
 
-//    @Test
-//    public void testCreateTwoPlayers(){
-//
-//        for (int i = 0; i < 1; i++){
-//            createPlayer();
-//            playerList.add(player);
-//        }
-//
-//        for (int i = 0; i < playerList.size(); i++){
-//            assertEquals(player, playerList.get(i));
-//        }
-//    }
+    @Test
+    public void testCreateTwoPlayers() {
+
+        createPlayer("player1");
+        playerList.add(player);
+        createPlayer("player2");
+        playerList.add(player);
+
+        for (Player player : playerList) {
+            assertTrue(playerList.contains(player));
+        }
+    }
+
+
 
 }

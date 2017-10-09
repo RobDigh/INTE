@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.awt.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
@@ -52,6 +53,19 @@ public class MonsterPlacementTest extends GameMapTest {
         assertTrue(gameMap.place(m1, new Point(0, 0)));
         assertTrue(gameMap.place(m2, new Point(4, 3)));
         assertTrue(gameMap.place(m3, new Point(1, 8)));
+
+    }
+
+    @Test
+    public void placeMonsterOnAnotherMonster() {
+
+        Monster m1 = mock(Monster.class);
+        Monster m2 = mock(Monster.class);
+
+        GameMap gameMap = createDefaultSizedGameMap();
+
+        assertTrue(gameMap.place(m1, new Point(0, 0)));
+        assertFalse(gameMap.place(m2, new Point(0, 0)));
 
     }
 

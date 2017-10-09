@@ -58,12 +58,41 @@ public class PlayerTest {
     }
 
     @Test
+    public void testCreateTwoPlayersDifferentLivesSpecified() {
+        int ctr = 0;
+        for (int i = 0; i < 2; i++) {
+            createPlayer("player" + ctr, 100+ctr);
+            addPlayerToPlayerList(player);
+            ctr++;
+        }
+
+        for (Player player : playerList) {
+            assertTrue(playerList.contains(player));
+        }
+    }
+
+    @Test
     public void testCreateRandomAmountOfPlayersInterval1to100LivesNotSpecified(){
 
         Random rnd = new Random();
         int rndInt = rnd.nextInt(100);
         for (int i = 0; i <= rndInt; i++){
             createPlayer("player"+i);
+            addPlayerToPlayerList(player);
+        }
+
+        for (Player player : playerList) {
+            assertTrue(playerList.contains(player));
+        }
+    }
+
+    @Test
+    public void testCreateRandomAmountOfPlayersInterval1to100DifferentLivesSpecified(){
+
+        Random rnd = new Random();
+        int rndInt = rnd.nextInt(100);
+        for (int i = 0; i <= rndInt; i++){
+            createPlayer("player"+i, 100+i);
             addPlayerToPlayerList(player);
         }
 

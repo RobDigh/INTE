@@ -15,4 +15,14 @@ public class GameMapTest {
         assertEquals(GameMap.DEFAULT_Y_LENGTH, gameMap.getYLength());
 
     }
+
+    @Test
+    public void constructGameMapWithValidArgumentsToConstructor() {
+
+        GameMap gameMap = new GameMap(20, 20);
+
+        assertEquals(20, gameMap.getXLength());
+        assertEquals(20, gameMap.getYLength());
+
+    }
 }

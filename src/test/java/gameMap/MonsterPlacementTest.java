@@ -97,4 +97,23 @@ public class MonsterPlacementTest extends GameMapTest {
         assertEquals(new Point(0, 0), gameMap.getPosition(monster));
 
     }
+
+    @Test
+    public void getSeveralMonsterPositions() {
+
+        Monster m1 = mock(Monster.class);
+        Monster m2 = mock(Monster.class);
+        Monster m3 = mock(Monster.class);
+
+        GameMap gameMap = createDefaultSizedGameMap();
+
+        gameMap.place(m1, new Point(0, 0));
+        gameMap.place(m2, new Point(4, 3));
+        gameMap.place(m3, new Point(1, 8));
+
+        assertEquals(new Point(0, 0), gameMap.getPosition(m1));
+        assertEquals(new Point(4, 3), gameMap.getPosition(m2));
+        assertEquals(new Point(1, 8), gameMap.getPosition(m3));
+
+    }
 }

@@ -183,6 +183,20 @@ public class GameMapTest {
     }
 
     @Test
+    public void movePlayerWestOverEdgeOnCustomSizedMap() {
+
+        Player player = mock(Player.class);
+
+        GameMap gameMap = createCustomSizedGameMap(5, 5);
+
+        gameMap.place(player, new Point(4, 0));
+
+        assertFalse(gameMap.move(player, GameMap.WEST));
+        assertEquals(gameMap.getPosition(player), new Point(4,0));
+
+    }
+
+    @Test
     public void movePlayerEast() {
 
         Player player = mock(Player.class);

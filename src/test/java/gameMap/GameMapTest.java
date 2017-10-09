@@ -1,5 +1,6 @@
 package gameMap;
 
+import org.junit.Before;
 import org.junit.Test;
 import player.Player;
 
@@ -39,6 +40,11 @@ public class GameMapTest {
         gameMap.place(mockPlayer, new Point(x, y));
         return gameMap.move(mockPlayer, direction);
 
+    }
+
+    @Before
+    public void setup() {
+        when(mockPlayer.getSpeed()).thenReturn(1);
     }
 
     @Test

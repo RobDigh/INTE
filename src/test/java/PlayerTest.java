@@ -50,6 +50,16 @@ public class PlayerTest {
 	}
 	
 	@Test
+	public void decreaseSpeedTest(){
+		//given
+		Player sut = new Player(1,1,"Scarabite",10);
+		//when
+		sut.decreasePlayerSpeed(10);
+		//then
+		assertEquals(0, sut.getSpeedPoint());
+	}
+	
+	@Test
 	public void playerIsAliveOrDead(){
 		//given
 		Player sut = new Player(1, 1, "Dietrich", 1);

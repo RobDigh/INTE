@@ -8,6 +8,7 @@ public class PlayerTest {
     public void createPlayerWithDefaultValues(){
         Player player = new Player("Maja");
         assertEquals("Maja", player.getName());
+        assertEquals(5, player.getLives());
     }
 
 }

@@ -19,7 +19,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void addThreeLives(){
+    public void addSeveralLives(){
         int lives = player.getLives();
         for(int i = 1; i < 5; i++){
             player.addLife();

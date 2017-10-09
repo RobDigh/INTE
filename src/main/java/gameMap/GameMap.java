@@ -10,6 +10,7 @@ public class GameMap {
     public static final int DEFAULT_Y_LENGTH = 10;
 
     public static final int NORTH = 1;
+    public static final int SOUTH = 2;
 
     private int xLength;
     private int yLength;

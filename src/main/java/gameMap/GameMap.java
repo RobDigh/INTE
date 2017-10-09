@@ -2,6 +2,8 @@ package gameMap;
 
 import player.Player;
 
+import java.awt.*;
+
 public class GameMap {
 
     public static final int DEFAULT_X_LENGTH = 10;
@@ -30,5 +32,9 @@ public class GameMap {
 
     public int getYLength() {
         return yLength;
+    }
+
+    public boolean place(Player player, Point point) {
+        return true;
     }
 }

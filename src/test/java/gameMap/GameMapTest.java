@@ -210,6 +210,11 @@ public class GameMapTest {
     @Test
     public void moveHighSpeedPlayerSouthFromRiskyPosition() {
 
+        /*
+         * This test was added to catch a bug resulting from:
+         * int toSubtract = Math.max(0, Math.abs(playerPosition.y - player.getSpeed()));
+         */
+
         when(mockPlayer.getSpeed()).thenReturn(2);
 
         assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 4, GameMap.SOUTH));
@@ -275,6 +280,46 @@ public class GameMapTest {
     public void movePlayerEastOverEdge() {
 
         assertFalse(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0,0, GameMap.EAST));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 0));
+
+    }
+
+    @Test
+    public void moveHighSpeedPlayerEast() {
+
+        when(mockPlayer.getSpeed()).thenReturn(2);
+
+        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 2, 0, GameMap.EAST));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 0));
+
+    }
+
+    @Test
+    public void moveHighSpeedPlayerEastFromRiskyPosition() {
+
+        when(mockPlayer.getSpeed()).thenReturn(2);
+
+        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 4, 0, GameMap.EAST));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(2, 0));
+
+    }
+
+    @Test
+    public void moveHighSpeedPlayerEastOverEdge() {
+
+        when(mockPlayer.getSpeed()).thenReturn(2);
+
+        assertFalse(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 0, GameMap.EAST));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0,0));
+
+    }
+
+    @Test
+    public void moveHighSpeedPlayerEastToEdge() {
+
+        when(mockPlayer.getSpeed()).thenReturn(2);
+
+        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 1, 0, GameMap.EAST));
         assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 0));
 
     }

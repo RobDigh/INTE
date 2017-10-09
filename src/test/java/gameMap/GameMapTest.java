@@ -202,7 +202,7 @@ public class GameMapTest {
 
         when(mockPlayer.getSpeed()).thenReturn(2);
 
-        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 1, GameMap.SOUTH));
+        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 2, GameMap.SOUTH));
         assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 0));
 
     }

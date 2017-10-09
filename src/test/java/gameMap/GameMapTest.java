@@ -208,6 +208,16 @@ public class GameMapTest {
     }
 
     @Test
+    public void moveHighSpeedPlayerSouthFromRiskyPosition() {
+
+        when(mockPlayer.getSpeed()).thenReturn(2);
+
+        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 4, GameMap.SOUTH));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 2));
+
+    }
+
+    @Test
     public void moveHighSpeedPlayerSouthOverEdge() {
 
         when(mockPlayer.getSpeed()).thenReturn(2);

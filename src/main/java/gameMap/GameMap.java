@@ -62,6 +62,8 @@ public class GameMap {
             case NORTH:
                 playerPosition.y += 1;
                 break;
+            case SOUTH:
+                playerPosition.y -= 1;
             default:
                 break;
         }

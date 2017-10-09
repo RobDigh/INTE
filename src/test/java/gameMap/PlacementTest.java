@@ -42,6 +42,18 @@ public class PlacementTest extends GameMapTest {
 
     }
 
+    @Test
+    public void placePlayerTwice() {
+
+        Player player = mock(Player.class);
+
+        GameMap gameMap = createDefaultSizedGameMap();
+
+        gameMap.place(player, new Point(0, 0));
+        assertFalse(gameMap.place(player, new Point(0, 0)));
+
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void placePlayerAtNegativeX() {
         createGameMapAndPlacePlayer(-1, 0);

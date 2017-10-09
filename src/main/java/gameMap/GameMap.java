@@ -9,8 +9,12 @@ public class GameMap {
     public static final int DEFAULT_X_LENGTH = 10;
     public static final int DEFAULT_Y_LENGTH = 10;
 
+    public static final int NORTH = 1;
+
     private int xLength;
     private int yLength;
+
+    private Point playerPosition;
 
     public GameMap() {
 
@@ -40,10 +44,28 @@ public class GameMap {
             throw new IllegalArgumentException("Point may only have positive coordinates.");
         }
 
+        playerPosition = new Point(point);
+
         return true;
+
     }
 
     public Point getPosition(Player player) {
-        return new Point(0, 0);
+        return new Point(playerPosition);
+    }
+
+    public boolean move(Player player, int direction) {
+
+        switch(direction) {
+
+            case NORTH:
+                playerPosition.y += 1;
+                break;
+            default:
+                break;
+        }
+
+        return true;
+
     }
 }

@@ -42,4 +42,8 @@ public class GameMap {
 
         return true;
     }
+
+    public Point getPosition(Player player) {
+        return new Point(0, 0);
+    }
 }

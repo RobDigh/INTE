@@ -1,16 +1,6 @@
 public class Main {
 
-    public String maja() {
-        return "SimpaTest";
+    public static void main(String[] args) {
 
     }
-
-    public String chumu() {
-        return "Chumu";
-    }
-
-    public String testingTant() {
-        return "Saint BraveHeart's Tant";
-    }
-
 }

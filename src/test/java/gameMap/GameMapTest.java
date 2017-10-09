@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class GameMapTest {
 
@@ -116,6 +117,38 @@ public class GameMapTest {
         GameMap gameMap = createCustomSizedGameMap(5, 5);
 
         assertFalse(placeAndMovePlayer(gameMap, 0, 4, GameMap.NORTH));
+        assertEquals(gameMap.getPosition(mockPlayer), new Point(0,4));
+
+    }
+
+    @Test
+    public void moveHighSpeedPlayerNorth() {
+
+        when(mockPlayer.getSpeed()).thenReturn(2);
+
+        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 0, GameMap.NORTH));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 2));
+
+    }
+
+    @Test
+    public void moveHighSpeedPlayerNorthToEdge() {
+
+        when(mockPlayer.getSpeed()).thenReturn(2);
+
+        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, GameMap.DEFAULT_Y_LENGTH - 2, GameMap.NORTH));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0,GameMap.DEFAULT_Y_LENGTH - 1));
+
+    }
+
+    @Test
+    public void moveHighSpeedPlayerNorthToEdgeOnCustomSizedMap() {
+
+        when(mockPlayer.getSpeed()).thenReturn(2);
+
+        GameMap gameMap = createCustomSizedGameMap(5, 5);
+
+        assertFalse(placeAndMovePlayer(gameMap, 0, 3, GameMap.NORTH));
         assertEquals(gameMap.getPosition(mockPlayer), new Point(0,4));
 
     }

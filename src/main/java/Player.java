@@ -15,4 +15,8 @@ public class Player {
     public int getLives(){
         return lives;
     }
+
+    public void addLife(){
+        
+    }
 }

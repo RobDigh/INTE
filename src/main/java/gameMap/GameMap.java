@@ -65,7 +65,7 @@ public class GameMap {
             playerPosition.y -= 1;
         } else if (direction == WEST) {
             playerPosition.x += 1;
-        } else if (direction == EAST) {
+        } else if (direction == EAST && playerPosition.x > 0) {
             playerPosition.x -= 1;
         } else {
             return false;

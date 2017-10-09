@@ -41,4 +41,10 @@ public class TestingEntity {
         assertEquals(2, entity.getSpeed());
     }
 
+    @Test
+    public void testNegativeSpeed(){
+        thrown.expect(IllegalArgumentException.class);
+        Entity entity = new Entity(10, -1);
+    }
+
 }

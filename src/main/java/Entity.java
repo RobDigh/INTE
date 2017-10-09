@@ -20,4 +20,8 @@ public class Entity {
             lives = 0;
         }
     }
+
+    public int getSpeed(){
+        return 2;
+    }
 }

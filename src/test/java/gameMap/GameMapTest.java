@@ -1,8 +1,12 @@
 package gameMap;
 
 import org.junit.Test;
+import player.Player;
+
+import java.awt.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 
 public class GameMapTest {
 
@@ -31,6 +35,19 @@ public class GameMapTest {
 
         assertEquals(20, gameMap.getXLength());
         assertEquals(20, gameMap.getYLength());
+
+    }
+
+    @Test
+    public void placePlayer() {
+
+        Player player = mock(Player.class);
+
+        GameMap gameMap = createDefaultSizedGameMap();
+
+        gameMap.place(player, new Point(0, 0));
+
+        assertEquals(new Point(0, 0), gameMap.getPlayerPosition());
 
     }
 }

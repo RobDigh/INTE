@@ -1,4 +1,3 @@
-import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -14,7 +13,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void increaseLives(){
+    public void testIncreaseLives(){
         player.addLife();
         assertEquals(6, player.getLives());
     }
@@ -26,5 +25,12 @@ public class PlayerTest {
             player.addLife();
             assertEquals(lives + i, player.getLives());
         }
+    }
+
+    @Test
+    public void testDefaultSpeedWhenCreatingNewPlayer(){
+        Player p1 = new Player("Henrik");
+        assertEquals(100, player.getSpeed());
+        assertEquals(100, player.getSpeed());
     }
 }

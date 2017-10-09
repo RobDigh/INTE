@@ -19,4 +19,8 @@ public class Player {
     public void addLife(){
         lives += 1;
     }
+
+    public int getSpeed(){
+        return 100;
+    }
 }

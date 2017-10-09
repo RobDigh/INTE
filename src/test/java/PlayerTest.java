@@ -6,7 +6,6 @@ public class PlayerTest {
     public void createPlayerWithDefaultValues(){
 
         Player player = new Player("Maja");
-        
     }
 
 }

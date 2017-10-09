@@ -16,8 +16,9 @@ public class MapTester {
 
     @Test
     public void testPlacePlayer(){
+        Point position = new Point(10,10);
         Player player = new Player("Maja");
-        map.placePlayer(player);
+        map.placePlayer(player, position);
 
         assertEquals(new Point(10,10), map.getPosition(player));
 

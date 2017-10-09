@@ -18,11 +18,11 @@ public class Map {
         return height;
     }
 
-    public void placePlayer(Player player){
+    public void placePlayer(Player player, Point point){
 
     }
 
     public Point getPosition(Player player){
-        return null;
+        return new Point(10, 10);
     }
 }

@@ -82,4 +82,18 @@ public class GameMapTest {
         assertEquals(new Point(0, 0), gameMap.getPosition(player));
 
     }
+
+    @Test
+    public void movePlayerNorth() {
+
+        Player player = mock(Player.class);
+
+        GameMap gameMap = createDefaultSizedGameMap();
+
+        gameMap.place(player, new Point(0, 0));
+
+        assertTrue(gameMap.move(player, GameMap.NORTH));
+        assertEquals(gameMap.getPosition(player), new Point(0, 1));
+
+    }
 }

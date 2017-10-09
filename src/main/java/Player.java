@@ -25,4 +25,7 @@ public class Player {
     public int getSpeed(){
         return speed;
     }
+
+    public void increaseSpeed(int speed){
+    }
 }

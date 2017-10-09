@@ -33,4 +33,10 @@ public class PlayerTest {
         assertEquals(100, player.getSpeed());
         assertEquals(100, player.getSpeed());
     }
+
+    @Test
+    public void testIncreaseSpeed(){
+        player.increaseSpeed(10);
+        assertEquals(110, player.getSpeed());
+    }
 }

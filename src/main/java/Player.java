@@ -17,6 +17,6 @@ public class Player {
     }
 
     public void addLife(){
-        lives = 6;
+        lives += 1;
     }
 }

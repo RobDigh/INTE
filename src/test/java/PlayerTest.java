@@ -15,9 +15,6 @@ public class PlayerTest {
     public void increaseLives(){
         Player player = new Player("Maja");
         player.addLife();
-
         assertEquals(6, player.getLives());
-
     }
-
 }

@@ -155,6 +155,20 @@ public class GameMapTest {
     }
 
     @Test
+    public void movePlayerWestOverEdge() {
+
+        Player player = mock(Player.class);
+
+        GameMap gameMap = createDefaultSizedGameMap();
+
+        gameMap.place(player, new Point(GameMap.DEFAULT_X_LENGTH - 1, 0));
+
+        assertFalse(gameMap.move(player, GameMap.WEST));
+        assertEquals(gameMap.getPosition(player), new Point(GameMap.DEFAULT_X_LENGTH - 1, 0));
+
+    }
+
+    @Test
     public void movePlayerEast() {
 
         Player player = mock(Player.class);

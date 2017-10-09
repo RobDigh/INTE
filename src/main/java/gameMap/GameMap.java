@@ -47,6 +47,10 @@ public class GameMap {
             throw new IllegalArgumentException("Point may only have positive coordinates.");
         }
 
+        if (point.x >= DEFAULT_X_LENGTH) {
+            throw new IllegalArgumentException("Point must be less than the map's size.");
+        }
+
         playerPosition = new Point(point);
 
         return true;

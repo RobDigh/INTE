@@ -2,6 +2,8 @@ package gameMap;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 public class GameMapTest {
 
     @Test

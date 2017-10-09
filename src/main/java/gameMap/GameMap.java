@@ -59,7 +59,7 @@ public class GameMap {
 
     public boolean move(Player player, int direction) {
 
-        if (direction == NORTH) {
+        if (direction == NORTH && playerPosition.y < DEFAULT_Y_LENGTH - 2) {
             playerPosition.y += 1;
         } else if (direction == SOUTH && playerPosition.y > 0) {
             playerPosition.y -= 1;

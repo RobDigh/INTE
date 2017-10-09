@@ -2,8 +2,8 @@
 public class Entity {
     private int lives;
 
-    public Entity() {
-        this.lives = 10;
+    public Entity(int initialValueLives) {
+        this.lives = initialValueLives;
     }
 
     public int getLives() {

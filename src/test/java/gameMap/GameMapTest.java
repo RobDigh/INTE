@@ -99,6 +99,20 @@ public class GameMapTest {
     }
 
     @Test
+    public void movePlayerNorthOverEdge() {
+
+        Player player = mock(Player.class);
+
+        GameMap gameMap = createDefaultSizedGameMap();
+
+        gameMap.place(player, new Point(0, GameMap.DEFAULT_Y_LENGTH - 1));
+
+        assertFalse(gameMap.move(player, GameMap.NORTH));
+        assertEquals(gameMap.getPosition(player), new Point(0,GameMap.DEFAULT_Y_LENGTH - 1));
+
+    }
+
+    @Test
     public void movePlayerSouth() {
 
         Player player = mock(Player.class);

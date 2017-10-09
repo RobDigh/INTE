@@ -69,7 +69,7 @@ public class GameMap {
 
     private boolean addMonster(Monster monster, Point point) {
 
-        if (monstersByPosition.get(point) == null) {
+        if (monstersByPosition.get(point) == null && !point.equals(playerPosition)) {
 
             positionsByMonster.put(monster, new Point(point));
             monstersByPosition.put(new Point(point), monster);

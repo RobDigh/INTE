@@ -198,5 +198,4 @@ public class PlacementTest extends GameMapTest {
         assertFalse(gameMap.place(player, new Point(0, 0)));
 
     }
-
 }

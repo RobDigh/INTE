@@ -56,9 +56,14 @@ public class GameMap {
             throw new IllegalArgumentException("Point must be less than the map's size.");
         }
 
-        playerPosition = new Point(point);
+        if (monstersByPosition.get(point) == null) {
 
-        return true;
+            playerPosition = new Point(point);
+            return true;
+
+        }
+
+        return false;
 
     }
 

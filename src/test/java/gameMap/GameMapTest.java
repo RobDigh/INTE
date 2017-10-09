@@ -24,7 +24,7 @@ public class GameMapTest {
         return new GameMap(xLength, yLength);
     }
 
-    private GameMap placePlayer(GameMap gameMap, int x, int y) {
+    protected GameMap placePlayer(GameMap gameMap, int x, int y) {
 
         Player player = mock(Player.class);
         gameMap.place(player, new Point(x, y));
@@ -33,7 +33,7 @@ public class GameMapTest {
 
     }
 
-    private GameMap createGameMapAndPlacePlayer(int x, int y) {
+    protected GameMap createGameMapAndPlacePlayer(int x, int y) {
 
         Player player = mock(Player.class);
 
@@ -53,79 +53,5 @@ public class GameMapTest {
     @Before
     public void setup() {
         when(mockPlayer.getSpeed()).thenReturn(1);
-    }
-
-    @Test
-    public void constructGameMapWithEmptyConstructor() {
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        assertEquals(GameMap.DEFAULT_X_LENGTH, gameMap.getXLength());
-        assertEquals(GameMap.DEFAULT_Y_LENGTH, gameMap.getYLength());
-
-    }
-
-    @Test
-    public void constructGameMapWithValidArgumentsToConstructor() {
-
-        GameMap gameMap = createCustomSizedGameMap(20, 20);
-
-        assertEquals(20, gameMap.getXLength());
-        assertEquals(20, gameMap.getYLength());
-
-    }
-
-    @Test
-    public void placePlayer() {
-
-        Player player = mock(Player.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        assertTrue(gameMap.place(player, new Point(0, 0)));
-
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void placePlayerAtNegativeX() {
-        createGameMapAndPlacePlayer(-1, 0);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void placePlayerAtNegativeY() {
-        createGameMapAndPlacePlayer(0, -1);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void placePlayerAtTooGreatX() {
-        createGameMapAndPlacePlayer(GameMap.DEFAULT_X_LENGTH, 0);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void placePlayerAtTooGreatY() {
-        createGameMapAndPlacePlayer(0, GameMap.DEFAULT_Y_LENGTH);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void placePlayerAtTooGreatXOnCustomSizedMap() {
-        placePlayer(createCustomSizedGameMap(5, 5), 5, 0);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void placePlayerAtTooGreatYOnCustomSizedMap() {
-        placePlayer(createCustomSizedGameMap(5, 5), 0, 5);
-    }
-
-    @Test
-    public void getPlayerPosition() {
-
-        Player player = mock(Player.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        gameMap.place(player, new Point(0, 0));
-
-        assertEquals(new Point(0, 0), gameMap.getPosition(player));
-
     }
 }

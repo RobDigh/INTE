@@ -18,5 +18,13 @@ public class MainTest {
         assertEquals("Robert", main.maja());
     }
 
+    @Test
+    public void majaTest(){
+
+        Main main = new Main();
+        //Testar travis
+
+    }
+
 
 }

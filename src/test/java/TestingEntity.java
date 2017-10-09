@@ -35,4 +35,10 @@ public class TestingEntity {
         new Entity(-1);
     }
 
+    @Test
+    public void testSpeed(){
+        Entity entity = new Entity(10);
+        assertEquals(2, entity.getSpeed());
+    }
+
 }

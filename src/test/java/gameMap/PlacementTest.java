@@ -198,4 +198,17 @@ public class PlacementTest extends GameMapTest {
         assertFalse(gameMap.place(player, new Point(0, 0)));
 
     }
+
+    @Test
+    public void placeMonsterOnPlayer() {
+
+        Monster m1 = mock(Monster.class);
+        Player player = mock(Player.class);
+
+        GameMap gameMap = createDefaultSizedGameMap();
+
+        gameMap.place(player, new Point(0, 0));
+        assertFalse(gameMap.place(m1, new Point(0, 0)));
+
+    }
 }

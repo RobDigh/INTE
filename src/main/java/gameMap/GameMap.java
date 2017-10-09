@@ -1,5 +1,6 @@
 package gameMap;
 
+import npc.Monster;
 import player.Player;
 
 import java.awt.*;
@@ -18,6 +19,7 @@ public class GameMap {
     private int yLength;
 
     private Point playerPosition;
+    private Point monsterPosition;
 
     public GameMap() {
 
@@ -57,8 +59,28 @@ public class GameMap {
 
     }
 
+    public boolean place(Monster monster, Point point) {
+
+        if (point.x < 0 || point.y < 0) {
+            throw new IllegalArgumentException("Point may only have positive coordinates.");
+        }
+
+        if (point.x >= xLength || point.y >= yLength) {
+            throw new IllegalArgumentException("Point must be less than the map's size.");
+        }
+
+        monsterPosition = new Point(point);
+
+        return true;
+
+    }
+
     public Point getPosition(Player player) {
         return new Point(playerPosition);
+    }
+
+    public Point getPosition(Monster monster) {
+        return new Point(monsterPosition);
     }
 
     private int calculateDistanceToTravelRising(int playerPosition, int speed, int edge) {

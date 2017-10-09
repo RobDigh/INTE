@@ -79,7 +79,7 @@ public class MonsterPlacementTest extends GameMapTest {
 
         gameMap.place(monster, new Point(0, 0));
 
-        assertEquals(new Point(0, 0), gameMap.getPosition(player));
+        assertEquals(new Point(0, 0), gameMap.getPosition(monster));
 
     }
 }

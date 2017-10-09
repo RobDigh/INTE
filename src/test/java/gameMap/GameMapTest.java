@@ -6,10 +6,18 @@ import static org.junit.Assert.assertEquals;
 
 public class GameMapTest {
 
+    private GameMap createDefaultSizedGameMap() {
+        return new GameMap();
+    }
+
+    private GameMap createCustomSizedGameMap(int xLength, int yLength) {
+        return new GameMap(xLength, yLength);
+    }
+
     @Test
     public void constructGameMapWithEmptyConstructor() {
 
-        GameMap gameMap = new GameMap();
+        GameMap gameMap = createDefaultSizedGameMap();
 
         assertEquals(GameMap.DEFAULT_X_LENGTH, gameMap.getXLength());
         assertEquals(GameMap.DEFAULT_Y_LENGTH, gameMap.getYLength());
@@ -19,7 +27,7 @@ public class GameMapTest {
     @Test
     public void constructGameMapWithValidArgumentsToConstructor() {
 
-        GameMap gameMap = new GameMap(20, 20);
+        GameMap gameMap = createCustomSizedGameMap(20, 20);
 
         assertEquals(20, gameMap.getXLength());
         assertEquals(20, gameMap.getYLength());

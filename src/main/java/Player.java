@@ -44,6 +44,9 @@ public class Player {
 	
 	public void decreasePlayerHealth(int numberToDecrease){
 		healthPoint = healthPoint - numberToDecrease;
+		if (healthPoint < 0){
+			healthPoint = 0;
+		}
 	}
 	
 	public void checkHealthStatus(){

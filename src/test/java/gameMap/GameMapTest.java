@@ -6,6 +6,7 @@ import player.Player;
 import java.awt.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
 public class GameMapTest {
@@ -45,9 +46,7 @@ public class GameMapTest {
 
         GameMap gameMap = createDefaultSizedGameMap();
 
-        gameMap.place(player, new Point(0, 0));
-
-        assertEquals(new Point(0, 0), gameMap.getPlayerPosition());
+        assertTrue(gameMap.place(player, new Point(0, 0)));
 
     }
 }

@@ -19,6 +19,16 @@ public class GameMapTest {
         return new GameMap(xLength, yLength);
     }
 
+    private GameMap createGameMapAndPlacePlayer(int x, int y) {
+
+        Player player = mock(Player.class);
+
+        GameMap gameMap = createDefaultSizedGameMap();
+        gameMap.place(player, new Point(x, y));
+
+        return gameMap;
+    }
+
     @Test
     public void constructGameMapWithEmptyConstructor() {
 
@@ -48,5 +58,10 @@ public class GameMapTest {
 
         assertTrue(gameMap.place(player, new Point(0, 0)));
 
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void placePlayerAtNegativeX() {
+        createGameMapAndPlacePlayer(-1, 0);
     }
 }

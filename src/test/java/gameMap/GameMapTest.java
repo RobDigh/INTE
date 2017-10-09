@@ -126,7 +126,7 @@ public class GameMapTest {
     }
 
     @Test
-    public void movePlayerWest() {
+    public void movePlayerEast() {
 
         Player player = mock(Player.class);
 

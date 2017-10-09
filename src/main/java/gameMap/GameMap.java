@@ -12,6 +12,7 @@ public class GameMap {
     public static final int NORTH = 1;
     public static final int SOUTH = 2;
     public static final int WEST = 3;
+    public static final int EAST = 4;
 
     private int xLength;
     private int yLength;
@@ -68,6 +69,9 @@ public class GameMap {
                 break;
             case WEST:
                 playerPosition.x += 1;
+                break;
+            case EAST:
+                playerPosition.x -= 1;
                 break;
             default:
                 break;

@@ -1,9 +1,11 @@
 import java.awt.*;
+import java.util.HashMap;
 
 public class Map {
 
     private int width;
     private int height;
+    private HashMap<Player, Point> playerPositions = new HashMap<Player, Point>();
 
     public Map(int width, int height){
         this.width = width;
@@ -19,10 +21,10 @@ public class Map {
     }
 
     public void placePlayer(Player player, Point point){
-
+        playerPositions.put(player, point);
     }
 
     public Point getPosition(Player player){
-        return new Point(10, 10);
+        return playerPositions.get(player);
     }
 }

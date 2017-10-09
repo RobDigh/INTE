@@ -1,4 +1,11 @@
-package PACKAGE_NAME;
-
 public class Player {
+
+    public Player(String name){
+
+    }
+
+    public String getName(){
+
+        return null;
+    }
 }

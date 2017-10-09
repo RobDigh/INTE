@@ -34,7 +34,7 @@ public class PlayerTest {
 		//given
 		Player sut = new Player(1,1,"Germaine",1);
 		//when
-		sut.decreaseHealth(50);
+		sut.decreasePlayerHealth();
 		//then
 		assertEquals(50, sut.getHealthPoint());
 	}

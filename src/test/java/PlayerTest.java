@@ -10,6 +10,7 @@ public class PlayerTest {
     public void createPlayerWithDefaultValues(){
         assertEquals("Maja", player.getName());
         assertEquals(5, player.getLives());
+        assertEquals(100, player.getSpeed());
     }
 
     @Test

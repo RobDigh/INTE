@@ -69,4 +69,17 @@ public class GameMapTest {
     public void placePlayerAtNegativeY() {
         createGameMapAndPlacePlayer(0, -1);
     }
+
+    @Test
+    public void getPlayerPosition() {
+
+        Player player = mock(Player.class);
+
+        GameMap gameMap = createDefaultSizedGameMap();
+
+        gameMap.place(player, new Point(0, 0));
+
+        assertEquals(new Point(0, 0), gameMap.getPosition(player));
+
+    }
 }

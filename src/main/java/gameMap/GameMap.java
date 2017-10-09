@@ -57,35 +57,37 @@ public class GameMap {
         return new Point(playerPosition);
     }
 
+    private int calculateDistanceToTravelRising(int playerPosition, int speed, int edge) {
+
+        int toSubtract = Math.max(0, (playerPosition + speed) - (edge - 1));
+        return speed - toSubtract;
+
+    }
+
+    private int calculateDistanceToTravelFalling(int playerPosition, int speed) {
+
+        int toSubtract = Math.abs(Math.min(0, (playerPosition - speed)));
+        return speed - toSubtract;
+
+    }
+
     public boolean move(Player player, int direction) {
 
         if (direction == NORTH && playerPosition.y < yLength - 1) {
 
-            int toSubtract = Math.max(0, (playerPosition.y + player.getSpeed()) - (yLength - 1));
-            int distanceToTravel = player.getSpeed() - toSubtract;
-
-            playerPosition.y += distanceToTravel;
+            playerPosition.y += calculateDistanceToTravelRising(playerPosition.y, player.getSpeed(), yLength);
 
         } else if (direction == SOUTH && playerPosition.y > 0) {
 
-            int toSubtract = Math.abs(Math.min(0, (playerPosition.y - player.getSpeed())));
-            int distanceToTravel = player.getSpeed() - toSubtract;
-
-            playerPosition.y -= distanceToTravel;
+            playerPosition.y -= calculateDistanceToTravelFalling(playerPosition.y, player.getSpeed());
 
         } else if (direction == WEST && playerPosition.x < xLength - 1) {
 
-            int toSubtract = Math.max(0, (playerPosition.x + player.getSpeed()) - (xLength - 1));
-            int distanceToTravel = player.getSpeed() - toSubtract;
-
-            playerPosition.x += distanceToTravel;
+            playerPosition.x += calculateDistanceToTravelRising(playerPosition.x, player.getSpeed(), xLength);
 
         } else if (direction == EAST && playerPosition.x > 0) {
 
-            int toSubtract = Math.abs(Math.min(0, (playerPosition.x - player.getSpeed())));
-            int distanceToTravel = player.getSpeed() - toSubtract;
-
-            playerPosition.x -= distanceToTravel;
+            playerPosition.x -= calculateDistanceToTravelFalling(playerPosition.x, player.getSpeed());
 
         } else {
             return false;

@@ -8,6 +8,10 @@ public class Player {
             throw new IllegalArgumentException("HP must be positive.");
         }
 
+        if (speed == -1) {
+            throw new IllegalArgumentException("Speed must be positive.");
+        }
+
     }
 
     public int getHP() {

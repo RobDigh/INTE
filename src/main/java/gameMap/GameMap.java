@@ -60,7 +60,7 @@ public class GameMap {
     public boolean move(Player player, int direction) {
 
         if (direction == NORTH && playerPosition.y < yLength - 2) {
-            playerPosition.y += 1;
+            playerPosition.y += player.getSpeed();
         } else if (direction == SOUTH && playerPosition.y > 0) {
             playerPosition.y -= 1;
         } else if (direction == WEST && playerPosition.x < xLength - 2) {

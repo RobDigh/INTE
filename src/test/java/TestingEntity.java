@@ -8,4 +8,11 @@ public class TestingEntity {
         assertEquals(10, entity.getLives());
     }
 
+    @Test
+    public void testRemoveLives(){
+        Entity entity = new Entity(10);
+        entity.removeLife(1);
+        assertEquals(9, entity.getLives());
+    }
+
 }

@@ -35,6 +35,11 @@ public class GameMap {
     }
 
     public boolean place(Player player, Point point) {
+
+        if (point.x < 0) {
+            throw new IllegalArgumentException("Point may only have positive coordinates.");
+        }
+
         return true;
     }
 }

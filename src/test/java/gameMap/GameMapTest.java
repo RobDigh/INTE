@@ -154,8 +154,8 @@ public class GameMapTest {
 
         GameMap gameMap = createCustomSizedGameMap(5, 5);
 
-        assertFalse(placeAndMovePlayer(gameMap, 0, 3, GameMap.NORTH));
-        assertEquals(gameMap.getPosition(mockPlayer), new Point(0,4));
+        assertTrue(placeAndMovePlayer(gameMap, 0, 3, GameMap.NORTH));
+        assertEquals(new Point(0, 4), gameMap.getPosition(mockPlayer));
 
     }
 

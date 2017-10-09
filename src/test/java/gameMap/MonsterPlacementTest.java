@@ -40,6 +40,21 @@ public class MonsterPlacementTest extends GameMapTest {
 
     }
 
+    @Test
+    public void placeSeveralMonsters() {
+
+        Monster m1 = mock(Monster.class);
+        Monster m2 = mock(Monster.class);
+        Monster m3 = mock(Monster.class);
+
+        GameMap gameMap = createDefaultSizedGameMap();
+
+        assertTrue(gameMap.place(m1, new Point(0, 0)));
+        assertTrue(gameMap.place(m2, new Point(4, 3)));
+        assertTrue(gameMap.place(m3, new Point(1, 8)));
+
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void placeMonsterAtNegativeX() {
         createGameMapAndPlaceMonster(-1, 0);

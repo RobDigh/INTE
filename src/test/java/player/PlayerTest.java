@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.Assert.*;
 
@@ -31,17 +32,31 @@ public class PlayerTest {
 
     @Test
     public void testCreateTwoPlayers() {
-
-        createPlayer("player1");
-        addPlayerToPlayerList(player);
-        createPlayer("player2");
-        addPlayerToPlayerList(player);
+        int ctr = 0;
+        for (int i = 0; i < 2; i++) {
+            createPlayer("player" + ctr);
+            addPlayerToPlayerList(player);
+            ctr++;
+        }
 
         for (Player player : playerList) {
             assertTrue(playerList.contains(player));
         }
     }
 
+    @Test
+    public void testCreateRandomAmountOfPlayersInterval1to100(){
 
+        Random rnd = new Random();
+        int rndInt = rnd.nextInt(100);
+        for (int i = 0; i <= rndInt; i++){
+            createPlayer("player"+i);
+            addPlayerToPlayerList(player);
+        }
+
+        for (Player player : playerList) {
+            assertTrue(playerList.contains(player));
+        }
+    }
 
 }

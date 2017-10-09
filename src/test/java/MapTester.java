@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.awt.*;
+
 import static junit.framework.TestCase.assertEquals;
 
 public class MapTester {
@@ -16,6 +18,8 @@ public class MapTester {
     public void testPlacePlayer(){
         Player player = new Player("Maja");
         map.placePlayer(player);
+
+        assertEquals(new Point(10,10), map.getPosition(player));
 
     }
 }

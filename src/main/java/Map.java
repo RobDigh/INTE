@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Map {
 
     private int width;
@@ -14,5 +16,13 @@ public class Map {
 
     public int getHeight(){
         return height;
+    }
+
+    public void placePlayer(Player player){
+
+    }
+
+    public Point getPosition(Player player){
+        return null;
     }
 }

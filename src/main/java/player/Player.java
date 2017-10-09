@@ -3,6 +3,7 @@ package player;
 public class Player {
 
     private int hp;
+    private int speed;
 
     public Player(int hp, int speed) {
 
@@ -15,6 +16,7 @@ public class Player {
         }
 
         this.hp = hp;
+        this.speed = speed;
 
     }
 
@@ -23,6 +25,6 @@ public class Player {
     }
 
     public int getSpeed() {
-        return 1;
+        return speed;
     }
 }

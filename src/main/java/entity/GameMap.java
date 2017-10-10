@@ -166,7 +166,7 @@ public class GameMap extends Entity {
             boolean shouldStay = true;
 
             if (existingEntity != null) {
-                shouldStay = existingEntity.visit(entity, this);
+                shouldStay = existingEntity.accept(entity, this);
             }
 
             if (shouldStay) {
@@ -182,7 +182,7 @@ public class GameMap extends Entity {
     }
 
     @Override
-    public boolean visit(Entity entity, GameMap environment) {
+    public boolean accept(Entity entity, GameMap environment) {
         return false;
     }
 }

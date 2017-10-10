@@ -6,6 +6,6 @@ public abstract class Entity {
         return 0;
     }
 
-    public abstract boolean visit(Entity entity, GameMap environment);
+    public abstract boolean accept(Entity entity, GameMap environment);
 
 }

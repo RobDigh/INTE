@@ -19,6 +19,7 @@ public class GameMap {
     private int xLength;
     private int yLength;
 
+    private Player player;
     private Point playerPosition;
 
     private HashMap<Monster, Point> positionsByMonster = new HashMap<>();
@@ -58,7 +59,9 @@ public class GameMap {
 
         if (playerPosition == null && monstersByPosition.get(point) == null) {
 
+            this.player = player;
             playerPosition = new Point(point);
+
             return true;
 
         }
@@ -218,7 +221,29 @@ public class GameMap {
     public boolean move(Monster monster, int direction) {
 
         Point monsterPosition = positionsByMonster.get(monster);
-        return move(monsterPosition, monster.getSpeed(), direction);
+        boolean movementSuccessful = move(monsterPosition, monster.getSpeed(), direction);
+
+        if (movementSuccessful) {
+
+            if (monsterPosition.equals(playerPosition)) {
+
+                boolean resultOfVisit = player.visit(monster);
+
+                if (resultOfVisit) {
+
+                    playerPosition = null;
+                    return true;
+
+                }
+
+                removeMonster(monster);
+                return false;
+
+            }
+            return true;
+
+        }
+        return false;
 
     }
 }

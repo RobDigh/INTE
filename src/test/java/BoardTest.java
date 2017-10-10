@@ -60,6 +60,8 @@ public class BoardTest {
 		//given
 		Board sut = new Board();
 		//when
+		sut.setDefaultBoardValues();
+		sut.createMap();
 		//then
 		assertEquals(0, sut.map[0][0]);
 		

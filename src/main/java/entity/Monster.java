@@ -7,7 +7,7 @@ public class Monster extends Entity {
     }
 
     @Override
-    public boolean visit(Entity entity, GameMap environment) {
+    public boolean accept(Entity entity, GameMap environment) {
         return false;
     }
 }

@@ -20,16 +20,6 @@ public class PlayerTest {
 	}
 	
 	@Test
-	public void createPlayerWithFullArgs(){
-		//given
-		Player sut = new Player(1, 1, "Advokaat", 1, 100, 1, 1, true);
-		//when
-		sut.setGold(10);
-		//then
-		assertEquals(10, sut.getGold());
-	}
-	
-	@Test
 	public void decreaseHealthAttribute(){
 		//given
 		Player sut = new Player(1,1,"Germaine",1);
@@ -85,7 +75,7 @@ public class PlayerTest {
 		Player sut = new Player(1,1,"Emerald",1);
 		//when
 		sut.increasePlayerGold(100);
-		sut.decreasePlayerGold();
+		sut.decreasePlayerGold(75);
 		//then
 		assertEquals(25, sut.getGold());
 	}

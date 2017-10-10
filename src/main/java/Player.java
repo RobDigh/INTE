@@ -16,19 +16,7 @@ public class Player {
 	public Player(){
 		
 	}
-	//Fully Dressed Player constructor for testing purposes
-	public Player(int pX, int pY, String name, int speed, int health, int level, int gold, boolean alive){
-		
-		this.setPositionX(pX);
-		this.setPositionY(pY);
-		this.setName(name);
-		this.setSpeedPoint(speed);
-		this.setHealthPoint(health);
-		this.setLevelPoint(level);
-		this.setGold(gold);
-		this.setAlive(alive);
-		
-	}
+
 	//Standard Player constructor with base statistics for in game use
 	public Player(int pX, int pY, String name, int speed){
 		
@@ -43,14 +31,14 @@ public class Player {
 	}
 	
 	public void decreasePlayerSpeed(int speedToDecrease){
-		speedPoint = speedPoint - speedToDecrease;
+		speedPoint -= speedToDecrease;
 		if (speedPoint <= 0){
 			speedPoint = 1;
 		}
 	}
 	
 	public void decreasePlayerHealth(int healthToDecrease){
-		healthPoint = healthPoint - healthToDecrease;
+		healthPoint -= healthToDecrease;
 		if (healthPoint < 0){
 			healthPoint = 0;
 		}
@@ -58,6 +46,10 @@ public class Player {
 	
 	public void increasePlayerGold(int goldToIncrease){
 		gold += goldToIncrease;
+	}
+	
+	public void decreasePlayerGold(int goldToDecrease){
+		gold -= goldToDecrease;
 	}
 	
 	public void checkHealthStatus(){

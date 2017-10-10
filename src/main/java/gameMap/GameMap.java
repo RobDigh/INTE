@@ -97,6 +97,9 @@ public class GameMap {
 
     public void removePlayer(Player player) {
 
+        this.player = null;
+        playerPosition = null;
+
     }
 
     public boolean place(Monster monster, Point point) {

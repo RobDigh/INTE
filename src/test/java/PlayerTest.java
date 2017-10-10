@@ -56,7 +56,7 @@ public class PlayerTest {
 		//when
 		sut.decreasePlayerSpeed(10);
 		//then
-		assertEquals(0, sut.getSpeedPoint());
+		assertEquals(1, sut.getSpeedPoint());
 	}
 	
 	@Test
@@ -66,7 +66,7 @@ public class PlayerTest {
 		//when
 		sut.decreasePlayerSpeed(100);
 		//then
-		assertEquals(0, sut.getSpeedPoint());
+		assertEquals(1, sut.getSpeedPoint());
 	}
 	
 	@Test

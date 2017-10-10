@@ -44,6 +44,9 @@ public class Player {
 	
 	public void decreasePlayerSpeed(int speedToDecrease){
 		speedPoint = speedPoint - speedToDecrease;
+		if (speedPoint <= 0){
+			speedPoint = 1;
+		}
 	}
 	
 	public void decreasePlayerHealth(int healthToDecrease){

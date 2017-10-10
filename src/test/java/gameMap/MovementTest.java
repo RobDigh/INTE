@@ -294,20 +294,6 @@ public class MovementTest extends GameMapTest {
 
     }
 
-    @Test
-    public void movePlayerOntoMonsterAndWinCombat() {
-
-        when(mockMonster.visit(mockPlayer)).thenReturn(Combat.INITIATOR_WIN);
-
-        DEFAULT_SIZED_MAP.place(mockMonster, new Point(0, 1));
-
-        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 0, GameMap.NORTH));
-
-        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 1));
-        assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockMonster));
-
-    }
-
     /*
      * Monster movement
      */
@@ -588,4 +574,37 @@ public class MovementTest extends GameMapTest {
         assertEquals(DEFAULT_SIZED_MAP.getPosition(mockMonster), new Point(0, 0));
 
     }
+
+    /*
+     * Collision
+     */
+
+    @Test
+    public void movePlayerOntoMonsterAndWinCombat() {
+
+        when(mockMonster.visit(mockPlayer)).thenReturn(Combat.INITIATOR_WIN);
+
+        DEFAULT_SIZED_MAP.place(mockMonster, new Point(0, 1));
+
+        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 0, GameMap.NORTH));
+
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 1));
+        assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockMonster));
+
+    }
+
+    @Test
+    public void movePlayerOntoMonsterAndLoseCombat() {
+
+        when(mockMonster.visit(mockPlayer)).thenReturn(Combat.INITIATOR_LOSS);
+
+        DEFAULT_SIZED_MAP.place(mockMonster, new Point(0, 1));
+
+        assertFalse(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 0, GameMap.NORTH));
+
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockMonster), new Point(0, 1));
+        assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockPlayer));
+
+    }
+
 }

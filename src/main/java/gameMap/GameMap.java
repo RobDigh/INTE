@@ -27,14 +27,14 @@ public class GameMap {
     private HashMap<Monster, Point> positionsByMonster = new HashMap<>();
     private HashMap<Point, Monster> monstersByPosition = new HashMap<>();
 
-    public GameMap(GraphFactory graphFactory) {
+    public GameMap() {
 
         this.xLength = DEFAULT_X_LENGTH;
         this.yLength = DEFAULT_Y_LENGTH;
 
     }
 
-    public GameMap(int xLength, int yLength, GraphFactory graphFactory) {
+    public GameMap(int xLength, int yLength) {
 
         this.xLength = xLength;
         this.yLength = yLength;

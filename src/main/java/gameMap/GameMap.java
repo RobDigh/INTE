@@ -7,7 +7,7 @@ import entity.Player;
 import java.awt.*;
 import java.util.HashMap;
 
-public class GameMap {
+public class GameMap extends Entity {
 
     public static final int DEFAULT_X_LENGTH = 10;
     public static final int DEFAULT_Y_LENGTH = 10;
@@ -183,5 +183,10 @@ public class GameMap {
         }
         return false;
 
+    }
+
+    @Override
+    public boolean visit(Entity entity, GameMap environment) {
+        return false;
     }
 }

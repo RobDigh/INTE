@@ -206,17 +206,7 @@ public class GameMap {
 
             if (existingMonster != null) {
 
-                boolean resultOfVisit = existingMonster.visit(player, this);
-
-                if (resultOfVisit) {
-
-                    removeMonster(existingMonster);
-                    return true;
-
-                }
-
-                playerPosition = null;
-                return false;
+                return existingMonster.visit(player, this);
 
             }
             return true;

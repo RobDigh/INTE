@@ -48,36 +48,39 @@ public class Map {
         //Can't remember where 0,0 point is, assume top left corner?
         switch (direction.getValue()) {
             case 1: //NORTH
-                y -= creature.getSpeed();
+                y -= 1;
                 break;
             case 2: //NORTHEAST
-                x += creature.getSpeed();
-                y -= creature.getSpeed();
+                x += 1;
+                y -= 1;
                 break;
             case 3: //EAST
-                x += creature.getSpeed();
+                x += 1;
                 break;
             case 4: //SOUTHEAST
-                x += creature.getSpeed();
-                y += creature.getSpeed();
+                x += 1;
+                y += 1;
                 break;
             case 5: //SOUTH
-                y += creature.getSpeed();
+                y += 1;
                 break;
             case 6: //SOUTHWEST
-                x -= creature.getSpeed();
-                y += creature.getSpeed();
+                x -= 1;
+                y += 1;
                 break;
             case 7: //WEST
-                x -= creature.getSpeed();
+                x -= 1;
                 break;
             case 8: //NORTHWEST
-                x -= creature.getSpeed();
-                y -= creature.getSpeed();
+                x -= 1;
+                y -= 1;
                 break;
-        }
+        } //all values are 1 b/c speed indicates how many times per turn operation can be performed rather than points moved in one operation
+
+        if(!isOutsideMap(new Point(x, y))){
         point.move(x, y);
         creatureByPosition.put(point, creature);
+        }
     }
 
 }

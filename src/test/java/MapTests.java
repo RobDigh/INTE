@@ -64,7 +64,7 @@ public class MapTests {
         Creature creature = new Creature(10, 1);
         Point point = new Point(1, 1);
         map.placeCreature(creature, point);
-        map.moveCreature(creature, Direction.NORTHWEST);
+        map.moveCreature(creature, Direction.NORTHEAST);
         assertEquals(new Point(1,1), map.getCreaturePosition(creature));
     }
 

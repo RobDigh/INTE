@@ -1,9 +1,6 @@
-package gameMap;
+package entity;
 
-import entity.Monster;
 import org.junit.Before;
-import entity.Player;
-
 import java.awt.*;
 
 import static org.mockito.Mockito.mock;

@@ -1,4 +1,4 @@
-package player;
+package entity;
 
 import entity.Player;
 import org.junit.Test;

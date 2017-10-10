@@ -60,6 +60,16 @@ public class PlayerTest {
 	}
 	
 	@Test
+	public void decreaseSpeedToNegativeTest(){
+		//given
+		Player sut = new Player(1,1,"Amethyst",10);
+		//when
+		sut.decreasePlayerSpeed(100);
+		//then
+		assertEquals(0, sut.getSpeedPoint());
+	}
+	
+	@Test
 	public void playerIsAliveOrDead(){
 		//given
 		Player sut = new Player(1, 1, "Dietrich", 1);

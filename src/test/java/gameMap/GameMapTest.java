@@ -1,12 +1,16 @@
 package gameMap;
 
+import entity.Entity;
 import entity.Monster;
+import graph.Graph;
 import graph.GraphFactory;
 import org.junit.Before;
 import entity.Player;
 
 import java.awt.*;
+import java.util.HashMap;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -17,14 +21,13 @@ public class GameMapTest {
 
     protected Player mockPlayer = mock(Player.class);
     protected Monster mockMonster = mock(Monster.class);
-    protected GraphFactory mockGraphFactory = mock(GraphFactory.class);
 
     protected GameMap createDefaultSizedGameMap() {
-        return new GameMap(mockGraphFactory);
+        return new GameMap();
     }
 
     protected GameMap createCustomSizedGameMap(int xLength, int yLength) {
-        return new GameMap(xLength, yLength, mockGraphFactory);
+        return new GameMap(xLength, yLength);
     }
 
     protected GameMap placePlayer(GameMap gameMap, int x, int y) {

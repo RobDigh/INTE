@@ -1,7 +1,5 @@
 package entity;
 
-import gameMap.GameMap;
-
 public class Player extends Entity {
 
     private int hp;

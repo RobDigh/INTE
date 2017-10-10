@@ -1,7 +1,5 @@
 package entity;
 
-import gameMap.GameMap;
-
 public class Monster extends Entity {
 
     public int getSpeed() {

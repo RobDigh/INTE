@@ -1,8 +1,4 @@
-package gameMap;
-
-import entity.Entity;
-import entity.Monster;
-import entity.Player;
+package entity;
 
 import java.awt.*;
 import java.util.HashMap;

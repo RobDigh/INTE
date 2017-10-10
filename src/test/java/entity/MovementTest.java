@@ -1,4 +1,4 @@
-package gameMap;
+package entity;
 
 import combat.Combat;
 import org.junit.Test;
@@ -8,7 +8,6 @@ import java.awt.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class MovementTest extends GameMapTest {

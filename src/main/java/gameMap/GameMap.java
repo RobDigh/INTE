@@ -106,7 +106,12 @@ public class GameMap {
     }
 
     public Point getPosition(Player player) {
+
+        if (playerPosition == null) {
+            return null;
+        }
         return new Point(playerPosition);
+
     }
 
     public Point getPosition(Monster monster) {
@@ -116,7 +121,6 @@ public class GameMap {
         if (point == null) {
             return null;
         }
-
         return new Point(point);
 
     }
@@ -199,6 +203,8 @@ public class GameMap {
                     return true;
 
                 }
+
+                playerPosition = null;
                 return false;
 
             }

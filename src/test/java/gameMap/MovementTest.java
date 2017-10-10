@@ -606,5 +606,4 @@ public class MovementTest extends GameMapTest {
         assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockPlayer));
 
     }
-
 }

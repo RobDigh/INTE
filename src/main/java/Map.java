@@ -20,13 +20,24 @@ public class Map {
         return height;
     }
 
-    public void placeEntity(Entity entity, Point point){
-        entityByPosition.put(point, entity);
-        positionByEntity.put(entity, point);
+    public void placeEntity(Entity entity, Point point) {
+        if (isOutsideMap(point)) {
+            throw new IllegalArgumentException("Position can't be outside of map");
+        } else {
+            entityByPosition.put(point, entity);
+            positionByEntity.put(entity, point);
+        }
     }
 
-    public Point getEntityPosition(Entity entity){
+    private boolean isOutsideMap(Point point) {
+        if (point.getX() < 0 || point.getY() < 0 || point.getX() > getWidth() || point.getY() > getHeight()) {
+            return true;
+        }
+        return false;
+    }
+
+    public Point getEntityPosition(Entity entity) {
         return positionByEntity.get(entity);
     }
-    }
+}
 

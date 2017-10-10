@@ -31,7 +31,7 @@ public class MapTests {
         thrown.expect(IllegalArgumentException.class);
         Map map = new Map(29, 19);
         Entity entity = new Entity(10, 2);
-        Point point = new Point(34, 20);
+        Point point = new Point(5, 20);
         map.placeEntity(entity, point);
     }
 

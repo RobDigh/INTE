@@ -1,5 +1,6 @@
 package gameMap;
 
+import npc.Monster;
 import org.junit.Before;
 import org.junit.Test;
 import player.Player;
@@ -14,6 +15,7 @@ public class GameMapTest {
 
     protected final GameMap DEFAULT_SIZED_MAP = createDefaultSizedGameMap();
     protected Player mockPlayer = mock(Player.class);
+    protected Monster mockMonster = mock(Monster.class);
 
     protected GameMap createDefaultSizedGameMap() {
         return new GameMap();
@@ -46,6 +48,13 @@ public class GameMapTest {
 
         gameMap.place(mockPlayer, new Point(x, y));
         return gameMap.move(mockPlayer, direction);
+
+    }
+
+    protected boolean placeAndMoveMonster(GameMap gameMap, int x, int y, int direction) {
+
+        gameMap.place(mockMonster, new Point(x, y));
+        return gameMap.move(mockMonster, direction);
 
     }
 

@@ -73,21 +73,13 @@ public class GameMap {
 
     }
 
-    private void removeEntity(Entity entity) {
+    public void remove(Entity entity) {
 
         Point point = positionsByEntity.get(entity);
 
         positionsByEntity.remove(entity);
         entitiesByPosition.remove(point);
 
-    }
-
-    public void removeMonster(Monster monster) {
-        removeEntity(monster);
-    }
-
-    public void removePlayer(Player player) {
-        removeEntity(player);
     }
 
     private Point getEntity(Entity entity) {

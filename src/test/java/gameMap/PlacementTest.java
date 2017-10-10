@@ -228,7 +228,7 @@ public class PlacementTest extends GameMapTest {
     public void removePlayer() {
 
         placePlayer(DEFAULT_SIZED_MAP, 0, 0);
-        DEFAULT_SIZED_MAP.removePlayer(mockPlayer);
+        DEFAULT_SIZED_MAP.remove(mockPlayer);
 
         assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockPlayer));
 

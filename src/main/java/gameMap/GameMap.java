@@ -82,7 +82,7 @@ public class GameMap {
 
     }
 
-    private Point getEntity(Entity entity) {
+    public Point getPosition(Entity entity) {
 
         Point point = positionsByEntity.get(entity);
 
@@ -91,14 +91,6 @@ public class GameMap {
         }
         return new Point(point);
 
-    }
-
-    public Point getPosition(Player player) {
-        return getEntity(player);
-    }
-
-    public Point getPosition(Monster monster) {
-        return getEntity(monster);
     }
 
     private int calculateDistanceToTravelRising(int playerPosition, int speed, int edge) {

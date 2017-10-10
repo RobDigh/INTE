@@ -203,13 +203,7 @@ public class GameMap {
         if (movementSuccessful) {
 
             Monster existingMonster = monstersByPosition.get(playerPosition);
-
-            if (existingMonster != null) {
-
-                return existingMonster.visit(player, this);
-
-            }
-            return true;
+            return existingMonster == null || existingMonster.visit(player, this);
 
         }
         return false;
@@ -222,14 +216,7 @@ public class GameMap {
         boolean movementSuccessful = move(monsterPosition, monster.getSpeed(), direction);
 
         if (movementSuccessful) {
-
-            if (monsterPosition.equals(playerPosition)) {
-
-                return player.visit(monster, this);
-
-            }
-            return true;
-
+            return !monsterPosition.equals(playerPosition) || player.visit(monster, this);
         }
         return false;
 

@@ -63,6 +63,6 @@ public class BoardTest {
 		sut.setDefaultBoardValues();
 		sut.createMap();
 		//then
-		assertEquals(54, sut.map[5][3]);
+		assertEquals(43, sut.map[4][3]);
 	}
 }

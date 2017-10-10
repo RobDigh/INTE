@@ -24,9 +24,6 @@ public class Player {
 		this.setPositionY(pY);
 		this.setName(name);
 		this.setSpeedPoint(speed);
-		if (this.healthPoint > 0){
-			this.setAlive(true);
-		}
 		
 	}
 	

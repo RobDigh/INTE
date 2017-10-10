@@ -95,6 +95,10 @@ public class GameMap {
 
     }
 
+    public void removePlayer(Player player) {
+
+    }
+
     public boolean place(Monster monster, Point point) {
 
         if (point.x < 0 || point.y < 0) {

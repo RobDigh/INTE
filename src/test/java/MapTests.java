@@ -21,8 +21,8 @@ public class MapTests {
         Map map = new Map(29, 19);
         PlayerCharacter pc = new PlayerCharacter();
         Point playerStartingPoint = new Point(15, 10);
-        map.placePlayer(pc, playerStartingPoint);
-        assertEquals(playerStartingPoint, map.getPlayerPosition);
+        map.placeEntity(pc, playerStartingPoint);
+        assertEquals(playerStartingPoint, map.getEntityPosition(pc));
     }
 
 }

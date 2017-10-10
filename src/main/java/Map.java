@@ -1,3 +1,4 @@
+import java.util.HashMap;
 
 public class Map {
     private int width;
@@ -15,5 +16,5 @@ public class Map {
     public int getHeight() {
         return height;
     }
-}
+    }
 

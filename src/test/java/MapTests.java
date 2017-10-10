@@ -1,6 +1,7 @@
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
 import static org.junit.Assert.*;
 
 import java.awt.*;
@@ -17,9 +18,9 @@ public class MapTests {
     }
 
     @Test
-    public void testPlayerPlacement(){
+    public void testPlayerPlacement() {
         Map map = new Map(29, 19);
-        PlayerCharacter pc = new PlayerCharacter();
+        PlayerCharacter pc = new PlayerCharacter(10, 2);
         Point playerStartingPoint = new Point(15, 10);
         map.placeEntity(pc, playerStartingPoint);
         assertEquals(playerStartingPoint, map.getEntityPosition(pc));

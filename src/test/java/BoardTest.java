@@ -61,7 +61,7 @@ public class BoardTest {
 		Board sut = new Board();
 		//when
 		//then
-		assertEquals(1, sut.map[0][0]);
+		assertEquals(0, sut.map[0][0]);
 		
 	}
 }

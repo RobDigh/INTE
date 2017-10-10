@@ -56,6 +56,10 @@ public class Player {
 		}
 	}
 	
+	public void increasePlayerGold(){
+		gold = 100;
+	}
+	
 	public void checkHealthStatus(){
 		if (healthPoint <= 0 ){
 			isAlive=false;

@@ -74,8 +74,9 @@ public class PlayerTest {
 		//given
 		Player sut = new Player(1,1,"Topaz",1);
 		//when
-		sut.increaseGold();
+		sut.increasePlayerGold();
 		//then
+		assertEquals(100, sut.getGold());
 	}
 	
 	@Test

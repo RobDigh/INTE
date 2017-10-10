@@ -27,7 +27,7 @@ public class BoardTest {
 		//given
 		Board sut = new Board();
 		//when 
-		sut.createCustomBoard(20,20);
+		sut.createCustomBoardSize(20,20);
 		//then
 		assertEquals(20, sut.getBoardValueX());
 		assertEquals(20, sut.getBoardValueY());
@@ -37,11 +37,11 @@ public class BoardTest {
 	public void createCustomBoardSizeWithNegativeValue(){
 		//given
 		Board sut = new Board();
-		//when
+		//when 
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("Board X/Y values can't be negative!");
 		//then
-		sut.createCustomBoard(-10, 10);
+		sut.createCustomBoardSize(-10, 10);
 	}
 	
 	@Test
@@ -52,6 +52,16 @@ public class BoardTest {
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("Board X/Y values can't be less than 10");
 		//then
-		sut.createCustomBoard(15, 7);
+		sut.createCustomBoardSize                      (15, 7);
+	}
+	
+	@Test
+	public void createMapTest(){
+		//given
+		Board sut = new Board();
+		//when
+		//then
+		assertEquals(1, sut.map[0][0]);
+		
 	}
 }

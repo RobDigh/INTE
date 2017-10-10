@@ -3,6 +3,7 @@ package gameMap;
 import entity.Entity;
 import entity.Monster;
 import entity.Player;
+import graph.GraphFactory;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -26,14 +27,14 @@ public class GameMap {
     private HashMap<Monster, Point> positionsByMonster = new HashMap<>();
     private HashMap<Point, Monster> monstersByPosition = new HashMap<>();
 
-    public GameMap() {
+    public GameMap(GraphFactory graphFactory) {
 
         this.xLength = DEFAULT_X_LENGTH;
         this.yLength = DEFAULT_Y_LENGTH;
 
     }
 
-    public GameMap(int xLength, int yLength) {
+    public GameMap(int xLength, int yLength, GraphFactory graphFactory) {
 
         this.xLength = xLength;
         this.yLength = yLength;

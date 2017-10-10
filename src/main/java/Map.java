@@ -21,7 +21,7 @@ public class Map {
     }
 
     public void placeCreature(Creature creature, Point point) {
-        if(!positionByCreature.containsKey(creature) && creatureByPosition.get(point) != null){
+        if (!positionByCreature.containsKey(creature) && creatureByPosition.get(point) != null) {
             throw new IllegalArgumentException("Creature cannot have initial placement in occupied space");
         }
         if (isOutsideMap(point)) {
@@ -40,8 +40,44 @@ public class Map {
         return positionByCreature.get(creature);
     }
 
-    public void moveCreature(Creature creature, Point point, Direction direction){
-
+    public void moveCreature(Creature creature, Direction direction) {
+        Point point = positionByCreature.get(creature);
+        creatureByPosition.remove(point);
+        int x = point.x;
+        int y = point.y;
+        //Can't remember where 0,0 point is, assume top left corner?
+        switch (direction.getValue()) {
+            case 1: //NORTH
+                y -= creature.getSpeed();
+                break;
+            case 2: //NORTHEAST
+                x += creature.getSpeed();
+                y -= creature.getSpeed();
+                break;
+            case 3: //EAST
+                x += creature.getSpeed();
+                break;
+            case 4: //SOUTHEAST
+                x += creature.getSpeed();
+                y += creature.getSpeed();
+                break;
+            case 5: //SOUTH
+                y += creature.getSpeed();
+                break;
+            case 6: //SOUTHWEST
+                x -= creature.getSpeed();
+                y += creature.getSpeed();
+                break;
+            case 7: //WEST
+                x -= creature.getSpeed();
+                break;
+            case 8: //NORTHWEST
+                x -= creature.getSpeed();
+                y -= creature.getSpeed();
+                break;
+        }
+        point.move(x, y);
+        creatureByPosition.put(point, creature);
     }
 
 }

@@ -51,10 +51,10 @@ public class MapTests {
         Map map = new Map(29, 19);
         Creature creature = new Creature(10, 1);
         Point originalPoint = new Point(8, 5);
-        Point newPoint = new Point(8, 7);
+        Point newPoint = new Point(8, 4);
         map.placeCreature(creature, originalPoint);
 
-        map.moveCreature(creature, originalPoint, Direction.NORTH);
+        map.moveCreature(creature, Direction.NORTH);
         assertEquals(newPoint, map.getCreaturePosition(creature));
     }
 

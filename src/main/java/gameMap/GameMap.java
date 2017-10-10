@@ -153,7 +153,7 @@ public class GameMap {
 
     }
 
-    private boolean moveEntity(Entity entity, int direction) {
+    public boolean move(Entity entity, int direction) {
 
         Point currentPosition = positionsByEntity.get(entity);
         entitiesByPosition.remove(currentPosition); // Do not change values that are used as hash keys.
@@ -178,13 +178,5 @@ public class GameMap {
         }
         return false;
 
-    }
-
-    public boolean move(Player player, int direction) {
-        return moveEntity(player, direction);
-    }
-
-    public boolean move(Monster monster, int direction) {
-        return moveEntity(monster, direction);
     }
 }

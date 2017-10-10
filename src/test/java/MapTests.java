@@ -26,4 +26,13 @@ public class MapTests {
         assertEquals(playerStartingPoint, map.getEntityPosition(pc));
     }
 
+    @Test
+    public void testPlacingEntityOutsideOfMap() {
+        thrown.expect(IllegalArgumentException.class);
+        Map map = new Map(29, 19);
+        Entity entity = new Entity(10, 2);
+        Point point = new Point(34, 20);
+        map.placeEntity(entity, point);
+    }
+
 }

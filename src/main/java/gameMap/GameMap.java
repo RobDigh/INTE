@@ -20,11 +20,6 @@ public class GameMap {
     private int xLength;
     private int yLength;
 
-    /*private Player player;
-    private Point playerPosition;
-
-    private HashMap<Monster, Point> positionsByMonster = new HashMap<>();
-    private HashMap<Point, Monster> monstersByPosition = new HashMap<>();*/
     private HashMap<Entity, Point> positionsByEntity = new HashMap<>();
     private HashMap<Point, Entity> entitiesByPosition = new HashMap<>();
 
@@ -50,7 +45,7 @@ public class GameMap {
         return yLength;
     }
 
-    public boolean place(Player player, Point point) {
+    public boolean place(Entity entity, Point point) {
 
         if (point.x < 0 || point.y < 0) {
             throw new IllegalArgumentException("Point may only have positive coordinates.");
@@ -60,7 +55,7 @@ public class GameMap {
             throw new IllegalArgumentException("Point must be less than the map's size.");
         }
 
-        return addEntity(player, point);
+        return addEntity(entity, point);
 
     }
 
@@ -74,24 +69,7 @@ public class GameMap {
             return true;
 
         }
-
         return false;
-
-    }
-
-    private boolean addMonster(Monster monster, Point point) {
-
-        /*if (monstersByPosition.get(point) == null && !point.equals(playerPosition)) {
-
-            positionsByMonster.put(monster, new Point(point));
-            monstersByPosition.put(new Point(point), monster);
-
-            return true;
-
-        }
-
-        return false;*/
-        return addEntity(monster, point);
 
     }
 
@@ -105,36 +83,11 @@ public class GameMap {
     }
 
     public void removeMonster(Monster monster) {
-
-        /*Point point = positionsByMonster.get(monster);
-
-        positionsByMonster.remove(monster);
-        monstersByPosition.remove(point);*/
-
         removeEntity(monster);
-
     }
 
     public void removePlayer(Player player) {
-
-        /*this.player = null;
-        playerPosition = null;*/
         removeEntity(player);
-
-    }
-
-    public boolean place(Monster monster, Point point) {
-
-        if (point.x < 0 || point.y < 0) {
-            throw new IllegalArgumentException("Point may only have positive coordinates.");
-        }
-
-        if (point.x >= xLength || point.y >= yLength) {
-            throw new IllegalArgumentException("Point must be less than the map's size.");
-        }
-
-        return addMonster(monster, point);
-
     }
 
     private Point getEntity(Entity entity) {
@@ -149,26 +102,11 @@ public class GameMap {
     }
 
     public Point getPosition(Player player) {
-
-        /*if (playerPosition == null) {
-            return null;
-        }
-        return new Point(playerPosition);*/
-
         return getEntity(player);
-
     }
 
     public Point getPosition(Monster monster) {
-
-        /*Point point = positionsByMonster.get(monster);
-
-        if (point == null) {
-            return null;
-        }
-        return new Point(point);*/
         return getEntity(monster);
-
     }
 
     private int calculateDistanceToTravelRising(int playerPosition, int speed, int edge) {
@@ -259,30 +197,10 @@ public class GameMap {
     }
 
     public boolean move(Player player, int direction) {
-
         return moveEntity(player, direction);
-        /*boolean movementSuccessful = move(playerPosition, player.getSpeed(), direction);
-
-        if (movementSuccessful) {
-
-            Monster existingMonster = monstersByPosition.get(playerPosition);
-            return existingMonster == null || existingMonster.visit(player, this);
-
-        }
-        return false;*/
-
     }
 
     public boolean move(Monster monster, int direction) {
-
         return moveEntity(monster, direction);
-        /*Point monsterPosition = positionsByMonster.get(monster);
-        boolean movementSuccessful = move(monsterPosition, monster.getSpeed(), direction);
-
-        if (movementSuccessful) {
-            return !monsterPosition.equals(playerPosition) || player.visit(monster, this);
-        }
-        return false;*/
-
     }
 }

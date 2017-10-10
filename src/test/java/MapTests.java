@@ -46,14 +46,4 @@ public class MapTests {
         map.placeCreature(monster, point);
     }
 
-    @Test
-    public void placeAndMoveCreature(){
-        Map map = new Map(29, 19);
-        Creature pc = new PlayerCharacter(15, 2);
-        Point point = new Point(5, 8);
-        map.placeCreature(pc, point);
-        map.moveCreature(pc, pc.getSpeed(), 1);
-        assertEquals(point.getY()+pc.getSpeed(), map.getCreaturePosition(pc));
-    }
-
 }

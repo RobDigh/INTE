@@ -39,10 +39,6 @@ public class Map {
     public Point getCreaturePosition(Creature creature) {
         return positionByCreature.get(creature);
     }
-
-    public void moveCreature(Creature creature, int speed, int direction){
-        Point position = positionByCreature.get(creature);
-
-    }
+    
 }
 

@@ -172,6 +172,18 @@ public class GameMap {
 
             monsterPosition.y += calculateDistanceToTravelRising(monsterPosition.y, monster.getSpeed(), yLength);
 
+        } else if (direction == SOUTH && monsterPosition.y > 0) {
+
+            monsterPosition.y -= calculateDistanceToTravelFalling(monsterPosition.y, monster.getSpeed());
+
+        } else if (direction == WEST && monsterPosition.x < xLength - 1) {
+
+            monsterPosition.x += calculateDistanceToTravelRising(monsterPosition.x, monster.getSpeed(), xLength);
+
+        } else if (direction == EAST && monsterPosition.x > 0) {
+
+            monsterPosition.x -= calculateDistanceToTravelFalling(monsterPosition.x, monster.getSpeed());
+
         } else {
             return false;
         }

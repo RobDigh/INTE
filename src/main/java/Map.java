@@ -39,6 +39,6 @@ public class Map {
     public Point getCreaturePosition(Creature creature) {
         return positionByCreature.get(creature);
     }
-    
+
 }
 

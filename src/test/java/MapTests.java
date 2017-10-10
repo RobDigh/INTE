@@ -46,4 +46,15 @@ public class MapTests {
         map.placeCreature(monster, point);
     }
 
+    @Test
+    public void placeAndMoveCreature(){
+        Map map = new Map(29, 19);
+        Creature creature = new Creature(10, 1);
+        Point originalPoint = new Point(8, 5);
+        Point newPoint = new Point(8, 7);
+        map.placeCreature(creature, originalPoint);
+
+        map.moveCreature(creature, originalPoint, Direction.NORTH);
+    }
+
 }

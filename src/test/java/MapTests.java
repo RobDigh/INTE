@@ -47,7 +47,7 @@ public class MapTests {
     }
 
     @Test
-    public void placeAndMoveCreature(){
+    public void placeAndMoveCreature() {
         Map map = new Map(29, 19);
         Creature creature = new Creature(10, 1);
         Point originalPoint = new Point(8, 5);
@@ -59,12 +59,22 @@ public class MapTests {
     }
 
     @Test
-    public void testDirectionName(){
+    public void placeAndMoveCreatureOutsideMap() {
+        Map map = new Map(1, 1);
+        Creature creature = new Creature(10, 1);
+        Point point = new Point(1, 1);
+        map.placeCreature(creature, point);
+        map.moveCreature(creature, Direction.NORTHWEST);
+        assertEquals(new Point(1,1), map.getCreaturePosition(creature));
+    }
+
+    @Test
+    public void testDirectionName() {
         assertEquals("North", Direction.NORTH.getName());
     }
 
     @Test
-    public void testDirectionValues(){
+    public void testDirectionValues() {
         assertEquals(3, Direction.EAST.getValue());
     }
 

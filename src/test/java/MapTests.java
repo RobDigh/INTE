@@ -57,4 +57,9 @@ public class MapTests {
         map.moveCreature(creature, originalPoint, Direction.NORTH);
     }
 
+    @Test
+    public void testDirection(){
+        assertEquals("North", Direction.NORTH.getName());
+    }
+
 }

@@ -40,5 +40,9 @@ public class Map {
         return positionByCreature.get(creature);
     }
 
+    public void moveCreature(Creature creature, Point point, Direction direction){
+
+    }
+
 }
 

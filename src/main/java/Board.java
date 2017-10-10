@@ -6,11 +6,8 @@ public class Board {
 	private int boardXvalue;
 	private int boardYvalue;
 	
-	public void setDefaultBoardValueX(){
+	public void setDefaultBoardValues(){
 		this.boardXvalue = DEFAULT_BOARD_LENGTH;
-	}
-	
-	public void setDefaultBoardValueY(){
 		this.boardYvalue = DEFAULT_BOARD_HEIGHT;
 	}
 	

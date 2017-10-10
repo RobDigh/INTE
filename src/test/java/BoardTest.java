@@ -10,8 +10,7 @@ public class BoardTest {
 		//given
 		Board sut = new Board();
 		//when
-		sut.setDefaultBoardValueX();
-		sut.setDefaultBoardValueY();
+		sut.setDefaultBoardValues();
 		//then
 		assertEquals(10, sut.getBoardValueX());
 		assertEquals(10, sut.getBoardValueY());

@@ -80,6 +80,17 @@ public class PlayerTest {
 	}
 	
 	@Test
+	public void decreasePlayerGoldAmmount(){
+		//given
+		Player sut = new Player(1,1,"Emerald",1);
+		//when
+		sut.increasePlayerGold(100);
+		sut.decreasePlayerGold();
+		//then
+		assertEquals(25, sut.getGold());
+	}
+	
+	@Test
 	public void playerIsAliveOrDead(){
 		//given
 		Player sut = new Player(1, 1, "Dietrich", 1);

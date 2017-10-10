@@ -1,8 +1,8 @@
-package player;
+package entity;
 
-import npc.Monster;
+import gameMap.GameMap;
 
-public class Player {
+public class Player extends Entity {
 
     private int hp;
     private int speed;
@@ -30,7 +30,8 @@ public class Player {
         return speed;
     }
 
-    public boolean visit(Monster monster) {
+    @Override
+    public boolean visit(Entity entity, GameMap environment) {
         return false;
     }
 }

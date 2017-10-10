@@ -582,7 +582,11 @@ public class MovementTest extends GameMapTest {
     @Test
     public void movePlayerOntoMonsterAndWinCombat() {
 
-        when(mockMonster.visit(mockPlayer)).thenReturn(Combat.INITIATOR_WIN);
+        when(mockMonster.visit(mockPlayer, DEFAULT_SIZED_MAP))
+                .then(invocationOnMock -> {
+                    DEFAULT_SIZED_MAP.removeMonster(mockMonster);
+                    return Combat.INITIATOR_WIN;
+                });
 
         DEFAULT_SIZED_MAP.place(mockMonster, new Point(0, 1));
 
@@ -596,7 +600,10 @@ public class MovementTest extends GameMapTest {
     @Test
     public void movePlayerOntoMonsterAndLoseCombat() {
 
-        when(mockMonster.visit(mockPlayer)).thenReturn(Combat.INITIATOR_LOSS);
+        when(mockMonster.visit(mockPlayer, DEFAULT_SIZED_MAP)).then(invocationOnMock -> {
+            DEFAULT_SIZED_MAP.removePlayer(mockPlayer);
+            return Combat.INITIATOR_LOSS;
+        });
 
         DEFAULT_SIZED_MAP.place(mockMonster, new Point(0, 1));
 
@@ -610,7 +617,10 @@ public class MovementTest extends GameMapTest {
     @Test
     public void moveMonsterOntoPlayerAndWinCombat() {
 
-        when(mockPlayer.visit(mockMonster)).thenReturn(Combat.INITIATOR_WIN);
+        when(mockPlayer.visit(mockMonster, DEFAULT_SIZED_MAP)).then(invocationOnMock -> {
+            DEFAULT_SIZED_MAP.removePlayer(mockPlayer);
+            return Combat.INITIATOR_WIN;
+        });
 
         DEFAULT_SIZED_MAP.place(mockPlayer, new Point(0, 1));
 
@@ -624,7 +634,10 @@ public class MovementTest extends GameMapTest {
     @Test
     public void moveMonsterOntoPlayerAndLoseCombat() {
 
-        when(mockPlayer.visit(mockMonster)).thenReturn(Combat.INITIATOR_LOSS);
+        when(mockPlayer.visit(mockMonster, DEFAULT_SIZED_MAP)).then(invocationOnMock -> {
+            DEFAULT_SIZED_MAP.removeMonster(mockMonster);
+            return Combat.INITIATOR_LOSS;
+        });
 
         DEFAULT_SIZED_MAP.place(mockPlayer, new Point(0, 1));
 

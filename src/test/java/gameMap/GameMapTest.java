@@ -1,9 +1,8 @@
 package gameMap;
 
-import npc.Monster;
+import entity.Monster;
 import org.junit.Before;
-import org.junit.Test;
-import player.Player;
+import entity.Player;
 
 import java.awt.*;
 

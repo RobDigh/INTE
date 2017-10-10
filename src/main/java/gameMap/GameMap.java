@@ -225,17 +225,7 @@ public class GameMap {
 
             if (monsterPosition.equals(playerPosition)) {
 
-                boolean resultOfVisit = player.visit(monster, this);
-
-                if (resultOfVisit) {
-
-                    playerPosition = null;
-                    return true;
-
-                }
-
-                removeMonster(monster);
-                return false;
+                return player.visit(monster, this);
 
             }
             return true;

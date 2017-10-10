@@ -1,10 +1,16 @@
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
 import static org.junit.Assert.*;
 //import static org.mockito.Mockito.mock;
 //import static org.mockito.Mockito.when;
 
 public class BoardTest {
 
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
+	
 	@Test
 	public void createDefaultBoardNoArgumentsTest(){
 		//given
@@ -25,5 +31,15 @@ public class BoardTest {
 		//then
 		assertEquals(20, sut.getBoardValueX());
 		assertEquals(20, sut.getBoardValueY());
+	}
+	
+	@Test
+	public void createCustomBoardSizeWithNegativeValue() throws IllegalArgumentException {
+		//given
+		Board sut = new Board();
+		//when
+		sut.createCustomBoard(-10, 10);
+		//then
+		thrown.expect(IllegalArgumentException.class);
 	}
 }

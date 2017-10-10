@@ -138,23 +138,23 @@ public class GameMap {
 
     }
 
-    public boolean move(Player player, int direction) {
+    private boolean move(Point currentPosition, int speed, int direction) {
 
-        if (direction == NORTH && playerPosition.y < yLength - 1) {
+        if (direction == NORTH && currentPosition.y < yLength - 1) {
 
-            playerPosition.y += calculateDistanceToTravelRising(playerPosition.y, player.getSpeed(), yLength);
+            currentPosition.y += calculateDistanceToTravelRising(currentPosition.y, speed, yLength);
 
-        } else if (direction == SOUTH && playerPosition.y > 0) {
+        } else if (direction == SOUTH && currentPosition.y > 0) {
 
-            playerPosition.y -= calculateDistanceToTravelFalling(playerPosition.y, player.getSpeed());
+            currentPosition.y -= calculateDistanceToTravelFalling(currentPosition.y, speed);
 
-        } else if (direction == WEST && playerPosition.x < xLength - 1) {
+        } else if (direction == WEST && currentPosition.x < xLength - 1) {
 
-            playerPosition.x += calculateDistanceToTravelRising(playerPosition.x, player.getSpeed(), xLength);
+            currentPosition.x += calculateDistanceToTravelRising(currentPosition.x, speed, xLength);
 
-        } else if (direction == EAST && playerPosition.x > 0) {
+        } else if (direction == EAST && currentPosition.x > 0) {
 
-            playerPosition.x -= calculateDistanceToTravelFalling(playerPosition.x, player.getSpeed());
+            currentPosition.x -= calculateDistanceToTravelFalling(currentPosition.x, speed);
 
         } else {
             return false;
@@ -164,30 +164,14 @@ public class GameMap {
 
     }
 
+    public boolean move(Player player, int direction) {
+        return move(playerPosition, player.getSpeed(), direction);
+    }
+
     public boolean move(Monster monster, int direction) {
 
         Point monsterPosition = positionsByMonster.get(monster);
+        return move(monsterPosition, monster.getSpeed(), direction);
 
-        if (direction == NORTH && monsterPosition.y < yLength - 1) {
-
-            monsterPosition.y += calculateDistanceToTravelRising(monsterPosition.y, monster.getSpeed(), yLength);
-
-        } else if (direction == SOUTH && monsterPosition.y > 0) {
-
-            monsterPosition.y -= calculateDistanceToTravelFalling(monsterPosition.y, monster.getSpeed());
-
-        } else if (direction == WEST && monsterPosition.x < xLength - 1) {
-
-            monsterPosition.x += calculateDistanceToTravelRising(monsterPosition.x, monster.getSpeed(), xLength);
-
-        } else if (direction == EAST && monsterPosition.x > 0) {
-
-            monsterPosition.x -= calculateDistanceToTravelFalling(monsterPosition.x, monster.getSpeed());
-
-        } else {
-            return false;
-        }
-
-        return true;
     }
 }

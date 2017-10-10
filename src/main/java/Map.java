@@ -20,7 +20,7 @@ public class Map {
         return height;
     }
 
-    public void placeEntity(Creature creature, Point point) {
+    public void placeCreature(Creature creature, Point point) {
         if(!positionByCreature.containsKey(creature) && creatureByPosition.get(point) != null){
             throw new IllegalArgumentException("Creature cannot have initial placement in occupied space");
         }
@@ -33,14 +33,16 @@ public class Map {
     }
 
     private boolean isOutsideMap(Point point) {
-        if (point.getX() < 0 || point.getY() < 0 || point.getX() > getWidth() || point.getY() > getHeight()) {
-            return true;
-        }
-        return false;
+        return point.getX() < 0 || point.getY() < 0 || point.getX() > getWidth() || point.getY() > getHeight();
     }
 
-    public Point getEntityPosition(Creature creature) {
+    public Point getCreaturePosition(Creature creature) {
         return positionByCreature.get(creature);
+    }
+
+    public void moveCreature(Creature creature, int speed, int direction){
+        Point position = positionByCreature.get(creature);
+
     }
 }
 

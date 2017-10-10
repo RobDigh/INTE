@@ -22,8 +22,8 @@ public class MapTests {
         Map map = new Map(29, 19);
         PlayerCharacter pc = new PlayerCharacter(10, 2);
         Point playerStartingPoint = new Point(15, 10);
-        map.placeEntity(pc, playerStartingPoint);
-        assertEquals(playerStartingPoint, map.getEntityPosition(pc));
+        map.placeCreature(pc, playerStartingPoint);
+        assertEquals(playerStartingPoint, map.getCreaturePosition(pc));
     }
 
     @Test
@@ -32,7 +32,7 @@ public class MapTests {
         Map map = new Map(29, 19);
         Creature creature = new Creature(10, 2);
         Point point = new Point(5, 20);
-        map.placeEntity(creature, point);
+        map.placeCreature(creature, point);
     }
 
     @Test
@@ -42,8 +42,8 @@ public class MapTests {
         Creature pc = new Creature(2, 2);
         Creature monster = new Creature(2, 2);
         Point point = new Point(8, 12);
-        map.placeEntity(pc, point);
-        map.placeEntity(monster, point);
+        map.placeCreature(pc, point);
+        map.placeCreature(monster, point);
     }
 
     @Test
@@ -51,8 +51,9 @@ public class MapTests {
         Map map = new Map(29, 19);
         Creature pc = new PlayerCharacter(15, 2);
         Point point = new Point(5, 8);
-        map.placeEntity(pc, point);
-        map.moveCreature(pc, pc.getSpeed(), map.NORTH);
+        map.placeCreature(pc, point);
+        map.moveCreature(pc, pc.getSpeed(), 1);
+        assertEquals(point.getY()+pc.getSpeed(), map.getCreaturePosition(pc));
     }
 
 }

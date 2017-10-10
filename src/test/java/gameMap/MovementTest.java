@@ -606,4 +606,32 @@ public class MovementTest extends GameMapTest {
         assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockPlayer));
 
     }
+
+    @Test
+    public void moveMonsterOntoPlayerAndWinCombat() {
+
+        when(mockPlayer.visit(mockMonster)).thenReturn(Combat.INITIATOR_WIN);
+
+        DEFAULT_SIZED_MAP.place(mockPlayer, new Point(0, 1));
+
+        assertTrue(placeAndMoveMonster(DEFAULT_SIZED_MAP, 0, 0, GameMap.NORTH));
+
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockMonster), new Point(0, 1));
+        assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockPlayer));
+
+    }
+
+    @Test
+    public void moveMonsterOntoPlayerAndLoseCombat() {
+
+        when(mockPlayer.visit(mockMonster)).thenReturn(Combat.INITIATOR_LOSS);
+
+        DEFAULT_SIZED_MAP.place(mockPlayer, new Point(0, 1));
+
+        assertFalse(placeAndMoveMonster(DEFAULT_SIZED_MAP, 0, 0, GameMap.NORTH));
+
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 1));
+        assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockMonster));
+
+    }
 }

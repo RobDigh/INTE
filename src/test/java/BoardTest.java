@@ -1,7 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+//import static org.mockito.Mockito.mock;
+//import static org.mockito.Mockito.when;
 
 public class BoardTest {
 
@@ -22,7 +22,7 @@ public class BoardTest {
 		//given
 		Board sut = new Board();
 		//when
-		sut.createCustomBoard();
+		sut.createCustomBoard(20,20);
 		//then
 		assertEquals(20, sut.getBoardValueX());
 		assertEquals(20, sut.getBoardValueY());

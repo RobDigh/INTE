@@ -1,5 +1,6 @@
 package gameMap;
 
+import combat.Combat;
 import org.junit.Test;
 
 import java.awt.*;
@@ -7,6 +8,7 @@ import java.awt.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class MovementTest extends GameMapTest {
@@ -289,6 +291,20 @@ public class MovementTest extends GameMapTest {
 
         assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 1, 0, GameMap.EAST));
         assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 0));
+
+    }
+
+    @Test
+    public void movePlayerOntoMonsterAndWinCombat() {
+
+        when(mockMonster.visit(mockPlayer)).thenReturn(Combat.INITIATOR_WIN);
+
+        DEFAULT_SIZED_MAP.place(mockMonster, new Point(0, 1));
+
+        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 0, GameMap.NORTH));
+
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 1));
+        assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockMonster));
 
     }
 

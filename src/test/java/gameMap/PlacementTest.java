@@ -223,4 +223,14 @@ public class PlacementTest extends GameMapTest {
         assertFalse(gameMap.place(m1, new Point(0, 0)));
 
     }
+
+    @Test
+    public void removePlayer() {
+
+        placePlayer(DEFAULT_SIZED_MAP, 0, 0);
+        DEFAULT_SIZED_MAP.removePlayer(mockPlayer);
+
+        assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockPlayer));
+
+    }
 }

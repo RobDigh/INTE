@@ -15,7 +15,9 @@ public class Board {
 		
 			if ( newX < 0 || newY < 0 ){
 				throw new IllegalArgumentException("Board X/Y values can't be negative!");
-			} else {
+			} else if (newX < 10 || newY < 10){
+				throw new IllegalArgumentException("Board X/Y values can't be less than 10");
+			}else{
 				
 				boardXvalue = newX;
 				boardYvalue = newY;

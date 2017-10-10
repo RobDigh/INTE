@@ -56,8 +56,8 @@ public class Player {
 		}
 	}
 	
-	public void increasePlayerGold(){
-		gold = 100;
+	public void increasePlayerGold(int goldToIncrease){
+		gold += goldToIncrease;
 	}
 	
 	public void checkHealthStatus(){

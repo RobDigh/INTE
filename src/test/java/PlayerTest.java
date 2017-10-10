@@ -68,13 +68,13 @@ public class PlayerTest {
 		//then
 		assertEquals(1, sut.getSpeedPoint());
 	}
-	
+	 
 	@Test
 	public void increasePlayerGoldAmmount(){
 		//given
 		Player sut = new Player(1,1,"Topaz",1);
 		//when
-		sut.increasePlayerGold();
+		sut.increasePlayerGold(100);
 		//then
 		assertEquals(100, sut.getGold());
 	}

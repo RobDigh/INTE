@@ -14,15 +14,17 @@ import static org.mockito.Mockito.when;
 public class GameMapTest {
 
     protected final GameMap DEFAULT_SIZED_MAP = createDefaultSizedGameMap();
+
     protected Player mockPlayer = mock(Player.class);
     protected Monster mockMonster = mock(Monster.class);
+    protected GraphFactory mockGraphFactory = mock(GraphFactory.class);
 
     protected GameMap createDefaultSizedGameMap() {
-        return new GameMap(new GraphFactory());
+        return new GameMap(mockGraphFactory);
     }
 
     protected GameMap createCustomSizedGameMap(int xLength, int yLength) {
-        return new GameMap(xLength, yLength, new GraphFactory());
+        return new GameMap(xLength, yLength, mockGraphFactory);
     }
 
     protected GameMap placePlayer(GameMap gameMap, int x, int y) {

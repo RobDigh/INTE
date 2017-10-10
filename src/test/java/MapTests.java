@@ -35,4 +35,15 @@ public class MapTests {
         map.placeEntity(creature, point);
     }
 
+    @Test
+    public void initialPlacementIsOccupied() {
+        thrown.expect(IllegalArgumentException.class);
+        Map map = new Map(29, 19);
+        Creature pc = new Creature(2, 2);
+        Creature monster = new Creature(2, 2);
+        Point point = new Point(8, 12);
+        map.placeEntity(pc, point);
+        map.placeEntity(monster, point);
+    }
+
 }

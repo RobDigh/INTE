@@ -1,7 +1,8 @@
 package gameMap;
 
-import npc.Monster;
-import player.Player;
+import entity.Entity;
+import entity.Monster;
+import entity.Player;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -85,7 +86,7 @@ public class GameMap {
 
     }
 
-    private void removeMonster(Monster monster) {
+    public void removeMonster(Monster monster) {
 
         Point point = positionsByMonster.get(monster);
 
@@ -198,7 +199,7 @@ public class GameMap {
 
             if (existingMonster != null) {
 
-                boolean resultOfVisit = existingMonster.visit(player);
+                boolean resultOfVisit = existingMonster.visit(player, this);
 
                 if (resultOfVisit) {
 
@@ -227,7 +228,7 @@ public class GameMap {
 
             if (monsterPosition.equals(playerPosition)) {
 
-                boolean resultOfVisit = player.visit(monster);
+                boolean resultOfVisit = player.visit(monster, this);
 
                 if (resultOfVisit) {
 

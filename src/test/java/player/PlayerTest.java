@@ -1,5 +1,6 @@
 package player;
 
+import entity.Player;
 import gameMap.GameMap;
 import org.junit.Test;
 

@@ -163,4 +163,19 @@ public class GameMap {
         return true;
 
     }
+
+    public boolean move(Monster monster, int direction) {
+
+        Point monsterPosition = positionsByMonster.get(monster);
+
+        if (direction == NORTH && monsterPosition.y < yLength - 1) {
+
+            monsterPosition.y += calculateDistanceToTravelRising(monsterPosition.y, monster.getSpeed(), yLength);
+
+        } else {
+            return false;
+        }
+
+        return true;
+    }
 }

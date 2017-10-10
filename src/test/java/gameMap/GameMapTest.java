@@ -60,6 +60,9 @@ public class GameMapTest {
 
     @Before
     public void setup() {
+
         when(mockPlayer.getSpeed()).thenReturn(1);
+        when(mockMonster.getSpeed()).thenReturn(1);
+
     }
 }

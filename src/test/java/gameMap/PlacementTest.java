@@ -233,4 +233,16 @@ public class PlacementTest extends GameMapTest {
         assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockPlayer));
 
     }
+
+    @Test
+    public void testPlaceGameMap() {
+
+        GameMap lowerLevel = createDefaultSizedGameMap();
+        GameMap upperLevel = createDefaultSizedGameMap();
+
+        upperLevel.place(lowerLevel, new Point(2, 2));
+
+        assertEquals(new Point(2, 2), upperLevel.getPosition(lowerLevel));
+
+    }
 }

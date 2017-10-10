@@ -174,6 +174,7 @@ public class GameMap {
             }
 
             if (shouldStay) {
+                // ToDo: What happens if this fails?
                 addEntity(entity, currentPosition); // Put entity back after position has been updated.
             }
 

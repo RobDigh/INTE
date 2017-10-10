@@ -1,16 +1,11 @@
 package gameMap;
 
-import entity.Entity;
 import entity.Monster;
-import graph.Graph;
-import graph.GraphFactory;
 import org.junit.Before;
 import entity.Player;
 
 import java.awt.*;
-import java.util.HashMap;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

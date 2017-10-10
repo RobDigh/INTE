@@ -107,8 +107,10 @@ public class GameMap {
          * If the difference is positive, subtract the difference from the distance to be travelled so that we do not
          * go past the edge.
          */
-        int toSubtract = Math.max(0, (position + speed) - (edge - 1));
-        return speed - toSubtract;
+        int distancePastEdge = (position + speed) - (edge - 1);
+        int adjustmentNeeded = Math.max(0, distancePastEdge);
+
+        return speed - adjustmentNeeded;
 
     }
 
@@ -122,8 +124,10 @@ public class GameMap {
          *
          * Otherwise, subtract nothing.
          */
-        int toSubtract = Math.abs(Math.min(0, (position - speed)));
-        return speed - toSubtract;
+        int distancePastEdge = position - speed;
+        int adjustmentNeeded = Math.abs(Math.min(0, distancePastEdge));
+
+        return speed - adjustmentNeeded;
 
     }
 

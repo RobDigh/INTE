@@ -82,6 +82,15 @@ public class GameMap {
 
     }
 
+    private void removeMonster(Monster monster) {
+
+        Point point = positionsByMonster.get(monster);
+
+        positionsByMonster.remove(monster);
+        monstersByPosition.remove(point);
+
+    }
+
     public boolean place(Monster monster, Point point) {
 
         if (point.x < 0 || point.y < 0) {
@@ -101,7 +110,15 @@ public class GameMap {
     }
 
     public Point getPosition(Monster monster) {
-        return new Point(positionsByMonster.get(monster));
+
+        Point point = positionsByMonster.get(monster);
+
+        if (point == null) {
+            return null;
+        }
+
+        return new Point(point);
+
     }
 
     private int calculateDistanceToTravelRising(int playerPosition, int speed, int edge) {
@@ -165,7 +182,31 @@ public class GameMap {
     }
 
     public boolean move(Player player, int direction) {
-        return move(playerPosition, player.getSpeed(), direction);
+
+        boolean movementSuccessful = move(playerPosition, player.getSpeed(), direction);
+
+        if (movementSuccessful) {
+
+            Monster existingMonster = monstersByPosition.get(playerPosition);
+
+            if (existingMonster != null) {
+
+                boolean resultOfVisit = existingMonster.visit(player);
+
+                if (resultOfVisit) {
+
+                    removeMonster(existingMonster);
+                    return true;
+
+                }
+                return false;
+
+            }
+            return true;
+
+        }
+        return false;
+
     }
 
     public boolean move(Monster monster, int direction) {

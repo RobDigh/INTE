@@ -9,9 +9,12 @@ public class BoardTest {
 	public void createDefaultBoardNoArgumentsTest(){
 		//given
 		Board sut = new Board();
+		//when
+		sut.setDefaultBoardValueX();
+		sut.setDefaultBoardValueY();
 		//then
-		assertEquals(Board.DEFAULT_BOARD_HEIGHT, sut.DEFAULT_BOARD_HEIGHT);
-		assertEquals(Board.DEFAULT_BOARD_LENGTH, sut.DEFAULT_BOARD_LENGTH);
+		assertEquals(Board.DEFAULT_BOARD_HEIGHT, sut.getBoardValueX());
+		assertEquals(Board.DEFAULT_BOARD_LENGTH, sut.getBoardValueY());
 	}
 	
 }

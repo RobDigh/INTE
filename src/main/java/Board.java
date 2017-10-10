@@ -1,7 +1,7 @@
 public class Board {
 
-	public static final int DEFAULT_BOARD_LENGTH = 10;
-	public static final int DEFAULT_BOARD_HEIGHT = 10;
+	private static final int DEFAULT_BOARD_LENGTH = 10;
+	private static final int DEFAULT_BOARD_HEIGHT = 10;
 	
 	private int boardXvalue;
 	private int boardYvalue;

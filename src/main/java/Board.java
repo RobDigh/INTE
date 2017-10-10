@@ -14,9 +14,9 @@ public class Board {
 		this.boardYvalue = DEFAULT_BOARD_HEIGHT;
 	}
 	
-	public void createCustomBoard(){
-		boardXvalue = 20;
-		boardYvalue = 20;
+	public void createCustomBoard(int newX, int newY){
+		boardXvalue = newX;
+		boardYvalue = newY;
 	}
 	
 	public int getBoardValueX(){

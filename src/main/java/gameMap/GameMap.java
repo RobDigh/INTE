@@ -1,9 +1,7 @@
 package gameMap;
 
-import entity.Entity;
 import entity.Monster;
 import entity.Player;
-import graph.GraphFactory;
 
 import java.awt.*;
 import java.util.HashMap;

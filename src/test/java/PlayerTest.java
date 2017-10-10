@@ -70,6 +70,15 @@ public class PlayerTest {
 	}
 	
 	@Test
+	public void increasePlayerGoldAmmount(){
+		//given
+		Player sut = new Player(1,1,"Topaz",1);
+		//when
+		sut.increaseGold();
+		//then
+	}
+	
+	@Test
 	public void playerIsAliveOrDead(){
 		//given
 		Player sut = new Player(1, 1, "Dietrich", 1);

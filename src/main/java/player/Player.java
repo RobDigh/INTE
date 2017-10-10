@@ -1,5 +1,7 @@
 package player;
 
+import npc.Monster;
+
 public class Player {
 
     private int hp;
@@ -26,5 +28,9 @@ public class Player {
 
     public int getSpeed() {
         return speed;
+    }
+
+    public boolean visit(Monster monster) {
+        return false;
     }
 }

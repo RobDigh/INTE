@@ -12,9 +12,17 @@ public class Board {
 	}
 	
 	public void createCustomBoard(int newX, int newY){
-		boardXvalue = newX;
-		boardYvalue = newY;
-	}
+		
+			if ( newX < 0 || newY < 0 ){
+				throw new IllegalArgumentException("Board X/Y values can't be negative!");
+			} else {
+				
+				boardXvalue = newX;
+				boardYvalue = newY;
+			}
+
+		}
+
 	
 	public int getBoardValueX(){
 		return boardXvalue;

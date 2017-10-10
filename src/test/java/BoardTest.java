@@ -26,7 +26,7 @@ public class BoardTest {
 	public void createCustomBoardSizeTest(){
 		//given
 		Board sut = new Board();
-		//when
+		//when 
 		sut.createCustomBoard(20,20);
 		//then
 		assertEquals(20, sut.getBoardValueX());
@@ -34,12 +34,13 @@ public class BoardTest {
 	}
 	
 	@Test
-	public void createCustomBoardSizeWithNegativeValue() throws IllegalArgumentException {
+	public void createCustomBoardSizeWithNegativeValue(){
 		//given
 		Board sut = new Board();
 		//when
-		sut.createCustomBoard(-10, 10);
-		//then
 		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("Board X/Y values can't be negative!");
+		//then
+		sut.createCustomBoard(-10, 10);
 	}
 }

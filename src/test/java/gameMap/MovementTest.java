@@ -292,7 +292,7 @@ public class MovementTest extends GameMapTest {
     public void moveMonsterNorth() {
 
         assertTrue(placeAndMoveMonster(DEFAULT_SIZED_MAP, 0, 0, GameMap.NORTH));
-        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockPlayer), new Point(0, 1));
+        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockMonster), new Point(0, 1));
 
     }
 }

@@ -2,12 +2,14 @@ package entity;
 
 import combat.Combat;
 import org.junit.Test;
+import org.mockito.invocation.InvocationOnMock;
 
 import java.awt.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class MovementTest extends GameMapTest {
@@ -520,14 +522,30 @@ public class MovementTest extends GameMapTest {
      * Collision
      */
 
+    private boolean removeAcceptant(InvocationOnMock invocation) {
+
+        GameMap gameMap = invocation.getArgument(1);
+        gameMap.remove((Entity) invocation.getMock());
+
+        return Combat.INITIATOR_WIN;
+
+    }
+
+    private boolean removeVisitor(InvocationOnMock invocation) {
+
+        GameMap gameMap = invocation.getArgument(1);
+        Entity visitor = invocation.getArgument(0);
+
+        gameMap.remove(visitor);
+
+        return Combat.INITIATOR_LOSS;
+
+    }
+
     @Test
     public void movePlayerOntoMonsterAndWinCombat() {
 
-        when(mockMonster.accept(mockPlayer, DEFAULT_SIZED_MAP))
-                .then(invocationOnMock -> {
-                    DEFAULT_SIZED_MAP.remove(mockMonster);
-                    return Combat.INITIATOR_WIN;
-                });
+        when(mockMonster.accept(mockPlayer, DEFAULT_SIZED_MAP)).then(this::removeAcceptant);
 
         DEFAULT_SIZED_MAP.place(mockMonster, new Point(0, 1));
 
@@ -541,11 +559,7 @@ public class MovementTest extends GameMapTest {
     @Test
     public void movePlayerOntoMonsterAndLoseCombat() {
 
-        when(mockMonster.accept(mockPlayer, DEFAULT_SIZED_MAP))
-                .then(invocationOnMock -> {
-                    DEFAULT_SIZED_MAP.remove(mockPlayer);
-                    return Combat.INITIATOR_LOSS;
-                });
+        when(mockMonster.accept(mockPlayer, DEFAULT_SIZED_MAP)).then(this::removeVisitor);
 
         DEFAULT_SIZED_MAP.place(mockMonster, new Point(0, 1));
 
@@ -559,11 +573,7 @@ public class MovementTest extends GameMapTest {
     @Test
     public void moveMonsterOntoPlayerAndWinCombat() {
 
-        when(mockPlayer.accept(mockMonster, DEFAULT_SIZED_MAP))
-                .then(invocationOnMock -> {
-                    DEFAULT_SIZED_MAP.remove(mockPlayer);
-                    return Combat.INITIATOR_WIN;
-                });
+        when(mockPlayer.accept(mockMonster, DEFAULT_SIZED_MAP)).then(this::removeAcceptant);
 
         DEFAULT_SIZED_MAP.place(mockPlayer, new Point(0, 1));
 
@@ -577,11 +587,7 @@ public class MovementTest extends GameMapTest {
     @Test
     public void moveMonsterOntoPlayerAndLoseCombat() {
 
-        when(mockPlayer.accept(mockMonster, DEFAULT_SIZED_MAP))
-                .then(invocationOnMock -> {
-                    DEFAULT_SIZED_MAP.remove(mockMonster);
-                    return Combat.INITIATOR_LOSS;
-                });
+        when(mockPlayer.accept(mockMonster, DEFAULT_SIZED_MAP)).then(this::removeVisitor);
 
         DEFAULT_SIZED_MAP.place(mockPlayer, new Point(0, 1));
 

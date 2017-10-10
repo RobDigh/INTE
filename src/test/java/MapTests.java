@@ -1,6 +1,8 @@
 import org.junit.Rule;
-        import org.junit.Test;
-        import org.junit.rules.ExpectedException;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import static org.junit.Assert.*;
 
 public class MapTests {
     @Rule
@@ -9,8 +11,8 @@ public class MapTests {
     @Test
     public void testMapCreation() {
         Map map = new Map(30, 20);
-        assertEquals(30, getWidth());
-        assertEquals(20, getHeight());
+        assertEquals(30, map.getWidth());
+        assertEquals(20, map.getHeight());
     }
 
 }

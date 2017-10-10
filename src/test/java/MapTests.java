@@ -58,8 +58,13 @@ public class MapTests {
     }
 
     @Test
-    public void testDirection(){
+    public void testDirectionName(){
         assertEquals("North", Direction.NORTH.getName());
+    }
+
+    @Test
+    public void testDirectionValues(){
+        assertEquals(3, Direction.EAST.getValue());
     }
 
 }

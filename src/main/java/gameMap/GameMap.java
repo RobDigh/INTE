@@ -93,10 +93,10 @@ public class GameMap {
 
     }
 
-    private int calculateDistanceToTravelRising(int playerPosition, int speed, int edge) {
+    private int calculateDistanceToTravelRising(int position, int speed, int edge) {
 
         /*
-         * playerPosition + speed gives the final position.
+         * position + speed gives the final position.
          *
          * Subtracting the index of the edge gives us the amount of steps past the edge that movement would have
          * resulted in.
@@ -107,22 +107,22 @@ public class GameMap {
          * If the difference is positive, subtract the difference from the distance to be travelled so that we do not
          * go past the edge.
          */
-        int toSubtract = Math.max(0, (playerPosition + speed) - (edge - 1));
+        int toSubtract = Math.max(0, (position + speed) - (edge - 1));
         return speed - toSubtract;
 
     }
 
-    private int calculateDistanceToTravelFalling(int playerPosition, int speed) {
+    private int calculateDistanceToTravelFalling(int position, int speed) {
 
         /*
-         * playerPosition - speed gives the final position.
+         * position - speed gives the final position.
          *
          * If the final position is less than zero, we will go past the edge, so subtract the absolute value of that
          * position from the distance to be travelled.
          *
          * Otherwise, subtract nothing.
          */
-        int toSubtract = Math.abs(Math.min(0, (playerPosition - speed)));
+        int toSubtract = Math.abs(Math.min(0, (position - speed)));
         return speed - toSubtract;
 
     }
@@ -170,7 +170,7 @@ public class GameMap {
             }
 
             if (shouldStay) {
-                addEntity(entity, currentPosition);
+                addEntity(entity, currentPosition); // Put entity back after position has been updated.
             }
 
             return shouldStay;

@@ -55,6 +55,7 @@ public class MapTests {
         map.placeCreature(creature, originalPoint);
 
         map.moveCreature(creature, originalPoint, Direction.NORTH);
+        assertEquals(newPoint, map.getCreaturePosition(creature));
     }
 
     @Test

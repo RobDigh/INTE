@@ -21,6 +21,9 @@ public class Map {
     }
 
     public void placeEntity(Creature creature, Point point) {
+        if(!positionByCreature.containsKey(creature) && creatureByPosition.get(point) != null){
+            throw new IllegalArgumentException("Creature cannot have initial placement in occupied space");
+        }
         if (isOutsideMap(point)) {
             throw new IllegalArgumentException("Position can't be outside of map");
         } else {

@@ -1,6 +1,7 @@
 package gameMap;
 
 import entity.Monster;
+import graph.GraphFactory;
 import org.junit.Before;
 import entity.Player;
 
@@ -17,11 +18,11 @@ public class GameMapTest {
     protected Monster mockMonster = mock(Monster.class);
 
     protected GameMap createDefaultSizedGameMap() {
-        return new GameMap();
+        return new GameMap(new GraphFactory());
     }
 
     protected GameMap createCustomSizedGameMap(int xLength, int yLength) {
-        return new GameMap(xLength, yLength);
+        return new GameMap(xLength, yLength, new GraphFactory());
     }
 
     protected GameMap placePlayer(GameMap gameMap, int x, int y) {

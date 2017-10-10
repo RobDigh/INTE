@@ -1,9 +1,9 @@
 
-public class Entity {
+public class Creature {
     private int lives;
     private int speed;
 
-    public Entity(int initialValueLives, int initialSpeed) {
+    public Creature(int initialValueLives, int initialSpeed) {
         this.lives = initialValueLives;
         if (initialValueLives < 1) {
             throw new IllegalArgumentException("Starting lives can't be less than 1");

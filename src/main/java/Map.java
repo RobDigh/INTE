@@ -4,8 +4,8 @@ import java.awt.*;
 public class Map {
     private int width;
     private int height;
-    private HashMap<Point, Entity> entityByPosition = new HashMap<Point, Entity>();
-    private HashMap<Entity, Point> positionByEntity = new HashMap<Entity, Point>();
+    private HashMap<Point, Creature> creatureByPosition = new HashMap<Point, Creature>();
+    private HashMap<Creature, Point> positionByCreature = new HashMap<Creature, Point>();
 
     public Map(int width, int height) {
         this.width = width;
@@ -20,12 +20,12 @@ public class Map {
         return height;
     }
 
-    public void placeEntity(Entity entity, Point point) {
+    public void placeEntity(Creature creature, Point point) {
         if (isOutsideMap(point)) {
             throw new IllegalArgumentException("Position can't be outside of map");
         } else {
-            entityByPosition.put(point, entity);
-            positionByEntity.put(entity, point);
+            creatureByPosition.put(point, creature);
+            positionByCreature.put(creature, point);
         }
     }
 
@@ -36,8 +36,8 @@ public class Map {
         return false;
     }
 
-    public Point getEntityPosition(Entity entity) {
-        return positionByEntity.get(entity);
+    public Point getEntityPosition(Creature creature) {
+        return positionByCreature.get(creature);
     }
 }
 

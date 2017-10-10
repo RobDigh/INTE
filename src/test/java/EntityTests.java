@@ -11,47 +11,47 @@ public class EntityTests {
 
     @Test
     public void testLives(){
-        Entity entity = new Entity(10, 2);
-        assertEquals(10, entity.getLives());
+        Creature creature = new Creature(10, 2);
+        assertEquals(10, creature.getLives());
     }
 
     @Test
     public void testRemoveLives(){
-        Entity entity = new Entity(10, 2);
-        entity.removeLife(1);
-        assertEquals(9, entity.getLives());
+        Creature creature = new Creature(10, 2);
+        creature.removeLife(1);
+        assertEquals(9, creature.getLives());
     }
 
     @Test
     public void testAddLives(){
-        Entity entity = new Entity(10, 2);
-        entity.addLife(7);
-        assertEquals(17, entity.getLives());
+        Creature creature = new Creature(10, 2);
+        creature.addLife(7);
+        assertEquals(17, creature.getLives());
     }
 
     @Test
     public void testNegativeLives(){
-        Entity entity = new Entity(10, 2);
-        entity.removeLife(12);
-        assertEquals(0, entity.getLives());
+        Creature creature = new Creature(10, 2);
+        creature.removeLife(12);
+        assertEquals(0, creature.getLives());
     }
 
     @Test
     public void testNegativeStartingLives(){
         thrown.expect(IllegalArgumentException.class);
-        new Entity(-1, 2);
+        new Creature(-1, 2);
     }
 
     @Test
     public void testSpeed(){
-        Entity entity = new Entity(10, 2);
-        assertEquals(2, entity.getSpeed());
+        Creature creature = new Creature(10, 2);
+        assertEquals(2, creature.getSpeed());
     }
 
     @Test
     public void testNegativeSpeed(){
         thrown.expect(IllegalArgumentException.class);
-        new Entity(10, -1);
+        new Creature(10, -1);
     }
 
 }

@@ -30,9 +30,9 @@ public class MapTests {
     public void testPlacingEntityOutsideOfMap() {
         thrown.expect(IllegalArgumentException.class);
         Map map = new Map(29, 19);
-        Entity entity = new Entity(10, 2);
+        Creature creature = new Creature(10, 2);
         Point point = new Point(5, 20);
-        map.placeEntity(entity, point);
+        map.placeEntity(creature, point);
     }
 
 }

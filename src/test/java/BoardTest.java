@@ -13,8 +13,8 @@ public class BoardTest {
 		sut.setDefaultBoardValueX();
 		sut.setDefaultBoardValueY();
 		//then
-		assertEquals(Board.DEFAULT_BOARD_HEIGHT, sut.getBoardValueX());
-		assertEquals(Board.DEFAULT_BOARD_LENGTH, sut.getBoardValueY());
+		assertEquals(10, sut.getBoardValueX());
+		assertEquals(10, sut.getBoardValueY());
 	}
 	
 }

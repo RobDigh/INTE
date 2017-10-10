@@ -43,4 +43,15 @@ public class BoardTest {
 		//then
 		sut.createCustomBoard(-10, 10);
 	}
+	
+	@Test
+	public void minimumCustomBoardSizeTest(){
+		//given
+		Board sut = new Board();
+		//when
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("Board X/Y values can't be less than 10");
+		//then
+		sut.createCustomBoard(15, 7);
+	}
 }

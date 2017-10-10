@@ -4,53 +4,54 @@ import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
 
-public class TestingPlayerCharacter {
+public class EntityTests {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
 
     @Test
     public void testLives(){
-        PlayerCharacter pc = new PlayerCharacter(10, 2);
-        assertEquals(10, pc.getLives());
+        Entity entity = new Entity(10, 2);
+        assertEquals(10, entity.getLives());
     }
 
     @Test
     public void testRemoveLives(){
-        PlayerCharacter pc = new PlayerCharacter(10, 2);
-        pc.removeLife(1);
-        assertEquals(9, pc.getLives());
+        Entity entity = new Entity(10, 2);
+        entity.removeLife(1);
+        assertEquals(9, entity.getLives());
     }
 
     @Test
     public void testAddLives(){
-        PlayerCharacter pc = new PlayerCharacter(10, 2);
-        pc.addLife(2);
-        assertEquals(12, pc.getLives());
+        Entity entity = new Entity(10, 2);
+        entity.addLife(7);
+        assertEquals(17, entity.getLives());
     }
 
     @Test
     public void testNegativeLives(){
-        PlayerCharacter pc = new PlayerCharacter(10, 2);
-        pc.removeLife(12);
-        assertEquals(0, pc.getLives());
+        Entity entity = new Entity(10, 2);
+        entity.removeLife(12);
+        assertEquals(0, entity.getLives());
     }
 
     @Test
     public void testNegativeStartingLives(){
         thrown.expect(IllegalArgumentException.class);
-        new PlayerCharacter(-1, 2);
+        new Entity(-1, 2);
     }
 
     @Test
     public void testSpeed(){
-        PlayerCharacter pc = new PlayerCharacter(10, 2);
-        assertEquals(2, pc.getSpeed());
+        Entity entity = new Entity(10, 2);
+        assertEquals(2, entity.getSpeed());
     }
 
     @Test
     public void testNegativeSpeed(){
         thrown.expect(IllegalArgumentException.class);
-        new PlayerCharacter(10, -1);
+        new Entity(10, -1);
     }
+
 }

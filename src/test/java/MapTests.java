@@ -46,4 +46,13 @@ public class MapTests {
         map.placeEntity(monster, point);
     }
 
+    @Test
+    public void placeAndMoveCreature(){
+        Map map = new Map(29, 19);
+        Creature pc = new PlayerCharacter(15, 2);
+        Point point = new Point(5, 8);
+        map.placeEntity(pc, point);
+        map.moveCreature(pc, pc.getSpeed(), map.NORTH);
+    }
+
 }

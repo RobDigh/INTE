@@ -9,9 +9,10 @@ import static org.mockito.Mockito.verify;
 public class ArmorTest {
 
     private Creature mockCreature = mock(Creature.class);
+    private int LOW_DAMAGE_REDUCTION = 2;
 
     private Armor createArmor() {
-        return new Armor();
+        return new Armor(LOW_DAMAGE_REDUCTION);
     }
 
     private Armor affectCreature(Creature creature) {
@@ -28,7 +29,7 @@ public class ArmorTest {
     public void affectCreature() {
 
         Armor armor = affectCreature(mockCreature);
-        verify(mockCreature).addArmorToInventory(armor);
+        verify(mockCreature).incrementDamageReduction(armor.getDamageReduction());
 
     }
 

@@ -5,6 +5,6 @@ import entity.Creature;
 public class Armor {
 
     public void affect(Creature creature) {
-
+        creature.addArmorToInventory(this);
     }
 }

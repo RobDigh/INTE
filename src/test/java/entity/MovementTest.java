@@ -23,7 +23,7 @@ public class MovementTest extends GameMapTest {
     }
 
     private void playerMovementPerformedCorrectly(int originalX, int originalY,
-                                                  int direction,
+                                                  Point direction,
                                                   int resultingX, int resultingY) {
 
         assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, originalX, originalY, direction));
@@ -32,7 +32,7 @@ public class MovementTest extends GameMapTest {
     }
 
     private void playerMovementHinderedCorrectly(int originalX, int originalY,
-                                                 int direction,
+                                                 Point direction,
                                                  int resultingX, int resultingY) {
 
         assertFalse(placeAndMovePlayer(DEFAULT_SIZED_MAP, originalX, originalY, direction));
@@ -41,7 +41,7 @@ public class MovementTest extends GameMapTest {
     }
 
     private void monsterMovementPerformedCorrectly(int originalX, int originalY,
-                                                  int direction,
+                                                  Point direction,
                                                   int resultingX, int resultingY) {
 
         assertTrue(placeAndMoveMonster(DEFAULT_SIZED_MAP, originalX, originalY, direction));
@@ -50,7 +50,7 @@ public class MovementTest extends GameMapTest {
     }
 
     private void monsterMovementHinderedCorrectly(int originalX, int originalY,
-                                                 int direction,
+                                                 Point direction,
                                                  int resultingX, int resultingY) {
 
         assertFalse(placeAndMoveMonster(DEFAULT_SIZED_MAP, originalX, originalY, direction));

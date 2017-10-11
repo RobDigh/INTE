@@ -41,14 +41,16 @@ public class GameMapTest {
         return gameMap;
     }
 
-    protected boolean placeAndMovePlayer(GameMap gameMap, int x, int y, int direction) {
+    //protected boolean placeAndMovePlayer(GameMap gameMap, int x, int y, int direction) {
+    protected boolean placeAndMovePlayer(GameMap gameMap, int x, int y, Point direction) {
 
         gameMap.place(mockPlayer, new Point(x, y));
         return gameMap.move(mockPlayer, direction);
 
     }
 
-    protected boolean placeAndMoveMonster(GameMap gameMap, int x, int y, int direction) {
+    //protected boolean placeAndMoveMonster(GameMap gameMap, int x, int y, int direction) {
+    protected boolean placeAndMoveMonster(GameMap gameMap, int x, int y, Point direction) {
 
         gameMap.place(mockMonster, new Point(x, y));
         return gameMap.move(mockMonster, direction);

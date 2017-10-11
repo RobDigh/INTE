@@ -10,13 +10,20 @@ public class WeaponTest {
 
     private Creature mockCreature = mock(Creature.class);
 
-    private Weapon createWeapon() {
-        return new Weapon();
+    private final int LOW_DAMAGE_BONUS = 2;
+    private final int HIGH_DAMAGE_BONUS = 5;
+
+    private Weapon createWeapon(int damageBonus) {
+        return new Weapon(damageBonus);
     }
 
     private Weapon affectCreature(Creature creature) {
+        return affectCreature(LOW_DAMAGE_BONUS, creature);
+    }
 
-        Weapon weapon = createWeapon();
+    private Weapon affectCreature(int damageBonus, Creature creature) {
+
+        Weapon weapon = createWeapon(damageBonus);
         weapon.affect(creature);
 
         return weapon;
@@ -28,6 +35,17 @@ public class WeaponTest {
 
         Weapon weapon = affectCreature(mockCreature);
         verify(mockCreature).incrementDamageBonus(weapon.getDamageBonus());
+
+    }
+
+    @Test
+    public void affectCreatureCallsCreatureMethodWithDamageReductionPassedToConstructor() {
+
+        affectCreature(mockCreature);
+        verify(mockCreature).incrementDamageReduction(LOW_DAMAGE_BONUS);
+
+        affectCreature(HIGH_DAMAGE_BONUS, mockCreature);
+        verify(mockCreature).incrementDamageReduction(HIGH_DAMAGE_BONUS);
 
     }
 }

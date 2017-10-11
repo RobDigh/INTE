@@ -39,7 +39,7 @@ public class WeaponTest {
     }
 
     @Test
-    public void affectCreatureCallsCreatureMethodWithDamageReductionPassedToConstructor() {
+    public void affectCreatureCallsCreatureMethodWithDamageBonusPassedToConstructor() {
 
         affectCreature(mockCreature);
         verify(mockCreature).incrementDamageBonus(LOW_DAMAGE_BONUS);

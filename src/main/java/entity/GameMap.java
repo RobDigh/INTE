@@ -8,10 +8,10 @@ public class GameMap extends Entity {
     public static final int DEFAULT_X_LENGTH = 10;
     public static final int DEFAULT_Y_LENGTH = 10;
 
-    public static final int NORTH = 1;
-    public static final int SOUTH = 2;
-    public static final int WEST = 3;
-    public static final int EAST = 4;
+    public static final Point NORTH = new Point(0, 1);
+    public static final Point SOUTH = new Point(0, -1);
+    public static final Point WEST = new Point(1, 0);
+    public static final Point EAST = new Point(-1, 0);
 
     private int xLength;
     private int yLength;
@@ -89,71 +89,25 @@ public class GameMap extends Entity {
 
     }
 
-    private int calculateDistanceToTravelRising(int position, int speed, int edge) {
+    private boolean move(Point currentPosition, int speed, Point direction) {
 
-        /*
-         * position + speed gives the final position.
-         *
-         * Subtracting the index of the edge gives us the amount of steps past the edge that movement would have
-         * resulted in.
-         *
-         * If the difference is negative, we will not go past the edge, so subtract zero from the distance to be
-         * travelled.
-         *
-         * If the difference is positive, subtract the difference from the distance to be travelled so that we do not
-         * go past the edge.
-         */
-        int distancePastEdge = (position + speed) - (edge - 1);
-        int adjustmentNeeded = Math.max(0, distancePastEdge);
+        int originalX = currentPosition.x;
+        int originalY = currentPosition.y;
 
-        return speed - adjustmentNeeded;
+        currentPosition.x += (direction.x * speed);
+        currentPosition.y += (direction.y * speed);
+
+        currentPosition.x = Math.max(0, currentPosition.x);
+        currentPosition.x = Math.min(xLength - 1, currentPosition.x);
+
+        currentPosition.y = Math.max(0, currentPosition.y);
+        currentPosition.y = Math.min(yLength - 1, currentPosition.y);
+
+        return !((currentPosition.x == originalX) && (currentPosition.y == originalY));
 
     }
 
-    private int calculateDistanceToTravelFalling(int position, int speed) {
-
-        /*
-         * position - speed gives the final position.
-         *
-         * If the final position is less than zero, we will go past the edge, so subtract the absolute value of that
-         * position from the distance to be travelled.
-         *
-         * Otherwise, subtract nothing.
-         */
-        int distancePastEdge = position - speed;
-        int adjustmentNeeded = Math.abs(Math.min(0, distancePastEdge));
-
-        return speed - adjustmentNeeded;
-
-    }
-
-    private boolean move(Point currentPosition, int speed, int direction) {
-
-        if (direction == NORTH && currentPosition.y < yLength - 1) {
-
-            currentPosition.y += calculateDistanceToTravelRising(currentPosition.y, speed, yLength);
-
-        } else if (direction == SOUTH && currentPosition.y > 0) {
-
-            currentPosition.y -= calculateDistanceToTravelFalling(currentPosition.y, speed);
-
-        } else if (direction == WEST && currentPosition.x < xLength - 1) {
-
-            currentPosition.x += calculateDistanceToTravelRising(currentPosition.x, speed, xLength);
-
-        } else if (direction == EAST && currentPosition.x > 0) {
-
-            currentPosition.x -= calculateDistanceToTravelFalling(currentPosition.x, speed);
-
-        } else {
-            return false;
-        }
-
-        return true;
-
-    }
-
-    public boolean move(Entity entity, int direction) {
+    public boolean move(Entity entity, Point direction) { // ToDo: Note that any point can be passed. Should this be possible?
 
         Point currentPosition = positionsByEntity.get(entity);
         entitiesByPosition.remove(currentPosition); // Do not change values that are used as hash keys.

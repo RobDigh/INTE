@@ -10,8 +10,8 @@ public class ArmorTest {
 
     private Creature mockCreature = mock(Creature.class);
 
-    private int LOW_DAMAGE_REDUCTION = 2;
-    private int HIGH_DAMAGE_REDUCTION = 5;
+    private final int LOW_DAMAGE_REDUCTION = 2;
+    private final int HIGH_DAMAGE_REDUCTION = 5;
 
     private Armor createArmor(int damageReduction) {
         return new Armor(damageReduction);

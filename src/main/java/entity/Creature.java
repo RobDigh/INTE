@@ -1,5 +1,7 @@
 package entity;
 
+import entity.item.wearable.armor.Armor;
+
 public class Creature extends Entity {
 
     private int hp;
@@ -26,6 +28,10 @@ public class Creature extends Entity {
 
     public int getSpeed() {
         return speed;
+    }
+
+    public boolean addArmorToInventory(Armor armor) {
+        return false;
     }
 
     @Override

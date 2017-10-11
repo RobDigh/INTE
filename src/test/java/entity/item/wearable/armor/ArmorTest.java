@@ -4,6 +4,7 @@ import entity.Creature;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class ArmorTest {
 

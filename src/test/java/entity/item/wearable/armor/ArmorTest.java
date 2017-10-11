@@ -45,10 +45,10 @@ public class ArmorTest {
     @Test
     public void affectCreatureCallsCreatureMethodWithDamageReductionPassedToConstructor() {
 
-        Armor armor = affectCreature(mockCreature);
+        affectCreature(mockCreature);
         verify(mockCreature).incrementDamageReduction(LOW_DAMAGE_REDUCTION);
 
-        Armor highDamageReductionArmor = affectCreature(HIGH_DAMAGE_REDUCTION, mockCreature);
+        affectCreature(HIGH_DAMAGE_REDUCTION, mockCreature);
         verify(mockCreature).incrementDamageReduction(HIGH_DAMAGE_REDUCTION);
 
     }

@@ -31,12 +31,8 @@ public class Creature extends Entity {
         return speed;
     }
 
-    public boolean addArmorToInventory(Armor armor) {
-        return false;
-    }
+    public void incrementDamageReduction(int damageReduction) {
 
-    public boolean addWeaponToInventory(Weapon weapon) {
-        return false;
     }
 
     @Override

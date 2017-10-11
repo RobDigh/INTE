@@ -62,6 +62,11 @@ public class MovementTest extends GameMapTest {
      * Player movement
      */
 
+    @Test(expected = IllegalArgumentException.class)
+    public void movePlayerInInvalidDirection() {
+        placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 0, new Point(2, 2));
+    }
+
     @Test
     public void movePlayerNorth() {
         playerMovementPerformedCorrectly(0, 0, GameMap.NORTH, 0, 1);

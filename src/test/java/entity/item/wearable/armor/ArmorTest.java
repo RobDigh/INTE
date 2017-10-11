@@ -32,6 +32,14 @@ public class ArmorTest {
 
     }
 
+    @Test
+    public void affectCreatureCallsCreatureMethodWithDamageReductionPassedToconstructor() {
+
+        Armor armor = affectCreature(mockCreature);
+        verify(mockCreature).incrementDamageReduction(LOW_DAMAGE_REDUCTION);
+
+    }
+
     @Test(expected = NullPointerException.class)
     public void affectNullCreature() {
         affectCreature(null);

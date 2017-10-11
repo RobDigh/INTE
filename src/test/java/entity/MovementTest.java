@@ -298,6 +298,11 @@ public class MovementTest extends GameMapTest {
      * Monster movement
      */
 
+    @Test(expected = IllegalArgumentException.class)
+    public void moveMonsterInInvalidDirection() {
+        placeAndMoveMonster(DEFAULT_SIZED_MAP, 0, 0, new Point(3, 2));
+    }
+
     @Test
     public void moveMonsterNorth() {
         monsterMovementPerformedCorrectly(0, 0, GameMap.NORTH, 0, 1);

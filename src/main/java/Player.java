@@ -10,7 +10,7 @@ public class Player {
 	private int levelPoint = 1;
 	private int gold = 0;
 	private boolean isAlive = true;
-	
+	 
 	private static final int STARTHEALTH = 100;
 	
 	public Player(){

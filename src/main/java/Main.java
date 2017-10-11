@@ -1,16 +1,15 @@
+
+
 public class Main {
-
-    public String maja() {
-        return "SimpaTest";
-
-    }
-
-    public String chumu() {
-        return "Chumu";
-    }
-
-    public String testingTant() {
-        return "Saint BraveHeart's Tant";
-    }
-
+	
+	public static void main (String args []){
+	
+		Board sut = new Board();
+		sut.createMap();
+		
 }
+	
+}
+
+
+

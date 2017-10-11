@@ -41,7 +41,7 @@ public class BoardTest {
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("Board X/Y values can't be negative!");
 		//then
-		sut.createCustomBoardSize(-10, 10);
+		sut.createCustomBoardSize(-10, 20);
 	}
 	
 	@Test
@@ -52,7 +52,7 @@ public class BoardTest {
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("Board X/Y values can't be less than 10");
 		//then
-		sut.createCustomBoardSize                      (15, 7);
+		sut.createCustomBoardSize(7, 15);
 	}
 	
 	@Test
@@ -65,4 +65,5 @@ public class BoardTest {
 		//then
 		assertEquals(43, sut.map[4][3]);
 	}
+	
 }

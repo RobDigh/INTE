@@ -20,7 +20,7 @@ public class ArmorTest {
         Armor armor = createArmor();
         armor.affect(mockCreature);
 
-        verify(mockCreature.addArmorToInventory(armor));
+        verify(mockCreature).addArmorToInventory(armor);
 
     }
 }

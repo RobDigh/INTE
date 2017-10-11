@@ -9,10 +9,10 @@ public class Armor {
     }
 
     public int getDamageReduction() {
-        return -1;
+        return 2;
     }
 
     public void affect(Creature creature) {
-        creature.incrementDamageReduction(getDamageReduction());
+        creature.incrementDamageReduction(2);
     }
 }

@@ -112,7 +112,7 @@ public class GameMap extends Entity {
 
     }
 
-    public boolean move(Entity entity, Point direction) { // ToDo: Note that any point can be passed. Should this be possible?
+    public boolean move(Entity entity, Point direction) {
 
         if (!validDirections.contains(direction)) {
             throw new IllegalArgumentException("Invalid direction.");

@@ -14,6 +14,8 @@ public class GameMap extends Entity {
     public static final Point WEST = new Point(1, 0);
     public static final Point EAST = new Point(-1, 0);
 
+    private HashSet<Point> validDirections = new HashSet<>();
+
     private int xLength;
     private int yLength;
 
@@ -21,16 +23,18 @@ public class GameMap extends Entity {
     private HashMap<Point, Entity> entitiesByPosition = new HashMap<>();
 
     public GameMap() {
-
-        this.xLength = DEFAULT_X_LENGTH;
-        this.yLength = DEFAULT_Y_LENGTH;
-
+        this(DEFAULT_X_LENGTH, DEFAULT_Y_LENGTH);
     }
 
     public GameMap(int xLength, int yLength) {
 
         this.xLength = xLength;
         this.yLength = yLength;
+
+        validDirections.add(NORTH);
+        validDirections.add(SOUTH);
+        validDirections.add(WEST);
+        validDirections.add(EAST);
 
     }
 
@@ -110,7 +114,7 @@ public class GameMap extends Entity {
 
     public boolean move(Entity entity, Point direction) { // ToDo: Note that any point can be passed. Should this be possible?
 
-        if (direction.equals(new Point(2, 2)) || direction.equals(new Point(3, 2))) {
+        if (!validDirections.contains(direction)) {
             throw new IllegalArgumentException("Invalid direction.");
         }
 

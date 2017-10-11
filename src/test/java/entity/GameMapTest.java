@@ -1,9 +1,6 @@
-package gameMap;
+package entity;
 
 import org.junit.Before;
-import org.junit.Test;
-import player.Player;
-
 import java.awt.*;
 
 import static org.mockito.Mockito.mock;
@@ -13,7 +10,9 @@ import static org.mockito.Mockito.when;
 public class GameMapTest {
 
     protected final GameMap DEFAULT_SIZED_MAP = createDefaultSizedGameMap();
+
     protected Player mockPlayer = mock(Player.class);
+    protected Monster mockMonster = mock(Monster.class);
 
     protected GameMap createDefaultSizedGameMap() {
         return new GameMap();
@@ -42,15 +41,27 @@ public class GameMapTest {
         return gameMap;
     }
 
-    protected boolean placeAndMovePlayer(GameMap gameMap, int x, int y, int direction) {
+    //protected boolean placeAndMovePlayer(GameMap gameMap, int x, int y, int direction) {
+    protected boolean placeAndMovePlayer(GameMap gameMap, int x, int y, Point direction) {
 
         gameMap.place(mockPlayer, new Point(x, y));
         return gameMap.move(mockPlayer, direction);
 
     }
 
+    //protected boolean placeAndMoveMonster(GameMap gameMap, int x, int y, int direction) {
+    protected boolean placeAndMoveMonster(GameMap gameMap, int x, int y, Point direction) {
+
+        gameMap.place(mockMonster, new Point(x, y));
+        return gameMap.move(mockMonster, direction);
+
+    }
+
     @Before
     public void setup() {
+
         when(mockPlayer.getSpeed()).thenReturn(1);
+        when(mockMonster.getSpeed()).thenReturn(1);
+
     }
 }

@@ -1,8 +1,6 @@
-package gameMap;
+package entity;
 
-import npc.Monster;
 import org.junit.Test;
-import player.Player;
 
 import java.awt.*;
 
@@ -221,6 +219,28 @@ public class PlacementTest extends GameMapTest {
 
         gameMap.place(player, new Point(0, 0));
         assertFalse(gameMap.place(m1, new Point(0, 0)));
+
+    }
+
+    @Test
+    public void removePlayer() {
+
+        placePlayer(DEFAULT_SIZED_MAP, 0, 0);
+        DEFAULT_SIZED_MAP.remove(mockPlayer);
+
+        assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockPlayer));
+
+    }
+
+    @Test
+    public void testPlaceGameMap() {
+
+        GameMap lowerLevel = createDefaultSizedGameMap();
+        GameMap upperLevel = createDefaultSizedGameMap();
+
+        upperLevel.place(lowerLevel, new Point(2, 2));
+
+        assertEquals(new Point(2, 2), upperLevel.getPosition(lowerLevel));
 
     }
 }

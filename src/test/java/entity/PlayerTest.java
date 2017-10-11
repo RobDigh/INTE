@@ -1,25 +1,14 @@
-package player;
+package entity;
 
-import gameMap.GameMap;
+import entity.Player;
 import org.junit.Test;
 
-import java.awt.*;
-
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class PlayerTest {
 
-    private GameMap mockGameMap = mock(GameMap.class);
-
     private Player createPlayerWithCustomHPAndSpeed(int hp, int speed) {
-        return new Player(hp, speed, mockGameMap);
-    }
-
-    private Player createSamplePlayer() {
-        return createPlayerWithCustomHPAndSpeed(100, 1);
+        return new Player(hp, speed);
     }
 
     @Test
@@ -65,16 +54,6 @@ public class PlayerTest {
 
         Player player = createPlayerWithCustomHPAndSpeed(500, 10);
         assertEquals(10, player.getSpeed());
-
-    }
-
-    @Test
-    public void testMove() {
-
-        Player player = createSamplePlayer();
-        player.move(0, 1);
-
-        verify(mockGameMap).move(player, GameMap.NORTH);
 
     }
 }

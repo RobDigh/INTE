@@ -1,4 +1,4 @@
-package gameMap;
+package entity;
 
 import org.junit.Test;
 

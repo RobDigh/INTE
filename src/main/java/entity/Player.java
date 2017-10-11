@@ -1,6 +1,6 @@
-package player;
+package entity;
 
-public class Player {
+public class Player extends Entity {
 
     private int hp;
     private int speed;
@@ -26,5 +26,10 @@ public class Player {
 
     public int getSpeed() {
         return speed;
+    }
+
+    @Override
+    public boolean accept(Entity entity, GameMap environment) {
+        return false;
     }
 }

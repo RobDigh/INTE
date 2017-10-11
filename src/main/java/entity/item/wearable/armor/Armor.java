@@ -13,6 +13,6 @@ public class Armor {
     }
 
     public void affect(Creature creature) {
-
+        creature.incrementDamageReduction(getDamageReduction());
     }
 }

@@ -24,7 +24,6 @@ public class ArmorTest {
 
     }
 
-
     @Test
     public void affectCreature() {
 

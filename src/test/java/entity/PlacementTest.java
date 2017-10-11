@@ -11,56 +11,38 @@ import static org.mockito.Mockito.mock;
 
 public class PlacementTest extends GameMapTest {
 
-    private GameMap createGameMapAndPlaceCreature(int x, int y) {
-
-        Creature creature = mock(Creature.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-        gameMap.place(creature, new Point(x, y));
-
-        return gameMap;
-
-    }
-
-    private void placeCreature(GameMap gameMap, int x, int y) {
-
-        Creature creature = mock(Creature.class);
-        gameMap.place(creature, new Point(x, y));
-
+    @Test(expected = IllegalArgumentException.class)
+    public void placeCreatureAtNegativeX() {
+        createGameMapAndPlaceCreature(-1, 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void placePlayerAtNegativeX() {
-        createGameMapAndPlacePlayer(-1, 0);
+    public void placeCreatureAtNegativeY() {
+        createGameMapAndPlaceCreature(0, -1);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void placePlayerAtNegativeY() {
-        createGameMapAndPlacePlayer(0, -1);
+    public void placeCreatureAtTooGreatX() {
+        createGameMapAndPlaceCreature(GameMap.DEFAULT_X_LENGTH, 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void placePlayerAtTooGreatX() {
-        createGameMapAndPlacePlayer(GameMap.DEFAULT_X_LENGTH, 0);
+    public void placeCreatureAtTooGreatY() {
+        createGameMapAndPlaceCreature(0, GameMap.DEFAULT_Y_LENGTH);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void placePlayerAtTooGreatY() {
-        createGameMapAndPlacePlayer(0, GameMap.DEFAULT_Y_LENGTH);
+    public void placeCreatureAtTooGreatXOnCustomSizedMap() {
+        placeCreature(createCustomSizedGameMap(5, 5), 5, 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void placePlayerAtTooGreatXOnCustomSizedMap() {
-        placePlayer(createCustomSizedGameMap(5, 5), 5, 0);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void placePlayerAtTooGreatYOnCustomSizedMap() {
-        placePlayer(createCustomSizedGameMap(5, 5), 0, 5);
+    public void placeCreatureAtTooGreatYOnCustomSizedMap() {
+        placeCreature(createCustomSizedGameMap(5, 5), 0, 5);
     }
 
     @Test
-    public void getPlayerPosition() {
+    public void getCreaturePosition() {
 
         Creature creature = mock(Creature.class);
 
@@ -100,36 +82,6 @@ public class PlacementTest extends GameMapTest {
 
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void placeCreatureAtNegativeX() {
-        createGameMapAndPlaceCreature(-1, 0);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void placeCreatureAtNegativeY() {
-        createGameMapAndPlaceCreature(0, -1);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void placeCreatureAtTooGreatX() {
-        createGameMapAndPlaceCreature(GameMap.DEFAULT_X_LENGTH, 0);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void placeCreatureAtTooGreatY() {
-        createGameMapAndPlaceCreature(0, GameMap.DEFAULT_Y_LENGTH);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void placeCreatureAtTooGreatXOnCustomSizedMap() {
-        placeCreature(createCustomSizedGameMap(5, 5), 5, 0);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void placeCreatureAtTooGreatYOnCustomSizedMap() {
-        placeCreature(createCustomSizedGameMap(5, 5), 0, 5);
-    }
-
     @Test
     public void getSeveralCreaturePositions() {
 
@@ -150,9 +102,9 @@ public class PlacementTest extends GameMapTest {
     }
 
     @Test
-    public void removePlayer() {
+    public void removeCreature() {
 
-        placePlayer(DEFAULT_SIZED_MAP, 0, 0);
+        placeCreature(DEFAULT_SIZED_MAP, 0, 0);
         DEFAULT_SIZED_MAP.remove(mockCreature);
 
         assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockCreature));

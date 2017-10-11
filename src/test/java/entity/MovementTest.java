@@ -14,47 +14,25 @@ import static org.mockito.Mockito.when;
 
 public class MovementTest extends GameMapTest {
 
-    private void checkResultingPositionForPlayer(int resultingX, int resultingY) {
+    private void checkResultingPositionForCreature(int resultingX, int resultingY) {
         assertEquals(DEFAULT_SIZED_MAP.getPosition(mockCreature), new Point(resultingX, resultingY));
     }
 
-    private void checkResultingPositionForMonster(int resultingX, int resultingY) {
-        assertEquals(DEFAULT_SIZED_MAP.getPosition(mockMonster), new Point(resultingX, resultingY));
-    }
-
-    private void playerMovementPerformedCorrectly(int originalX, int originalY,
+    private void creatureMovementPerformedCorrectly(int originalX, int originalY,
                                                   Point direction,
                                                   int resultingX, int resultingY) {
 
-        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, originalX, originalY, direction));
-        checkResultingPositionForPlayer(resultingX, resultingY);
+        assertTrue(placeAndMoveCreature(DEFAULT_SIZED_MAP, originalX, originalY, direction));
+        checkResultingPositionForCreature(resultingX, resultingY);
 
     }
 
-    private void playerMovementHinderedCorrectly(int originalX, int originalY,
+    private void creatureMovementHinderedCorrectly(int originalX, int originalY,
                                                  Point direction,
                                                  int resultingX, int resultingY) {
 
-        assertFalse(placeAndMovePlayer(DEFAULT_SIZED_MAP, originalX, originalY, direction));
-        checkResultingPositionForPlayer(resultingX, resultingY);
-
-    }
-
-    private void monsterMovementPerformedCorrectly(int originalX, int originalY,
-                                                  Point direction,
-                                                  int resultingX, int resultingY) {
-
-        assertTrue(placeAndMoveMonster(DEFAULT_SIZED_MAP, originalX, originalY, direction));
-        checkResultingPositionForMonster(resultingX, resultingY);
-
-    }
-
-    private void monsterMovementHinderedCorrectly(int originalX, int originalY,
-                                                 Point direction,
-                                                 int resultingX, int resultingY) {
-
-        assertFalse(placeAndMoveMonster(DEFAULT_SIZED_MAP, originalX, originalY, direction));
-        checkResultingPositionForMonster(resultingX, resultingY);
+        assertFalse(placeAndMoveCreature(DEFAULT_SIZED_MAP, originalX, originalY, direction));
+        checkResultingPositionForCreature(resultingX, resultingY);
 
     }
 
@@ -63,100 +41,100 @@ public class MovementTest extends GameMapTest {
      */
 
     @Test(expected = IllegalArgumentException.class)
-    public void movePlayerInInvalidDirection() {
-        placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 0, new Point(2, 2));
+    public void moveCreatureInInvalidDirection() {
+        placeAndMoveCreature(DEFAULT_SIZED_MAP, 0, 0, new Point(2, 2));
     }
 
     @Test
-    public void movePlayerNorth() {
-        playerMovementPerformedCorrectly(0, 0, GameMap.NORTH, 0, 1);
+    public void moveCreatureNorth() {
+        creatureMovementPerformedCorrectly(0, 0, GameMap.NORTH, 0, 1);
     }
 
     @Test
-    public void movePlayerNorthOverEdge() {
-        playerMovementHinderedCorrectly(0, GameMap.DEFAULT_Y_LENGTH - 1, GameMap.NORTH,
+    public void moveCreatureNorthOverEdge() {
+        creatureMovementHinderedCorrectly(0, GameMap.DEFAULT_Y_LENGTH - 1, GameMap.NORTH,
                 0, GameMap.DEFAULT_Y_LENGTH - 1);
 
     }
 
     @Test
-    public void movePlayerNorthOverEdgeOnCustomSizedMap() {
+    public void moveCreatureNorthOverEdgeOnCustomSizedMap() {
 
         GameMap gameMap = createCustomSizedGameMap(5, 5);
 
-        assertFalse(placeAndMovePlayer(gameMap, 0, 4, GameMap.NORTH));
+        assertFalse(placeAndMoveCreature(gameMap, 0, 4, GameMap.NORTH));
         assertEquals(gameMap.getPosition(mockCreature), new Point(0,4));
 
     }
 
     @Test
-    public void moveHighSpeedPlayerNorth() {
+    public void moveHighSpeedCreatureNorth() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
-        playerMovementPerformedCorrectly(0, 0, GameMap.NORTH, 0, 2);
+        creatureMovementPerformedCorrectly(0, 0, GameMap.NORTH, 0, 2);
 
     }
 
     @Test
-    public void moveHighSpeedPlayerNorthOverEdge() {
+    public void moveHighSpeedCreatureNorthOverEdge() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
-        playerMovementHinderedCorrectly(0, GameMap.DEFAULT_Y_LENGTH - 1, GameMap.NORTH, 0,GameMap.DEFAULT_Y_LENGTH - 1);
+        creatureMovementHinderedCorrectly(0, GameMap.DEFAULT_Y_LENGTH - 1, GameMap.NORTH, 0,GameMap.DEFAULT_Y_LENGTH - 1);
 
     }
 
     @Test
-    public void moveHighSpeedPlayerNorthOverEdgeOnCustomSizedMap() {
+    public void moveHighSpeedCreatureNorthOverEdgeOnCustomSizedMap() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
 
         GameMap gameMap = createCustomSizedGameMap(5, 5);
 
-        assertFalse(placeAndMovePlayer(gameMap, 0, 4, GameMap.NORTH));
+        assertFalse(placeAndMoveCreature(gameMap, 0, 4, GameMap.NORTH));
         assertEquals(gameMap.getPosition(mockCreature), new Point(0,4));
 
     }
 
     @Test
-    public void moveHighSpeedPlayerNorthToEdge() {
+    public void moveHighSpeedCreatureNorthToEdge() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
-        playerMovementPerformedCorrectly(0, GameMap.DEFAULT_Y_LENGTH - 2, GameMap.NORTH, 0, GameMap.DEFAULT_Y_LENGTH - 1);
+        creatureMovementPerformedCorrectly(0, GameMap.DEFAULT_Y_LENGTH - 2, GameMap.NORTH, 0, GameMap.DEFAULT_Y_LENGTH - 1);
 
     }
 
     @Test
-    public void moveHighSpeedPlayerNorthToEdgeOnCustomSizedMap() {
+    public void moveHighSpeedCreatureNorthToEdgeOnCustomSizedMap() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
 
         GameMap gameMap = createCustomSizedGameMap(5, 5);
 
-        assertTrue(placeAndMovePlayer(gameMap, 0, 3, GameMap.NORTH));
+        assertTrue(placeAndMoveCreature(gameMap, 0, 3, GameMap.NORTH));
         assertEquals(new Point(0, 4), gameMap.getPosition(mockCreature));
 
     }
 
     @Test
-    public void movePlayerSouth() {
-        playerMovementPerformedCorrectly(0, 1, GameMap.SOUTH, 0, 0);
+    public void moveCreatureSouth() {
+        creatureMovementPerformedCorrectly(0, 1, GameMap.SOUTH, 0, 0);
     }
 
     @Test
-    public void movePlayerOverSouthEdge() {
-        playerMovementHinderedCorrectly(0,0, GameMap.SOUTH, 0, 0);
+    public void moveCreatureOverSouthEdge() {
+        creatureMovementHinderedCorrectly(0,0, GameMap.SOUTH, 0, 0);
     }
 
     @Test
-    public void moveHighSpeedPlayerSouth() {
+    public void moveHighSpeedCreatureSouth() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
-        playerMovementPerformedCorrectly(0, 2, GameMap.SOUTH, 0, 0);
+        creatureMovementPerformedCorrectly(0, 2, GameMap.SOUTH, 0, 0);
 
     }
 
     @Test
-    public void moveHighSpeedPlayerSouthFromRiskyPosition() {
+    public void moveHighSpeedCreatureSouthFromRiskyPosition() {
 
         /*
          * This test was added to catch a bug resulting from:
@@ -164,133 +142,133 @@ public class MovementTest extends GameMapTest {
          */
 
         when(mockCreature.getSpeed()).thenReturn(2);
-        playerMovementPerformedCorrectly(0, 4, GameMap.SOUTH, 0, 2);
+        creatureMovementPerformedCorrectly(0, 4, GameMap.SOUTH, 0, 2);
 
     }
 
     @Test
-    public void moveHighSpeedPlayerSouthOverEdge() {
+    public void moveHighSpeedCreatureSouthOverEdge() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
-        playerMovementHinderedCorrectly(0, 0, GameMap.SOUTH, 0, 0);
+        creatureMovementHinderedCorrectly(0, 0, GameMap.SOUTH, 0, 0);
 
     }
 
     @Test
-    public void moveHighSpeedPlayerSouthToEdge() {
+    public void moveHighSpeedCreatureSouthToEdge() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
-        playerMovementPerformedCorrectly(0, 1, GameMap.SOUTH, 0, 0);
+        creatureMovementPerformedCorrectly(0, 1, GameMap.SOUTH, 0, 0);
 
     }
 
     @Test
-    public void movePlayerWest() {
-        playerMovementPerformedCorrectly(0, 0, GameMap.WEST, 1, 0);
+    public void moveCreatureWest() {
+        creatureMovementPerformedCorrectly(0, 0, GameMap.WEST, 1, 0);
     }
 
     @Test
-    public void movePlayerWestOverEdge() {
-        playerMovementHinderedCorrectly(GameMap.DEFAULT_X_LENGTH - 1, 0, GameMap.WEST, GameMap.DEFAULT_X_LENGTH - 1, 0);
+    public void moveCreatureWestOverEdge() {
+        creatureMovementHinderedCorrectly(GameMap.DEFAULT_X_LENGTH - 1, 0, GameMap.WEST, GameMap.DEFAULT_X_LENGTH - 1, 0);
     }
 
     @Test
-    public void movePlayerWestOverEdgeOnCustomSizedMap() {
+    public void moveCreatureWestOverEdgeOnCustomSizedMap() {
 
         GameMap gameMap = createCustomSizedGameMap(5, 5);
 
-        assertFalse(placeAndMovePlayer(gameMap, 4,0, GameMap.WEST));
+        assertFalse(placeAndMoveCreature(gameMap, 4,0, GameMap.WEST));
         assertEquals(gameMap.getPosition(mockCreature), new Point(4, 0));
 
     }
 
     @Test
-    public void moveHighSpeedPlayerWest() {
+    public void moveHighSpeedCreatureWest() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
-        playerMovementPerformedCorrectly(0, 0, GameMap.WEST, 2, 0);
+        creatureMovementPerformedCorrectly(0, 0, GameMap.WEST, 2, 0);
 
     }
 
     @Test
-    public void moveHighSpeedPlayerWestOverEdge() {
+    public void moveHighSpeedCreatureWestOverEdge() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
-        playerMovementHinderedCorrectly(GameMap.DEFAULT_X_LENGTH - 1, 0, GameMap.WEST, GameMap.DEFAULT_X_LENGTH - 1, 0);
+        creatureMovementHinderedCorrectly(GameMap.DEFAULT_X_LENGTH - 1, 0, GameMap.WEST, GameMap.DEFAULT_X_LENGTH - 1, 0);
 
     }
 
     @Test
-    public void moveHighSpeedPlayerWestOverEdgeOnCustomSizedMap() {
+    public void moveHighSpeedCreatureWestOverEdgeOnCustomSizedMap() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
 
         GameMap gameMap = createCustomSizedGameMap(5, 5);
 
-        assertFalse(placeAndMovePlayer(gameMap, 4, 0, GameMap.WEST));
+        assertFalse(placeAndMoveCreature(gameMap, 4, 0, GameMap.WEST));
         assertEquals(gameMap.getPosition(mockCreature), new Point(4,0));
 
     }
 
     @Test
-    public void moveHighSpeedPlayerWestToEdge() {
+    public void moveHighSpeedCreatureWestToEdge() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
-        playerMovementPerformedCorrectly(GameMap.DEFAULT_X_LENGTH - 2, 0, GameMap.WEST, GameMap.DEFAULT_X_LENGTH - 1, 0);
+        creatureMovementPerformedCorrectly(GameMap.DEFAULT_X_LENGTH - 2, 0, GameMap.WEST, GameMap.DEFAULT_X_LENGTH - 1, 0);
 
     }
 
     @Test
-    public void moveHighSpeedPlayerWestToEdgeOnCustomSizedMap() {
+    public void moveHighSpeedCreatureWestToEdgeOnCustomSizedMap() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
 
         GameMap gameMap = createCustomSizedGameMap(5, 5);
 
-        assertTrue(placeAndMovePlayer(gameMap, 3, 0, GameMap.WEST));
+        assertTrue(placeAndMoveCreature(gameMap, 3, 0, GameMap.WEST));
         assertEquals(new Point(4, 0), gameMap.getPosition(mockCreature));
 
     }
 
     @Test
-    public void movePlayerEast() {
-        playerMovementPerformedCorrectly(1, 0, GameMap.EAST, 0, 0);
+    public void moveCreatureEast() {
+        creatureMovementPerformedCorrectly(1, 0, GameMap.EAST, 0, 0);
     }
 
     @Test
-    public void movePlayerEastOverEdge() {
-        playerMovementHinderedCorrectly(0, 0, GameMap.EAST, 0, 0);
+    public void moveCreatureEastOverEdge() {
+        creatureMovementHinderedCorrectly(0, 0, GameMap.EAST, 0, 0);
     }
 
     @Test
-    public void moveHighSpeedPlayerEast() {
+    public void moveHighSpeedCreatureEast() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
-        playerMovementPerformedCorrectly(2, 0, GameMap.EAST, 0, 0);
+        creatureMovementPerformedCorrectly(2, 0, GameMap.EAST, 0, 0);
 
     }
 
     @Test
-    public void moveHighSpeedPlayerEastFromRiskyPosition() {
+    public void moveHighSpeedCreatureEastFromRiskyPosition() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
-        playerMovementPerformedCorrectly(4, 0, GameMap.EAST, 2, 0);
+        creatureMovementPerformedCorrectly(4, 0, GameMap.EAST, 2, 0);
 
     }
 
     @Test
-    public void moveHighSpeedPlayerEastOverEdge() {
+    public void moveHighSpeedCreatureEastOverEdge() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
-        playerMovementHinderedCorrectly(0, 0, GameMap.EAST, 0, 0);
+        creatureMovementHinderedCorrectly(0, 0, GameMap.EAST, 0, 0);
 
     }
 
     @Test
-    public void moveHighSpeedPlayerEastToEdge() {
+    public void moveHighSpeedCreatureEastToEdge() {
 
         when(mockCreature.getSpeed()).thenReturn(2);
-        playerMovementPerformedCorrectly(1, 0, GameMap.EAST, 0, 0);
+        creatureMovementPerformedCorrectly(1, 0, GameMap.EAST, 0, 0);
 
     }
 
@@ -325,7 +303,7 @@ public class MovementTest extends GameMapTest {
 
         DEFAULT_SIZED_MAP.place(mockMonster, new Point(0, 1));
 
-        assertTrue(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 0, GameMap.NORTH));
+        assertTrue(placeAndMoveCreature(DEFAULT_SIZED_MAP, 0, 0, GameMap.NORTH));
 
         assertEquals(DEFAULT_SIZED_MAP.getPosition(mockCreature), new Point(0, 1));
         assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockMonster));
@@ -339,7 +317,7 @@ public class MovementTest extends GameMapTest {
 
         DEFAULT_SIZED_MAP.place(mockMonster, new Point(0, 1));
 
-        assertFalse(placeAndMovePlayer(DEFAULT_SIZED_MAP, 0, 0, GameMap.NORTH));
+        assertFalse(placeAndMoveCreature(DEFAULT_SIZED_MAP, 0, 0, GameMap.NORTH));
 
         assertEquals(DEFAULT_SIZED_MAP.getPosition(mockMonster), new Point(0, 1));
         assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockCreature));

@@ -5,6 +5,8 @@ import entity.item.wearable.Wearable;
 
 public class Armor extends Wearable {
 
+    private int damageReduction;
+
     public Armor(int damageReduction) {
         super(damageReduction);
     }

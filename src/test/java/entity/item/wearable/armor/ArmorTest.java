@@ -9,15 +9,25 @@ import static org.mockito.Mockito.verify;
 public class ArmorTest {
 
     private Creature mockCreature = mock(Creature.class);
+
     private int LOW_DAMAGE_REDUCTION = 2;
+    private int HIGH_DAMAGE_REDUCTION = 5;
+
+    private Armor createArmor(int damageReduction) {
+        return new Armor(damageReduction);
+    }
 
     private Armor createArmor() {
-        return new Armor(LOW_DAMAGE_REDUCTION);
+        return createArmor(LOW_DAMAGE_REDUCTION);
     }
 
     private Armor affectCreature(Creature creature) {
+        return affectCreature(LOW_DAMAGE_REDUCTION, creature);
+    }
 
-        Armor armor = createArmor();
+    private Armor affectCreature(int damageReduction, Creature creature) {
+
+        Armor armor = createArmor(damageReduction);
         armor.affect(creature);
 
         return armor;
@@ -33,10 +43,13 @@ public class ArmorTest {
     }
 
     @Test
-    public void affectCreatureCallsCreatureMethodWithDamageReductionPassedToconstructor() {
+    public void affectCreatureCallsCreatureMethodWithDamageReductionPassedToConstructor() {
 
         Armor armor = affectCreature(mockCreature);
         verify(mockCreature).incrementDamageReduction(LOW_DAMAGE_REDUCTION);
+
+        Armor highDamageReductionArmor = affectCreature(HIGH_DAMAGE_REDUCTION, mockCreature);
+        verify(mockCreature).incrementDamageReduction(HIGH_DAMAGE_REDUCTION);
 
     }
 

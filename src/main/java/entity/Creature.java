@@ -35,6 +35,10 @@ public class Creature extends Entity {
 
     }
 
+    public void incrementDamageBonus(int damageBonus) {
+
+    }
+
     @Override
     public boolean accept(Entity entity, GameMap environment) {
         return false;

@@ -1,11 +1,11 @@
 package entity;
 
-public class Player extends Entity {
+public class Creature extends Entity {
 
     private int hp;
     private int speed;
 
-    public Player(int hp, int speed) {
+    public Creature(int hp, int speed) {
 
         if (hp <= 0) {
             throw new IllegalArgumentException("HP must be positive.");

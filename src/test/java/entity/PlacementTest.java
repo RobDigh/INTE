@@ -32,23 +32,23 @@ public class PlacementTest extends GameMapTest {
     @Test
     public void placePlayer() {
 
-        Player player = mock(Player.class);
+        Creature creature = mock(Creature.class);
 
         GameMap gameMap = createDefaultSizedGameMap();
 
-        assertTrue(gameMap.place(player, new Point(0, 0)));
+        assertTrue(gameMap.place(creature, new Point(0, 0)));
 
     }
 
     @Test
     public void placePlayerTwice() {
 
-        Player player = mock(Player.class);
+        Creature creature = mock(Creature.class);
 
         GameMap gameMap = createDefaultSizedGameMap();
 
-        gameMap.place(player, new Point(0, 0));
-        assertFalse(gameMap.place(player, new Point(0, 0)));
+        gameMap.place(creature, new Point(0, 0));
+        assertFalse(gameMap.place(creature, new Point(0, 0)));
 
     }
 
@@ -85,13 +85,13 @@ public class PlacementTest extends GameMapTest {
     @Test
     public void getPlayerPosition() {
 
-        Player player = mock(Player.class);
+        Creature creature = mock(Creature.class);
 
         GameMap gameMap = createDefaultSizedGameMap();
 
-        gameMap.place(player, new Point(0, 0));
+        gameMap.place(creature, new Point(0, 0));
 
-        assertEquals(new Point(0, 0), gameMap.getPosition(player));
+        assertEquals(new Point(0, 0), gameMap.getPosition(creature));
 
     }
 
@@ -200,12 +200,12 @@ public class PlacementTest extends GameMapTest {
     public void placePlayerOnMonster() {
 
         Monster m1 = mock(Monster.class);
-        Player player = mock(Player.class);
+        Creature creature = mock(Creature.class);
 
         GameMap gameMap = createDefaultSizedGameMap();
 
         gameMap.place(m1, new Point(0, 0));
-        assertFalse(gameMap.place(player, new Point(0, 0)));
+        assertFalse(gameMap.place(creature, new Point(0, 0)));
 
     }
 
@@ -213,11 +213,11 @@ public class PlacementTest extends GameMapTest {
     public void placeMonsterOnPlayer() {
 
         Monster m1 = mock(Monster.class);
-        Player player = mock(Player.class);
+        Creature creature = mock(Creature.class);
 
         GameMap gameMap = createDefaultSizedGameMap();
 
-        gameMap.place(player, new Point(0, 0));
+        gameMap.place(creature, new Point(0, 0));
         assertFalse(gameMap.place(m1, new Point(0, 0)));
 
     }
@@ -226,9 +226,9 @@ public class PlacementTest extends GameMapTest {
     public void removePlayer() {
 
         placePlayer(DEFAULT_SIZED_MAP, 0, 0);
-        DEFAULT_SIZED_MAP.remove(mockPlayer);
+        DEFAULT_SIZED_MAP.remove(mockCreature);
 
-        assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockPlayer));
+        assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockCreature));
 
     }
 

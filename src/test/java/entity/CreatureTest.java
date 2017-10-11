@@ -11,12 +11,12 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class PlayerTest {
+public class CreatureTest {
 
     private GameMap mockGameMap = mock(GameMap.class);
 
-    private Player createPlayerWithCustomHPAndSpeed(int hp, int speed) {
-        return new Player(hp, speed, mockGameMap);
+    private Creature createPlayerWithCustomHPAndSpeed(int hp, int speed) {
+        return new Creature(hp, speed, mockGameMap);
     }
 
     private Player createSamplePlayer() {
@@ -26,10 +26,10 @@ public class PlayerTest {
     @Test
     public void testConstructPlayerWithValidHPAndSpeed() {
 
-        Player player = createPlayerWithCustomHPAndSpeed(100, 1);
+        Creature creature = createPlayerWithCustomHPAndSpeed(100, 1);
 
-        assertEquals(100, player.getHP());
-        assertEquals(1, player.getSpeed());
+        assertEquals(100, creature.getHP());
+        assertEquals(1, creature.getSpeed());
 
     }
 
@@ -56,16 +56,16 @@ public class PlayerTest {
     @Test
     public void testGetHP() {
 
-        Player player = createPlayerWithCustomHPAndSpeed(500, 10);
-        assertEquals(500, player.getHP());
+        Creature creature = createPlayerWithCustomHPAndSpeed(500, 10);
+        assertEquals(500, creature.getHP());
 
     }
 
     @Test
     public void testGetSpeed() {
 
-        Player player = createPlayerWithCustomHPAndSpeed(500, 10);
-        assertEquals(10, player.getSpeed());
+        Creature creature = createPlayerWithCustomHPAndSpeed(500, 10);
+        assertEquals(10, creature.getSpeed());
 
     }
 

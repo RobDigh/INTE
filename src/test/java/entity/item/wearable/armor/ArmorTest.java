@@ -2,7 +2,6 @@ package entity.item.wearable.armor;
 
 import entity.Creature;
 import org.junit.Test;
-import org.mockito.internal.matchers.Null;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

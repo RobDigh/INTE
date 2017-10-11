@@ -48,4 +48,9 @@ public class WeaponTest {
         verify(mockCreature).incrementDamageBonus(HIGH_DAMAGE_BONUS);
 
     }
+
+    @Test(expected = NullPointerException.class)
+    public void affectNullCreature() {
+        affectCreature(null);
+    }
 }

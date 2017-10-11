@@ -1,23 +1,22 @@
 package entity;
 
-import entity.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class PlayerTest {
+public class CreatureTest {
 
-    private Player createPlayerWithCustomHPAndSpeed(int hp, int speed) {
-        return new Player(hp, speed);
+    private Creature createPlayerWithCustomHPAndSpeed(int hp, int speed) {
+        return new Creature(hp, speed);
     }
 
     @Test
     public void testConstructPlayerWithValidHPAndSpeed() {
 
-        Player player = createPlayerWithCustomHPAndSpeed(100, 1);
+        Creature creature = createPlayerWithCustomHPAndSpeed(100, 1);
 
-        assertEquals(100, player.getHP());
-        assertEquals(1, player.getSpeed());
+        assertEquals(100, creature.getHP());
+        assertEquals(1, creature.getSpeed());
 
     }
 
@@ -44,16 +43,16 @@ public class PlayerTest {
     @Test
     public void testGetHP() {
 
-        Player player = createPlayerWithCustomHPAndSpeed(500, 10);
-        assertEquals(500, player.getHP());
+        Creature creature = createPlayerWithCustomHPAndSpeed(500, 10);
+        assertEquals(500, creature.getHP());
 
     }
 
     @Test
     public void testGetSpeed() {
 
-        Player player = createPlayerWithCustomHPAndSpeed(500, 10);
-        assertEquals(10, player.getSpeed());
+        Creature creature = createPlayerWithCustomHPAndSpeed(500, 10);
+        assertEquals(10, creature.getSpeed());
 
     }
 }

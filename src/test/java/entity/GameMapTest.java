@@ -11,7 +11,7 @@ public class GameMapTest {
 
     protected final GameMap DEFAULT_SIZED_MAP = createDefaultSizedGameMap();
 
-    protected Player mockPlayer = mock(Player.class);
+    protected Creature mockCreature = mock(Creature.class);
     protected Monster mockMonster = mock(Monster.class);
 
     protected GameMap createDefaultSizedGameMap() {
@@ -24,8 +24,8 @@ public class GameMapTest {
 
     protected GameMap placePlayer(GameMap gameMap, int x, int y) {
 
-        Player player = mock(Player.class);
-        gameMap.place(player, new Point(x, y));
+        Creature creature = mock(Creature.class);
+        gameMap.place(creature, new Point(x, y));
 
         return gameMap;
 
@@ -33,10 +33,10 @@ public class GameMapTest {
 
     protected GameMap createGameMapAndPlacePlayer(int x, int y) {
 
-        Player player = mock(Player.class);
+        Creature creature = mock(Creature.class);
 
         GameMap gameMap = createDefaultSizedGameMap();
-        gameMap.place(player, new Point(x, y));
+        gameMap.place(creature, new Point(x, y));
 
         return gameMap;
     }
@@ -44,8 +44,8 @@ public class GameMapTest {
     //protected boolean placeAndMovePlayer(GameMap gameMap, int x, int y, int direction) {
     protected boolean placeAndMovePlayer(GameMap gameMap, int x, int y, Point direction) {
 
-        gameMap.place(mockPlayer, new Point(x, y));
-        return gameMap.move(mockPlayer, direction);
+        gameMap.place(mockCreature, new Point(x, y));
+        return gameMap.move(mockCreature, direction);
 
     }
 
@@ -60,7 +60,7 @@ public class GameMapTest {
     @Before
     public void setup() {
 
-        when(mockPlayer.getSpeed()).thenReturn(1);
+        when(mockCreature.getSpeed()).thenReturn(1);
         when(mockMonster.getSpeed()).thenReturn(1);
 
     }

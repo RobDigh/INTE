@@ -4,15 +4,17 @@ import entity.Creature;
 
 public class Armor {
 
-    public Armor(int damageReduction) {
+    private int damageReduction;
 
+    public Armor(int damageReduction) {
+        this.damageReduction = damageReduction;
     }
 
     public int getDamageReduction() {
-        return 2;
+        return damageReduction;
     }
 
     public void affect(Creature creature) {
-        creature.incrementDamageReduction(2);
+        creature.incrementDamageReduction(getDamageReduction());
     }
 }

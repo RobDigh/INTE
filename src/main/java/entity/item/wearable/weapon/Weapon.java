@@ -4,12 +4,14 @@ import entity.Creature;
 
 public class Weapon {
 
-    public Weapon(int damageBonus) {
+    private int damageBonus;
 
+    public Weapon(int damageBonus) {
+        this.damageBonus = damageBonus;
     }
 
     public int getDamageBonus() {
-        return -1;
+        return damageBonus;
     }
 
     public void affect(Creature creature) {

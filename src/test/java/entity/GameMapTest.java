@@ -12,7 +12,7 @@ public class GameMapTest {
     protected final GameMap DEFAULT_SIZED_MAP = createDefaultSizedGameMap();
 
     protected Creature mockCreature = mock(Creature.class);
-    protected Monster mockMonster = mock(Monster.class);
+    protected Creature mockMonster = mock(Creature.class);
 
     protected GameMap createDefaultSizedGameMap() {
         return new GameMap();
@@ -41,7 +41,6 @@ public class GameMapTest {
         return gameMap;
     }
 
-    //protected boolean placeAndMovePlayer(GameMap gameMap, int x, int y, int direction) {
     protected boolean placeAndMovePlayer(GameMap gameMap, int x, int y, Point direction) {
 
         gameMap.place(mockCreature, new Point(x, y));
@@ -49,7 +48,6 @@ public class GameMapTest {
 
     }
 
-    //protected boolean placeAndMoveMonster(GameMap gameMap, int x, int y, int direction) {
     protected boolean placeAndMoveMonster(GameMap gameMap, int x, int y, Point direction) {
 
         gameMap.place(mockMonster, new Point(x, y));

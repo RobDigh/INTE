@@ -22,7 +22,7 @@ public class GameMapTest {
         return new GameMap(xLength, yLength);
     }
 
-    protected GameMap placePlayer(GameMap gameMap, int x, int y) {
+    protected GameMap placeCreature(GameMap gameMap, int x, int y) {
 
         Creature creature = mock(Creature.class);
         gameMap.place(creature, new Point(x, y));
@@ -31,7 +31,7 @@ public class GameMapTest {
 
     }
 
-    protected GameMap createGameMapAndPlacePlayer(int x, int y) {
+    protected GameMap createGameMapAndPlaceCreature(int x, int y) {
 
         Creature creature = mock(Creature.class);
 
@@ -41,7 +41,7 @@ public class GameMapTest {
         return gameMap;
     }
 
-    protected boolean placeAndMovePlayer(GameMap gameMap, int x, int y, Point direction) {
+    protected boolean placeAndMoveCreature(GameMap gameMap, int x, int y, Point direction) {
 
         gameMap.place(mockCreature, new Point(x, y));
         return gameMap.move(mockCreature, direction);

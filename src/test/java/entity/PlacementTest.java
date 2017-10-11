@@ -11,44 +11,21 @@ import static org.mockito.Mockito.mock;
 
 public class PlacementTest extends GameMapTest {
 
-    private GameMap createGameMapAndPlaceMonster(int x, int y) {
+    private GameMap createGameMapAndPlaceCreature(int x, int y) {
 
-        Monster monster = mock(Monster.class);
+        Creature creature = mock(Creature.class);
 
         GameMap gameMap = createDefaultSizedGameMap();
-        gameMap.place(monster, new Point(x, y));
+        gameMap.place(creature, new Point(x, y));
 
         return gameMap;
 
     }
 
-    private void placeMonster(GameMap gameMap, int x, int y) {
-
-        Monster monster = mock(Monster.class);
-        gameMap.place(monster, new Point(x, y));
-
-    }
-
-    @Test
-    public void placePlayer() {
+    private void placeCreature(GameMap gameMap, int x, int y) {
 
         Creature creature = mock(Creature.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        assertTrue(gameMap.place(creature, new Point(0, 0)));
-
-    }
-
-    @Test
-    public void placePlayerTwice() {
-
-        Creature creature = mock(Creature.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        gameMap.place(creature, new Point(0, 0));
-        assertFalse(gameMap.place(creature, new Point(0, 0)));
+        gameMap.place(creature, new Point(x, y));
 
     }
 
@@ -96,22 +73,11 @@ public class PlacementTest extends GameMapTest {
     }
 
     @Test
-    public void placeMonster() {
+    public void placeSeveralCreatures() {
 
-        Monster monster = mock(Monster.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        assertTrue(gameMap.place(monster, new Point(0, 0)));
-
-    }
-
-    @Test
-    public void placeSeveralMonsters() {
-
-        Monster m1 = mock(Monster.class);
-        Monster m2 = mock(Monster.class);
-        Monster m3 = mock(Monster.class);
+        Creature m1 = mock(Creature.class);
+        Creature m2 = mock(Creature.class);
+        Creature m3 = mock(Creature.class);
 
         GameMap gameMap = createDefaultSizedGameMap();
 
@@ -122,10 +88,10 @@ public class PlacementTest extends GameMapTest {
     }
 
     @Test
-    public void placeMonsterOnAnotherMonster() {
+    public void placeCreatureOnAnotherCreature() {
 
-        Monster m1 = mock(Monster.class);
-        Monster m2 = mock(Monster.class);
+        Creature m1 = mock(Creature.class);
+        Creature m2 = mock(Creature.class);
 
         GameMap gameMap = createDefaultSizedGameMap();
 
@@ -135,54 +101,41 @@ public class PlacementTest extends GameMapTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void placeMonsterAtNegativeX() {
-        createGameMapAndPlaceMonster(-1, 0);
+    public void placeCreatureAtNegativeX() {
+        createGameMapAndPlaceCreature(-1, 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void placeMonsterAtNegativeY() {
-        createGameMapAndPlaceMonster(0, -1);
+    public void placeCreatureAtNegativeY() {
+        createGameMapAndPlaceCreature(0, -1);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void placeMonsterAtTooGreatX() {
-        createGameMapAndPlaceMonster(GameMap.DEFAULT_X_LENGTH, 0);
+    public void placeCreatureAtTooGreatX() {
+        createGameMapAndPlaceCreature(GameMap.DEFAULT_X_LENGTH, 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void placeMonsterAtTooGreatY() {
-        createGameMapAndPlaceMonster(0, GameMap.DEFAULT_Y_LENGTH);
+    public void placeCreatureAtTooGreatY() {
+        createGameMapAndPlaceCreature(0, GameMap.DEFAULT_Y_LENGTH);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void placeMonsterAtTooGreatXOnCustomSizedMap() {
-        placeMonster(createCustomSizedGameMap(5, 5), 5, 0);
+    public void placeCreatureAtTooGreatXOnCustomSizedMap() {
+        placeCreature(createCustomSizedGameMap(5, 5), 5, 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void placeMonsterAtTooGreatYOnCustomSizedMap() {
-        placeMonster(createCustomSizedGameMap(5, 5), 0, 5);
+    public void placeCreatureAtTooGreatYOnCustomSizedMap() {
+        placeCreature(createCustomSizedGameMap(5, 5), 0, 5);
     }
 
     @Test
-    public void getMonsterPosition() {
+    public void getSeveralCreaturePositions() {
 
-        Monster monster = mock(Monster.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        gameMap.place(monster, new Point(0, 0));
-
-        assertEquals(new Point(0, 0), gameMap.getPosition(monster));
-
-    }
-
-    @Test
-    public void getSeveralMonsterPositions() {
-
-        Monster m1 = mock(Monster.class);
-        Monster m2 = mock(Monster.class);
-        Monster m3 = mock(Monster.class);
+        Creature m1 = mock(Creature.class);
+        Creature m2 = mock(Creature.class);
+        Creature m3 = mock(Creature.class);
 
         GameMap gameMap = createDefaultSizedGameMap();
 
@@ -193,32 +146,6 @@ public class PlacementTest extends GameMapTest {
         assertEquals(new Point(0, 0), gameMap.getPosition(m1));
         assertEquals(new Point(4, 3), gameMap.getPosition(m2));
         assertEquals(new Point(1, 8), gameMap.getPosition(m3));
-
-    }
-
-    @Test
-    public void placePlayerOnMonster() {
-
-        Monster m1 = mock(Monster.class);
-        Creature creature = mock(Creature.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        gameMap.place(m1, new Point(0, 0));
-        assertFalse(gameMap.place(creature, new Point(0, 0)));
-
-    }
-
-    @Test
-    public void placeMonsterOnPlayer() {
-
-        Monster m1 = mock(Monster.class);
-        Creature creature = mock(Creature.class);
-
-        GameMap gameMap = createDefaultSizedGameMap();
-
-        gameMap.place(creature, new Point(0, 0));
-        assertFalse(gameMap.place(m1, new Point(0, 0)));
 
     }
 

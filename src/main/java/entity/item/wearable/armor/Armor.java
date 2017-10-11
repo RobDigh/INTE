@@ -1,19 +1,19 @@
 package entity.item.wearable.armor;
 
 import entity.Creature;
+import entity.item.wearable.Wearable;
 
-public class Armor {
-
-    private int damageReduction;
+public class Armor extends Wearable {
 
     public Armor(int damageReduction) {
-        this.damageReduction = damageReduction;
+        super(damageReduction);
     }
 
     public int getDamageReduction() {
-        return damageReduction;
+        return getBonus();
     }
 
+    @Override
     public void affect(Creature creature) {
         creature.incrementDamageReduction(getDamageReduction());
     }

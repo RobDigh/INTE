@@ -2,6 +2,7 @@ package entity;
 
 import java.awt.*;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class GameMap extends Entity {
 
@@ -124,8 +125,8 @@ public class GameMap extends Entity {
             }
 
             if (shouldStay) {
-                // ToDo: What happens if this fails?
-                addEntity(entity, currentPosition); // Put entity back after position has been updated.
+                // Put entity back after position has been updated.
+                addEntity(entity, currentPosition); // ToDo: What happens if this fails?
             }
 
             return shouldStay;

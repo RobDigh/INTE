@@ -42,10 +42,10 @@ public class WeaponTest {
     public void affectCreatureCallsCreatureMethodWithDamageReductionPassedToConstructor() {
 
         affectCreature(mockCreature);
-        verify(mockCreature).incrementDamageReduction(LOW_DAMAGE_BONUS);
+        verify(mockCreature).incrementDamageBonus(LOW_DAMAGE_BONUS);
 
         affectCreature(HIGH_DAMAGE_BONUS, mockCreature);
-        verify(mockCreature).incrementDamageReduction(HIGH_DAMAGE_BONUS);
+        verify(mockCreature).incrementDamageBonus(HIGH_DAMAGE_BONUS);
 
     }
 }

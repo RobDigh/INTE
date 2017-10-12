@@ -13,6 +13,6 @@ public class HealthPotion {
     }
 
     public void affect(Creature creature) {
-
+        creature.gainHP(-1);
     }
 }

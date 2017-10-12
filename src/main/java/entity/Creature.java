@@ -96,7 +96,7 @@ public class Creature extends Entity {
         }
     }
 
-    public void incrementDamageBonus(int damageBonus) {
+    public void incrementDamageBonus(double damageBonus) {
         if(damageBonus <= 0){
             throw new IllegalArgumentException("Damage bonus must be greater than 0");
         }

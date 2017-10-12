@@ -268,4 +268,16 @@ public class CreatureTest {
         testCreature.incrementDamageBonus(5);
         assertEquals(5, testCreature.getDamageBonus(), 0.0);
     }
+
+    @Test
+    public void testIncrementDamageBonusWithADouble(){
+        testCreature.incrementDamageBonus(13.4);
+        assertEquals(13.4, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testIncrementDamageBonusRoundToTwoDecimals(){
+        testCreature.incrementDamageBonus(15.333);
+        assertEquals(15.33, testCreature.getDamageBonus(), 0.0);
+    }
 }

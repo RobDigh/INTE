@@ -59,6 +59,11 @@ public class CreatureTest {
         creature.incrementDamageReduction(0);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testIncrementDamageReductionWithMoreThanHundred(){
+        testCreature.incrementDamageReduction(101);
+    }
+    
     @Test
     public void testGetHP() {
 

@@ -1,6 +1,5 @@
 package entity;
 
-import com.sun.tracing.dtrace.ProviderAttributes;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -102,5 +101,12 @@ public class CreatureTest {
         thrown.expect(IllegalArgumentException.class);
         Creature creature = createPlayerWithCustomHPAndSpeed(500, 10);
         creature.loseHP(0);
+    }
+
+    @Test
+    public void testGainSpeed() {
+        Creature creature = createPlayerWithCustomHPAndSpeed(50, 10);
+        creature.gainSpeed(5);
+        assertEquals(15, creature.getSpeed());
     }
 }

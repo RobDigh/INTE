@@ -109,4 +109,11 @@ public class CreatureTest {
         creature.gainSpeed(5);
         assertEquals(15, creature.getSpeed());
     }
+
+    @Test
+    public void testLoseSpeed() {
+        Creature creature = createPlayerWithCustomHPAndSpeed(50, 10);
+        creature.loseSpeed(5);
+        assertEquals(5, creature.getSpeed());
+    }
 }

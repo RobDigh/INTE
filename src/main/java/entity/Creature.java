@@ -31,6 +31,10 @@ public class Creature extends Entity {
         return speed;
     }
 
+    public void gainHP(int amount) {
+
+    }
+
     public void incrementDamageReduction(int damageReduction) {
 
     }

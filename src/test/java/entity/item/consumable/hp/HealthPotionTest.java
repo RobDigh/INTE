@@ -1,4 +1,4 @@
-package entity.item.wearable.consumable.hp;
+package entity.item.consumable.hp;
 
 import entity.Creature;
 import org.junit.Test;
@@ -18,7 +18,7 @@ public class HealthPotionTest {
     }
 
     private HealthPotion affectCreature(Creature creature) {
-        return affectCreature(LOW_DAMAGE_BONUS, creature);
+        return affectCreature(LOW_HEALTH_BONUS, creature);
     }
 
     private HealthPotion affectCreature(int bonus, Creature creature) {
@@ -34,7 +34,7 @@ public class HealthPotionTest {
     public void affectCreature() {
 
         HealthPotion healthPot = affectCreature(mockCreature);
-        verify(mockCreature).incrementHP(healthPot.getBonus());
+        verify(mockCreature).gainHP(healthPot.getBonus());
 
     }
 }

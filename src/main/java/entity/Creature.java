@@ -29,17 +29,21 @@ public class Creature extends Entity {
     }
 
     public void gainHP(int amount) {
-        if(amount <= 0){
+        if (amount <= 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
-        hp += amount;
+        this.hp += amount;
     }
 
-    public void loseHP(int amount){
-        if(amount <= 0){
+    public void loseHP(int amount) {
+        if (amount <= 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
-        hp -= amount;
+        this.hp -= amount;
+    }
+
+    public void gainSpeed(int amount) {
+        this.speed += amount;
     }
 
     public void incrementDamageReduction(int damageReduction) {

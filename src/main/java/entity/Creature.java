@@ -36,6 +36,9 @@ public class Creature extends Entity {
     }
 
     public void loseHP(int amount){
+        if(amount <= 0){
+            throw new IllegalArgumentException("Amount must be greater than 0");
+        }
         hp -= amount;
     }
 

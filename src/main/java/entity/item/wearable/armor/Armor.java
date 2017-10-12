@@ -2,16 +2,12 @@ package entity.item.wearable.armor;
 
 import entity.Creature;
 import entity.item.Item;
+import entity.item.wearable.Wearable;
 
-public class Armor extends Item {
+public class Armor extends Wearable {
 
     public Armor(int damageReduction) {
-
         super(damageReduction);
-
-        if (damageReduction < 0) {
-            throw new IllegalArgumentException("Damage reduction may not be negative.");
-        }
     }
 
     public int getDamageReduction() {

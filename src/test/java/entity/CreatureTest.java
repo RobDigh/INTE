@@ -185,8 +185,30 @@ public class CreatureTest {
     }
 
     @Test
-    public void testIncrementDamageReduction(){
+    public void testIncrementDamageReductionWithInt(){
         testCreature.incrementDamageReduction(10);
         assertEquals(10, testCreature.getDamageReduction(), 0.0);
     }
+
+    @Test
+    public void testIncrementDamageReductionWithDoubleOneDecimal(){
+        testCreature.incrementDamageReduction(5.3);
+        assertEquals(5.3, testCreature.getDamageReduction(), 0.009);
+    }
+
+    @Test
+    public void testIncrementDamageReductionWithDoubleTwoDecimals(){
+        testCreature.incrementDamageReduction(43.33);
+        assertEquals(43.332, testCreature.getDamageReduction(), 0.009);
+    }
+
+    @Test
+    public void testIncrementDamageReductionSeveralTimes(){
+        testCreature.incrementDamageReduction(5.4);
+        testCreature.incrementDamageReduction(57.13);
+        testCreature.incrementDamageReduction(14);
+
+        assertEquals(76.53, testCreature.getDamageReduction(), 0.009);
+    }
+
 }

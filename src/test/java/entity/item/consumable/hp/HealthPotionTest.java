@@ -2,7 +2,9 @@ package entity.item.consumable.hp;
 
 import entity.Creature;
 import org.junit.Test;
+import org.junit.experimental.theories.suppliers.TestedOn;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -12,6 +14,7 @@ public class HealthPotionTest {
 
     private final int LOW_HEALTH_BONUS = 2;
     private final int HIGH_HEALTH_BONUS = 5;
+    private final int NEGATIVE_HEALTH_BONUS = -5;
 
     private HealthPotion createHealPotion(int bonus) {
         return new HealthPotion(bonus);
@@ -27,6 +30,14 @@ public class HealthPotionTest {
         healthPot.affect(creature);
 
         return healthPot;
+
+    }
+
+    @Test
+    public void constructFakeHealthPotion() {
+
+        HealthPotion healthPot = createHealPotion(NEGATIVE_HEALTH_BONUS);
+        assertEquals(NEGATIVE_HEALTH_BONUS, healthPot.getBonus());
 
     }
 

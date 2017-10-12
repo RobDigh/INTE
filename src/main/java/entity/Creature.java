@@ -29,7 +29,7 @@ public class Creature extends Entity {
     }
 
     public void gainHP(int amount) {
-
+        hp += amount;
     }
 
     public void incrementDamageReduction(int damageReduction) {

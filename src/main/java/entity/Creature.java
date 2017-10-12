@@ -91,7 +91,8 @@ public class Creature extends Entity {
         if(this.damageReduction + damageReduction > 100){
             this.damageReduction = 100;
         }else{
-            this.damageReduction += damageReduction;
+            double newDamageReduction = Math.round(damageReduction * 100);
+            this.damageReduction += (newDamageReduction / 100);
         }
     }
 

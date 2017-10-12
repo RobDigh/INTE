@@ -30,6 +30,10 @@ public class Creature extends Entity {
         return speed;
     }
 
+    public int getDamageReduction(){
+        return 0;
+    }
+
     public int getDamageBonus(){
         return damageBonus;
     }

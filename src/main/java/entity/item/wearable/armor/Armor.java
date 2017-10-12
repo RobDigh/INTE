@@ -8,7 +8,12 @@ public class Armor extends Wearable {
     private int damageReduction;
 
     public Armor(int damageReduction) {
+
         super(damageReduction);
+
+        if (damageReduction < 0) {
+            throw new IllegalArgumentException("Damage reduction may not be negative.");
+        }
     }
 
     @Override

@@ -12,7 +12,7 @@ public class ArmorTest {
 
     private final int LOW_DAMAGE_REDUCTION = 2;
     private final int HIGH_DAMAGE_REDUCTION = 5;
-    private final int NEGATIVE_DAMAGE_REDUCTION = 5;
+    private final int NEGATIVE_DAMAGE_REDUCTION = -5;
 
     private Armor createArmor(int damageReduction) {
         return new Armor(damageReduction);

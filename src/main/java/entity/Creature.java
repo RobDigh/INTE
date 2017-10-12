@@ -85,7 +85,7 @@ public class Creature extends Entity {
         if(damageReduction <= 0){
             throw new IllegalArgumentException("Damage Reduction must be greater than 0");
         }
-        this.damageReduction = 10;
+        this.damageReduction += damageReduction;
     }
 
     public void incrementDamageBonus(int damageBonus) {

@@ -1,8 +1,5 @@
 package entity;
 
-import entity.item.wearable.armor.Armor;
-import entity.item.wearable.weapon.Weapon;
-
 public class Creature extends Entity {
 
     private int hp;

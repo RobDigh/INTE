@@ -1,7 +1,6 @@
 package entity.item.wearable.weapon;
 
 import entity.Creature;
-import entity.item.Item;
 import entity.item.wearable.Wearable;
 
 public class Weapon extends Wearable {

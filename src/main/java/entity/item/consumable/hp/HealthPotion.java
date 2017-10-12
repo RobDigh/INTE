@@ -9,10 +9,6 @@ public class HealthPotion extends Item {
         super(bonus);
     }
 
-    public int getBonus() {
-        return super.getBonus();
-    }
-
     public void affect(Creature creature) {
         creature.gainHP(getBonus());
     }

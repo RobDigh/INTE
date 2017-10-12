@@ -10,7 +10,7 @@ public abstract class Item {
         this.bonus = bonus;
     }
 
-    protected int getBonus() {
+    public int getBonus() {
         return bonus;
     }
 

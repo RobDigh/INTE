@@ -9,10 +9,6 @@ public class Weapon extends Wearable {
         super(damageBonus);
     }
 
-    public int getBonus() {
-        return super.getBonus();
-    }
-
     @Override
     public void affect(Creature creature) {
         creature.incrementDamageBonus(getBonus());

@@ -37,4 +37,15 @@ public class HealthPotionTest {
         verify(mockCreature).gainHP(healthPot.getBonus());
 
     }
+
+    @Test
+    public void affectCreatureCallsCreatureMethodWithBonusPassedToConstructor() {
+
+        affectCreature(mockCreature);
+        verify(mockCreature).gainHP(LOW_HEALTH_BONUS);
+
+        affectCreature(HIGH_HEALTH_BONUS, mockCreature);
+        verify(mockCreature).gainHP(HIGH_HEALTH_BONUS);
+
+    }
 }

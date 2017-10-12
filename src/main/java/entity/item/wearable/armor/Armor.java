@@ -1,9 +1,9 @@
 package entity.item.wearable.armor;
 
 import entity.Creature;
-import entity.item.wearable.Wearable;
+import entity.item.Item;
 
-public class Armor extends Wearable {
+public class Armor extends Item {
 
     public Armor(int damageReduction) {
         super(damageReduction);

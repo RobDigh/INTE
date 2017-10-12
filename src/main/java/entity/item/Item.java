@@ -1,12 +1,12 @@
-package entity.item.wearable;
+package entity.item;
 
 import entity.Creature;
 
-public abstract class Wearable {
+public abstract class Item {
 
     private int bonus;
 
-    public Wearable(int bonus) {
+    public Item(int bonus) {
         this.bonus = bonus;
     }
 

@@ -1,17 +1,16 @@
 package entity.item.consumable.hp;
 
 import entity.Creature;
+import entity.item.Item;
 
-public class HealthPotion {
-
-    private int bonus;
+public class HealthPotion extends Item {
 
     public HealthPotion(int bonus) {
-        this.bonus = bonus;
+        super(bonus);
     }
 
     public int getBonus() {
-        return bonus;
+        return super.getBonus();
     }
 
     public void affect(Creature creature) {

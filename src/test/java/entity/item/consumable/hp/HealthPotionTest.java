@@ -48,4 +48,9 @@ public class HealthPotionTest {
         verify(mockCreature).gainHP(HIGH_HEALTH_BONUS);
 
     }
+
+    @Test(expected = NullPointerException.class)
+    public void affectNullCreature() {
+        affectCreature(null);
+    }
 }

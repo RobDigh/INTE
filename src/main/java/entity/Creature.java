@@ -39,20 +39,27 @@ public class Creature extends Entity {
         if (amount <= 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
+        if (amount >= hp) {
+            hp = 0;
+            die();
+            return;
+        }
         this.hp -= amount;
+    }
 
-        //todo Fix what happens when resulting sum is 0 or below.
+    public void die() {
+
     }
 
     public void gainSpeed(int amount) {
-        if(amount <= 0){
+        if (amount <= 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
         this.speed += amount;
     }
 
     public void loseSpeed(int amount) {
-        if(amount <= 0){
+        if (amount <= 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
         this.speed -= amount;

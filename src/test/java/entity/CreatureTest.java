@@ -151,4 +151,11 @@ public class CreatureTest {
         Creature creature = createPlayerWithCustomHPAndSpeed(450, 7);
         creature.loseSpeed(0);
     }
+
+    @Test
+    public void testGoBelow0Speed() {
+        Creature creature = createPlayerWithCustomHPAndSpeed(450, 7);
+        creature.loseSpeed(9);
+        assertEquals(0, creature.getSpeed());
+    }
 }

@@ -55,4 +55,11 @@ public class CreatureTest {
         assertEquals(10, creature.getSpeed());
 
     }
+
+    @Test
+    public void testGainHP(){
+        Creature creature = createPlayerWithCustomHPAndSpeed(450, 8);
+        creature.gainHP(50);
+        assertEquals(500, creature.getHP());
+    }
 }

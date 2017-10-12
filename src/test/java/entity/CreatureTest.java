@@ -175,7 +175,7 @@ public class CreatureTest {
     @Test
     public void testGetDamageReduction(){
         Creature creature = createPlayerWithCustomHPAndSpeed(100, 10);
-        assertEquals(0, creature.getDamageReduction());
+        assertEquals(0, creature.getDamageReduction(), 0.0);
     }
 
     @Test

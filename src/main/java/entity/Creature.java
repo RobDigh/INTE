@@ -28,6 +28,10 @@ public class Creature extends Entity {
         return speed;
     }
 
+    public int getDamageBonus(){
+        return 0;
+    }
+
     public void gainHP(int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");

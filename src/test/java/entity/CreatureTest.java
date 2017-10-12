@@ -216,4 +216,10 @@ public class CreatureTest {
         assertEquals(76.53, testCreature.getDamageReduction(), 0.009);
     }
 
+    @Test
+    public void testIncrementDamageReductionThatIncreaseDamageReductionToGreaterThanHundred(){
+        testCreature.incrementDamageReduction(80);
+        testCreature.incrementDamageReduction(40);
+        assertEquals(100, testCreature.getDamageReduction(), 0.009);
+    }
 }

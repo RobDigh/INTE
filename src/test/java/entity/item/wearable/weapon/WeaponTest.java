@@ -12,6 +12,7 @@ public class WeaponTest {
 
     private final int LOW_DAMAGE_BONUS = 2;
     private final int HIGH_DAMAGE_BONUS = 5;
+    private final int NEGATIVE_DAMAGE_BONUS = -5;
 
     private Weapon createWeapon(int damageBonus) {
         return new Weapon(damageBonus);
@@ -28,6 +29,11 @@ public class WeaponTest {
 
         return weapon;
 
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructArmorWithNegativeDamageReduction() {
+        createWeapon(NEGATIVE_DAMAGE_BONUS);
     }
 
     @Test

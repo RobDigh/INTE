@@ -89,7 +89,7 @@ public class CreatureTest {
     }
 
     @Test
-    public void testGain0HP() {
+    public void testGainZeroHP() {
         thrown.expect(IllegalArgumentException.class);
         Creature creature = createPlayerWithCustomHPAndSpeed(258, 12);
         creature.gainHP(0);
@@ -110,14 +110,14 @@ public class CreatureTest {
     }
 
     @Test
-    public void testLose0HP() {
+    public void testLoseZeroHP() {
         thrown.expect(IllegalArgumentException.class);
         Creature creature = createPlayerWithCustomHPAndSpeed(500, 10);
         creature.loseHP(0);
     }
 
     @Test
-    public void testGoBelow0HP() {
+    public void testGoBelowZeroHP() {
         Creature creature = createPlayerWithCustomHPAndSpeed(50, 8);
         creature.loseHP(50);
         assertEquals(0, creature.getHP());
@@ -138,7 +138,7 @@ public class CreatureTest {
     }
 
     @Test
-    public void testGain0Speed() {
+    public void testGainZeroSpeed() {
         thrown.expect(IllegalArgumentException.class);
         Creature creature = createPlayerWithCustomHPAndSpeed(500, 8);
         creature.gainSpeed(0);
@@ -159,14 +159,14 @@ public class CreatureTest {
     }
 
     @Test
-    public void testLose0Speed() {
+    public void testLoseZeroSpeed() {
         thrown.expect(IllegalArgumentException.class);
         Creature creature = createPlayerWithCustomHPAndSpeed(450, 7);
         creature.loseSpeed(0);
     }
 
     @Test
-    public void testGoBelow0Speed() {
+    public void testGoBelowZeroSpeed() {
         Creature creature = createPlayerWithCustomHPAndSpeed(450, 7);
         creature.loseSpeed(9);
         assertEquals(0, creature.getSpeed());

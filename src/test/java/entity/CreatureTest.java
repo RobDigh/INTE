@@ -181,6 +181,12 @@ public class CreatureTest {
     @Test
     public void getDamageBonus(){
         Creature creature = createPlayerWithCustomHPAndSpeed(100, 10);
-        assertEquals(0, creature.getDamageBonus());
+        assertEquals(0, creature.getDamageBonus(), 0.0);
     }
+
+    @Test
+    public void testIncrementDamageReduction(){
+        testCreature.incrementDamageReduction(10);
+        assertEquals(10, testCreature.getDamageReduction(), 0.0);
     }
+}

@@ -4,8 +4,8 @@ public class Creature extends Entity {
 
     private int hp;
     private int speed;
-    private int damageReduction;
-    private int damageBonus;
+    private double damageReduction;
+    private double damageBonus;
 
     public Creature(int hp, int speed) {
 
@@ -32,11 +32,11 @@ public class Creature extends Entity {
         return speed;
     }
 
-    public int getDamageReduction(){
+    public double getDamageReduction(){
         return damageReduction;
     }
 
-    public int getDamageBonus(){
+    public double getDamageBonus(){
         return damageBonus;
     }
 

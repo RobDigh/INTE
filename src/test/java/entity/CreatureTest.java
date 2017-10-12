@@ -5,6 +5,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.Random;
+
 import static org.junit.Assert.assertEquals;
 
 public class CreatureTest {
@@ -228,5 +230,22 @@ public class CreatureTest {
         testCreature.incrementDamageReduction(1.123);
         testCreature.incrementDamageReduction(1.123);
         assertEquals(2.24, testCreature.getDamageReduction(), 0.0);
+    }
+
+    @Test
+    public void testIncrementDamageReductionWithSeveralRandomValues(){
+        double damageReduction = 0;
+
+        for(int i = 1; i < 15; i++){
+            Random rnd = new Random();
+            double damageReductionToAdd = i + rnd.nextDouble();
+            testCreature.incrementDamageReduction(damageReductionToAdd);
+            double damageReductionUpdateValue = Math.round(damageReductionToAdd * 100);
+            damageReduction += (damageReductionUpdateValue / 100);
+        }
+        if(damageReduction > 100){
+            damageReduction = 100;
+        }
+        assertEquals(damageReduction, testCreature.getDamageReduction(), 0.0);
     }
 }

@@ -45,6 +45,12 @@ public class CreatureTest {
         createPlayerWithCustomHPAndSpeed(100, 0);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testIncrementDamageReductionWithZero(){
+        Creature creature = createPlayerWithCustomHPAndSpeed(500,100);
+        creature.incrementDamageReduction(0);
+    }
+
     @Test
     public void testGetHP() {
 

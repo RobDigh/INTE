@@ -40,7 +40,7 @@ public class WeaponTest {
     public void affectCreature() {
 
         Weapon weapon = affectCreature(mockCreature);
-        verify(mockCreature).incrementDamageBonus(weapon.getDamageBonus());
+        verify(mockCreature).incrementDamageBonus(weapon.getBonus());
 
     }
 

@@ -63,7 +63,7 @@ public class CreatureTest {
     public void testIncrementDamageReductionWithMoreThanHundred(){
         testCreature.incrementDamageReduction(101);
     }
-    
+
     @Test
     public void testGetHP() {
 

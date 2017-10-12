@@ -65,6 +65,11 @@ public class CreatureTest {
         testCreature.incrementDamageReduction(101);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testIncrementDamageBonusWithZero(){
+        testCreature.incrementDamageBonus(0);
+    }
+
     @Test
     public void testGetHP() {
 
@@ -179,16 +184,14 @@ public class CreatureTest {
         assertEquals(0, creature.getSpeed());
     }
 
+
+    /**
+     * Damage reduction and bonus tests
+     */
     @Test
     public void testGetDamageReduction(){
         Creature creature = createPlayerWithCustomHPAndSpeed(100, 10);
         assertEquals(0, creature.getDamageReduction(), 0.0);
-    }
-
-    @Test
-    public void getDamageBonus(){
-        Creature creature = createPlayerWithCustomHPAndSpeed(100, 10);
-        assertEquals(0, creature.getDamageBonus(), 0.0);
     }
 
     @Test
@@ -247,5 +250,11 @@ public class CreatureTest {
             damageReduction = 100;
         }
         assertEquals(damageReduction, testCreature.getDamageReduction(), 0.0);
+    }
+
+    @Test
+    public void getDamageBonus(){
+        Creature creature = createPlayerWithCustomHPAndSpeed(100, 10);
+        assertEquals(0, creature.getDamageBonus(), 0.0);
     }
 }

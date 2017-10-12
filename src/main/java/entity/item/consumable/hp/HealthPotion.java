@@ -4,15 +4,17 @@ import entity.Creature;
 
 public class HealthPotion {
 
-    public HealthPotion(int bonus) {
+    private int bonus;
 
+    public HealthPotion(int bonus) {
+        this.bonus = bonus;
     }
 
     public int getBonus() {
-        return -1;
+        return bonus;
     }
 
     public void affect(Creature creature) {
-        creature.gainHP(-1);
+        creature.gainHP(getBonus());
     }
 }

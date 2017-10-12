@@ -78,4 +78,11 @@ public class CreatureTest {
         verify(mockGameMap).move(player, GameMap.NORTH);
 
     }
+
+    @Test
+    public void testLoseSpeed() {
+        Creature creature = createPlayerWithCustomHPAndSpeed(50, 10);
+        creature.loseSpeed(5);
+        assertEquals(5, creature.getSpeed());
+    }
 }

@@ -40,6 +40,8 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
         this.hp -= amount;
+
+        //todo Fix what happens when resulting sum is 0 or below.
     }
 
     public void gainSpeed(int amount) {

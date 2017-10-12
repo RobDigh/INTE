@@ -44,7 +44,7 @@ public class ArmorTest {
     public void affectCreature() {
 
         Armor armor = affectCreature(mockCreature);
-        verify(mockCreature).incrementDamageReduction(armor.getDamageReduction());
+        verify(mockCreature).incrementDamageReduction(armor.getBonus());
 
     }
 

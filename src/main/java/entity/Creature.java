@@ -4,6 +4,7 @@ public class Creature extends Entity {
 
     private int hp;
     private int speed;
+    private int damageBonus;
 
     public Creature(int hp, int speed) {
 
@@ -17,6 +18,7 @@ public class Creature extends Entity {
 
         this.hp = hp;
         this.speed = speed;
+        damageBonus = 0;
 
     }
 
@@ -29,7 +31,7 @@ public class Creature extends Entity {
     }
 
     public int getDamageBonus(){
-        return 0;
+        return damageBonus;
     }
 
     public void gainHP(int amount) {

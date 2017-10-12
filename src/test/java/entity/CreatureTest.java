@@ -71,8 +71,8 @@ public class CreatureTest {
     @Test
     public void testLoseHP() {
         Creature creature = createPlayerWithCustomHPAndSpeed(450, 8);
-        creature.loseHP();
-        assertEquals(400, 8);
+        creature.loseHP(50);
+        assertEquals(400, creature.getHP());
     }
 
     @Test

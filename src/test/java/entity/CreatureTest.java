@@ -1,5 +1,6 @@
 package entity;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -8,8 +9,15 @@ import static org.junit.Assert.assertEquals;
 
 public class CreatureTest {
 
+    private Creature testCreature;
+
     private Creature createPlayerWithCustomHPAndSpeed(int hp, int speed) {
         return new Creature(hp, speed);
+    }
+
+    @Before
+    public void setUp(){
+        testCreature = createPlayerWithCustomHPAndSpeed(100, 10);
     }
 
     @Rule
@@ -47,8 +55,7 @@ public class CreatureTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testIncrementDamageReductionWithZero(){
-        Creature creature = createPlayerWithCustomHPAndSpeed(500,100);
-        creature.incrementDamageReduction(0);
+        testCreature.incrementDamageReduction(0);
     }
 
     @Test
@@ -163,5 +170,11 @@ public class CreatureTest {
         Creature creature = createPlayerWithCustomHPAndSpeed(450, 7);
         creature.loseSpeed(9);
         assertEquals(0, creature.getSpeed());
+    }
+
+    @Test
+    public void getDamageBonus(){
+        Creature creature = createPlayerWithCustomHPAndSpeed(100, 10);
+        assertEquals(0, creature.getDamageBonus());
     }
 }

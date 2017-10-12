@@ -62,7 +62,11 @@ public class Creature extends Entity {
         if (amount <= 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
-        this.speed -= amount;
+        if (amount > speed) {
+            this.speed = 0;
+        } else {
+            this.speed -= amount;
+        }
     }
 
     public void incrementDamageReduction(int damageReduction) {

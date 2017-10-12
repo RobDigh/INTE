@@ -6,7 +6,12 @@ import entity.item.Item;
 public class Armor extends Item {
 
     public Armor(int damageReduction) {
+
         super(damageReduction);
+
+        if (damageReduction < 0) {
+            throw new IllegalArgumentException("Damage reduction may not be negative.");
+        }
     }
 
     public int getDamageReduction() {

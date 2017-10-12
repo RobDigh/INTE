@@ -48,6 +48,10 @@ public class Creature extends Entity {
         this.speed += amount;
     }
 
+    public void loseSpeed(int amount) {
+        this.speed -= amount;
+    }
+
     public void incrementDamageReduction(int damageReduction) {
 
     }

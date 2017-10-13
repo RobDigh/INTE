@@ -87,6 +87,11 @@ public class CreatureTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void testIncrementDamageReductionWithNegativeValue(){
+        testCreature.incrementDamageReduction(-12);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void testIncrementDamageReductionWithMoreThanHundred() {
         testCreature.incrementDamageReduction(101);
     }
@@ -97,18 +102,43 @@ public class CreatureTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void testIncrementDamageBonusWithNegativeValue(){
+        testCreature.incrementDamageBonus(-5);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void testIncrementDamageBonusWithMoreThanHundred() {
         testCreature.incrementDamageBonus(102);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testDecrementDamageBonusWithZero(){
+    public void testDecrementDamageReductionWithZero(){
         testCreature.decrementDamageReduction(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testDecrementDamageBonusWithMoreThanHundred() {
+    public void testDecrementDamageReductionWithNegativeValue(){
+        testCreature.decrementDamageReduction(-77);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testDecrementDamageReductionWithMoreThanHundred() {
         testCreature.decrementDamageReduction(104);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testDecrementDamageBonusWithZero() {
+        testCreature.decrementDamageBonus(0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testDecrementDamageBonusWithNegativeValue() {
+        testCreature.decrementDamageBonus(-3);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testDecrementDamageBonusWithMoreThanHundred() {
+        testCreature.decrementDamageBonus(112);
     }
 
     @Test
@@ -433,6 +463,82 @@ public class CreatureTest {
         }
     }
 
+    //DecrementDamageBonus
+    @Test
+    public void testDecrementDamageBonusWithInt(){
+        testCreature.incrementDamageBonus(20);
+        testCreature.decrementDamageBonus(5);
+        assertEquals(15, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageBonusWithDoubleOneDecimal(){
+        testCreature.incrementDamageBonus(25);
+        testCreature.decrementDamageBonus(5.3);
+        assertEquals(19.7, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageBonusWithDoubleTwoDecimals(){
+        testCreature.incrementDamageBonus(33);
+        testCreature.decrementDamageBonus(5.35);
+        assertEquals(27.65, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageBonusRoundToTwoDecimals(){
+        testCreature.incrementDamageBonus(37);
+        testCreature.decrementDamageBonus(3.258);
+        assertEquals(33.74, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageBonusWithDoubleFourDecimals(){
+        testCreature.incrementDamageBonus(35);
+        testCreature.decrementDamageBonus(12.3581);
+        assertEquals(22.64, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageBonusToLessThanZero(){
+        testCreature.incrementDamageBonus(12.3);
+        testCreature.decrementDamageBonus(43.7);
+        assertEquals(0, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageBonusSeveralTimes(){
+        testCreature.incrementDamageBonus(63.12);
+        testCreature.decrementDamageBonus(12.37);
+        assertEquals(50.75, testCreature.getDamageBonus(), 0.0);
+        testCreature.decrementDamageBonus(37.5819);
+        assertEquals(13.17, testCreature.getDamageBonus(), 0.0);
+        testCreature.decrementDamageBonus(12.5555);
+        assertEquals(0.61, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageBonusWithSeveralRandomValues(){
+        testCreature.incrementDamageBonus(83.12);
+        double damageBonus = 83.12;
+
+        for (int i = 10; i < 30; i++) {
+            Random rnd = new Random();
+            double damageBonusToSubtract = i + rnd.nextDouble();
+            testCreature.decrementDamageBonus(damageBonusToSubtract);
+
+            double newDamageBonus = Math.round((damageBonus - damageBonusToSubtract) * 100);
+            damageBonus = (newDamageBonus / 100);
+
+            if (damageBonus > 100) {
+                assertEquals(100, testCreature.getDamageBonus(), 0.0);
+            } else if(damageBonus < 0) {
+                assertEquals(0, testCreature.getDamageBonus(), 0.0);
+            }else {
+                assertEquals(damageBonus, testCreature.getDamageBonus(), 0.0);
+            }
+        }
+    }
 
     /**
      * Add armor tests
@@ -460,5 +566,18 @@ public class CreatureTest {
         testCreature.addArmorToInventory(null);
     }
 
+    @Test
+    public void testAddArmorToInventory() throws Exception {
+
+        testCreature = new Creature(1, 1);
+        testArmor = new Armor(1);
+        Field inventoryMapField = Creature.class.getDeclaredField("inventory");
+        inventoryMapField.setAccessible(true);
+        Map<Item, List<Item>> inventory = (Map<Item, List<Item>>) inventoryMapField.get(testCreature);
+
+
+        testCreature.addArmorToInventory(testArmor);
+        assertTrue(inventory.containsKey("armor"));
+    }
 }
 

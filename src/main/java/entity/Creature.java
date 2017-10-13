@@ -1,6 +1,14 @@
 package entity;
 
 import entity.gameMap.GameMap;
+import entity.item.Item;
+import entity.item.wearable.armor.Armor;
+import entity.item.wearable.weapon.Weapon;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Creature extends Entity {
 
@@ -8,6 +16,8 @@ public class Creature extends Entity {
     private int speed;
     private double damageReduction;
     private double damageBonus;
+    private Map<String, List> inventory = new HashMap<>();
+    private List<Item> armorList = new ArrayList<>();
 
     public Creature(int hp, int speed) {
 
@@ -128,7 +138,10 @@ public class Creature extends Entity {
         }
     }
 
-    public boolean addArmorToInventory(){
+    public boolean addArmorToInventory(Armor armor){
+
+        armorList.add(armor);
+        inventory.put("armor", armorList);
         return true;
     }
 

@@ -69,4 +69,14 @@ public class WeaponTest {
         verify(mockCreature).decrementDamageBonus(LOW_DAMAGE_BONUS);
 
     }
+
+    @Test
+    public void removeStrongWeaponFromCreature() {
+
+        Weapon weapon = affectCreature(HIGH_DAMAGE_BONUS, mockCreature);
+        weapon.removeFrom(mockCreature);
+
+        verify(mockCreature).decrementDamageReduction(HIGH_DAMAGE_BONUS);
+
+    }
 }

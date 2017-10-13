@@ -97,6 +97,11 @@ public class CreatureTest {
         testCreature.decrementDamageBonus(0);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testDecrementDamageBonusWithMoreThanHundred() {
+        testCreature.decrementDamageBonus(112);
+    }
+
     @Test
     public void testGetHP() {
 

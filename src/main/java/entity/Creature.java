@@ -99,7 +99,7 @@ public class Creature extends Entity {
     }
 
     public void decrementDamageReduction(double decreaseValue){
-        damageReduction = 5;
+        damageReduction -= decreaseValue;
     }
 
     public void incrementDamageBonus(double increaseValue) {

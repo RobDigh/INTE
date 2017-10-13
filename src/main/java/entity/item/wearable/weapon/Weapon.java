@@ -1,6 +1,8 @@
 package entity.item.wearable.weapon;
 
 import entity.Creature;
+import entity.Entity;
+import entity.gameMap.GameMap;
 import entity.item.wearable.Wearable;
 
 public class Weapon extends Wearable {
@@ -12,5 +14,10 @@ public class Weapon extends Wearable {
     @Override
     public void affect(Creature creature) {
         creature.incrementDamageBonus(getBonus());
+    }
+
+    @Override
+    public boolean accept(Entity entity, GameMap environment) {
+        return false;
     }
 }

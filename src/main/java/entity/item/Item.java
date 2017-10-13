@@ -1,8 +1,9 @@
 package entity.item;
 
 import entity.Creature;
+import entity.Entity;
 
-public abstract class Item {
+public abstract class Item extends Entity {
 
     private int bonus;
 

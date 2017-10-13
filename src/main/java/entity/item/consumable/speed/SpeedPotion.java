@@ -1,6 +1,8 @@
 package entity.item.consumable.speed;
 
 import entity.Creature;
+import entity.Entity;
+import entity.gameMap.GameMap;
 import entity.item.Item;
 
 public class SpeedPotion extends Item {
@@ -11,5 +13,10 @@ public class SpeedPotion extends Item {
 
     public void affect(Creature creature) {
         creature.gainSpeed(getBonus());
+    }
+
+    @Override
+    public boolean accept(Entity entity, GameMap environment) {
+        return false;
     }
 }

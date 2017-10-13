@@ -10,14 +10,19 @@ import static org.mockito.Mockito.mock;
 
 public class AcceptTest extends GameMapTest {
 
+    private GameMap lowerLevel = createDefaultSizedGameMap();
+    private GameMap mockUpperLevel = mock(GameMap.class);
+
     @Test
     public void acceptValidEntity() {
-
-        GameMap lowerLevel = createDefaultSizedGameMap();
-        GameMap mockUpperLevel = mock(GameMap.class);
 
         assertFalse(lowerLevel.accept(mockCreature, mockUpperLevel));
         assertNotEquals(null, lowerLevel.getPosition(mockCreature));
 
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void acceptNullEntity() {
+        lowerLevel.accept(null, mockUpperLevel);
     }
 }

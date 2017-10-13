@@ -343,6 +343,7 @@ public class CreatureTest {
         inventoryMapField.setAccessible(true);
         Map<Item, List<Item>> inventory = (Map<Item, List<Item>>) inventoryMapField.get(testCreature);
 
+
         testCreature.addArmorToInventory(testArmor);
         assertTrue(inventory.containsKey("armor"));
     }

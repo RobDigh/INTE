@@ -16,8 +16,6 @@ public class GameMap extends Entity {
     public static final Point WEST = new Point(1, 0);
     public static final Point EAST = new Point(-1, 0);
 
-    public static final Point DEFAULT_ENTRY_POSITION = new Point(0, 0);
-
     private HashSet<Point> validDirections = new HashSet<>();
 
     private int xLength;
@@ -112,18 +110,8 @@ public class GameMap extends Entity {
         currentPosition.y = Math.max(0, currentPosition.y);
         currentPosition.y = Math.min(yLength - 1, currentPosition.y);
 
-        return ((currentPosition.x != originalX) || (currentPosition.y != originalY));
+        return !((currentPosition.x == originalX) && (currentPosition.y == originalY));
 
-    }
-
-    private void resolveShouldStay(Entity entity, Point currentPosition, boolean shouldStay) {
-
-        if (shouldStay) {
-            // Put entity back after position has been updated.
-            addEntity(entity, currentPosition); // ToDo: What happens if this fails?
-        } else {
-            remove(entity);
-        }
     }
 
     public boolean move(Entity entity, Point direction) {
@@ -146,7 +134,10 @@ public class GameMap extends Entity {
                 shouldStay = existingEntity.accept(entity, this);
             }
 
-            resolveShouldStay(entity, currentPosition, shouldStay);
+            if (shouldStay) {
+                // Put entity back after position has been updated.
+                addEntity(entity, currentPosition); // ToDo: What happens if this fails?
+            }
 
             return shouldStay;
 
@@ -157,13 +148,6 @@ public class GameMap extends Entity {
 
     @Override
     public boolean accept(Entity entity, GameMap environment) {
-
-        if (entity == null) {
-            throw new IllegalArgumentException("Entity may not be null.");
-        }
-
-        addEntity(entity, DEFAULT_ENTRY_POSITION);
         return false;
-
     }
 }

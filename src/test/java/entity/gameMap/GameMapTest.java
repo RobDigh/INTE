@@ -1,7 +1,7 @@
 package entity.gameMap;
 
-import entity.creature.Creature;
-import entity.item.Item;
+import entity.Creature;
+import entity.gameMap.GameMap;
 import org.junit.Before;
 import java.awt.*;
 
@@ -15,7 +15,6 @@ public class GameMapTest {
 
     protected Creature mockCreature = mock(Creature.class);
     protected Creature mockMonster = mock(Creature.class);
-    protected Item mockItem = mock(Item.class);
 
     protected GameMap createDefaultSizedGameMap() {
         return new GameMap();

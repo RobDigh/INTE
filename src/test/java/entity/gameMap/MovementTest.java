@@ -287,7 +287,14 @@ public class MovementTest extends GameMapTest {
     }
 
     private boolean removeVisitor(InvocationOnMock invocation) {
+
+        GameMap gameMap = invocation.getArgument(1);
+        Entity visitor = invocation.getArgument(0);
+
+        gameMap.remove(visitor);
+
         return Combat.INITIATOR_LOSS;
+
     }
 
     @Test

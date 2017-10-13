@@ -59,4 +59,14 @@ public class WeaponTest {
     public void affectNullCreature() {
         affectCreature(null);
     }
+
+    @Test
+    public void removeWeakWeaponFromCreature() {
+
+        Weapon weapon = affectCreature(mockCreature);
+        weapon.removeFrom(mockCreature);
+
+        verify(mockCreature).decrementDamageBonus(LOW_DAMAGE_BONUS);
+
+    }
 }

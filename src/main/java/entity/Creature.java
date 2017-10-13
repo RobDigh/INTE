@@ -145,8 +145,12 @@ public class Creature extends Entity {
         if(decreaseValue >= 100){
             throw new IllegalArgumentException("Decrease value must be less or equal to 100");
         }
-        double newDamageBonus = Math.round((damageBonus - decreaseValue) * 100);
-        damageBonus = newDamageBonus / 100;
+        if(damageBonus - decreaseValue < 0){
+            damageBonus = 0;
+        }else {
+            double newDamageBonus = Math.round((damageBonus - decreaseValue) * 100);
+            damageBonus = newDamageBonus / 100;
+        }
     }
 
     public boolean addArmorToInventory(Armor armor){

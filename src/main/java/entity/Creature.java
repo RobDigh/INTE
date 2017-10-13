@@ -85,10 +85,10 @@ public class Creature extends Entity {
 
     public void incrementDamageReduction(double increaseValue) {
         if(increaseValue <= 0){
-            throw new IllegalArgumentException("Damage reduction must be greater than 0");
+            throw new IllegalArgumentException("Increase value must be greater than 0");
         }
         if(increaseValue > 100){
-            throw new IllegalArgumentException("Damage reduction must be lower or equal to 100");
+            throw new IllegalArgumentException("Increase value must be lower or equal to 100");
         }
         if((damageReduction + increaseValue) > 100){
             damageReduction = 100;
@@ -99,6 +99,9 @@ public class Creature extends Entity {
     }
 
     public void decrementDamageReduction(double decreaseValue){
+        if(decreaseValue <= 0){
+            throw new IllegalArgumentException("Decrease value must be grater than 0");
+        }
         double newDamageReduction = Math.round((damageReduction - decreaseValue) * 100);
         damageReduction = newDamageReduction / 100;
     }

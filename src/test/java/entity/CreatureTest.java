@@ -244,17 +244,19 @@ public class CreatureTest {
     public void testIncrementDamageReductionWithSeveralRandomValues(){
         double damageReduction = 0;
 
-        for(int i = 1; i < 15; i++){
+        for(int i = 1; i < 15; i++) {
             Random rnd = new Random();
             double damageReductionToAdd = i + rnd.nextDouble();
             testCreature.incrementDamageReduction(damageReductionToAdd);
             double damageReductionUpdateValue = Math.round(damageReductionToAdd * 100);
             damageReduction += (damageReductionUpdateValue / 100);
+
+            if (damageReduction > 100) {
+                assertEquals(100, testCreature.getDamageReduction(), 0.0);
+            }else {
+                assertEquals(damageReduction, testCreature.getDamageReduction(), 0.0);
+            }
         }
-        if(damageReduction > 100){
-            damageReduction = 100;
-        }
-        assertEquals(damageReduction, testCreature.getDamageReduction(), 0.0);
     }
 
     /**
@@ -295,5 +297,25 @@ public class CreatureTest {
         testCreature.incrementDamageBonus(55.34);
         testCreature.incrementDamageBonus(64.55);
         assertEquals(100, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testIncrementDamageBonusWithSeveralRandomValues(){
+        double totalDamageBonus = 0;
+
+        for(int i = 0; i < 20; i++) {
+            Random rnd = new Random();
+            double damageBonusToAdd = i + rnd.nextDouble();
+            testCreature.incrementDamageBonus(damageBonusToAdd);
+            double damageBonusUpdateValue = Math.round(damageBonusToAdd * 100);
+            totalDamageBonus += (damageBonusUpdateValue / 100);
+
+            if (totalDamageBonus > 100) {
+                assertEquals(100, testCreature.getDamageBonus(), 0.0);
+            } else {
+                assertEquals(totalDamageBonus, testCreature.getDamageBonus(), 0.0);
+            }
+        }
+
     }
 }

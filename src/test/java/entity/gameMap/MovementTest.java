@@ -279,7 +279,7 @@ public class MovementTest extends GameMapTest {
 
     private boolean removeAcceptant(InvocationOnMock invocation) {
 
-        GameMap gameMap = invocation.getArgument(1);
+        //GameMap gameMap = invocation.getArgument(1);
         //gameMap.remove((Entity) invocation.getMock());
 
         return Combat.INITIATOR_WIN;
@@ -288,7 +288,7 @@ public class MovementTest extends GameMapTest {
 
     private boolean removeVisitor(InvocationOnMock invocation) {
 
-        GameMap gameMap = invocation.getArgument(1);
+        //GameMap gameMap = invocation.getArgument(1);
         Entity visitor = invocation.getArgument(0);
 
         //gameMap.remove(visitor);

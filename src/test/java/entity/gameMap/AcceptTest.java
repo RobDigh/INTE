@@ -16,13 +16,13 @@ public class AcceptTest extends GameMapTest {
     @Test
     public void acceptValidEntity() {
 
-        assertFalse(lowerLevel.accept(mockCreature, mockUpperLevel));
+        assertFalse(lowerLevel.accept(mockCreature));
         assertNotEquals(null, lowerLevel.getPosition(mockCreature));
 
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void acceptNullEntity() {
-        lowerLevel.accept(null, mockUpperLevel);
+        lowerLevel.accept(null);
     }
 }

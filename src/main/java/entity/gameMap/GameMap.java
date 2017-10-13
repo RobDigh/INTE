@@ -133,7 +133,7 @@ public class GameMap extends Entity {
             boolean shouldStay = true;
 
             if (existingEntity != null) {
-                shouldStay = existingEntity.accept(entity, this);
+                shouldStay = existingEntity.accept(entity);
             }
 
             if (shouldStay) {
@@ -149,7 +149,7 @@ public class GameMap extends Entity {
     }
 
     @Override
-    public boolean accept(Entity entity, GameMap environment) {
+    public boolean accept(Entity entity) {
 
         if (entity == null) {
             throw new IllegalArgumentException("Entity may not be null.");

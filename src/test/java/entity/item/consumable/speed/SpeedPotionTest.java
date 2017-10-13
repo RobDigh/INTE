@@ -49,4 +49,9 @@ public class SpeedPotionTest {
         verify(mockCreature).gainSpeed(HIGH_SPEED_BONUS);
 
     }
+
+    @Test(expected = NullPointerException.class)
+    public void affectNullCreature() {
+        affectCreature(null);
+    }
 }

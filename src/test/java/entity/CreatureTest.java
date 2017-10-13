@@ -554,22 +554,22 @@ public class CreatureTest {
         assertTrue(inventory.containsKey("armor"));
     }
 
-    @Test
-    public void testAddArmorToInventoryTestingListAsValue() throws Exception {
-
-        List<Item> armorList = setUpReflectionArmorListForAddArmor();
-        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddArmor();
-        testCreature.addArmorToInventory(testArmor01);
-        assertTrue(inventory.containsValue(armorList));
-    }
-
-    @Test
-    public void testAddArmorInventoryTestingArmorList() throws Exception{
-
-        List<Item> armorList = setUpReflectionArmorListForAddArmor();
-        testCreature.addArmorToInventory(testArmor01);
-        assertTrue(armorList.contains(testArmor01));
-    }
+//    @Test
+//    public void testAddArmorToInventoryTestingListAsValue() throws Exception {
+//
+//        List<Item> armorList = setUpReflectionArmorListForAddArmor();
+//        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddArmor();
+//        testCreature.addArmorToInventory(testArmor01);
+//        assertTrue(inventory.containsValue(armorList));
+//    }
+//
+//    @Test
+//    public void testAddArmorInventoryTestingArmorList() throws Exception{
+//
+//        List<Item> armorList = setUpReflectionArmorListForAddArmor();
+//        testCreature.addArmorToInventory(testArmor01);
+//        assertTrue(armorList.contains(testArmor01));
+//    }
 
     @Test
     public void testAddArmorTiInventoryTestingArmorAsKeyTwoItems() throws Exception{

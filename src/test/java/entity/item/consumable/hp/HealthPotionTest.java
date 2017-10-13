@@ -15,7 +15,7 @@ public class HealthPotionTest {
     private final int HIGH_HEALTH_BONUS = 5;
     private final int NEGATIVE_HEALTH_BONUS = -5;
 
-    private HealthPotion createHealPotion(int bonus) {
+    private HealthPotion createHealthPotion(int bonus) {
         return new HealthPotion(bonus);
     }
 
@@ -25,7 +25,7 @@ public class HealthPotionTest {
 
     private HealthPotion affectCreature(int bonus, Creature creature) {
 
-        HealthPotion healthPot = createHealPotion(bonus);
+        HealthPotion healthPot = createHealthPotion(bonus);
         healthPot.affect(creature);
 
         return healthPot;
@@ -35,7 +35,7 @@ public class HealthPotionTest {
     @Test
     public void constructFakeHealthPotion() {
 
-        HealthPotion healthPot = createHealPotion(NEGATIVE_HEALTH_BONUS);
+        HealthPotion healthPot = createHealthPotion(NEGATIVE_HEALTH_BONUS);
         assertEquals(NEGATIVE_HEALTH_BONUS, healthPot.getBonus());
 
     }

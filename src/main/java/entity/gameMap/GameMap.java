@@ -1,4 +1,6 @@
-package entity;
+package entity.gameMap;
+
+import entity.Entity;
 
 import java.awt.*;
 import java.util.HashMap;

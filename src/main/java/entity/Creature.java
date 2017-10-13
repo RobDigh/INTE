@@ -1,5 +1,7 @@
 package entity;
 
+import entity.gameMap.GameMap;
+
 public class Creature extends Entity {
 
     private int hp;

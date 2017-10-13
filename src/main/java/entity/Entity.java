@@ -1,5 +1,7 @@
 package entity;
 
+import entity.gameMap.GameMap;
+
 public abstract class Entity {
 
     public int getSpeed() {

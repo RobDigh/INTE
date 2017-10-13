@@ -1,6 +1,7 @@
-package entity;
+package entity.gameMap;
 
 import combat.Combat;
+import entity.Entity;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 

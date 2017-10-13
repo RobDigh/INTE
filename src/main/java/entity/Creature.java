@@ -142,6 +142,9 @@ public class Creature extends Entity {
         if(decreaseValue <= 0){
             throw new IllegalArgumentException("Decrease value must be greater than 0");
         }
+        if(decreaseValue >= 100){
+            throw new IllegalArgumentException("Decrease value must be less or equal to 100");
+        }
         double newDamageBonus = Math.round((damageBonus - decreaseValue) * 100);
         damageBonus = newDamageBonus / 100;
     }

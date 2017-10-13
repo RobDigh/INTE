@@ -144,6 +144,9 @@ public class Creature extends Entity {
 
     public boolean addArmorToInventory(Armor armor){
 
+        if(armor.equals(null)){
+            throw new NullPointerException("Armor can't be null");
+        }
         armorList.add(armor);
         inventory.put("armor", armorList);
         return true;

@@ -455,7 +455,7 @@ public class CreatureTest {
         assertTrue(inventory.containsValue(armorList));
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = NullPointerException.class)
     public void testAddArmorToInventoryTestingNull(){
         testCreature.addArmorToInventory(null);
     }

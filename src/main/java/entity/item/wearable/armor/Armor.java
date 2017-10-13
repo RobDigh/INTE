@@ -17,6 +17,11 @@ public class Armor extends Wearable {
     }
 
     @Override
+    public void removeFrom(Creature creature) {
+        creature.decrementDamageReduction(getBonus());
+    }
+
+    @Override
     public boolean accept(Entity entity, GameMap environment) {
         return false;
     }

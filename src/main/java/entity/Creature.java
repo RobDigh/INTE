@@ -138,6 +138,10 @@ public class Creature extends Entity {
         }
     }
 
+    public void decrementDamageBonus(int decreaseValue) {
+
+    }
+
     public boolean addArmorToInventory(Armor armor){
 
         armorList.add(armor);

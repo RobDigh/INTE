@@ -63,4 +63,14 @@ public class ArmorTest {
     public void affectNullCreature() {
         affectCreature(null);
     }
+
+    @Test
+    public void removeFromCreature() {
+
+        Armor armor = affectCreature(mockCreature);
+        armor.removeFrom(mockCreature);
+
+        verify(mockCreature).decrementDamageReduction(LOW_DAMAGE_REDUCTION);
+
+    }
 }

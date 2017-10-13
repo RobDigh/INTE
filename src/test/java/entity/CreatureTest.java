@@ -76,6 +76,10 @@ public class CreatureTest {
         testCreature.incrementDamageBonus(102);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testDecrementDamageBonusWithZero(){
+        testCreature.decrementDamageReduction(0);
+    }
     @Test
     public void testGetHP() {
 
@@ -283,7 +287,6 @@ public class CreatureTest {
         testCreature.decrementDamageReduction(15.1);
         assertEquals(2.1, testCreature.getDamageReduction(), 0.0);
     }
-
 
     /**
      * Damage bonus tests

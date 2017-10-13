@@ -16,6 +16,8 @@ public class GameMap extends Entity {
     public static final Point WEST = new Point(1, 0);
     public static final Point EAST = new Point(-1, 0);
 
+    public static final Point DEFAULT_ENTRY_POSITON = new Point(0, 0);
+
     private HashSet<Point> validDirections = new HashSet<>();
 
     private int xLength;
@@ -148,6 +150,9 @@ public class GameMap extends Entity {
 
     @Override
     public boolean accept(Entity entity, GameMap environment) {
+
+        addEntity(entity, DEFAULT_ENTRY_POSITON);
         return false;
+
     }
 }

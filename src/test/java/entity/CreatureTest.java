@@ -423,6 +423,27 @@ public class CreatureTest {
     }
 
     @Test
+    public void testDecrementDamageBonusWithDoubleOneDecimal(){
+        testCreature.incrementDamageBonus(25);
+        testCreature.decrementDamageBonus(5.3);
+        assertEquals(19.7, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageBonusWithDoubleTwoDecimals(){
+        testCreature.incrementDamageBonus(33);
+        testCreature.decrementDamageBonus(5.35);
+        assertEquals(19.65, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageBonusRoundToTwoDecimals(){
+        testCreature.incrementDamageBonus(37);
+        testCreature.decrementDamageBonus(3.258);
+        assertEquals(33.74, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
     public void testAddArmorToInventory() throws Exception {
 
         testCreature = new Creature(1, 1);

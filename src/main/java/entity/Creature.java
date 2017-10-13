@@ -16,7 +16,7 @@ public class Creature extends Entity {
     private int speed;
     private double damageReduction;
     private double damageBonus;
-    private Map<String, List> inventory = new HashMap<>();
+    private Map<String, List> inventory;
     private List<Item> armorList = new ArrayList<>();
 
     public Creature(int hp, int speed) {
@@ -34,6 +34,7 @@ public class Creature extends Entity {
         damageReduction = 0;
         damageBonus = 0;
 
+        inventory = new HashMap<>();
     }
 
     public int getHP() {

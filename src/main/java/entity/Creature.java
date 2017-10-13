@@ -17,7 +17,6 @@ public class Creature extends Entity {
     private double damageReduction;
     private double damageBonus;
     private Map<String, List> inventory;
-    private List<Item> armorList = new ArrayList<>();
 
     public Creature(int hp, int speed) {
 
@@ -35,6 +34,8 @@ public class Creature extends Entity {
         damageBonus = 0;
 
         inventory = new HashMap<>();
+        List<Item> armorList = new ArrayList<>();
+        inventory.put("armor", armorList);
     }
 
     public int getHP() {
@@ -159,8 +160,11 @@ public class Creature extends Entity {
         if(armor.equals(null)){
             throw new NullPointerException("Armor can't be null");
         }
+
+        List<Item> armorList = inventory.get(armor);
         armorList.add(armor);
-        inventory.put("armor", armorList);
+//        armorList.add(armor);
+//        inventory.put("armor", armorList);
         return true;
     }
 

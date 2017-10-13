@@ -2,7 +2,6 @@ package entity;
 
 import entity.item.Item;
 import entity.item.wearable.armor.Armor;
-import entity.item.wearable.weapon.Weapon;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,7 +18,8 @@ import static org.junit.Assert.assertTrue;
 public class CreatureTest {
     private Creature testCreature;
 
-    private Armor testArmor;
+    private Armor testArmor01;
+    private Armor testArmor02;
 
     private Creature createPlayerWithCustomHPAndSpeed(int hp, int speed) {
         return new Creature(hp, speed);
@@ -45,7 +45,8 @@ public class CreatureTest {
     @Before
     public void setUp() {
         testCreature = createPlayerWithCustomHPAndSpeed(100, 10);
-        testArmor = new Armor(1);
+        testArmor01 = new Armor(1);
+        testArmor02 = new Armor(2);
     }
 
     @Rule
@@ -549,7 +550,7 @@ public class CreatureTest {
     public void testAddArmorToInventoryTestingArmorAsKey() throws Exception {
 
         Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddArmor();
-        testCreature.addArmorToInventory(testArmor);
+        testCreature.addArmorToInventory(testArmor01);
         assertTrue(inventory.containsKey("armor"));
     }
 
@@ -558,8 +559,25 @@ public class CreatureTest {
 
         List<Item> armorList = setUpReflectionArmorListForAddArmor();
         Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddArmor();
-        testCreature.addArmorToInventory(testArmor);
+        testCreature.addArmorToInventory(testArmor01);
         assertTrue(inventory.containsValue(armorList));
+    }
+
+    @Test
+    public void testAddArmorInventoryTestingArmorList() throws Exception{
+
+        List<Item> armorList = setUpReflectionArmorListForAddArmor();
+        testCreature.addArmorToInventory(testArmor01);
+        assertTrue(armorList.contains(testArmor01));
+    }
+
+    @Test
+    public void testAddArmorTiInventoryTestingArmorAsKeyTwoItems() throws Exception{
+
+        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddArmor();
+        testCreature.addArmorToInventory(testArmor01);
+        testCreature.addArmorToInventory(testArmor02);
+        assertTrue(inventory.containsKey("armor"));
     }
 
     @Test (expected = NullPointerException.class)

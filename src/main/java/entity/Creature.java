@@ -83,33 +83,37 @@ public class Creature extends Entity {
         }
     }
 
-    public void incrementDamageReduction(double damageReduction) {
-        if(damageReduction <= 0){
+    public void incrementDamageReduction(double increaseValue) {
+        if(increaseValue <= 0){
             throw new IllegalArgumentException("Damage reduction must be greater than 0");
         }
-        if(damageReduction > 100){
+        if(increaseValue > 100){
             throw new IllegalArgumentException("Damage reduction must be lower or equal to 100");
         }
-        if(this.damageReduction + damageReduction > 100){
-            this.damageReduction = 100;
+        if((damageReduction + increaseValue) > 100){
+            damageReduction = 100;
         }else{
-            double newDamageReduction = Math.round(damageReduction * 100);
-            this.damageReduction += (newDamageReduction / 100);
+            double newDamageReduction = Math.round(increaseValue * 100);
+            damageReduction += (newDamageReduction / 100);
         }
     }
 
-    public void incrementDamageBonus(double damageBonus) {
-        if(damageBonus <= 0){
+    public void decrementDamageReduction(double decreaseValue){
+        damageReduction = 5;
+    }
+
+    public void incrementDamageBonus(double increaseValue) {
+        if(increaseValue <= 0){
             throw new IllegalArgumentException("Damage bonus must be greater than 0");
         }
-        if(damageBonus > 100){
+        if(increaseValue > 100){
             throw new IllegalArgumentException("Damage bonus must be lower or equal to 100");
         }
-        if((this.damageBonus + damageBonus) > 100){
-            this.damageBonus = 100;
+        if((damageBonus + increaseValue) > 100){
+            damageBonus = 100;
         }else {
-            double newDamageBonus = Math.round(damageBonus * 100);
-            this.damageBonus += (newDamageBonus / 100);
+            double newDamageBonus = Math.round(increaseValue * 100);
+            damageBonus += (newDamageBonus / 100);
         }
     }
 

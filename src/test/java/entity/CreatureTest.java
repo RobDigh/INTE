@@ -288,11 +288,63 @@ public class CreatureTest {
     }
 
     @Test
+    public void testDecrementDamageReductionWithDoubleTwoDecimals(){
+        testCreature.incrementDamageReduction(17);
+        testCreature.decrementDamageReduction(14.55);
+        assertEquals(2.45, testCreature.getDamageReduction(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageReductionWithDoubleFourDecimals(){
+        testCreature.incrementDamageReduction(17);
+        testCreature.decrementDamageReduction(14.5541);
+        assertEquals(2.45, testCreature.getDamageReduction(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageReductionSeveralTimes(){
+        testCreature.incrementDamageReduction(77);
+        testCreature.decrementDamageReduction(13.55);
+        assertEquals(63.45, testCreature.getDamageReduction(), 0.0);
+        testCreature.decrementDamageReduction(37.589);
+        assertEquals(25.86, testCreature.getDamageReduction(), 0.0);
+        testCreature.decrementDamageReduction(24.3);
+        assertEquals(1.56, testCreature.getDamageReduction(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageReductionSeveralRandomValues(){
+        testCreature.incrementDamageReduction(85);
+        double damageReduction = 85;
+
+        for (int i = 11; i < 35; i++) {
+            Random rnd = new Random();
+            double damageReductionToSubtract = i + rnd.nextDouble();
+            testCreature.decrementDamageReduction(damageReductionToSubtract);
+
+            double newDamageReduction = Math.round((damageReduction - damageReductionToSubtract) * 100);
+            damageReduction = (newDamageReduction / 100);
+
+            if (damageReduction > 100) {
+                assertEquals(100, testCreature.getDamageReduction(), 0.0);
+            } else {
+                assertEquals(damageReduction, testCreature.getDamageReduction(), 0.0);
+            }
+        }
+    }
+
+    @Test
     public void testDecrementDamageReductionRoundToTwoDecimals(){
         testCreature.incrementDamageReduction(17.2);
         testCreature.decrementDamageReduction(15.1);
         assertEquals(2.1, testCreature.getDamageReduction(), 0.0);
-        assertEquals(2.1, testCreature.getDamageReduction(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageReductionToLessThanZero(){
+        testCreature.incrementDamageReduction(12.3);
+        testCreature.decrementDamageReduction(13.11);
+        assertEquals(0, testCreature.getDamageReduction(), 0.0);
     }
 
     /**

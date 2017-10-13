@@ -14,6 +14,10 @@ public class WeaponTest {
     private final int HIGH_DAMAGE_BONUS = 5;
     private final int NEGATIVE_DAMAGE_BONUS = -5;
 
+    private Weapon createWeapon() {
+        return createWeapon(LOW_DAMAGE_BONUS);
+    }
+
     private Weapon createWeapon(int damageBonus) {
         return new Weapon(damageBonus);
     }
@@ -77,6 +81,14 @@ public class WeaponTest {
         weapon.removeFrom(mockCreature);
 
         verify(mockCreature).decrementDamageBonus(HIGH_DAMAGE_BONUS);
+
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void removeFromNullCreature() {
+
+        Weapon weapon = createWeapon();
+        weapon.removeFrom(null);
 
     }
 }

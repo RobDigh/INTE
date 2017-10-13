@@ -81,66 +81,6 @@ public class CreatureTest {
         createPlayerWithCustomHPAndSpeed(100, 0);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testIncrementDamageReductionWithZero() {
-        testCreature.incrementDamageReduction(0);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testIncrementDamageReductionWithNegativeValue(){
-        testCreature.incrementDamageReduction(-12);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testIncrementDamageReductionWithMoreThanHundred() {
-        testCreature.incrementDamageReduction(101);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testIncrementDamageBonusWithZero() {
-        testCreature.incrementDamageBonus(0);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testIncrementDamageBonusWithNegativeValue(){
-        testCreature.incrementDamageBonus(-5);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testIncrementDamageBonusWithMoreThanHundred() {
-        testCreature.incrementDamageBonus(102);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testDecrementDamageReductionWithZero(){
-        testCreature.decrementDamageReduction(0);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testDecrementDamageReductionWithNegativeValue(){
-        testCreature.decrementDamageReduction(-77);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testDecrementDamageReductionWithMoreThanHundred() {
-        testCreature.decrementDamageReduction(104);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testDecrementDamageBonusWithZero() {
-        testCreature.decrementDamageBonus(0);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testDecrementDamageBonusWithNegativeValue() {
-        testCreature.decrementDamageBonus(-3);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testDecrementDamageBonusWithMoreThanHundred() {
-        testCreature.decrementDamageBonus(112);
-    }
-
     @Test
     public void testGetHP() {
 
@@ -255,12 +195,26 @@ public class CreatureTest {
         assertEquals(0, creature.getSpeed());
     }
 
-
     /**
      * Damage reduction tests
      */
 
-    //Tests for increment
+    //IncrementDamageReduction
+    @Test(expected = IllegalArgumentException.class)
+    public void testIncrementDamageReductionWithZero() {
+        testCreature.incrementDamageReduction(0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testIncrementDamageReductionWithNegativeValue(){
+        testCreature.incrementDamageReduction(-12);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testIncrementDamageReductionWithMoreThanHundred() {
+        testCreature.incrementDamageReduction(101);
+    }
+
     @Test
     public void testGetDamageReduction() {
         Creature creature = createPlayerWithCustomHPAndSpeed(100, 10);
@@ -326,7 +280,22 @@ public class CreatureTest {
             }
         }
     }
-    //Tests for decrement
+
+    //DecrementDamageReduction
+    @Test(expected = IllegalArgumentException.class)
+    public void testDecrementDamageReductionWithZero(){
+        testCreature.decrementDamageReduction(0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testDecrementDamageReductionWithNegativeValue(){
+        testCreature.decrementDamageReduction(-77);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testDecrementDamageReductionWithMoreThanHundred() {
+        testCreature.decrementDamageReduction(104);
+    }
 
     @Test
     public void testDecrementDamageReductionWithInt(){
@@ -407,6 +376,23 @@ public class CreatureTest {
     /**
      * Damage bonus tests
      */
+
+    //IncrementDamageBonus
+    @Test(expected = IllegalArgumentException.class)
+    public void testIncrementDamageBonusWithZero() {
+        testCreature.incrementDamageBonus(0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testIncrementDamageBonusWithNegativeValue(){
+        testCreature.incrementDamageBonus(-5);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testIncrementDamageBonusWithMoreThanHundred() {
+        testCreature.incrementDamageBonus(102);
+    }
+
     @Test
     public void testGetDamageBonus() {
         Creature creature = createPlayerWithCustomHPAndSpeed(100, 10);
@@ -464,6 +450,21 @@ public class CreatureTest {
     }
 
     //DecrementDamageBonus
+    @Test(expected = IllegalArgumentException.class)
+    public void testDecrementDamageBonusWithZero() {
+        testCreature.decrementDamageBonus(0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testDecrementDamageBonusWithNegativeValue() {
+        testCreature.decrementDamageBonus(-3);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testDecrementDamageBonusWithMoreThanHundred() {
+        testCreature.decrementDamageBonus(112);
+    }
+
     @Test
     public void testDecrementDamageBonusWithInt(){
         testCreature.incrementDamageBonus(20);

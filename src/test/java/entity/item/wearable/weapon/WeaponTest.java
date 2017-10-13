@@ -76,7 +76,7 @@ public class WeaponTest {
         Weapon weapon = affectCreature(HIGH_DAMAGE_BONUS, mockCreature);
         weapon.removeFrom(mockCreature);
 
-        verify(mockCreature).decrementDamageReduction(HIGH_DAMAGE_BONUS);
+        verify(mockCreature).decrementDamageBonus(HIGH_DAMAGE_BONUS);
 
     }
 }

@@ -8,6 +8,7 @@ import org.junit.rules.ExpectedException;
 import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class CreatureTest {
 
@@ -279,5 +280,10 @@ public class CreatureTest {
     public void testIncrementDamageBonusRoundToTwoDecimals(){
         testCreature.incrementDamageBonus(15.333);
         assertEquals(15.33, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testAddArmorToInventory(){
+        assertTrue(testCreature.addArmorToInventory());
     }
 }

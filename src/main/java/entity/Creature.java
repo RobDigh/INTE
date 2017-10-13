@@ -109,6 +109,10 @@ public class Creature extends Entity {
         this.damageBonus += (newDamageBonus / 100);
     }
 
+    public boolean addArmorToInventory(){
+        return true;
+    }
+
     @Override
     public boolean accept(Entity entity, GameMap environment) {
         return false;

@@ -15,5 +15,4 @@ public abstract class Item {
     }
 
     public abstract void affect(Creature creature);
-
 }

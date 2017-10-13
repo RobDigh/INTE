@@ -8,6 +8,7 @@ import org.junit.rules.ExpectedException;
 import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class CreatureTest {
 
@@ -18,7 +19,7 @@ public class CreatureTest {
     }
 
     @Before
-    public void setUp(){
+    public void setUp() {
         testCreature = createPlayerWithCustomHPAndSpeed(100, 10);
     }
 
@@ -56,22 +57,22 @@ public class CreatureTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testIncrementDamageReductionWithZero(){
+    public void testIncrementDamageReductionWithZero() {
         testCreature.incrementDamageReduction(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testIncrementDamageReductionWithMoreThanHundred(){
+    public void testIncrementDamageReductionWithMoreThanHundred() {
         testCreature.incrementDamageReduction(101);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testIncrementDamageBonusWithZero(){
+    public void testIncrementDamageBonusWithZero() {
         testCreature.incrementDamageBonus(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testIncrementDamageBonusWithMoreThanHundred(){
+    public void testIncrementDamageBonusWithMoreThanHundred() {
         testCreature.incrementDamageBonus(102);
     }
 
@@ -194,31 +195,31 @@ public class CreatureTest {
      * Damage reduction tests
      */
     @Test
-    public void testGetDamageReduction(){
+    public void testGetDamageReduction() {
         Creature creature = createPlayerWithCustomHPAndSpeed(100, 10);
         assertEquals(0, creature.getDamageReduction(), 0.0);
     }
 
     @Test
-    public void testIncrementDamageReductionWithInt(){
+    public void testIncrementDamageReductionWithInt() {
         testCreature.incrementDamageReduction(10);
         assertEquals(10, testCreature.getDamageReduction(), 0.0);
     }
 
     @Test
-    public void testIncrementDamageReductionWithDoubleOneDecimal(){
+    public void testIncrementDamageReductionWithDoubleOneDecimal() {
         testCreature.incrementDamageReduction(5.3);
         assertEquals(5.3, testCreature.getDamageReduction(), 0.0);
     }
 
     @Test
-    public void testIncrementDamageReductionWithDoubleTwoDecimals(){
+    public void testIncrementDamageReductionWithDoubleTwoDecimals() {
         testCreature.incrementDamageReduction(43.33);
         assertEquals(43.33, testCreature.getDamageReduction(), 0.0);
     }
 
     @Test
-    public void testIncrementDamageReductionSeveralTimes(){
+    public void testIncrementDamageReductionSeveralTimes() {
         testCreature.incrementDamageReduction(5.4);
         testCreature.incrementDamageReduction(57.13);
         testCreature.incrementDamageReduction(14);
@@ -227,24 +228,24 @@ public class CreatureTest {
     }
 
     @Test
-    public void testIncrementDamageReductionThatIncreaseDamageReductionToGreaterThanHundred(){
+    public void testIncrementDamageReductionThatIncreaseDamageReductionToGreaterThanHundred() {
         testCreature.incrementDamageReduction(80);
         testCreature.incrementDamageReduction(40);
         assertEquals(100, testCreature.getDamageReduction(), 0.0);
     }
 
     @Test
-    public void testGetIncrementDamageReductionRoundToTwoDecimals(){
+    public void testGetIncrementDamageReductionRoundToTwoDecimals() {
         testCreature.incrementDamageReduction(1.123);
         testCreature.incrementDamageReduction(1.123);
         assertEquals(2.24, testCreature.getDamageReduction(), 0.0);
     }
 
     @Test
-    public void testIncrementDamageReductionWithSeveralRandomValues(){
+    public void testIncrementDamageReductionWithSeveralRandomValues() {
         double damageReduction = 0;
 
-        for(int i = 1; i < 15; i++) {
+        for (int i = 1; i < 15; i++) {
             Random rnd = new Random();
             double damageReductionToAdd = i + rnd.nextDouble();
             testCreature.incrementDamageReduction(damageReductionToAdd);
@@ -253,7 +254,7 @@ public class CreatureTest {
 
             if (damageReduction > 100) {
                 assertEquals(100, testCreature.getDamageReduction(), 0.0);
-            }else {
+            } else {
                 assertEquals(damageReduction, testCreature.getDamageReduction(), 0.0);
             }
         }
@@ -263,47 +264,47 @@ public class CreatureTest {
      * Damage bonus tests
      */
     @Test
-    public void testGetDamageBonus(){
+    public void testGetDamageBonus() {
         Creature creature = createPlayerWithCustomHPAndSpeed(100, 10);
         assertEquals(0, creature.getDamageBonus(), 0.0);
     }
 
     @Test
-    public void testIncrementDamageBonusWithAnInt(){
+    public void testIncrementDamageBonusWithAnInt() {
         testCreature.incrementDamageBonus(5);
         assertEquals(5, testCreature.getDamageBonus(), 0.0);
     }
 
     @Test
-    public void testIncrementDamageBonusWithADoubleOneDecimal(){
+    public void testIncrementDamageBonusWithADoubleOneDecimal() {
         testCreature.incrementDamageBonus(13.4);
         assertEquals(13.4, testCreature.getDamageBonus(), 0.0);
     }
 
     @Test
-    public void testIncrementDamageBonusDoubleWithTwoDecimals(){
+    public void testIncrementDamageBonusDoubleWithTwoDecimals() {
         testCreature.incrementDamageBonus(63.49);
         assertEquals(63.49, testCreature.getDamageBonus(), 0.0);
     }
 
     @Test
-    public void testIncrementDamageBonusRoundToTwoDecimals(){
+    public void testIncrementDamageBonusRoundToTwoDecimals() {
         testCreature.incrementDamageBonus(15.333);
         assertEquals(15.33, testCreature.getDamageBonus(), 0.0);
     }
 
     @Test
-    public void testIncrementDamageBonusThatIncreaseDamageBonusToGreaterThanHundred(){
+    public void testIncrementDamageBonusThatIncreaseDamageBonusToGreaterThanHundred() {
         testCreature.incrementDamageBonus(55.34);
         testCreature.incrementDamageBonus(64.55);
         assertEquals(100, testCreature.getDamageBonus(), 0.0);
     }
 
     @Test
-    public void testIncrementDamageBonusWithSeveralRandomValues(){
+    public void testIncrementDamageBonusWithSeveralRandomValues() {
         double totalDamageBonus = 0;
 
-        for(int i = 0; i < 20; i++) {
+        for (int i = 0; i < 20; i++) {
             Random rnd = new Random();
             double damageBonusToAdd = i + rnd.nextDouble();
             testCreature.incrementDamageBonus(damageBonusToAdd);
@@ -316,6 +317,10 @@ public class CreatureTest {
                 assertEquals(totalDamageBonus, testCreature.getDamageBonus(), 0.0);
             }
         }
+    }
 
+    public void testAddArmorToInventory() {
+        assertTrue(testCreature.addArmorToInventory());
     }
 }
+

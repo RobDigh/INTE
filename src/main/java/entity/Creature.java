@@ -113,6 +113,10 @@ public class Creature extends Entity {
         }
     }
 
+    public boolean addArmorToInventory(){
+        return true;
+    }
+
     @Override
     public boolean accept(Entity entity, GameMap environment) {
         return false;

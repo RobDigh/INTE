@@ -105,8 +105,12 @@ public class Creature extends Entity {
         if(damageBonus > 100){
             throw new IllegalArgumentException("Damage bonus must be lower or equal to 100");
         }
-        double newDamageBonus = Math.round(damageBonus * 100);
-        this.damageBonus += (newDamageBonus / 100);
+        if((this.damageBonus + damageBonus) > 100){
+            this.damageBonus = 100;
+        }else {
+            double newDamageBonus = Math.round(damageBonus * 100);
+            this.damageBonus += (newDamageBonus / 100);
+        }
     }
 
     @Override

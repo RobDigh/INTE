@@ -65,12 +65,22 @@ public class ArmorTest {
     }
 
     @Test
-    public void removeFromCreature() {
+    public void removeWeakArmorFromCreature() {
 
         Armor armor = affectCreature(mockCreature);
         armor.removeFrom(mockCreature);
 
         verify(mockCreature).decrementDamageReduction(LOW_DAMAGE_REDUCTION);
+
+    }
+
+    @Test
+    public void removeStrongArmorFromCreature() {
+
+        Armor armor = affectCreature(HIGH_DAMAGE_REDUCTION, mockCreature);
+        armor.removeFrom(mockCreature);
+
+        verify(mockCreature).decrementDamageReduction(HIGH_DAMAGE_REDUCTION);
 
     }
 }

@@ -191,7 +191,7 @@ public class CreatureTest {
 
 
     /**
-     * Damage reduction and bonus tests
+     * Damage reduction tests
      */
     @Test
     public void testGetDamageReduction(){
@@ -257,8 +257,11 @@ public class CreatureTest {
         assertEquals(damageReduction, testCreature.getDamageReduction(), 0.0);
     }
 
+    /**
+     * Damage bonus tests
+     */
     @Test
-    public void getDamageBonus(){
+    public void testGetDamageBonus(){
         Creature creature = createPlayerWithCustomHPAndSpeed(100, 10);
         assertEquals(0, creature.getDamageBonus(), 0.0);
     }
@@ -270,14 +273,27 @@ public class CreatureTest {
     }
 
     @Test
-    public void testIncrementDamageBonusWithADouble(){
+    public void testIncrementDamageBonusWithADoubleOneDecimal(){
         testCreature.incrementDamageBonus(13.4);
         assertEquals(13.4, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testIncrementDamageBonusDoubleWithTwoDecimals(){
+        testCreature.incrementDamageBonus(63.49);
+        assertEquals(63.49, testCreature.getDamageBonus(), 0.0);
     }
 
     @Test
     public void testIncrementDamageBonusRoundToTwoDecimals(){
         testCreature.incrementDamageBonus(15.333);
         assertEquals(15.33, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testIncrementDamageBonusThatIncreaseDamageBonusToGreaterThanHundred(){
+        testCreature.incrementDamageBonus(55.34);
+        testCreature.incrementDamageBonus(64.55);
+        assertEquals(100, testCreature.getDamageBonus(), 0.0);
     }
 }

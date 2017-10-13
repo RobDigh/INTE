@@ -1,10 +1,15 @@
 package entity;
 
+import entity.item.Item;
+import entity.item.wearable.armor.Armor;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.lang.reflect.Field;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
@@ -13,6 +18,7 @@ import static org.junit.Assert.assertTrue;
 public class CreatureTest {
 
     private Creature testCreature;
+    private Armor testArmor;
 
     private Creature createPlayerWithCustomHPAndSpeed(int hp, int speed) {
         return new Creature(hp, speed);
@@ -329,6 +335,19 @@ public class CreatureTest {
     }
 
     @Test
+    public void testAddArmorToInventory() throws Exception {
+
+        testCreature = new Creature(1, 1);
+        testArmor = new Armor(1);
+        Field inventoryMapField = Creature.class.getDeclaredField("inventory");
+        inventoryMapField.setAccessible(true);
+        Map<Item, List<Item>> inventory = (Map<Item, List<Item>>) inventoryMapField.get(testCreature);
+
+        testCreature.addArmorToInventory(testArmor);
+        assertTrue(inventory.containsKey("armor"));
+    }
+
+    @Test
     public void testIncrementDamageBonusThatIncreaseDamageBonusToGreaterThanHundred() {
         testCreature.incrementDamageBonus(55.34);
         testCreature.incrementDamageBonus(64.55);
@@ -354,8 +373,5 @@ public class CreatureTest {
         }
     }
 
-    public void testAddArmorToInventory() {
-        assertTrue(testCreature.addArmorToInventory());
-    }
 }
 

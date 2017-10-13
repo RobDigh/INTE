@@ -1,17 +1,12 @@
 package entity.item.consumable.speed;
 
 import entity.Creature;
+import entity.item.Item;
 
-public class SpeedPotion {
-
-    private int bonus;
+public class SpeedPotion extends Item {
 
     public SpeedPotion(int bonus) {
-        this.bonus = bonus;
-    }
-
-    public int getBonus() {
-        return bonus;
+        super(bonus);
     }
 
     public void affect(Creature creature) {

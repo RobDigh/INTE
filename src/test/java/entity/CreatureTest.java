@@ -98,6 +98,11 @@ public class CreatureTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void testDecrementDamageBonusWithLessThanzero() {
+        testCreature.decrementDamageBonus(-3);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void testDecrementDamageBonusWithMoreThanHundred() {
         testCreature.decrementDamageBonus(112);
     }
@@ -453,6 +458,50 @@ public class CreatureTest {
         assertEquals(33.74, testCreature.getDamageBonus(), 0.0);
     }
 
+    @Test
+    public void testDecrementDamageBonusWithDoubleFourDecimals(){
+        testCreature.incrementDamageBonus(35);
+        testCreature.decrementDamageBonus(12.3581);
+        assertEquals(22.64, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageBonusSeveralTimes(){
+        testCreature.incrementDamageBonus(63.12);
+        testCreature.decrementDamageBonus(12.37);
+        assertEquals(50.75, testCreature.getDamageBonus(), 0.0);
+        testCreature.decrementDamageBonus(37.5819);
+        assertEquals(13.17, testCreature.getDamageBonus(), 0.0);
+        testCreature.decrementDamageBonus(12.5555);
+        assertEquals(0.61, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageBonusWithSeveralRandomValues(){
+        testCreature.incrementDamageBonus(83.12);
+        double damageBonus = 83.12;
+
+        for (int i = 10; i < 30; i++) {
+            Random rnd = new Random();
+            double damageBonusToSubtract = i + rnd.nextDouble();
+            testCreature.decrementDamageBonus(damageBonusToSubtract);
+
+            double newDamageBonus = Math.round((damageBonus - damageBonusToSubtract) * 100);
+            damageBonus = (newDamageBonus / 100);
+
+            if (damageBonus > 100) {
+                assertEquals(100, testCreature.getDamageBonus(), 0.0);
+            } else if(damageBonus < 0) {
+                assertEquals(0, testCreature.getDamageBonus(), 0.0);
+            }else {
+                assertEquals(damageBonus, testCreature.getDamageBonus(), 0.0);
+            }
+        }
+    }
+
+    /**
+     * Add inventory test
+     */
     @Test
     public void testAddArmorToInventory() throws Exception {
 

@@ -116,6 +116,16 @@ public class GameMap extends Entity {
 
     }
 
+    private void resolveShouldStay(Entity entity, Point currentPosition, boolean shouldStay) {
+
+        if (shouldStay) {
+            // Put entity back after position has been updated.
+            addEntity(entity, currentPosition); // ToDo: What happens if this fails?
+        } else {
+            remove(entity);
+        }
+    }
+
     public boolean move(Entity entity, Point direction) {
 
         if (!validDirections.contains(direction)) {
@@ -136,12 +146,7 @@ public class GameMap extends Entity {
                 shouldStay = existingEntity.accept(entity, this);
             }
 
-            if (shouldStay) {
-                // Put entity back after position has been updated.
-                addEntity(entity, currentPosition); // ToDo: What happens if this fails?
-            } else {
-                remove(entity);
-            }
+            resolveShouldStay(entity, currentPosition, shouldStay);
 
             return shouldStay;
 

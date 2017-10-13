@@ -139,7 +139,7 @@ public class Creature extends Entity {
     }
 
     public void decrementDamageBonus(double decreaseValue){
-        damageBonus = 15;
+        damageBonus -= decreaseValue;
     }
 
     public boolean addArmorToInventory(Armor armor){

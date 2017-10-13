@@ -270,6 +270,20 @@ public class CreatureTest {
         assertEquals(5, testCreature.getDamageReduction(), 0.0);
     }
 
+    @Test
+    public void testDecrementDamageReductionWithDoubleOneDecimal(){
+        testCreature.incrementDamageReduction(15);
+        testCreature.decrementDamageReduction(5.1);
+        assertEquals(9.9, testCreature.getDamageReduction(), 0.0);
+    }
+
+    @Test
+    public void testDecrementDamageReductionRoundToTwoDecimals(){
+        testCreature.incrementDamageReduction(17.2);
+        testCreature.decrementDamageReduction(15.1);
+        assertEquals(2.1, testCreature.getDamageReduction(), 0.0);
+    }
+
 
     /**
      * Damage bonus tests

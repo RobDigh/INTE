@@ -38,4 +38,15 @@ public class SpeedPotionTest {
         verify(mockCreature).gainSpeed(speedPot.getBonus());
 
     }
+
+    @Test
+    public void affectCreatureCallsCreatureMethodWithBonusPassedToConstructor() {
+
+        affectCreature(mockCreature);
+        verify(mockCreature).gainSpeed(LOW_SPEED_BONUS);
+
+        affectCreature(HIGH_SPEED_BONUS, mockCreature);
+        verify(mockCreature).gainSpeed(HIGH_SPEED_BONUS);
+
+    }
 }

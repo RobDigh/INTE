@@ -1,5 +1,6 @@
 package entity.item.wearable;
 
+import entity.Creature;
 import entity.item.Item;
 
 public abstract class Wearable extends Item {
@@ -12,4 +13,7 @@ public abstract class Wearable extends Item {
             throw new IllegalArgumentException("Bonus may not be negative.");
         }
     }
+
+    public abstract void removeFrom(Creature creature);
+
 }

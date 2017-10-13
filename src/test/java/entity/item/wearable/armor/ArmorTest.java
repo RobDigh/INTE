@@ -35,6 +35,20 @@ public class ArmorTest {
 
     }
 
+    private void affectAndRemoveFromCreature(Creature creature) {
+
+        Armor armor = affectCreature(creature);
+        armor.removeFrom(creature);
+
+    }
+
+    private void affectAndRemoveFromCreature(int damageReduction, Creature creature) {
+
+        Armor armor = affectCreature(damageReduction, creature);
+        armor.removeFrom(creature);
+
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void constructArmorWithNegativeDamageReduction() {
         createArmor(NEGATIVE_DAMAGE_REDUCTION);
@@ -67,9 +81,7 @@ public class ArmorTest {
     @Test
     public void removeWeakArmorFromCreature() {
 
-        Armor armor = affectCreature(mockCreature);
-        armor.removeFrom(mockCreature);
-
+        affectAndRemoveFromCreature(mockCreature);
         verify(mockCreature).decrementDamageReduction(LOW_DAMAGE_REDUCTION);
 
     }
@@ -77,10 +89,16 @@ public class ArmorTest {
     @Test
     public void removeStrongArmorFromCreature() {
 
-        Armor armor = affectCreature(HIGH_DAMAGE_REDUCTION, mockCreature);
-        armor.removeFrom(mockCreature);
-
+        affectAndRemoveFromCreature(HIGH_DAMAGE_REDUCTION, mockCreature);
         verify(mockCreature).decrementDamageReduction(HIGH_DAMAGE_REDUCTION);
+
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void removeFromNullCreature() {
+
+        Armor armor = createArmor();
+        armor.removeFrom(null);
 
     }
 }

@@ -194,6 +194,8 @@ public class CreatureTest {
     /**
      * Damage reduction tests
      */
+
+    //Tests for increment
     @Test
     public void testGetDamageReduction() {
         Creature creature = createPlayerWithCustomHPAndSpeed(100, 10);
@@ -259,6 +261,15 @@ public class CreatureTest {
             }
         }
     }
+
+    //Tests for decrement
+    @Test
+    public void testDecrementDamageReductionWithInt(){
+        testCreature.incrementDamageReduction(10);
+        testCreature.decrementDamageReduction(5);
+        assertEquals(5, testCreature.getDamageReduction(), 0.0);
+    }
+
 
     /**
      * Damage bonus tests

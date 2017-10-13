@@ -117,6 +117,10 @@ public class Creature extends Entity {
         }
         double newDamageReduction = Math.round((damageReduction - decreaseValue) * 100);
         damageReduction = newDamageReduction / 100;
+
+        if(damageReduction < 0){
+            damageReduction = 0;
+        }
     }
 
     public void incrementDamageBonus(double increaseValue) {

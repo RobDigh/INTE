@@ -2,6 +2,7 @@ package entity;
 
 import entity.item.Item;
 import entity.item.wearable.armor.Armor;
+import entity.item.wearable.weapon.Weapon;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -452,6 +453,11 @@ public class CreatureTest {
         Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddArmor();
         testCreature.addArmorToInventory(testArmor);
         assertTrue(inventory.containsValue(armorList));
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void testAddArmorToInventoryTestingNull(){
+        testCreature.addArmorToInventory(null);
     }
 
 }

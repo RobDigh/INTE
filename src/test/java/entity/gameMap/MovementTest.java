@@ -280,7 +280,7 @@ public class MovementTest extends GameMapTest {
     private boolean removeAcceptant(InvocationOnMock invocation) {
 
         GameMap gameMap = invocation.getArgument(1);
-        gameMap.remove((Entity) invocation.getMock());
+        //gameMap.remove((Entity) invocation.getMock());
 
         return Combat.INITIATOR_WIN;
 
@@ -291,7 +291,7 @@ public class MovementTest extends GameMapTest {
         GameMap gameMap = invocation.getArgument(1);
         Entity visitor = invocation.getArgument(0);
 
-        gameMap.remove(visitor);
+        //gameMap.remove(visitor);
 
         return Combat.INITIATOR_LOSS;
 
@@ -300,7 +300,7 @@ public class MovementTest extends GameMapTest {
     @Test
     public void moveCreatureOntoCreatureAndWinCombat() {
 
-        when(mockMonster.accept(mockCreature, DEFAULT_SIZED_MAP)).then(this::removeAcceptant);
+        when(mockMonster.accept(mockCreature)).then(this::removeAcceptant);
 
         DEFAULT_SIZED_MAP.place(mockMonster, new Point(0, 1));
 
@@ -314,7 +314,7 @@ public class MovementTest extends GameMapTest {
     @Test
     public void moveCreatureOntoCreatureAndLoseCombat() {
 
-        when(mockMonster.accept(mockCreature, DEFAULT_SIZED_MAP)).then(this::removeVisitor);
+        when(mockMonster.accept(mockCreature)).then(this::removeVisitor);
 
         DEFAULT_SIZED_MAP.place(mockMonster, new Point(0, 1));
 

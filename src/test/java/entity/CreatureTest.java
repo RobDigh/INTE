@@ -16,17 +16,35 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class CreatureTest {
-
     private Creature testCreature;
+
     private Armor testArmor;
 
     private Creature createPlayerWithCustomHPAndSpeed(int hp, int speed) {
         return new Creature(hp, speed);
     }
 
+    //set ups a Reflection of armorList in Creature
+    private List<Item> setUpReflectionArmorListForAddArmor() throws Exception{
+        Field armorListField = Creature.class.getDeclaredField("armorList");
+        armorListField.setAccessible(true);
+        List<Item> armorList = (List<Item>) armorListField.get(testCreature);
+        return armorList;
+    }
+
+    //set ups a Reflection of inventory Map in Creature
+    private Map<Item, List<Item>> setUpReflectionInventoryMapForAddArmor() throws Exception{
+
+        Field inventoryMapField = Creature.class.getDeclaredField("inventory");
+        inventoryMapField.setAccessible(true);
+        Map<Item, List<Item>> inventory = (Map<Item, List<Item>>) inventoryMapField.get(testCreature);
+        return inventory;
+    }
+
     @Before
     public void setUp() {
         testCreature = createPlayerWithCustomHPAndSpeed(100, 10);
+        testArmor = new Armor(1);
     }
 
     @Rule
@@ -277,8 +295,8 @@ public class CreatureTest {
             }
         }
     }
-
     //Tests for decrement
+
     @Test
     public void testDecrementDamageReductionWithInt(){
         testCreature.incrementDamageReduction(10);
@@ -389,20 +407,6 @@ public class CreatureTest {
     }
 
     @Test
-    public void testAddArmorToInventory() throws Exception {
-
-        testCreature = new Creature(1, 1);
-        testArmor = new Armor(1);
-        Field inventoryMapField = Creature.class.getDeclaredField("inventory");
-        inventoryMapField.setAccessible(true);
-        Map<Item, List<Item>> inventory = (Map<Item, List<Item>>) inventoryMapField.get(testCreature);
-
-
-        testCreature.addArmorToInventory(testArmor);
-        assertTrue(inventory.containsKey("armor"));
-    }
-
-    @Test
     public void testIncrementDamageBonusThatIncreaseDamageBonusToGreaterThanHundred() {
         testCreature.incrementDamageBonus(55.34);
         testCreature.incrementDamageBonus(64.55);
@@ -426,6 +430,28 @@ public class CreatureTest {
                 assertEquals(totalDamageBonus, testCreature.getDamageBonus(), 0.0);
             }
         }
+    }
+
+
+    /**
+     * Add armor tests
+     */
+
+    @Test
+    public void testAddArmorToInventoryTestingArmorAsKey() throws Exception {
+
+        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddArmor();
+        testCreature.addArmorToInventory(testArmor);
+        assertTrue(inventory.containsKey("armor"));
+    }
+
+    @Test
+    public void testAddArmorToInventoryTestingListAsValue() throws Exception {
+
+        List<Item> armorList = setUpReflectionArmorListForAddArmor();
+        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddArmor();
+        testCreature.addArmorToInventory(testArmor);
+        assertTrue(inventory.containsValue(armorList));
     }
 
 }

@@ -161,7 +161,7 @@ public class Creature extends Entity {
             throw new NullPointerException("Armor can't be null");
         }
 
-        List<Item> armorList = inventory.get(armor);
+        List<Item> armorList = inventory.get("armor");
         armorList.add(armor);
 //        armorList.add(armor);
 //        inventory.put("armor", armorList);

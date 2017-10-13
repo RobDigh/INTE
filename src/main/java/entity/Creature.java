@@ -99,7 +99,8 @@ public class Creature extends Entity {
     }
 
     public void decrementDamageReduction(double decreaseValue){
-        damageReduction -= decreaseValue;
+        double newDamageReduction = Math.round((damageReduction - decreaseValue) * 100);
+        damageReduction = newDamageReduction / 100;
     }
 
     public void incrementDamageBonus(double increaseValue) {

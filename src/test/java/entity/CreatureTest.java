@@ -292,6 +292,7 @@ public class CreatureTest {
         testCreature.incrementDamageReduction(17.2);
         testCreature.decrementDamageReduction(15.1);
         assertEquals(2.1, testCreature.getDamageReduction(), 0.0);
+        assertEquals(2.1, testCreature.getDamageReduction(), 0.0);
     }
 
     /**

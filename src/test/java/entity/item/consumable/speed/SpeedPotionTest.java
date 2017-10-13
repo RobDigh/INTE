@@ -3,6 +3,7 @@ package entity.item.consumable.speed;
 import entity.Creature;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -28,6 +29,14 @@ public class SpeedPotionTest {
         speedPot.affect(creature);
 
         return speedPot;
+
+    }
+
+    @Test
+    public void constructFakeSpeedPotion() {
+
+        SpeedPotion speedPot = createSpeedPotion(NEGATIVE_SPEED_BONUS);
+        assertEquals(NEGATIVE_SPEED_BONUS, speedPot.getBonus());
 
     }
 

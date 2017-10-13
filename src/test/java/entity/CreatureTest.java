@@ -68,6 +68,11 @@ public class CreatureTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void testIncrementDamageReductionWithNegativeValue(){
+        testCreature.incrementDamageReduction(-12);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void testIncrementDamageReductionWithMoreThanHundred() {
         testCreature.incrementDamageReduction(101);
     }
@@ -75,6 +80,11 @@ public class CreatureTest {
     @Test(expected = IllegalArgumentException.class)
     public void testIncrementDamageBonusWithZero() {
         testCreature.incrementDamageBonus(0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testIncrementDamageBonusWithNegativeValue(){
+        testCreature.incrementDamageBonus(-5);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -88,17 +98,22 @@ public class CreatureTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void testDecrementDamageReductionWithNegativeValue(){
+        testCreature.decrementDamageReduction(-77);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void testDecrementDamageReductionWithMoreThanHundred() {
         testCreature.decrementDamageReduction(104);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testDecrementDamageBonusWithzero() {
+    public void testDecrementDamageBonusWithZero() {
         testCreature.decrementDamageBonus(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testDecrementDamageBonusWithLessThanzero() {
+    public void testDecrementDamageBonusWithNegativeValue() {
         testCreature.decrementDamageBonus(-3);
     }
 
@@ -466,6 +481,13 @@ public class CreatureTest {
     }
 
     @Test
+    public void testDecrementDamageBonusToLessThanZero(){
+        testCreature.incrementDamageBonus(12.3);
+        testCreature.decrementDamageBonus(43.7);
+        assertEquals(0, testCreature.getDamageBonus(), 0.0);
+    }
+
+    @Test
     public void testDecrementDamageBonusSeveralTimes(){
         testCreature.incrementDamageBonus(63.12);
         testCreature.decrementDamageBonus(12.37);
@@ -515,7 +537,5 @@ public class CreatureTest {
         testCreature.addArmorToInventory(testArmor);
         assertTrue(inventory.containsKey("armor"));
     }
-
-
 }
 

@@ -151,6 +151,10 @@ public class GameMap extends Entity {
     @Override
     public boolean accept(Entity entity, GameMap environment) {
 
+        if (entity == null) {
+            throw new IllegalArgumentException("Entity may not be null.");
+        }
+
         addEntity(entity, DEFAULT_ENTRY_POSITON);
         return false;
 

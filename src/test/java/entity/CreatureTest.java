@@ -433,7 +433,7 @@ public class CreatureTest {
     public void testDecrementDamageBonusWithDoubleTwoDecimals(){
         testCreature.incrementDamageBonus(33);
         testCreature.decrementDamageBonus(5.35);
-        assertEquals(19.65, testCreature.getDamageBonus(), 0.0);
+        assertEquals(27.65, testCreature.getDamageBonus(), 0.0);
     }
 
     @Test

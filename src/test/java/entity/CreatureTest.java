@@ -80,6 +80,12 @@ public class CreatureTest {
     public void testDecrementDamageBonusWithZero(){
         testCreature.decrementDamageReduction(0);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testDecrementDamageBonusWithMoreThanHundred() {
+        testCreature.decrementDamageReduction(104);
+    }
+
     @Test
     public void testGetHP() {
 

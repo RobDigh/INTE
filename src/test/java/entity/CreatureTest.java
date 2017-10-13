@@ -565,19 +565,5 @@ public class CreatureTest {
     public void testAddArmorToInventoryTestingNull(){
         testCreature.addArmorToInventory(null);
     }
-
-    @Test
-    public void testAddArmorToInventory() throws Exception {
-
-        testCreature = new Creature(1, 1);
-        testArmor = new Armor(1);
-        Field inventoryMapField = Creature.class.getDeclaredField("inventory");
-        inventoryMapField.setAccessible(true);
-        Map<Item, List<Item>> inventory = (Map<Item, List<Item>>) inventoryMapField.get(testCreature);
-
-
-        testCreature.addArmorToInventory(testArmor);
-        assertTrue(inventory.containsKey("armor"));
-    }
 }
 

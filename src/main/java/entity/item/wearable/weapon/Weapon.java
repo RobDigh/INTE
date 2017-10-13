@@ -16,6 +16,7 @@ public class Weapon extends Wearable {
         creature.incrementDamageBonus(getBonus());
     }
 
+    @Override
     public void removeFrom(Creature creature) {
         creature.decrementDamageBonus(getBonus());
     }

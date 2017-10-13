@@ -16,4 +16,5 @@ public abstract class Item extends Entity {
     }
 
     public abstract void affect(Creature creature);
+
 }

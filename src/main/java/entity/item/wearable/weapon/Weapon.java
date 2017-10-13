@@ -16,6 +16,10 @@ public class Weapon extends Wearable {
         creature.incrementDamageBonus(getBonus());
     }
 
+    public void removeFrom(Creature creature) {
+        creature.decrementDamageBonus(2);
+    }
+
     @Override
     public boolean accept(Entity entity, GameMap environment) {
         return false;

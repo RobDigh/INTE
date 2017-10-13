@@ -133,12 +133,14 @@ public class GameMap extends Entity {
             boolean shouldStay = true;
 
             if (existingEntity != null) {
-                shouldStay = existingEntity.accept(entity);
+                shouldStay = existingEntity.accept(entity, this);
             }
 
             if (shouldStay) {
                 // Put entity back after position has been updated.
                 addEntity(entity, currentPosition); // ToDo: What happens if this fails?
+            } else {
+                remove(entity);
             }
 
             return shouldStay;
@@ -149,7 +151,7 @@ public class GameMap extends Entity {
     }
 
     @Override
-    public boolean accept(Entity entity) {
+    public boolean accept(Entity entity, GameMap environment) {
 
         if (entity == null) {
             throw new IllegalArgumentException("Entity may not be null.");

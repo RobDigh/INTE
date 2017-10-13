@@ -110,7 +110,7 @@ public class Creature extends Entity {
     }
 
     @Override
-    public boolean accept(Entity entity) {
+    public boolean accept(Entity entity, GameMap environment) {
         return false;
     }
 }

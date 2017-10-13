@@ -123,4 +123,12 @@ public class PlacementTest extends GameMapTest {
         assertEquals(new Point(2, 2), upperLevel.getPosition(lowerLevel));
 
     }
+
+    @Test
+    public void testPlaceItem() {
+
+        DEFAULT_SIZED_MAP.place(mockItem, GameMap.DEFAULT_ENTRY_POSITON);
+        assertEquals(GameMap.DEFAULT_ENTRY_POSITON, DEFAULT_SIZED_MAP.getPosition(mockItem));
+
+    }
 }

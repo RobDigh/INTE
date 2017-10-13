@@ -327,7 +327,9 @@ public class CreatureTest {
 
             if (damageReduction > 100) {
                 assertEquals(100, testCreature.getDamageReduction(), 0.0);
-            } else {
+            } else if(damageReduction < 0) {
+                assertEquals(0, testCreature.getDamageReduction(), 0.0);
+            }else {
                 assertEquals(damageReduction, testCreature.getDamageReduction(), 0.0);
             }
         }

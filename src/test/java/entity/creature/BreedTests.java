@@ -21,10 +21,12 @@ public class BreedTests {
     }
 
     public void testAllBulldogValues(){
+        assertEquals("Bulldog", Breed.BULLDOG.getName());
         assertEquals(6, Breed.BULLDOG.getStrength());
     }
 
     public void testAllChihuahuaValues(){
+        assertEquals("Chihuahua", Breed.CHIHUAHUA.getName());
         assertEquals(5, Breed.CHIHUAHUA.getStrength());
     }
 }

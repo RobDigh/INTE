@@ -31,4 +31,19 @@ public class CreatureConstructorTest {
     public void testCreatureWithNegativeCon(){
         new Creature(5, 6, -1);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreatureWithZeroStrength(){
+        new Creature(0, 6, 7);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreatureWithZeroDex(){
+        new Creature(5, 0, 7);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreatureWithZeroConstitution(){
+        new Creature(5, 6, 0);
+    }
 }

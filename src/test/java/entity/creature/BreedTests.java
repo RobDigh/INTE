@@ -19,4 +19,12 @@ public class BreedTests {
         assertNotNull(Breed.valueOf("STBERNARD"));
         assertNotNull(Breed.valueOf("VIZSLA"));
     }
+
+    public void testAllBulldogValues(){
+        assertEquals(6, Breed.BULLDOG.getStrength());
+    }
+
+    public void testAllChihuahuaValues(){
+        assertEquals(5, Breed.CHIHUAHUA.getStrength());
+    }
 }

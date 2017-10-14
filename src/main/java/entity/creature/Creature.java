@@ -45,10 +45,13 @@ public class Creature extends Entity {
         inventory.put("armor", armorList);
     }
 
-    public Creature(int strength, int dexterity, int constitution){
+    public Creature(int strength, int dexterity, int constitution) {
         this.strength = strength;
         this.dexterity = dexterity;
         this.constitution = constitution;
+
+        speed = dexterity * 2;
+        hp = constitution * 10;
     }
 
     public int getHP() {

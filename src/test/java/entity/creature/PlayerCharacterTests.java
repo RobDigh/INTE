@@ -17,32 +17,41 @@ public class PlayerCharacterTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testPCWithNegativeStr(){
+    public void testPCWithNegativeStr() {
         new PlayerCharacter(-1, 6, 7);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testPCWithNegativeDex(){
+    public void testPCWithNegativeDex() {
         new PlayerCharacter(5, -1, 7);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testPCWithNegativeCon(){
+    public void testPCWithNegativeCon() {
         new PlayerCharacter(5, 6, -1);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testPCWithZeroStrength(){
+    public void testPCWithZeroStrength() {
         new PlayerCharacter(0, 6, 7);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testPCWithZeroDex(){
+    public void testPCWithZeroDex() {
         new PlayerCharacter(5, 0, 7);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testPCWithZeroConstitution(){
+    public void testPCWithZeroConstitution() {
         new PlayerCharacter(5, 6, 0);
+    }
+
+    /**
+     * Tests for new breed-variable and Breed-enum
+     */
+    @Test
+    public void testBreed() {
+        PlayerCharacter pc = new PlayerCharacter(5, 8, 5);
+        assertEquals("Chihuahua", pc.getBreed());
     }
 }

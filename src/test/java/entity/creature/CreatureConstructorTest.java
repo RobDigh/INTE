@@ -46,4 +46,5 @@ public class CreatureConstructorTest {
     public void testCreatureWithZeroConstitution(){
         new Creature(5, 6, 0);
     }
+
 }

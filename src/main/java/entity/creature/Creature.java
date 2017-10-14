@@ -46,6 +46,10 @@ public class Creature extends Entity {
     }
 
     public Creature(int strength, int dexterity, int constitution) {
+        if (strength <= 0 || dexterity <= 0 || constitution <= 0) {
+            throw new IllegalArgumentException("All stats must have positive values");
+        }
+        
         this.strength = strength;
         this.dexterity = dexterity;
         this.constitution = constitution;

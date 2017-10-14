@@ -13,6 +13,9 @@ import java.util.Map;
 
 public class Creature extends Entity {
 
+    private int strength = 5;
+    private int dexterity = 6;
+    private int constitution = 7;
     private int hp;
     private int speed;
     private double damageReduction;
@@ -56,15 +59,15 @@ public class Creature extends Entity {
     }
 
     public int getStrength() {
-        return 5;
+        return strength;
     }
 
     public int getDexterity() {
-        return 6;
+        return dexterity;
     }
 
     public int getConstitution() {
-        return 7;
+        return constitution;
     }
 
     public void gainHP(int amount) {

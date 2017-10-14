@@ -587,5 +587,24 @@ public class CreatureTest {
     public void testAddArmorToInventoryTestingNull() {
         testCreature.addArmorToInventory(null);
     }
+
+    /**
+     * Add stat tests
+     */
+
+    @Test
+    public void testGetStrength() {
+        assertEquals(5, testCreature.getStrength());
+    }
+
+    @Test
+    public void testGetDexterity() {
+        assertEquals(6, testCreature.getDexterity());
+    }
+
+    @Test
+    public void testGetConstitution() {
+        assertEquals(7, testCreature.getConstitution());
+    }
 }
 

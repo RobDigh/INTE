@@ -1,7 +1,16 @@
 package entity.creature;
 
 public enum Breed {
-    LABRADOR("LABRADOR");
+    BULLDOG("Bulldog"),
+    CHIHUAHUA("Chihuahua"),
+    DACHSHUND("Dachshund"),
+    DOBERMANN("Dobermann"),
+    GREYHOUND("Greyhound"),
+    LABRADOR("Labrador"),
+    OVTJARKA("Ovtjarka"),
+    SIBERIANHUSKY("Siberian husky"),
+    STBERNARD("St. Bernard"),
+    VIZSLA("Vizsla");
 
     private String name;
 

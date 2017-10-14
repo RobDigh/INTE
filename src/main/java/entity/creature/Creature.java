@@ -88,6 +88,9 @@ public class Creature extends Entity {
     }
 
     public void gainHP(int amount) {
+        if(getHP() == 0){
+            return;
+        }
         if (amount <= 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }

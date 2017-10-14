@@ -93,6 +93,20 @@ public class CreatureTest {
     }
 
     @Test
+
+    public void testGetSpeed() {
+
+        Creature creature = createPlayerWithCustomHPAndSpeed(500, 10);
+        assertEquals(10, creature.getSpeed());
+
+    }
+
+    /**
+     * Add tests for HP gain and loss
+     */
+
+    @Test
+
     public void testGainHP() {
         Creature creature = createPlayerWithCustomHPAndSpeed(450, 8);
         creature.gainHP(50);
@@ -142,13 +156,66 @@ public class CreatureTest {
     }
 
     //Speed-tests
+
     @Test
-    public void testGetSpeed() {
-
-        Creature creature = createPlayerWithCustomHPAndSpeed(500, 10);
-        assertEquals(10, creature.getSpeed());
-
+    public void testGainHPSeveralTimes() {
+        int hpTotal = testCreature.getHP();
+        testCreature.gainHP(50);
+        testCreature.gainHP(10);
+        testCreature.gainHP(80);
+        hpTotal += (50 + 10 + 80);
+        assertEquals(hpTotal, testCreature.getHP());
     }
+
+    @Test
+    public void testLoseHPSeveralTimes() {
+        int hpTotal = testCreature.getHP();
+        testCreature.loseHP(10);
+        testCreature.loseHP(5);
+        testCreature.loseHP(70);
+        hpTotal -= (10 + 5 + 70);
+        assertEquals(hpTotal, testCreature.getHP());
+    }
+
+    @Test
+    public void testLoseHPSeveralTimesToBelowZero() {
+        testCreature.loseHP(50);
+        testCreature.loseHP(7);
+        testCreature.loseHP(8);
+        testCreature.loseHP(90);
+        testCreature.loseHP(80);
+        assertEquals(0, testCreature.getHP());
+    }
+
+    @Test
+    public void testIncreaseThenDecreaseThenIncreaseAgain() {
+        int hpTotal = testCreature.getHP();
+        testCreature.gainHP(50);
+        testCreature.gainHP(70);
+        hpTotal += (50 + 70);
+        assertEquals(hpTotal, testCreature.getHP());
+        testCreature.loseHP(40);
+        testCreature.loseHP(30);
+        hpTotal -= (40 + 30);
+        assertEquals(hpTotal, testCreature.getHP());
+        testCreature.gainHP(50);
+        hpTotal += 50;
+        assertEquals(hpTotal, testCreature.getHP());
+    }
+
+    @Test
+    public void testDecreaseBelowZeroHPThenIncreaseAgain() {
+        while (0 < testCreature.getHP()) {
+            testCreature.loseHP(9);
+        }
+        assertEquals(0, testCreature.getHP());
+        testCreature.gainHP(5);
+        assertEquals(0, testCreature.getHP());
+    }
+
+    /**
+     * Add tests for Speed gain and loss
+     */
 
     @Test
     public void testGainSpeed() {
@@ -197,6 +264,48 @@ public class CreatureTest {
         Creature creature = createPlayerWithCustomHPAndSpeed(450, 7);
         creature.loseSpeed(9);
         assertEquals(0, creature.getSpeed());
+    }
+
+    @Test
+    public void testGainSpeedSeveralTimes() {
+        int speedTotal = testCreature.getSpeed();
+        testCreature.gainSpeed(5);
+        testCreature.gainSpeed(8);
+        testCreature.gainSpeed(7);
+        speedTotal += (5 + 8 + 7);
+        assertEquals(speedTotal, testCreature.getSpeed());
+    }
+
+    @Test
+    public void testLoseSpeedSeveralTimes() {
+        int speedTotal = testCreature.getSpeed();
+        testCreature.loseSpeed(1);
+        testCreature.loseSpeed(2);
+        testCreature.loseSpeed(5);
+        speedTotal -= (1 + 2 + 5);
+        assertEquals(speedTotal, testCreature.getSpeed());
+    }
+
+    @Test
+    public void testLoseSpeedForNegativeTotalThenGainSpeed() {
+        while (testCreature.getSpeed() > 0) {
+            testCreature.loseSpeed(4);
+        }
+        testCreature.loseSpeed(4);
+        assertEquals(0, testCreature.getSpeed());
+        testCreature.gainSpeed(5);
+        assertEquals(5, testCreature.getSpeed());
+    }
+
+    @Test
+    public void testGainSpeedThenLoseSpeed() {
+        int speedTotal = testCreature.getSpeed();
+        testCreature.gainSpeed(5);
+        testCreature.loseSpeed(7);
+        testCreature.loseSpeed(7);
+        testCreature.gainSpeed(5);
+        speedTotal = speedTotal + 5 - 7 - 7 + 5;
+        assertEquals(speedTotal, testCreature.getSpeed());
     }
 
     /**

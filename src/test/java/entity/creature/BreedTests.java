@@ -33,4 +33,11 @@ public class BreedTests {
         assertEquals(8, Breed.CHIHUAHUA.getDexterity());
         assertEquals(5, Breed.CHIHUAHUA.getConstitution());
     }
+
+    public void testAllDachshundValues(){
+        assertEquals("Dachshund", Breed.DACHSHUND.getName());
+        assertEquals(5, Breed.DACHSHUND.getStrength());
+        assertEquals(7, Breed.DACHSHUND.getDexterity());
+        assertEquals(6, Breed.DACHSHUND.getConstitution());
+    }
 }

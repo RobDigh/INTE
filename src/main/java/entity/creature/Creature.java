@@ -13,9 +13,9 @@ import java.util.Map;
 
 public class Creature extends Entity {
 
-    private int strength = 5;
-    private int dexterity = 6;
-    private int constitution = 7;
+    private int strength;
+    private int dexterity;
+    private int constitution;
     private int hp;
     private int speed;
     private double damageReduction;
@@ -32,6 +32,9 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Speed must be positive.");
         }
 
+        strength = 5;
+        dexterity = 5;
+        constitution = 5;
         this.hp = hp;
         this.speed = speed;
         damageReduction = 0;

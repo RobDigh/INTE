@@ -37,7 +37,7 @@ public class BreedTests {
     }
 
     @Test
-    public void testAllDachshundValues(){
+    public void testAllDachshundValues() {
         assertEquals("Dachshund", Breed.DACHSHUND.getName());
         assertEquals(5, Breed.DACHSHUND.getStrength());
         assertEquals(7, Breed.DACHSHUND.getDexterity());
@@ -45,7 +45,7 @@ public class BreedTests {
     }
 
     @Test
-    public void testAllDobermannValues(){
+    public void testAllDobermannValues() {
         assertEquals("Dobermann", Breed.DOBERMANN.getName());
         assertEquals(7, Breed.DOBERMANN.getStrength());
         assertEquals(6, Breed.DOBERMANN.getDexterity());
@@ -53,10 +53,50 @@ public class BreedTests {
     }
 
     @Test
-    public void testAllGreyhoundValues(){
+    public void testAllGreyhoundValues() {
         assertEquals("Greyhound", Breed.GREYHOUND.getName());
         assertEquals(5, Breed.GREYHOUND.getStrength());
         assertEquals(6, Breed.GREYHOUND.getDexterity());
         assertEquals(7, Breed.GREYHOUND.getConstitution());
+    }
+
+    @Test
+    public void testAllLabradorValues() {
+        assertEquals("Labrador", Breed.LABRADOR.getName());
+        assertEquals(6, Breed.LABRADOR.getStrength());
+        assertEquals(6, Breed.LABRADOR.getDexterity());
+        assertEquals(6, Breed.LABRADOR.getConstitution());
+    }
+
+    @Test
+    public void testAllOvtjarkaValues() {
+        assertEquals("Ovtjarka", Breed.OVTJARKA.getName());
+        assertEquals(8, Breed.OVTJARKA.getStrength());
+        assertEquals(5, Breed.OVTJARKA.getDexterity());
+        assertEquals(5, Breed.OVTJARKA.getConstitution());
+    }
+
+    @Test
+    public void testAllHuskyValues() {
+        assertEquals("Siberian husky", Breed.SIBERIANHUSKY.getName());
+        assertEquals(6, Breed.SIBERIANHUSKY.getStrength());
+        assertEquals(7, Breed.SIBERIANHUSKY.getDexterity());
+        assertEquals(5, Breed.SIBERIANHUSKY.getConstitution());
+    }
+
+    @Test
+    public void testAllStBernardValues() {
+        assertEquals("St. Bernard", Breed.STBERNARD.getName());
+        assertEquals(7, Breed.STBERNARD.getStrength());
+        assertEquals(5, Breed.STBERNARD.getDexterity());
+        assertEquals(6, Breed.STBERNARD.getConstitution());
+    }
+
+    @Test
+    public void testAllVizslaValues() {
+        assertEquals("Vizsla", Breed.VIZSLA.getName());
+        assertEquals(5, Breed.VIZSLA.getStrength());
+        assertEquals(5, Breed.VIZSLA.getDexterity());
+        assertEquals(8, Breed.VIZSLA.getConstitution());
     }
 }

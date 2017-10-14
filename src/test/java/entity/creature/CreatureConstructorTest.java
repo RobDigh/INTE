@@ -1,6 +1,7 @@
 package entity.creature;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class CreatureConstructorTest {
@@ -14,5 +15,20 @@ public class CreatureConstructorTest {
 
         assertEquals(12, creature.getSpeed());
         assertEquals(70, creature.getHP());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreatureWithNegativeStr(){
+        new Creature(-1, 6, 7);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreatureWithNegativeDex(){
+        new Creature(5, -1, 7);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreatureWithNegativeCon(){
+        new Creature(5, 6, -1);
     }
 }

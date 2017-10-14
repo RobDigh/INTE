@@ -54,6 +54,7 @@ public class Creature extends Entity {
         this.dexterity = dexterity;
         this.constitution = constitution;
 
+        //Very primitive example of how stats may affect speed and hp
         speed = dexterity * 2;
         hp = constitution * 10;
     }

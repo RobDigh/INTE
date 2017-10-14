@@ -6,7 +6,7 @@ public class PlayerCharacter extends Creature{
         super(strength, dexterity, constitution);
     }
 
-    public String getBreed(){
-        return "Chihuahua";
+    public Breed getBreed(){
+        return Breed.CHIHUAHUA;
     }
 }

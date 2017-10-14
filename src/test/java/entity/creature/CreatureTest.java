@@ -599,12 +599,12 @@ public class CreatureTest {
 
     @Test
     public void testGetDexterity() {
-        assertEquals(6, testCreature.getDexterity());
+        assertEquals(5, testCreature.getDexterity());
     }
 
     @Test
     public void testGetConstitution() {
-        assertEquals(7, testCreature.getConstitution());
+        assertEquals(5, testCreature.getConstitution());
     }
 }
 

@@ -52,6 +52,6 @@ public class PlayerCharacterTests {
     @Test
     public void testBreed() {
         PlayerCharacter pc = new PlayerCharacter(5, 8, 5);
-        assertEquals("Chihuahua", pc.getBreed());
+        assertEquals(Breed.CHIHUAHUA, pc.getBreed());
     }
 }

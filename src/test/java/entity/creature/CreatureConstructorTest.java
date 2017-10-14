@@ -11,5 +11,8 @@ public class CreatureConstructorTest {
         assertEquals(5, creature.getStrength());
         assertEquals(6, creature.getDexterity());
         assertEquals(7, creature.getConstitution());
+
+        assertEquals(12, creature.getSpeed());
+        assertEquals(70, creature.getHP());
     }
 }

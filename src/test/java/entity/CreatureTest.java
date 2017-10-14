@@ -199,7 +199,6 @@ public class CreatureTest {
 
     @Test
     public void testDecreaseBelowZeroHPThenIncreaseAgain() {
-        int hpTotal = testCreature.getHP();
         while (0 < testCreature.getHP()) {
             testCreature.loseHP(9);
         }
@@ -259,6 +258,48 @@ public class CreatureTest {
         Creature creature = createPlayerWithCustomHPAndSpeed(450, 7);
         creature.loseSpeed(9);
         assertEquals(0, creature.getSpeed());
+    }
+
+    @Test
+    public void testGainSpeedSeveralTimes() {
+        int speedTotal = testCreature.getSpeed();
+        testCreature.gainSpeed(5);
+        testCreature.gainSpeed(8);
+        testCreature.gainSpeed(7);
+        speedTotal += (5 + 8 + 7);
+        assertEquals(speedTotal, testCreature.getSpeed());
+    }
+
+    @Test
+    public void testLoseSpeedSeveralTimes() {
+        int speedTotal = testCreature.getSpeed();
+        testCreature.loseSpeed(1);
+        testCreature.loseSpeed(2);
+        testCreature.loseSpeed(5);
+        speedTotal -= (1 + 2 + 5);
+        assertEquals(speedTotal, testCreature.getSpeed());
+    }
+
+    @Test
+    public void testLoseSpeedForNegativeTotalThenGainSpeed() {
+        while (testCreature.getSpeed() > 0) {
+            testCreature.loseSpeed(4);
+        }
+        testCreature.loseSpeed(4);
+        assertEquals(0, testCreature.getSpeed());
+        testCreature.gainSpeed(5);
+        assertEquals(5, testCreature.getSpeed());
+    }
+
+    @Test
+    public void testGainSpeedThenLoseSpeed() {
+        int speedTotal = testCreature.getSpeed();
+        testCreature.gainSpeed(5);
+        testCreature.loseSpeed(7);
+        testCreature.loseSpeed(7);
+        testCreature.gainSpeed(5);
+        speedTotal = speedTotal + 5 - 7 - 7 + 5;
+        assertEquals(speedTotal, testCreature.getSpeed());
     }
 
     /**

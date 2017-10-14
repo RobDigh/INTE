@@ -1,20 +1,26 @@
 package entity.creature;
 
 public enum Breed {
-    BULLDOG("Bulldog"),
-    CHIHUAHUA("Chihuahua"),
-    DACHSHUND("Dachshund"),
-    DOBERMANN("Dobermann"),
-    GREYHOUND("Greyhound"),
-    LABRADOR("Labrador"),
-    OVTJARKA("Ovtjarka"),
-    SIBERIANHUSKY("Siberian husky"),
-    STBERNARD("St. Bernard"),
-    VIZSLA("Vizsla");
+    BULLDOG("Bulldog", 6),
+    CHIHUAHUA("Chihuahua", 5),
+    DACHSHUND("Dachshund", 5),
+    DOBERMANN("Dobermann", 7),
+    GREYHOUND("Greyhound", 5),
+    LABRADOR("Labrador", 6),
+    OVTJARKA("Ovtjarka", 8),
+    SIBERIANHUSKY("Siberian husky", 6),
+    STBERNARD("St. Bernard", 7),
+    VIZSLA("Vizsla", 5);
 
     private String name;
+    private int strength;
 
-    Breed(String name) {
+    Breed(String name, int strength) {
         this.name = name;
+        this.strength = strength;
+    }
+
+    public int getStrength(){
+        return strength;
     }
 }

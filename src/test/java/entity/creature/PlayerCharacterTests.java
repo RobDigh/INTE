@@ -47,7 +47,7 @@ public class PlayerCharacterTests {
     }
 
     /**
-     * Tests for new breed-variable and Breed-enum
+     * Tests for new breed-variable
      */
     @Test
     public void testBreed() {

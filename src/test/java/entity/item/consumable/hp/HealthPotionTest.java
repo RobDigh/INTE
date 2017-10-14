@@ -1,6 +1,6 @@
 package entity.item.consumable.hp;
 
-import entity.Creature;
+import entity.creature.Creature;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

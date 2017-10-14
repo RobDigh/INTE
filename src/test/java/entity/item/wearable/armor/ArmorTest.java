@@ -1,6 +1,6 @@
 package entity.item.wearable.armor;
 
-import entity.Creature;
+import entity.creature.Creature;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;

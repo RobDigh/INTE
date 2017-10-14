@@ -1,5 +1,6 @@
-package entity;
+package entity.creature;
 
+import entity.Entity;
 import entity.gameMap.GameMap;
 import entity.item.Item;
 import entity.item.wearable.armor.Armor;

@@ -1,6 +1,6 @@
 package entity.item.consumable.hp;
 
-import entity.Creature;
+import entity.creature.Creature;
 import entity.Entity;
 import entity.gameMap.GameMap;
 import entity.item.Item;

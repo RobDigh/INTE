@@ -1,7 +1,6 @@
 package entity.gameMap;
 
-import entity.Creature;
-import entity.gameMap.GameMap;
+import entity.creature.Creature;
 import entity.item.Item;
 import org.junit.Before;
 import java.awt.*;

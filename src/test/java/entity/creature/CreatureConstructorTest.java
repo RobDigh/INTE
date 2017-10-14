@@ -3,9 +3,9 @@ package entity.creature;
 public class CreatureConstructorTest {
 
     public void testCreateCreature(){
-        Creature creature = new Creature(5, 5, 5);
+        Creature creature = new Creature(5, 6, 7);
         assertEquals(5, creature.getStrength());
-        assertEquals(5, creature.getDexterity());
-        assertEquals(5, creature.getConstitution());
+        assertEquals(6, creature.getDexterity());
+        assertEquals(7, creature.getConstitution());
     }
 }

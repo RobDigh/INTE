@@ -26,7 +26,7 @@ public class CreatureTest {
     }
 
     //set ups a Reflection of armorList in Creature
-    private List<Item> setUpReflectionArmorListForAddArmor() throws Exception{
+    private List<Item> setUpReflectionArmorListForAddArmor() throws Exception {
         Field armorListField = Creature.class.getDeclaredField("armorList");
         armorListField.setAccessible(true);
         List<Item> armorList = (List<Item>) armorListField.get(testCreature);
@@ -34,7 +34,7 @@ public class CreatureTest {
     }
 
     //set ups a Reflection of inventory Map in Creature
-    private Map<Item, List<Item>> setUpReflectionInventoryMapForAddArmor() throws Exception{
+    private Map<Item, List<Item>> setUpReflectionInventoryMapForAddArmor() throws Exception {
 
         Field inventoryMapField = Creature.class.getDeclaredField("inventory");
         inventoryMapField.setAccessible(true);
@@ -98,6 +98,10 @@ public class CreatureTest {
 
     }
 
+    /**
+     * Add tests for HP gain and loss
+     */
+
     @Test
     public void testGainHP() {
         Creature creature = createPlayerWithCustomHPAndSpeed(450, 8);
@@ -146,6 +150,67 @@ public class CreatureTest {
         creature.loseHP(50);
         assertEquals(0, creature.getHP());
     }
+
+    @Test
+    public void testGainHPSeveralTimes() {
+        int hpTotal = testCreature.getHP();
+        testCreature.gainHP(50);
+        testCreature.gainHP(10);
+        testCreature.gainHP(80);
+        hpTotal += (50 + 10 + 80);
+        assertEquals(hpTotal, testCreature.getHP());
+    }
+
+    @Test
+    public void testLoseHPSeveralTimes() {
+        int hpTotal = testCreature.getHP();
+        testCreature.loseHP(10);
+        testCreature.loseHP(5);
+        testCreature.loseHP(70);
+        hpTotal -= (10 + 5 + 70);
+        assertEquals(hpTotal, testCreature.getHP());
+    }
+
+    @Test
+    public void testLoseHPSeveralTimesToBelowZero() {
+        testCreature.loseHP(50);
+        testCreature.loseHP(7);
+        testCreature.loseHP(8);
+        testCreature.loseHP(90);
+        testCreature.loseHP(80);
+        assertEquals(0, testCreature.getHP());
+    }
+
+    @Test
+    public void testIncreaseThenDecreaseThenIncreaseAgain() {
+        int hpTotal = testCreature.getHP();
+        testCreature.gainHP(50);
+        testCreature.gainHP(70);
+        hpTotal += (50 + 70);
+        assertEquals(hpTotal, testCreature.getHP());
+        testCreature.loseHP(40);
+        testCreature.loseHP(30);
+        hpTotal -= (40 + 30);
+        assertEquals(hpTotal, testCreature.getHP());
+        testCreature.gainHP(50);
+        hpTotal += 50;
+        assertEquals(hpTotal, testCreature.getHP());
+    }
+
+    @Test
+    public void testDecreaseBelowZeroHPThenIncreaseAgain() {
+        int hpTotal = testCreature.getHP();
+        while (0 < testCreature.getHP()) {
+            testCreature.loseHP(9);
+        }
+        assertEquals(0, testCreature.getHP());
+        testCreature.gainHP(5);
+        assertEquals(0, testCreature.getHP());
+    }
+
+    /**
+     * Add tests for Speed gain and loss
+     */
 
     @Test
     public void testGainSpeed() {
@@ -207,7 +272,7 @@ public class CreatureTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testIncrementDamageReductionWithNegativeValue(){
+    public void testIncrementDamageReductionWithNegativeValue() {
         testCreature.incrementDamageReduction(-12);
     }
 
@@ -284,12 +349,12 @@ public class CreatureTest {
 
     //DecrementDamageReduction
     @Test(expected = IllegalArgumentException.class)
-    public void testDecrementDamageReductionWithZero(){
+    public void testDecrementDamageReductionWithZero() {
         testCreature.decrementDamageReduction(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testDecrementDamageReductionWithNegativeValue(){
+    public void testDecrementDamageReductionWithNegativeValue() {
         testCreature.decrementDamageReduction(-77);
     }
 
@@ -299,35 +364,35 @@ public class CreatureTest {
     }
 
     @Test
-    public void testDecrementDamageReductionWithInt(){
+    public void testDecrementDamageReductionWithInt() {
         testCreature.incrementDamageReduction(10);
         testCreature.decrementDamageReduction(5);
         assertEquals(5, testCreature.getDamageReduction(), 0.0);
     }
 
     @Test
-    public void testDecrementDamageReductionWithDoubleOneDecimal(){
+    public void testDecrementDamageReductionWithDoubleOneDecimal() {
         testCreature.incrementDamageReduction(15);
         testCreature.decrementDamageReduction(5.1);
         assertEquals(9.9, testCreature.getDamageReduction(), 0.0);
     }
 
     @Test
-    public void testDecrementDamageReductionWithDoubleTwoDecimals(){
+    public void testDecrementDamageReductionWithDoubleTwoDecimals() {
         testCreature.incrementDamageReduction(17);
         testCreature.decrementDamageReduction(14.55);
         assertEquals(2.45, testCreature.getDamageReduction(), 0.0);
     }
 
     @Test
-    public void testDecrementDamageReductionWithDoubleFourDecimals(){
+    public void testDecrementDamageReductionWithDoubleFourDecimals() {
         testCreature.incrementDamageReduction(17);
         testCreature.decrementDamageReduction(14.5541);
         assertEquals(2.45, testCreature.getDamageReduction(), 0.0);
     }
 
     @Test
-    public void testDecrementDamageReductionSeveralTimes(){
+    public void testDecrementDamageReductionSeveralTimes() {
         testCreature.incrementDamageReduction(77);
         testCreature.decrementDamageReduction(13.55);
         assertEquals(63.45, testCreature.getDamageReduction(), 0.0);
@@ -338,7 +403,7 @@ public class CreatureTest {
     }
 
     @Test
-    public void testDecrementDamageReductionSeveralRandomValues(){
+    public void testDecrementDamageReductionSeveralRandomValues() {
         testCreature.incrementDamageReduction(85);
         double damageReduction = 85;
 
@@ -352,23 +417,23 @@ public class CreatureTest {
 
             if (damageReduction > 100) {
                 assertEquals(100, testCreature.getDamageReduction(), 0.0);
-            } else if(damageReduction < 0) {
+            } else if (damageReduction < 0) {
                 assertEquals(0, testCreature.getDamageReduction(), 0.0);
-            }else {
+            } else {
                 assertEquals(damageReduction, testCreature.getDamageReduction(), 0.0);
             }
         }
     }
 
     @Test
-    public void testDecrementDamageReductionRoundToTwoDecimals(){
+    public void testDecrementDamageReductionRoundToTwoDecimals() {
         testCreature.incrementDamageReduction(17.2);
         testCreature.decrementDamageReduction(15.1);
         assertEquals(2.1, testCreature.getDamageReduction(), 0.0);
     }
 
     @Test
-    public void testDecrementDamageReductionToLessThanZero(){
+    public void testDecrementDamageReductionToLessThanZero() {
         testCreature.incrementDamageReduction(12.3);
         testCreature.decrementDamageReduction(13.11);
         assertEquals(0, testCreature.getDamageReduction(), 0.0);
@@ -385,7 +450,7 @@ public class CreatureTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testIncrementDamageBonusWithNegativeValue(){
+    public void testIncrementDamageBonusWithNegativeValue() {
         testCreature.incrementDamageBonus(-5);
     }
 
@@ -467,49 +532,49 @@ public class CreatureTest {
     }
 
     @Test
-    public void testDecrementDamageBonusWithInt(){
+    public void testDecrementDamageBonusWithInt() {
         testCreature.incrementDamageBonus(20);
         testCreature.decrementDamageBonus(5);
         assertEquals(15, testCreature.getDamageBonus(), 0.0);
     }
 
     @Test
-    public void testDecrementDamageBonusWithDoubleOneDecimal(){
+    public void testDecrementDamageBonusWithDoubleOneDecimal() {
         testCreature.incrementDamageBonus(25);
         testCreature.decrementDamageBonus(5.3);
         assertEquals(19.7, testCreature.getDamageBonus(), 0.0);
     }
 
     @Test
-    public void testDecrementDamageBonusWithDoubleTwoDecimals(){
+    public void testDecrementDamageBonusWithDoubleTwoDecimals() {
         testCreature.incrementDamageBonus(33);
         testCreature.decrementDamageBonus(5.35);
         assertEquals(27.65, testCreature.getDamageBonus(), 0.0);
     }
 
     @Test
-    public void testDecrementDamageBonusRoundToTwoDecimals(){
+    public void testDecrementDamageBonusRoundToTwoDecimals() {
         testCreature.incrementDamageBonus(37);
         testCreature.decrementDamageBonus(3.258);
         assertEquals(33.74, testCreature.getDamageBonus(), 0.0);
     }
 
     @Test
-    public void testDecrementDamageBonusWithDoubleFourDecimals(){
+    public void testDecrementDamageBonusWithDoubleFourDecimals() {
         testCreature.incrementDamageBonus(35);
         testCreature.decrementDamageBonus(12.3581);
         assertEquals(22.64, testCreature.getDamageBonus(), 0.0);
     }
 
     @Test
-    public void testDecrementDamageBonusToLessThanZero(){
+    public void testDecrementDamageBonusToLessThanZero() {
         testCreature.incrementDamageBonus(12.3);
         testCreature.decrementDamageBonus(43.7);
         assertEquals(0, testCreature.getDamageBonus(), 0.0);
     }
 
     @Test
-    public void testDecrementDamageBonusSeveralTimes(){
+    public void testDecrementDamageBonusSeveralTimes() {
         testCreature.incrementDamageBonus(63.12);
         testCreature.decrementDamageBonus(12.37);
         assertEquals(50.75, testCreature.getDamageBonus(), 0.0);
@@ -520,7 +585,7 @@ public class CreatureTest {
     }
 
     @Test
-    public void testDecrementDamageBonusWithSeveralRandomValues(){
+    public void testDecrementDamageBonusWithSeveralRandomValues() {
         testCreature.incrementDamageBonus(83.12);
         double damageBonus = 83.12;
 
@@ -534,9 +599,9 @@ public class CreatureTest {
 
             if (damageBonus > 100) {
                 assertEquals(100, testCreature.getDamageBonus(), 0.0);
-            } else if(damageBonus < 0) {
+            } else if (damageBonus < 0) {
                 assertEquals(0, testCreature.getDamageBonus(), 0.0);
-            }else {
+            } else {
                 assertEquals(damageBonus, testCreature.getDamageBonus(), 0.0);
             }
         }
@@ -572,7 +637,7 @@ public class CreatureTest {
 //    }
 
     @Test
-    public void testAddArmorTiInventoryTestingArmorAsKeyTwoItems() throws Exception{
+    public void testAddArmorTiInventoryTestingArmorAsKeyTwoItems() throws Exception {
 
         Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddArmor();
         testCreature.addArmorToInventory(testArmor01);
@@ -580,8 +645,8 @@ public class CreatureTest {
         assertTrue(inventory.containsKey("armor"));
     }
 
-    @Test (expected = NullPointerException.class)
-    public void testAddArmorToInventoryTestingNull(){
+    @Test(expected = NullPointerException.class)
+    public void testAddArmorToInventoryTestingNull() {
         testCreature.addArmorToInventory(null);
     }
 }

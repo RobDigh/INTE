@@ -40,4 +40,13 @@ public class AcceptTest extends GameMapTest {
     	assertEquals(new Point(0,1), DEFAULT_SIZED_MAP.getPosition(player));
     	assertEquals(null, DEFAULT_SIZED_MAP.getPosition(monster));
     }
+    
+    @Test
+    public void acceptCreatureByMonsterAndLoseBattle(){
+    	DEFAULT_SIZED_MAP.place(monster, new Point(0,1));
+    	DEFAULT_SIZED_MAP.place(player, new Point(0,0));
+
+    	assertEquals(null, DEFAULT_SIZED_MAP.getPosition(player));
+    	assertEquals(new Point(0,1), DEFAULT_SIZED_MAP.getPosition(monster));
+    }
 }

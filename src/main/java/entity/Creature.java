@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import combat.Combat;
+
 public class Creature extends Entity {
 
     private int hp;
@@ -173,6 +175,19 @@ public class Creature extends Entity {
 
     @Override
     public boolean accept(Entity entity, GameMap environment) {
+    	
+    	Entity visitingEntity = entity;
+    	Entity visitedEntity = this;
+    	
+    	GameMap level = environment;
+    	
+    	boolean battleResultIsPositive = environment.doBattle(visitingEntity, visitedEntity);
+    	
+    	if (battleResultIsPositive == true){
+    		level.remove(visitedEntity);
+    		return Combat.INITIATOR_WIN;
+    	}
+    	
         return false;
     }
 }

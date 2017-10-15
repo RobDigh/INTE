@@ -154,6 +154,10 @@ public class GameMap extends Entity {
         return false;
 
     }
+    
+    public boolean doBattle(Entity visitingEntity, Entity visitedEntity){
+    	return true;
+    }
 
     @Override
     public boolean accept(Entity entity, GameMap environment) {

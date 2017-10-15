@@ -172,6 +172,18 @@ public class Creature extends Entity {
 //        inventory.put("armor", armorList);
         return true;
     }
+    
+    public boolean doBattle(Entity visitingEntity, Entity visitedEntity){
+    	
+    	Creature visitingCreature = (Creature) visitingEntity;
+    	Creature visitedCreature = (Creature) visitedEntity;
+    	
+    	if(visitingCreature.getHP() > visitedCreature.getHP()){
+    		return true;
+    	}
+    	
+    	return false;
+    }
 
     @Override
     public boolean accept(Entity entity, GameMap environment) {
@@ -181,7 +193,7 @@ public class Creature extends Entity {
     	
     	GameMap level = environment;
     	
-    	boolean battleResultIsPositive = environment.doBattle(visitingEntity, visitedEntity);
+    	boolean battleResultIsPositive = ((Creature) visitingEntity).doBattle(visitingEntity, visitedEntity);
     	
     	if (battleResultIsPositive == true){
     		level.remove(visitedEntity);

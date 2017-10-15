@@ -45,7 +45,9 @@ public class AcceptTest extends GameMapTest {
     public void acceptCreatureByMonsterAndLoseBattle(){
     	DEFAULT_SIZED_MAP.place(monster, new Point(0,1));
     	DEFAULT_SIZED_MAP.place(player, new Point(0,0));
-
+    	player.loseHP(451);
+    	DEFAULT_SIZED_MAP.move(player, GameMap.NORTH);
+    	
     	assertEquals(null, DEFAULT_SIZED_MAP.getPosition(player));
     	assertEquals(new Point(0,1), DEFAULT_SIZED_MAP.getPosition(monster));
     }

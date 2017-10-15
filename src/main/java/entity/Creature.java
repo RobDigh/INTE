@@ -181,6 +181,12 @@ public class Creature extends Entity {
     	if(visitingCreature.getHP() > visitedCreature.getHP()){
     		return true;
     	}
+    	if(visitingCreature.getHP() < visitedCreature.getHP()){
+    		return false;
+    	}
+    	if(visitingCreature.getHP() == visitedCreature.getHP()){
+    		//TO-DO What happens when neither Creature is killed?
+    	}
     	
     	return false;
     }

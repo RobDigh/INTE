@@ -3,7 +3,6 @@ package entity.gameMap;
 import org.junit.Test;
 
 import entity.Creature;
-import entity.item.wearable.armor.Armor;
 
 import java.awt.*;
 
@@ -18,7 +17,6 @@ public class AcceptTest extends GameMapTest {
     private GameMap mockUpperLevel = mock(GameMap.class);
     private Creature player = new Creature(500, 1);
     private Creature monster = new Creature(50, 1);
-    private Armor armor = new Armor(5);
 
     @Test
     public void acceptValidEntity() {
@@ -35,7 +33,7 @@ public class AcceptTest extends GameMapTest {
     
     @Test
     public void acceptCreatureByMonsterAndWinBattle(){
-    	DEFAULT_SIZED_MAP.place(player, GameMap.DEFAULT_ENTRY_POSITION);
+    	DEFAULT_SIZED_MAP.place(player, GameMap.DEFAULT_ENTRY_POSITON);
     	DEFAULT_SIZED_MAP.place(monster, new Point(0,1));
     	DEFAULT_SIZED_MAP.move(player, GameMap.NORTH);
     	
@@ -52,11 +50,5 @@ public class AcceptTest extends GameMapTest {
     	
     	assertEquals(null, DEFAULT_SIZED_MAP.getPosition(player));
     	assertEquals(new Point(0,1), DEFAULT_SIZED_MAP.getPosition(monster));
-    }
-    
-    @Test
-    public void acceptCreatureByItemAndLeaveBoard(){
-    	assertEquals(new Point(0,1), DEFAULT_SIZED_MAP.getPosition(armor));
-    	assertEquals(new Point(0,0), DEFAULT_SIZED_MAP.getPosition(player));
     }
 }

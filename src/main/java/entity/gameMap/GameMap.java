@@ -17,7 +17,7 @@ public class GameMap extends Entity {
     public static final Point WEST = new Point(1, 0);
     public static final Point EAST = new Point(-1, 0);
 
-    public static final Point DEFAULT_ENTRY_POSITION = new Point(0, 0);
+    public static final Point DEFAULT_ENTRY_POSITON = new Point(0, 0);
 
     private HashSet<Point> validDirections = new HashSet<>();
 
@@ -163,7 +163,7 @@ public class GameMap extends Entity {
             throw new IllegalArgumentException("Entity may not be null.");
         }
 
-        addEntity(entity, DEFAULT_ENTRY_POSITION);
+        addEntity(entity, DEFAULT_ENTRY_POSITON);
         return false;
 
     }

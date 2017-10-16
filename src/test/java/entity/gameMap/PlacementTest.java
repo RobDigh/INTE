@@ -127,8 +127,8 @@ public class PlacementTest extends GameMapTest {
     @Test
     public void testPlaceItem() {
 
-        DEFAULT_SIZED_MAP.place(mockItem, GameMap.DEFAULT_ENTRY_POSITION);
-        assertEquals(GameMap.DEFAULT_ENTRY_POSITION, DEFAULT_SIZED_MAP.getPosition(mockItem));
+        DEFAULT_SIZED_MAP.place(mockItem, GameMap.DEFAULT_ENTRY_POSITON);
+        assertEquals(GameMap.DEFAULT_ENTRY_POSITON, DEFAULT_SIZED_MAP.getPosition(mockItem));
 
     }
 }

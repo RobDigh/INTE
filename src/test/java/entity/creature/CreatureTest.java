@@ -703,11 +703,11 @@ public class CreatureTest {
         testCreature.addItemToInventory(testArmor01);
         testCreature.addItemToInventory(testArmor02);
         assertTrue(inventory.contains(testArmor02));
-    }
+    }*/
 
     @Test(expected = NullPointerException.class)
     public void testAddArmorToInventoryTestingNull() {
-        testCreature.addItemToInventory(null);
-    }*/
+        testCreature.addItemToInventory(null, "armor");
+    }
 }
 

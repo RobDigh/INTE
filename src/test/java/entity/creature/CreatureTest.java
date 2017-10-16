@@ -1,5 +1,6 @@
 package entity.creature;
 
+import entity.item.consumable.hp.HealthPotion;
 import entity.item.wearable.armor.Armor;
 import entity.item.wearable.weapon.Weapon;
 import org.junit.Before;
@@ -23,6 +24,7 @@ public class CreatureTest {
 
     private Armor mockArmor = mock(Armor.class);
     private Weapon mockWeapon = mock(Weapon.class);
+    private HealthPotion mockHealthPotion = mock(HealthPotion.class);
 
     private Creature createPlayerWithCustomHPAndSpeed(int hp, int speed) {
         return new Creature(hp, speed, mockInventoryFactory);
@@ -636,20 +638,19 @@ public class CreatureTest {
     }
 
     /**
-     * Add armor tests
+     * Add item tests
      */
+
+    @Test(expected = NullPointerException.class)
+    public void testAddNullToInventory() {
+        testCreature.addItemToInventory(null, "null");
+    }
 
     @Test
     public void testAddArmorToInventory() throws Exception{
 
         testCreature.addItemToInventory(mockArmor, "armor");
         verify(mockInventory).addItem(mockArmor, "armor");
-
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void testAddNullToInventory() {
-        testCreature.addItemToInventory(null, "null");
     }
 
     @Test
@@ -658,5 +659,15 @@ public class CreatureTest {
         testCreature.addItemToInventory(mockWeapon, "weapon");
         verify(mockInventory).addItem(mockWeapon, "weapon");
     }
+
+    @Test
+    public void testAddHealthPotionToInventory() throws Exception{
+
+        testCreature.addItemToInventory(mockHealthPotion, "healthpotion");
+        verify(mockInventory).addItem(mockHealthPotion, "healthpotion");
+    }
+
+
+
 }
 

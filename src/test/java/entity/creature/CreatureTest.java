@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class CreatureTest {
     private Creature testCreature;
@@ -686,6 +687,8 @@ public class CreatureTest {
         /*List<Item> inventory = setUpReflectionItemListForAddItem();
         testCreature.addItemToInventory(testArmor01);
         assertTrue(inventory.contains(testArmor01));*/
+
+        when(mockInventoryFactory.create()).thenReturn(mockInventory);
 
         testCreature.addItemToInventory(mockArmor, "armor");
         verify(mockInventory).addItem(mockArmor, "armor");

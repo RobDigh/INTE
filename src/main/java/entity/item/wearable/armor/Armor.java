@@ -1,8 +1,6 @@
 package entity.item.wearable.armor;
 
 import entity.creature.Creature;
-import entity.Entity;
-import entity.gameMap.GameMap;
 import entity.item.wearable.Wearable;
 
 public class Armor extends Wearable {
@@ -21,8 +19,4 @@ public class Armor extends Wearable {
         creature.decrementDamageReduction(getBonus());
     }
 
-    @Override
-    public boolean accept(Entity entity, GameMap environment) {
-        return false;
-    }
 }

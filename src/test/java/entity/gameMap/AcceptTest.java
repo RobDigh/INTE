@@ -1,8 +1,9 @@
 package entity.gameMap;
 
+import entity.creature.InventoryFactory;
 import org.junit.Test;
 
-import entity.Creature;
+import entity.creature.Creature;
 
 import java.awt.*;
 
@@ -15,8 +16,11 @@ public class AcceptTest extends GameMapTest {
 
     private GameMap lowerLevel = createDefaultSizedGameMap();
     private GameMap mockUpperLevel = mock(GameMap.class);
-    private Creature player = new Creature(500, 1);
-    private Creature monster = new Creature(50, 1);
+
+    private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
+
+    private Creature player = new Creature(500, 1, mockInventoryFactory);
+    private Creature monster = new Creature(50, 1, mockInventoryFactory);
 
     @Test
     public void acceptValidEntity() {

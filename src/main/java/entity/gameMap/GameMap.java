@@ -1,6 +1,5 @@
 package entity.gameMap;
 
-import entity.Creature;
 import entity.Entity;
 
 import java.awt.*;

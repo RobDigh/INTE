@@ -1,5 +1,6 @@
-package entity;
+package entity.creature;
 
+import entity.Entity;
 import entity.gameMap.GameMap;
 import entity.item.Item;
 import combat.Combat;
@@ -16,7 +17,7 @@ public class Creature extends Entity {
     private double damageBonus;
     private List<Item> inventory;
 
-    public Creature(int hp, int speed) {
+    public Creature(int hp, int speed, InventoryFactory inventoryFactory) {
 
         if (hp <= 0) {
             throw new IllegalArgumentException("HP must be positive.");
@@ -154,7 +155,7 @@ public class Creature extends Entity {
         }
     }
 
-    public boolean addItemToInventory(Item item){
+    public boolean addItemToInventory(Item item, String key){
 
         if(item.equals(null)){
             throw new NullPointerException("Item can't be null");

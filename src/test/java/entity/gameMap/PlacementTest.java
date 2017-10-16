@@ -1,6 +1,6 @@
 package entity.gameMap;
 
-import entity.Creature;
+import entity.creature.Creature;
 import org.junit.Test;
 
 import java.awt.*;

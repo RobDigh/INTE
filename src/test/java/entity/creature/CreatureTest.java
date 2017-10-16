@@ -1,5 +1,6 @@
-package entity;
+package entity.creature;
 
+import entity.creature.Creature;
 import entity.item.Item;
 import entity.item.wearable.armor.Armor;
 import org.junit.Before;
@@ -9,11 +10,13 @@ import org.junit.rules.ExpectedException;
 
 import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class CreatureTest {
     private Creature testCreature;
@@ -21,29 +24,38 @@ public class CreatureTest {
     private Armor testArmor01;
     private Armor testArmor02;
 
+    private Inventory mockInventory = mock(Inventory.class);
+    private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
+
+    private Armor mockArmor = mock(Armor.class);
+
     private Creature createPlayerWithCustomHPAndSpeed(int hp, int speed) {
-        return new Creature(hp, speed);
+        return new Creature(hp, speed, mockInventoryFactory);
     }
 
     //set ups a Reflection of armorList in Creature
-    private List<Item> setUpReflectionArmorListForAddArmor() throws Exception {
-        Field armorListField = Creature.class.getDeclaredField("armorList");
-        armorListField.setAccessible(true);
-        List<Item> armorList = (List<Item>) armorListField.get(testCreature);
-        return armorList;
-    }
+    private List<Item> setUpReflectionItemListForAddItem() throws Exception {
 
-    //set ups a Reflection of inventory Map in Creature
-    private Map<Item, List<Item>> setUpReflectionInventoryMapForAddArmor() throws Exception {
-
-        Field inventoryMapField = Creature.class.getDeclaredField("inventory");
-        inventoryMapField.setAccessible(true);
-        Map<Item, List<Item>> inventory = (Map<Item, List<Item>>) inventoryMapField.get(testCreature);
+        Field itemListField = Creature.class.getDeclaredField("inventory");
+        itemListField.setAccessible(true);
+        List<Item> inventory = (List<Item>) itemListField.get(testCreature);
         return inventory;
     }
 
+//    //set ups a Reflection of inventory Map in Creature
+//    private Map<Item, List<Item>> setUpReflectionInventoryMapForAddItem() throws Exception {
+//
+//        Field inventoryMapField = Creature.class.getDeclaredField("inventory");
+//        inventoryMapField.setAccessible(true);
+//        Map<Item, List<Item>> inventory = (Map<Item, List<Item>>) inventoryMapField.get(testCreature);
+//        return inventory;
+//    }
+
     @Before
     public void setUp() {
+
+        when(mockInventoryFactory.create()).thenReturn(mockInventory);
+
         testCreature = createPlayerWithCustomHPAndSpeed(100, 10);
         testArmor01 = new Armor(1);
         testArmor02 = new Armor(2);
@@ -652,43 +664,45 @@ public class CreatureTest {
      * Add armor tests
      */
 
-    @Test
-    public void testAddArmorToInventoryTestingArmorAsKey() throws Exception {
-
-        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddArmor();
-        testCreature.addArmorToInventory(testArmor01);
-        assertTrue(inventory.containsKey("armor"));
-    }
-
+//    @Test
+//    public void testAddArmorToInventoryTestingArmorAsKey() throws Exception {
+//
+//        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddItem();
+//        testCreature.addItemToInventory(testArmor01);
+//        assertTrue(inventory.containsKey(testArmor01));
+//    }
+//
 //    @Test
 //    public void testAddArmorToInventoryTestingListAsValue() throws Exception {
 //
-//        List<Item> armorList = setUpReflectionArmorListForAddArmor();
-//        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddArmor();
-//        testCreature.addArmorToInventory(testArmor01);
-//        assertTrue(inventory.containsValue(armorList));
-//    }
+//        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddItem();
+////        List<Item> itemList = inventory.get(Item);
 //
-//    @Test
-//    public void testAddArmorInventoryTestingArmorList() throws Exception{
-//
-//        List<Item> armorList = setUpReflectionArmorListForAddArmor();
-//        testCreature.addArmorToInventory(testArmor01);
-//        assertTrue(armorList.contains(testArmor01));
+//        testCreature.addItemToInventory(testArmor01);
+//        inventory.get(testArmor01)
+//        assertTrue(inventory.containsValue(itemList));
 //    }
 
     @Test
+    public void testAddArmorInventoryTestingArmorList() throws Exception{
+
+        testCreature.addItemToInventory(mockArmor, "armor");
+        verify(mockInventory).add(mockArmor, "armor");
+
+    }
+
+    /*@Test
     public void testAddArmorTiInventoryTestingArmorAsKeyTwoItems() throws Exception {
 
-        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddArmor();
-        testCreature.addArmorToInventory(testArmor01);
-        testCreature.addArmorToInventory(testArmor02);
-        assertTrue(inventory.containsKey("armor"));
-    }
+        List<Item> inventory = setUpReflectionItemListForAddItem();
+        testCreature.addItemToInventory(testArmor01);
+        testCreature.addItemToInventory(testArmor02);
+        assertTrue(inventory.contains(testArmor02));
+    }*/
 
     @Test(expected = NullPointerException.class)
     public void testAddArmorToInventoryTestingNull() {
-        testCreature.addArmorToInventory(null);
+        testCreature.addItemToInventory(null, "armor");
     }
 }
 

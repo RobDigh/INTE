@@ -1,6 +1,6 @@
 package entity.item;
 
-import entity.Creature;
+import entity.creature.Creature;
 import entity.Entity;
 
 public abstract class Item extends Entity {

@@ -173,6 +173,11 @@ public class Creature extends Entity {
         return true;
     }
     
+	public void addItemToInventory(Item item) {
+		// TODO Auto-generated method stub
+		
+	}
+    
     public boolean doBattle(Entity visitingEntity, Entity visitedEntity){
     	
     	Creature visitingCreature = (Creature) visitingEntity;

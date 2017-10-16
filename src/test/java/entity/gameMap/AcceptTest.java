@@ -60,6 +60,9 @@ public class AcceptTest extends GameMapTest {
     
     @Test
     public void acceptCreatureByItemAndLeaveBoard(){
+    	DEFAULT_SIZED_MAP.place(armor, GameMap.NORTH);
+    	DEFAULT_SIZED_MAP.place(player, new Point(0,0));
+    	
     	assertEquals(new Point(0,1), DEFAULT_SIZED_MAP.getPosition(armor));
     	assertEquals(new Point(0,0), DEFAULT_SIZED_MAP.getPosition(player));
     }

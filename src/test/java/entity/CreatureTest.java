@@ -26,21 +26,22 @@ public class CreatureTest {
     }
 
     //set ups a Reflection of armorList in Creature
-    private List<Item> setUpReflectionArmorListForAddArmor() throws Exception {
-        Field armorListField = Creature.class.getDeclaredField("armorList");
-        armorListField.setAccessible(true);
-        List<Item> armorList = (List<Item>) armorListField.get(testCreature);
-        return armorList;
-    }
+    private List<Item> setUpReflectionItemListForAddItem() throws Exception {
 
-    //set ups a Reflection of inventory Map in Creature
-    private Map<Item, List<Item>> setUpReflectionInventoryMapForAddArmor() throws Exception {
-
-        Field inventoryMapField = Creature.class.getDeclaredField("inventory");
-        inventoryMapField.setAccessible(true);
-        Map<Item, List<Item>> inventory = (Map<Item, List<Item>>) inventoryMapField.get(testCreature);
+        Field itemListField = Creature.class.getDeclaredField("inventory");
+        itemListField.setAccessible(true);
+        List<Item> inventory = (List<Item>) itemListField.get(testCreature);
         return inventory;
     }
+
+//    //set ups a Reflection of inventory Map in Creature
+//    private Map<Item, List<Item>> setUpReflectionInventoryMapForAddItem() throws Exception {
+//
+//        Field inventoryMapField = Creature.class.getDeclaredField("inventory");
+//        inventoryMapField.setAccessible(true);
+//        Map<Item, List<Item>> inventory = (Map<Item, List<Item>>) inventoryMapField.get(testCreature);
+//        return inventory;
+//    }
 
     @Before
     public void setUp() {
@@ -652,43 +653,46 @@ public class CreatureTest {
      * Add armor tests
      */
 
-    @Test
-    public void testAddArmorToInventoryTestingArmorAsKey() throws Exception {
-
-        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddArmor();
-        testCreature.addArmorToInventory(testArmor01);
-        assertTrue(inventory.containsKey("armor"));
-    }
-
+//    @Test
+//    public void testAddArmorToInventoryTestingArmorAsKey() throws Exception {
+//
+//        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddItem();
+//        testCreature.addItemToInventory(testArmor01);
+//        assertTrue(inventory.containsKey(testArmor01));
+//    }
+//
 //    @Test
 //    public void testAddArmorToInventoryTestingListAsValue() throws Exception {
 //
-//        List<Item> armorList = setUpReflectionArmorListForAddArmor();
-//        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddArmor();
-//        testCreature.addArmorToInventory(testArmor01);
-//        assertTrue(inventory.containsValue(armorList));
-//    }
+//        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddItem();
+////        List<Item> itemList = inventory.get(Item);
 //
-//    @Test
-//    public void testAddArmorInventoryTestingArmorList() throws Exception{
-//
-//        List<Item> armorList = setUpReflectionArmorListForAddArmor();
-//        testCreature.addArmorToInventory(testArmor01);
-//        assertTrue(armorList.contains(testArmor01));
+//        testCreature.addItemToInventory(testArmor01);
+//        inventory.get(testArmor01)
+//        assertTrue(inventory.containsValue(itemList));
 //    }
+
+    @Test
+    public void testAddArmorInventoryTestingArmorList() throws Exception{
+
+
+        List<Item> inventory = setUpReflectionItemListForAddItem();
+        testCreature.addItemToInventory(testArmor01);
+        assertTrue(inventory.contains(testArmor01));
+    }
 
     @Test
     public void testAddArmorTiInventoryTestingArmorAsKeyTwoItems() throws Exception {
 
-        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddArmor();
-        testCreature.addArmorToInventory(testArmor01);
-        testCreature.addArmorToInventory(testArmor02);
-        assertTrue(inventory.containsKey("armor"));
+        List<Item> inventory = setUpReflectionItemListForAddItem();
+        testCreature.addItemToInventory(testArmor01);
+        testCreature.addItemToInventory(testArmor02);
+        assertTrue(inventory.contains(testArmor02));
     }
 
     @Test(expected = NullPointerException.class)
     public void testAddArmorToInventoryTestingNull() {
-        testCreature.addArmorToInventory(null);
+        testCreature.addItemToInventory(null);
     }
 }
 

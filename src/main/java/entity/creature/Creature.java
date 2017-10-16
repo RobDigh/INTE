@@ -163,6 +163,11 @@ public class Creature extends Entity {
         return true;
     }
     
+	public boolean addToInventory(Item item) {
+		//placeholder method for adding item to inventory
+		return true;
+	}
+    
     public boolean doBattle(Entity visitingEntity, Entity visitedEntity){
     	
     	Creature visitingCreature = (Creature) visitingEntity;
@@ -198,4 +203,5 @@ public class Creature extends Entity {
     	
         return false;
     }
+
 }

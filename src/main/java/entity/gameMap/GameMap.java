@@ -112,7 +112,7 @@ public class GameMap extends Entity {
         currentPosition.y = Math.max(0, currentPosition.y);
         currentPosition.y = Math.min(yLength - 1, currentPosition.y);
 
-        return !((currentPosition.x == originalX) && (currentPosition.y == originalY));
+        return ((currentPosition.x != originalX) || (currentPosition.y != originalY));
 
     }
 

@@ -2,15 +2,11 @@ package entity;
 
 import entity.gameMap.GameMap;
 import entity.item.Item;
-import entity.item.wearable.armor.Armor;
-import entity.item.wearable.weapon.Weapon;
+import combat.Combat;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import combat.Combat;
 
 public class Creature extends Entity {
 
@@ -18,7 +14,7 @@ public class Creature extends Entity {
     private int speed;
     private double damageReduction;
     private double damageBonus;
-    private Map<String, List> inventory;
+    private List<Item> inventory;
 
     public Creature(int hp, int speed) {
 
@@ -35,9 +31,7 @@ public class Creature extends Entity {
         damageReduction = 0;
         damageBonus = 0;
 
-        inventory = new HashMap<>();
-        List<Item> armorList = new ArrayList<>();
-        inventory.put("armor", armorList);
+        inventory = new ArrayList<>();
     }
 
     public int getHP() {
@@ -160,16 +154,18 @@ public class Creature extends Entity {
         }
     }
 
-    public boolean addArmorToInventory(Armor armor){
+    public boolean addItemToInventory(Item item){
 
-        if(armor.equals(null)){
-            throw new NullPointerException("Armor can't be null");
+        if(item.equals(null)){
+            throw new NullPointerException("Item can't be null");
         }
 
-        List<Item> armorList = inventory.get("armor");
-        armorList.add(armor);
-//        armorList.add(armor);
-//        inventory.put("armor", armorList);
+//        List<Item> itemList = inventory.get(item);
+//        if(inventory == null){
+//            itemList = new ArrayList<>();
+//        }
+//        itemList.add(item);
+        inventory.add(item);
         return true;
     }
     

@@ -1,15 +1,13 @@
 package entity.creature;
 
-import entity.creature.Creature;
-import entity.item.Item;
+import entity.item.consumable.hp.HealthPotion;
 import entity.item.wearable.armor.Armor;
+import entity.item.wearable.weapon.Weapon;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.lang.reflect.Field;
-import java.util.List;
 import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
@@ -21,35 +19,16 @@ import static org.mockito.Mockito.when;
 public class CreatureTest {
     private Creature testCreature;
 
-    private Armor testArmor01;
-    private Armor testArmor02;
-
     private Inventory mockInventory = mock(Inventory.class);
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
 
     private Armor mockArmor = mock(Armor.class);
+    private Weapon mockWeapon = mock(Weapon.class);
+    private HealthPotion mockHealthPotion = mock(HealthPotion.class);
 
     private Creature createPlayerWithCustomHPAndSpeed(int hp, int speed) {
         return new Creature(hp, speed, mockInventoryFactory);
     }
-
-    //set ups a Reflection of armorList in Creature
-    private List<Item> setUpReflectionItemListForAddItem() throws Exception {
-
-        Field itemListField = Creature.class.getDeclaredField("inventory");
-        itemListField.setAccessible(true);
-        List<Item> inventory = (List<Item>) itemListField.get(testCreature);
-        return inventory;
-    }
-
-//    //set ups a Reflection of inventory Map in Creature
-//    private Map<Item, List<Item>> setUpReflectionInventoryMapForAddItem() throws Exception {
-//
-//        Field inventoryMapField = Creature.class.getDeclaredField("inventory");
-//        inventoryMapField.setAccessible(true);
-//        Map<Item, List<Item>> inventory = (Map<Item, List<Item>>) inventoryMapField.get(testCreature);
-//        return inventory;
-//    }
 
     @Before
     public void setUp() {
@@ -57,8 +36,6 @@ public class CreatureTest {
         when(mockInventoryFactory.create()).thenReturn(mockInventory);
 
         testCreature = createPlayerWithCustomHPAndSpeed(100, 10);
-        testArmor01 = new Armor(1);
-        testArmor02 = new Armor(2);
     }
 
     @Rule
@@ -661,48 +638,36 @@ public class CreatureTest {
     }
 
     /**
-     * Add armor tests
+     * Add item tests
      */
 
-//    @Test
-//    public void testAddArmorToInventoryTestingArmorAsKey() throws Exception {
-//
-//        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddItem();
-//        testCreature.addItemToInventory(testArmor01);
-//        assertTrue(inventory.containsKey(testArmor01));
-//    }
-//
-//    @Test
-//    public void testAddArmorToInventoryTestingListAsValue() throws Exception {
-//
-//        Map<Item, List<Item>> inventory = setUpReflectionInventoryMapForAddItem();
-////        List<Item> itemList = inventory.get(Item);
-//
-//        testCreature.addItemToInventory(testArmor01);
-//        inventory.get(testArmor01)
-//        assertTrue(inventory.containsValue(itemList));
-//    }
+    @Test(expected = NullPointerException.class)
+    public void testAddNullToInventory() {
+        testCreature.addItemToInventory(null, "null");
+    }
 
     @Test
-    public void testAddArmorInventoryTestingArmorList() throws Exception{
+    public void testAddArmorToInventory() throws Exception{
 
         testCreature.addItemToInventory(mockArmor, "armor");
-        verify(mockInventory).add(mockArmor, "armor");
-
+        verify(mockInventory).addItem(mockArmor, "armor");
     }
 
-    /*@Test
-    public void testAddArmorTiInventoryTestingArmorAsKeyTwoItems() throws Exception {
+    @Test
+    public void testAddWeaponToInventory() throws Exception{
 
-        List<Item> inventory = setUpReflectionItemListForAddItem();
-        testCreature.addItemToInventory(testArmor01);
-        testCreature.addItemToInventory(testArmor02);
-        assertTrue(inventory.contains(testArmor02));
-    }*/
-
-    @Test(expected = NullPointerException.class)
-    public void testAddArmorToInventoryTestingNull() {
-        testCreature.addItemToInventory(null, "armor");
+        testCreature.addItemToInventory(mockWeapon, "weapon");
+        verify(mockInventory).addItem(mockWeapon, "weapon");
     }
+
+    @Test
+    public void testAddHealthPotionToInventory() throws Exception{
+
+        testCreature.addItemToInventory(mockHealthPotion, "healthpotion");
+        verify(mockInventory).addItem(mockHealthPotion, "healthpotion");
+    }
+
+
+
 }
 

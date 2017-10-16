@@ -5,25 +5,13 @@ import entity.item.wearable.Wearable;
 
 public class Armor extends Wearable {
 
-    private int damageReduction;
-
     public Armor(int damageReduction) {
-
         super(damageReduction);
-
-        if (damageReduction < 0) {
-            throw new IllegalArgumentException("Damage reduction may not be negative.");
-        }
     }
 
     @Override
     public void affect(Creature creature) {
         creature.incrementDamageReduction(getBonus());
-    }
-
-    @Override
-    public void removeFrom(Creature creature) {
-        creature.decrementDamageReduction(getBonus());
     }
 
     @Override

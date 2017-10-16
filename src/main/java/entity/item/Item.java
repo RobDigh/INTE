@@ -1,19 +1,36 @@
-package entity.item.wearable;
+package entity.item;
 
 import entity.creature.Creature;
-import entity.item.Item;
+import entity.gameMap.GameMap;
+import entity.Entity;
 
-public abstract class Wearable extends Item {
+public abstract class Item extends Entity {
 
-    public Wearable(int bonus) {
+    private int bonus;
 
-        super(bonus);
-
-        if (bonus < 0) {
-            throw new IllegalArgumentException("Bonus may not be negative.");
-        }
+    public Item(int bonus) {
+        this.bonus = bonus;
     }
 
-    public abstract void removeFrom(Creature creature);
+    public int getBonus() {
+        return bonus;
+    }
 
+    public abstract void affect(Creature creature);
+    
+    @Override
+    public boolean accept(Entity entity, GameMap environment){
+    	
+    	Creature visitingCreature = (Creature) entity;
+    	Item item = this;
+    	GameMap level = environment;
+    	
+    	if(item instanceof Item){
+    		visitingCreature.addToInventory(item);
+    		level.remove(item);
+    		return true;
+    	}
+    	
+    	return false;
+    }
 }

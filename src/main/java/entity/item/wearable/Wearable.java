@@ -1,6 +1,6 @@
 package entity.item.wearable;
 
-import entity.Creature;
+import entity.creature.Creature;
 import entity.item.Item;
 
 public abstract class Wearable extends Item {

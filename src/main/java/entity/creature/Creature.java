@@ -5,6 +5,9 @@ import entity.gameMap.GameMap;
 import entity.item.Item;
 import combat.Combat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Creature extends Entity {
 
@@ -12,8 +15,7 @@ public class Creature extends Entity {
     private int speed;
     private double damageReduction;
     private double damageBonus;
-
-    private Inventory inventory;
+    private List<Item> inventory;
 
     public Creature(int hp, int speed, InventoryFactory inventoryFactory) {
 
@@ -30,7 +32,7 @@ public class Creature extends Entity {
         damageReduction = 0;
         damageBonus = 0;
 
-        inventory = inventoryFactory.create();
+        inventory = new ArrayList<>();
     }
 
     public int getHP() {
@@ -159,14 +161,14 @@ public class Creature extends Entity {
             throw new NullPointerException("Item can't be null");
         }
 
-        inventory.addItem(item, key);
+//        List<Item> itemList = inventory.get(item);
+//        if(inventory == null){
+//            itemList = new ArrayList<>();
+//        }
+//        itemList.add(item);
+        inventory.add(item);
         return true;
     }
-    
-	public boolean addToInventory(Item item) {
-		//placeholder method for adding item to inventory
-		return true;
-	}
     
     public boolean doBattle(Entity visitingEntity, Entity visitedEntity){
     	
@@ -203,5 +205,4 @@ public class Creature extends Entity {
     	
         return false;
     }
-
 }

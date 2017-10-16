@@ -1,6 +1,7 @@
 package entity.creature;
 
 import entity.item.consumable.hp.HealthPotion;
+import entity.item.consumable.speed.SpeedPotion;
 import entity.item.wearable.armor.Armor;
 import entity.item.wearable.weapon.Weapon;
 import org.junit.Before;
@@ -25,6 +26,7 @@ public class CreatureTest {
     private Armor mockArmor = mock(Armor.class);
     private Weapon mockWeapon = mock(Weapon.class);
     private HealthPotion mockHealthPotion = mock(HealthPotion.class);
+    private SpeedPotion mockSpeedPotion = mock(SpeedPotion.class);
 
     private Creature createPlayerWithCustomHPAndSpeed(int hp, int speed) {
         return new Creature(hp, speed, mockInventoryFactory);
@@ -663,11 +665,16 @@ public class CreatureTest {
     @Test
     public void testAddHealthPotionToInventory() throws Exception{
 
-        testCreature.addItemToInventory(mockHealthPotion, "healthpotion");
-        verify(mockInventory).addItem(mockHealthPotion, "healthpotion");
+        testCreature.addItemToInventory(mockHealthPotion, "health potion");
+        verify(mockInventory).addItem(mockHealthPotion, "health potion");
     }
 
+    @Test
+    public void testAddSpeedPotion() throws Exception{
 
+        testCreature.addItemToInventory(mockSpeedPotion, "speed potion");
+        verify(mockInventory).addItem(mockSpeedPotion, "speed potion");
+    }
 
 }
 

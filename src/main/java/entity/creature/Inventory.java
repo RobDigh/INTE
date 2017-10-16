@@ -23,7 +23,7 @@ public class Inventory {
 =======
 public class Inventory {
 
-    public void addItem(Item item, String key) {
+    public void add(Item item, String key) {
 
 >>>>>>> origin/dev
     }

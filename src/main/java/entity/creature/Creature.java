@@ -15,7 +15,9 @@ public class Creature extends Entity {
     private int speed;
     private double damageReduction;
     private double damageBonus;
-    private List<Item> inventory;
+
+    private Inventory inventory;
+    //private List<Item> inventory;
 
     public Creature(int hp, int speed, InventoryFactory inventoryFactory) {
 
@@ -32,7 +34,8 @@ public class Creature extends Entity {
         damageReduction = 0;
         damageBonus = 0;
 
-        inventory = new ArrayList<>();
+        //inventory = new ArrayList<>();
+        inventory = inventoryFactory.create();
     }
 
     public int getHP() {
@@ -166,7 +169,7 @@ public class Creature extends Entity {
 //            itemList = new ArrayList<>();
 //        }
 //        itemList.add(item);
-        inventory.add(item);
+        inventory.add(item, key);
         return true;
     }
     

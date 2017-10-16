@@ -686,11 +686,6 @@ public class CreatureTest {
     @Test
     public void testAddArmorInventoryTestingArmorList() throws Exception{
 
-
-        /*List<Item> inventory = setUpReflectionItemListForAddItem();
-        testCreature.addItemToInventory(testArmor01);
-        assertTrue(inventory.contains(testArmor01));*/
-
         testCreature.addItemToInventory(mockArmor, "armor");
         verify(mockInventory).add(mockArmor, "armor");
 

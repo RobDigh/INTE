@@ -4,7 +4,7 @@ import entity.item.Item;
 
 public class Inventory {
 
-    public void addItem(Item item, String key) {
+    public void add(Item item, String key) {
 
     }
 }

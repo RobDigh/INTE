@@ -53,6 +53,9 @@ public class CreatureTest {
 
     @Before
     public void setUp() {
+
+        when(mockInventoryFactory.create()).thenReturn(mockInventory);
+
         testCreature = createPlayerWithCustomHPAndSpeed(100, 10);
         testArmor01 = new Armor(1);
         testArmor02 = new Armor(2);
@@ -688,10 +691,8 @@ public class CreatureTest {
         testCreature.addItemToInventory(testArmor01);
         assertTrue(inventory.contains(testArmor01));*/
 
-        when(mockInventoryFactory.create()).thenReturn(mockInventory);
-
         testCreature.addItemToInventory(mockArmor, "armor");
-        verify(mockInventory).addItem(mockArmor, "armor");
+        verify(mockInventory).add(mockArmor, "armor");
 
     }
 

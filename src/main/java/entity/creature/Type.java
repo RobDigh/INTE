@@ -16,6 +16,7 @@ public enum Type {
     private int strength;
     private int dexterity;
     private int constitution;
+    private boolean isPC;
 
     Type(String name, int strength, int dexterity, int constitution) {
         this.name = name;
@@ -41,6 +42,6 @@ public enum Type {
     }
 
     public boolean isPC(){
-        return true;
+        return isPC;
     }
 }

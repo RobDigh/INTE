@@ -19,6 +19,11 @@ public class Combat {
 
         c1.act(c2);
         c2.act(c1);
+
+        if (c1.getHP() <= 10) {
+            
+        }
+
         c2.act(c1);
 
     }

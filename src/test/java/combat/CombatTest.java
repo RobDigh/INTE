@@ -61,7 +61,7 @@ public class CombatTest {
     @Test
     public void activeFleeingWin() {
 
-        when(c1.getHP()).thenReturn(100).thenReturn(10);
+        when(c1.getHP()).thenReturn(10);
         when(c1.getTotalHP()).thenReturn(100);
 
         doAnswer(new Answer<Void>() {

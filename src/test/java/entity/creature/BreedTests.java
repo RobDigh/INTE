@@ -8,95 +8,95 @@ public class BreedTests {
 
     @Test
     public void testAllValuesAreThere() {
-        assertNotNull(Breed.valueOf("BULLDOG"));
-        assertNotNull(Breed.valueOf("CHIHUAHUA"));
-        assertNotNull(Breed.valueOf("DACHSHUND"));
-        assertNotNull(Breed.valueOf("DOBERMANN"));
-        assertNotNull(Breed.valueOf("GREYHOUND"));
-        assertNotNull(Breed.valueOf("LABRADOR"));
-        assertNotNull(Breed.valueOf("OVTJARKA"));
-        assertNotNull(Breed.valueOf("SIBERIANHUSKY"));
-        assertNotNull(Breed.valueOf("STBERNARD"));
-        assertNotNull(Breed.valueOf("VIZSLA"));
+        assertNotNull(Type.valueOf("BULLDOG"));
+        assertNotNull(Type.valueOf("CHIHUAHUA"));
+        assertNotNull(Type.valueOf("DACHSHUND"));
+        assertNotNull(Type.valueOf("DOBERMANN"));
+        assertNotNull(Type.valueOf("GREYHOUND"));
+        assertNotNull(Type.valueOf("LABRADOR"));
+        assertNotNull(Type.valueOf("OVTJARKA"));
+        assertNotNull(Type.valueOf("SIBERIANHUSKY"));
+        assertNotNull(Type.valueOf("STBERNARD"));
+        assertNotNull(Type.valueOf("VIZSLA"));
     }
 
     @Test
     public void testAllBulldogValues() {
-        assertEquals("Bulldog", Breed.BULLDOG.getName());
-        assertEquals(6, Breed.BULLDOG.getStrength());
-        assertEquals(5, Breed.BULLDOG.getDexterity());
-        assertEquals(7, Breed.BULLDOG.getConstitution());
+        assertEquals("Bulldog", Type.BULLDOG.getName());
+        assertEquals(6, Type.BULLDOG.getStrength());
+        assertEquals(5, Type.BULLDOG.getDexterity());
+        assertEquals(7, Type.BULLDOG.getConstitution());
     }
 
     @Test
     public void testAllChihuahuaValues() {
-        assertEquals("Chihuahua", Breed.CHIHUAHUA.getName());
-        assertEquals(5, Breed.CHIHUAHUA.getStrength());
-        assertEquals(8, Breed.CHIHUAHUA.getDexterity());
-        assertEquals(5, Breed.CHIHUAHUA.getConstitution());
+        assertEquals("Chihuahua", Type.CHIHUAHUA.getName());
+        assertEquals(5, Type.CHIHUAHUA.getStrength());
+        assertEquals(8, Type.CHIHUAHUA.getDexterity());
+        assertEquals(5, Type.CHIHUAHUA.getConstitution());
     }
 
     @Test
     public void testAllDachshundValues() {
-        assertEquals("Dachshund", Breed.DACHSHUND.getName());
-        assertEquals(5, Breed.DACHSHUND.getStrength());
-        assertEquals(7, Breed.DACHSHUND.getDexterity());
-        assertEquals(6, Breed.DACHSHUND.getConstitution());
+        assertEquals("Dachshund", Type.DACHSHUND.getName());
+        assertEquals(5, Type.DACHSHUND.getStrength());
+        assertEquals(7, Type.DACHSHUND.getDexterity());
+        assertEquals(6, Type.DACHSHUND.getConstitution());
     }
 
     @Test
     public void testAllDobermannValues() {
-        assertEquals("Dobermann", Breed.DOBERMANN.getName());
-        assertEquals(7, Breed.DOBERMANN.getStrength());
-        assertEquals(6, Breed.DOBERMANN.getDexterity());
-        assertEquals(5, Breed.DOBERMANN.getConstitution());
+        assertEquals("Dobermann", Type.DOBERMANN.getName());
+        assertEquals(7, Type.DOBERMANN.getStrength());
+        assertEquals(6, Type.DOBERMANN.getDexterity());
+        assertEquals(5, Type.DOBERMANN.getConstitution());
     }
 
     @Test
     public void testAllGreyhoundValues() {
-        assertEquals("Greyhound", Breed.GREYHOUND.getName());
-        assertEquals(5, Breed.GREYHOUND.getStrength());
-        assertEquals(6, Breed.GREYHOUND.getDexterity());
-        assertEquals(7, Breed.GREYHOUND.getConstitution());
+        assertEquals("Greyhound", Type.GREYHOUND.getName());
+        assertEquals(5, Type.GREYHOUND.getStrength());
+        assertEquals(6, Type.GREYHOUND.getDexterity());
+        assertEquals(7, Type.GREYHOUND.getConstitution());
     }
 
     @Test
     public void testAllLabradorValues() {
-        assertEquals("Labrador", Breed.LABRADOR.getName());
-        assertEquals(6, Breed.LABRADOR.getStrength());
-        assertEquals(6, Breed.LABRADOR.getDexterity());
-        assertEquals(6, Breed.LABRADOR.getConstitution());
+        assertEquals("Labrador", Type.LABRADOR.getName());
+        assertEquals(6, Type.LABRADOR.getStrength());
+        assertEquals(6, Type.LABRADOR.getDexterity());
+        assertEquals(6, Type.LABRADOR.getConstitution());
     }
 
     @Test
     public void testAllOvtjarkaValues() {
-        assertEquals("Ovtjarka", Breed.OVTJARKA.getName());
-        assertEquals(8, Breed.OVTJARKA.getStrength());
-        assertEquals(5, Breed.OVTJARKA.getDexterity());
-        assertEquals(5, Breed.OVTJARKA.getConstitution());
+        assertEquals("Ovtjarka", Type.OVTJARKA.getName());
+        assertEquals(8, Type.OVTJARKA.getStrength());
+        assertEquals(5, Type.OVTJARKA.getDexterity());
+        assertEquals(5, Type.OVTJARKA.getConstitution());
     }
 
     @Test
     public void testAllHuskyValues() {
-        assertEquals("Siberian husky", Breed.SIBERIANHUSKY.getName());
-        assertEquals(6, Breed.SIBERIANHUSKY.getStrength());
-        assertEquals(7, Breed.SIBERIANHUSKY.getDexterity());
-        assertEquals(5, Breed.SIBERIANHUSKY.getConstitution());
+        assertEquals("Siberian husky", Type.SIBERIANHUSKY.getName());
+        assertEquals(6, Type.SIBERIANHUSKY.getStrength());
+        assertEquals(7, Type.SIBERIANHUSKY.getDexterity());
+        assertEquals(5, Type.SIBERIANHUSKY.getConstitution());
     }
 
     @Test
     public void testAllStBernardValues() {
-        assertEquals("St. Bernard", Breed.STBERNARD.getName());
-        assertEquals(7, Breed.STBERNARD.getStrength());
-        assertEquals(5, Breed.STBERNARD.getDexterity());
-        assertEquals(6, Breed.STBERNARD.getConstitution());
+        assertEquals("St. Bernard", Type.STBERNARD.getName());
+        assertEquals(7, Type.STBERNARD.getStrength());
+        assertEquals(5, Type.STBERNARD.getDexterity());
+        assertEquals(6, Type.STBERNARD.getConstitution());
     }
 
     @Test
     public void testAllVizslaValues() {
-        assertEquals("Vizsla", Breed.VIZSLA.getName());
-        assertEquals(5, Breed.VIZSLA.getStrength());
-        assertEquals(5, Breed.VIZSLA.getDexterity());
-        assertEquals(8, Breed.VIZSLA.getConstitution());
+        assertEquals("Vizsla", Type.VIZSLA.getName());
+        assertEquals(5, Type.VIZSLA.getStrength());
+        assertEquals(5, Type.VIZSLA.getDexterity());
+        assertEquals(8, Type.VIZSLA.getConstitution());
     }
 }

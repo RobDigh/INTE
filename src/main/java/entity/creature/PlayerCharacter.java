@@ -4,27 +4,27 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 
 public class PlayerCharacter extends Creature {
-    private Breed breed;
+    private Type type;
 
     public PlayerCharacter(int strength, int dexterity, int constitution) {
         super(strength, dexterity, constitution);
 
-        breed = calculateBreed(strength, dexterity, constitution);
-        if (breed == null) {
-            throw new IllegalArgumentException("There is no breed that corresponds with these stat values");
+        type = calculateBreed(strength, dexterity, constitution);
+        if (type == null) {
+            throw new IllegalArgumentException("There is no type that corresponds with these stat values");
         }
     }
 
-    public Breed getBreed() {
-        return breed;
+    public Type getType() {
+        return type;
     }
 
-    public Breed calculateBreed(int strength, int dexterity, int constitution) {
-        ArrayList<Breed> temp = new ArrayList<>(EnumSet.allOf(Breed.class));
+    public Type calculateBreed(int strength, int dexterity, int constitution) {
+        ArrayList<Type> temp = new ArrayList<>(EnumSet.allOf(Type.class));
         for (int i = 0; i < temp.size(); i++) {
-            Breed breed = temp.get(i);
-            if (breed.getStrength() == strength && breed.getDexterity() == dexterity && breed.getConstitution() == constitution) {
-                return breed;
+            Type type = temp.get(i);
+            if (type.getStrength() == strength && type.getDexterity() == dexterity && type.getConstitution() == constitution) {
+                return type;
             }
         }
         return null;

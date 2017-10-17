@@ -52,7 +52,7 @@ public class PlayerCharacterTests {
     @Test
     public void testBreed() {
         PlayerCharacter pc = new PlayerCharacter(5, 8, 5);
-        assertEquals(Breed.CHIHUAHUA, pc.getBreed());
+        assertEquals(Type.CHIHUAHUA, pc.getType());
     }
 
     @Test(expected = IllegalArgumentException.class)

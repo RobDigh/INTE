@@ -1,6 +1,6 @@
 package entity.creature;
 
-public enum Breed {
+public enum Type {
     BULLDOG("Bulldog", 6, 5, 7),
     CHIHUAHUA("Chihuahua", 5, 8, 5),
     DACHSHUND("Dachshund", 5, 7, 6),
@@ -17,7 +17,7 @@ public enum Breed {
     private int dexterity;
     private int constitution;
 
-    Breed(String name, int strength, int dexterity, int constitution) {
+    Type(String name, int strength, int dexterity, int constitution) {
         this.name = name;
         this.strength = strength;
         this.dexterity = dexterity;

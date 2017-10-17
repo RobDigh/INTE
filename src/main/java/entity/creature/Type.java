@@ -39,4 +39,8 @@ public enum Type {
     public int getConstitution() {
         return constitution;
     }
+
+    public boolean isPC(){
+        return true;
+    }
 }

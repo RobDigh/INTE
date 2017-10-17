@@ -37,10 +37,6 @@ public class Creature extends Entity {
         return hp;
     }
 
-    public int getTotalHP() {
-        return -1;
-    }
-
     public int getSpeed() {
         return speed;
     }

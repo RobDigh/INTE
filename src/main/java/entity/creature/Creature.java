@@ -18,6 +18,8 @@ public class Creature extends Entity {
     private int constitution;
     private int hp;
     private int speed;
+    private boolean isPC;
+    private Type type;
     private double damageReduction;
     private double damageBonus;
     private Map<String, List> inventory;
@@ -45,7 +47,7 @@ public class Creature extends Entity {
         inventory.put("armor", armorList);
     }
 
-    public Creature(int strength, int dexterity, int constitution) {
+    public Creature(int strength, int dexterity, int constitution, boolean isPC) {
         if (strength <= 0 || dexterity <= 0 || constitution <= 0) {
             throw new IllegalArgumentException("All stats must have positive values");
         }
@@ -53,6 +55,7 @@ public class Creature extends Entity {
         this.strength = strength;
         this.dexterity = dexterity;
         this.constitution = constitution;
+        this.isPC = isPC;
 
         //Very primitive example of how stats may affect speed and hp
         speed = dexterity * 2;
@@ -87,8 +90,16 @@ public class Creature extends Entity {
         return constitution;
     }
 
+    public boolean isPC() {
+        return isPC;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
     public void gainHP(int amount) {
-        if(getHP() == 0){
+        if (getHP() == 0) {
             return;
         }
         if (amount <= 0) {

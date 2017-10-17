@@ -7,7 +7,7 @@ public class PlayerCharacter extends Creature {
     private Type type;
 
     public PlayerCharacter(int strength, int dexterity, int constitution) {
-        super(strength, dexterity, constitution);
+        super(strength, dexterity, constitution, true);
 
         type = calculateBreed(strength, dexterity, constitution);
         if (type == null) {

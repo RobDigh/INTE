@@ -101,4 +101,9 @@ public class CombatTest {
         assertEquals(combat.getResult(), Combat.INITIATOR_WIN);
 
     }
+
+    @Test
+    public void activeFleeingImmobilizedActiveWin() {
+
+    }
 }

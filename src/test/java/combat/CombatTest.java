@@ -57,4 +57,45 @@ public class CombatTest {
         assertEquals(combat.getResult(), Combat.INITIATOR_WIN);
 
     }
+
+    @Test
+    public void activeFleeingWin() {
+
+        doAnswer(new Answer<Void>() {
+            @Override
+            public Void answer(InvocationOnMock invocation) {
+
+                Creature c1 = invocation.getArgument(0);
+                c1.loseHP(90);
+
+                return null;
+
+            }
+        }).doAnswer(new Answer<Void>() {
+            @Override
+            public Void answer(InvocationOnMock invocation) {
+
+                c2.loseHP(100);
+                return null;
+
+            }
+        }).when(c2).act(c1);
+
+
+        Combat combat = new Combat(c1, c2);
+        combat.start();
+
+        /*
+         * Turn taking should be as follows:
+         *
+         * t1: c1 acts, does nothing.
+         * t2: c2 acts, decreases c1 hp.
+         * t3: c1 is fleeing, flee() should be called.
+         * t4: c2 acts, hp gets decreased by poison or somesuch.
+         *
+         */
+        verify(c1, times(1)).flee();
+        assertEquals(combat.getResult(), Combat.INITIATOR_WIN);
+
+    }
 }

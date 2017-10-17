@@ -172,6 +172,10 @@ public class Creature extends Entity {
 
     }
 
+    public void flee() {
+
+    }
+
     public boolean doBattle(Entity visitingEntity, Entity visitedEntity){
     	
     	Creature visitingCreature = (Creature) visitingEntity;

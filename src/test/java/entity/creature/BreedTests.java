@@ -26,6 +26,7 @@ public class BreedTests {
         assertEquals(6, Type.BULLDOG.getStrength());
         assertEquals(5, Type.BULLDOG.getDexterity());
         assertEquals(7, Type.BULLDOG.getConstitution());
+        assertTrue(Type.BULLDOG.isPC());
     }
 
     @Test
@@ -34,6 +35,7 @@ public class BreedTests {
         assertEquals(5, Type.CHIHUAHUA.getStrength());
         assertEquals(8, Type.CHIHUAHUA.getDexterity());
         assertEquals(5, Type.CHIHUAHUA.getConstitution());
+        assertTrue(Type.CHIHUAHUA.isPC());
     }
 
     @Test

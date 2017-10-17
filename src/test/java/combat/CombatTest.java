@@ -2,7 +2,6 @@ package combat;
 
 import entity.creature.Creature;
 import org.junit.Test;
-import org.mockito.invocation.Invocation;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
@@ -19,6 +18,7 @@ public class CombatTest {
     public void activeImmobilizedWin() {
 
         doAnswer(new Answer<Void>() {
+            @Override
             public Void answer(InvocationOnMock invocation) {
 
                 Creature c1 = invocation.getArgument(0);
@@ -29,10 +29,11 @@ public class CombatTest {
             }
         }).doAnswer(new Answer<Void>() {
             @Override
-            public Void answer(InvocationOnMock invocationOnMock) {
+            public Void answer(InvocationOnMock invocation) {
 
                 c2.loseHP(100);
                 return null;
+
             }
         }).when(c2).act(c1);
 

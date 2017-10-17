@@ -6,10 +6,7 @@ import entity.item.Item;
 import entity.item.wearable.armor.Armor;
 import entity.item.wearable.weapon.Weapon;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Creature extends Entity {
 
@@ -56,10 +53,25 @@ public class Creature extends Entity {
         this.dexterity = dexterity;
         this.constitution = constitution;
         this.isPC = isPC;
+        type = calculateType(strength, dexterity, constitution, isPC);
+        if (type == null) {
+            throw new IllegalArgumentException("There is no type that corresponds with these stat values");
+        }
 
         //Very primitive example of how stats may affect speed and hp
         speed = dexterity * 2;
         hp = constitution * 10;
+    }
+
+    public Type calculateType(int strength, int dexterity, int constitution, boolean isPC) {
+        ArrayList<Type> temp = new ArrayList<>(EnumSet.allOf(Type.class));
+        for (int i = 0; i < temp.size(); i++) {
+            Type type = temp.get(i);
+            if (type.getStrength() == strength && type.getDexterity() == dexterity && type.getConstitution() == constitution && isPC == type.isPC()) {
+                return type;
+            }
+        }
+        return null;
     }
 
     public int getHP() {

@@ -21,7 +21,7 @@ public class Combat {
         c2.act(c1);
 
         if (c1.getHP() <= 10) {
-            
+            c1.flee();
         }
 
         c2.act(c1);

@@ -68,6 +68,7 @@ public class BreedTests {
         assertEquals(6, Type.LABRADOR.getStrength());
         assertEquals(6, Type.LABRADOR.getDexterity());
         assertEquals(6, Type.LABRADOR.getConstitution());
+        assertTrue(Type.LABRADOR.isPC());
     }
 
     @Test
@@ -76,6 +77,7 @@ public class BreedTests {
         assertEquals(8, Type.OVTJARKA.getStrength());
         assertEquals(5, Type.OVTJARKA.getDexterity());
         assertEquals(5, Type.OVTJARKA.getConstitution());
+        assertTrue(Type.OVTJARKA.isPC());
     }
 
     @Test
@@ -84,6 +86,7 @@ public class BreedTests {
         assertEquals(6, Type.SIBERIANHUSKY.getStrength());
         assertEquals(7, Type.SIBERIANHUSKY.getDexterity());
         assertEquals(5, Type.SIBERIANHUSKY.getConstitution());
+        assertTrue(Type.SIBERIANHUSKY.isPC());
     }
 
     @Test
@@ -92,6 +95,7 @@ public class BreedTests {
         assertEquals(7, Type.STBERNARD.getStrength());
         assertEquals(5, Type.STBERNARD.getDexterity());
         assertEquals(6, Type.STBERNARD.getConstitution());
+        assertTrue(Type.STBERNARD.isPC());
     }
 
     @Test
@@ -100,5 +104,6 @@ public class BreedTests {
         assertEquals(5, Type.VIZSLA.getStrength());
         assertEquals(5, Type.VIZSLA.getDexterity());
         assertEquals(8, Type.VIZSLA.getConstitution());
+        assertTrue(Type.VIZSLA.isPC());
     }
 }

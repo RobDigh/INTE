@@ -37,7 +37,7 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Constitution must be between 5 and 8");
         }
 
-        if((strength + dexterity + consitution) > 18){
+        if((strength + dexterity + consitution) > 18 || (strength + dexterity + consitution) < 18){
             throw new IllegalArgumentException("The sum of strength, dexterity and constitution have to be 18");
         }
 

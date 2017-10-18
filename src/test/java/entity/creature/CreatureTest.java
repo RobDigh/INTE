@@ -676,5 +676,12 @@ public class CreatureTest {
         verify(mockInventory).addItem(mockSpeedPotion, "speed potion");
     }
 
+    @Test
+    public void testConstructorWithStrengthDexterityAndConsitution(){
+        Creature creature = new Creature(10, 100, 5, 8, 5, mockInventoryFactory);
+
+        assertEquals(10, creature.getHP());
+
+    }
 }
 

@@ -17,15 +17,22 @@ public class Combat {
 
     public void start() {
 
-        c1.act(c2);
-        c2.act(c1);
+        Creature actor = c1;
+        Creature defender = c2;
 
-        if (c1.getHP() <= 10) {
-            c1.flee();
+        while(c1.getHP() > 0 && c2.getHP() > 0) {
+
+            if (actor.getHP() <= 10 && actor.getSpeed() > 0) {
+                actor.flee();
+            } else if (actor.getSpeed() > 0) {
+                actor.act(defender);
+            }
+
+            Creature temp = actor;
+            actor = defender;
+            defender = temp;
+
         }
-
-        c2.act(c1);
-
     }
 
     public boolean getResult() {

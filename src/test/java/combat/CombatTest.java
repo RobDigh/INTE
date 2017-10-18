@@ -10,8 +10,8 @@ import static org.mockito.Mockito.*;
 
 public class CombatTest {
 
-    private Creature c1 = spy(new Creature(100, 10, mock(InventoryFactory.class)));
-    private Creature c2 = spy(new Creature(100, 10, mock(InventoryFactory.class)));
+    private Creature c1 = spy(new Creature(100, 1, mock(InventoryFactory.class)));
+    private Creature c2 = spy(new Creature(100, 1, mock(InventoryFactory.class)));
 
     private Combat combat = new Combat(c1, c2);
 
@@ -21,7 +21,7 @@ public class CombatTest {
         doAnswer(invocation -> {
 
             Creature c1 = invocation.getArgument(0);
-            c1.loseHP(1);
+            c1.loseSpeed(1);
 
             return null;
 

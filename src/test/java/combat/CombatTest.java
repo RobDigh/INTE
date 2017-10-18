@@ -13,7 +13,7 @@ public class CombatTest {
 
     /*
      * Creating Creature spies is mainly done to control combat behaviour while avoiding
-     * having to exactly program which values should be return on getHP() and getSpeed()
+     * having to exactly program which values should be returned on getHP() and getSpeed()
      * at different times.
      */
     private Creature c1 = spy(new Creature(100, 1, mock(InventoryFactory.class)));

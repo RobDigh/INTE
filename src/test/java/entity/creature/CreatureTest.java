@@ -32,6 +32,10 @@ public class CreatureTest {
         return new Creature(hp, speed, 5, 8, 5, mockInventoryFactory);
     }
 
+    private Creature createPlayerWithCustomStrengthDexterityAndConstitution(int strength, int dexterity, int constitution){
+        return new Creature(10, 100, strength, dexterity, constitution, mockInventoryFactory);
+    }
+
     @Before
     public void setUp() {
 
@@ -676,12 +680,9 @@ public class CreatureTest {
         verify(mockInventory).addItem(mockSpeedPotion, "speed potion");
     }
 
-    @Test
-    public void testConstructorWithStrengthDexterityAndConsitution(){
-        Creature creature = new Creature(10, 100, 5, 8, 5, mockInventoryFactory);
-
-        assertEquals(10, creature.getHP());
-
+    @Test (expected = IllegalArgumentException.class)
+    public void testConstructorInvalidValueStrength(){
+        createPlayerWithCustomStrengthDexterityAndConstitution(4,8,5);
     }
 }
 

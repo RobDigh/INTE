@@ -33,7 +33,7 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Dexterity must be between 5 and 8");
         }
 
-        if(consitution < 5){
+        if(consitution < 5 || consitution > 8){
             throw new IllegalArgumentException("Constitution must be between 5 and 8");
         }
 

@@ -3,6 +3,7 @@ package combat;
 import entity.creature.Creature;
 import entity.creature.InventoryFactory;
 import org.junit.Test;
+import org.mockito.invocation.InvocationOnMock;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -15,24 +16,45 @@ public class CombatTest {
 
     private Combat combat = new Combat(c1, c2);
 
+    private Void damageSpeed(InvocationOnMock invocationOnMock) {
+
+        Creature opponent = invocationOnMock.getArgument(0);
+        opponent.loseSpeed(1);
+
+        return null;
+    }
+
+    private Void increaseOpponentsSpeed(InvocationOnMock invocationOnMock) {
+
+        Creature opponent = invocationOnMock.getArgument(0);
+        opponent.gainSpeed(1);
+
+        return null;
+    }
+
+    private Void damageHP(InvocationOnMock invocationOnMock, int amount) {
+
+        Creature opponent = invocationOnMock.getArgument(0);
+        opponent.loseHP(amount);
+
+        return null;
+    }
+
+    private Void increaseOpponentsHP(InvocationOnMock invocationOnMock) {
+
+        Creature opponent = invocationOnMock.getArgument(0);
+        opponent.gainHP(1);
+
+        return null;
+    }
+
     @Test
     public void activeImmobilizedWin() {
 
-        doAnswer(invocation -> {
+        doAnswer(this::damageSpeed)
+                .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 100))
+                .when(c2).act(c1);
 
-            Creature c1 = invocation.getArgument(0);
-            c1.loseSpeed(1);
-
-            return null;
-
-        }).doAnswer(invocation -> {
-
-            c2.loseHP(100);
-            return null;
-
-        }).when(c2).act(c1);
-
-        Combat combat = new Combat(c1, c2);
         combat.start();
 
         /*
@@ -55,21 +77,9 @@ public class CombatTest {
     @Test
     public void activeFleeingWin() {
 
-        //when(c1.getHP()).thenReturn(10);
-
-        doAnswer(invocation -> {
-
-                Creature c1 = invocation.getArgument(0);
-                c1.loseHP(90);
-
-                return null;
-
-        }).doAnswer(invocation -> {
-
-                c2.loseHP(100);
-                return null;
-
-        }).when(c2).act(c1);
+        doAnswer(invocationOnMock -> damageHP(invocationOnMock, 90))
+                .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 100))
+                .when(c2).act(c1);
 
         combat.start();
 
@@ -91,44 +101,15 @@ public class CombatTest {
     @Test
     public void activeFleeingImmobilizedActiveWin() {
 
-        doAnswer(invocation -> null).doAnswer(invocation -> {
+        doAnswer(invocationOnMock -> null)
+                .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 100))
+                .when(c1).act(c2);
 
-            Creature c2 = invocation.getArgument(0);
-            c2.loseHP(100);
-
-            return null;
-
-        }).when(c1).act(c2);
-
-        doAnswer(invocation -> {
-
-            Creature c1 = invocation.getArgument(0);
-            c1.loseHP(90);
-
-            return null;
-
-        }).doAnswer(invocation -> {
-
-            Creature c1 = invocation.getArgument(0);
-            c1.loseSpeed(1);
-
-            return null;
-
-        }).doAnswer(invocation -> {
-
-            Creature c1 = invocation.getArgument(0);
-            c1.gainHP(1);
-
-            return null;
-
-        }).doAnswer(invocation -> {
-
-            Creature c1 = invocation.getArgument(0);
-            c1.gainSpeed(1);
-
-            return null;
-
-        }).when(c2).act(c1);
+        doAnswer(invocationOnMock -> damageHP(invocationOnMock, 90))
+                .doAnswer(this::damageSpeed)
+                .doAnswer(this::increaseOpponentsHP)
+                .doAnswer(this::increaseOpponentsSpeed)
+                .when(c2).act(c1);
 
         combat.start();
 

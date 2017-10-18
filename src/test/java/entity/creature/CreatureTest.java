@@ -724,6 +724,5 @@ public class CreatureTest {
     public void testConstructorWithToHighConstitutionValue(){
         createPlayerWithCustomStrengthDexterityAndConstitution(5,5,13);
     }
-
 }
 

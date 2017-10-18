@@ -4,7 +4,13 @@ import entity.creature.Creature;
 import entity.item.wearable.Wearable;
 
 public class Armor extends Wearable {
-
+	
+	private String type = "Armor";
+	
+	public String getType(){
+		return type;
+	}
+	
     public Armor(int damageReduction) {
         super(damageReduction);
     }

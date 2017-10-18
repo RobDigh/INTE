@@ -6,7 +6,13 @@ import entity.gameMap.GameMap;
 import entity.item.Item;
 
 public class SpeedPotion extends Item {
-
+	
+	private String type = "Potion";
+	
+	public String getType(){
+		return type;
+	}
+	
     public SpeedPotion(int bonus) {
         super(bonus);
     }

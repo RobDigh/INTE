@@ -162,11 +162,6 @@ public class Creature extends Entity {
         inventory.addItem(item, key);
         return true;
     }
-    
-	public boolean addToInventory(Item item) {
-		//placeholder method for adding item to inventory
-		return true;
-	}
 
 	public void act(Creature creature) {
 

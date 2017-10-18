@@ -18,12 +18,14 @@ public class AcceptTest extends GameMapTest {
 
     private GameMap lowerLevel = createDefaultSizedGameMap();
     private GameMap mockUpperLevel = mock(GameMap.class);
+    
+//    private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
 
-    private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
-
-    private Creature player = new Creature(500, 1, mockInventoryFactory);
-    private Creature monster = new Creature(50, 1, mockInventoryFactory);
+    private InventoryFactory inventory = new InventoryFactory();
+    private Creature player = new Creature(500, 1, inventory);
+    private Creature monster = new Creature(50, 1, inventory);
     private Armor armor = new Armor(5);
+    
     @Test
     public void acceptValidEntity() {
 
@@ -64,6 +66,7 @@ public class AcceptTest extends GameMapTest {
     	DEFAULT_SIZED_MAP.place(player, new Point(0,0));
     	DEFAULT_SIZED_MAP.move(player, GameMap.NORTH);
     	
+    	assertEquals("Armor", armor.getType());
     	assertEquals(null, DEFAULT_SIZED_MAP.getPosition(armor));
     	assertEquals(new Point(0,1), DEFAULT_SIZED_MAP.getPosition(player));
     }

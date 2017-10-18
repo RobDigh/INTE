@@ -114,7 +114,21 @@ public class CombatTest {
 
             return null;
 
-        }).doAnswer(invocation -> null).when(c2).act(c1);
+        }).doAnswer(invocation -> {
+
+            Creature c1 = invocation.getArgument(0);
+            c1.gainHP(1);
+
+            return null;
+
+        }).doAnswer(invocation -> {
+
+            Creature c1 = invocation.getArgument(0);
+            c1.gainSpeed(1);
+
+            return null;
+
+        }).when(c2).act(c1);
 
         combat.start();
 
@@ -134,7 +148,7 @@ public class CombatTest {
          */
 
         verify(c1, times(2)).act(c2);
-        verify(c1, times(2)).flee();
+        verify(c1, times(1)).flee();
 
         verify(c2, times(4)).act(c1);
         assertEquals(Combat.INITIATOR_WIN, combat.getResult());

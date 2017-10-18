@@ -33,6 +33,10 @@ public class Creature extends Entity {
         inventory = inventoryFactory.create();
     }
 
+    public Creature(int hp, int speed, int strength, int dexterity, int constitution, InventoryFactory inventoryFactory){
+        this.hp = hp;
+    }
+
     public int getHP() {
         return hp;
     }

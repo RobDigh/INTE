@@ -37,6 +37,10 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Constitution must be between 5 and 8");
         }
 
+        if((strength + dexterity + consitution) > 18){
+            throw new IllegalArgumentException("The sum of strength, dexterity and constitution have to be 18");
+        }
+
         this.hp = hp;
         this.speed = speed;
         damageReduction = 0;

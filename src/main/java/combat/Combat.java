@@ -15,16 +15,28 @@ public class Combat {
         this.c2 = c2;
     }
 
+    private boolean isDead(Creature creature) {
+        return creature.getHP() <= 0;
+    }
+
+    private boolean isFleeing(Creature creature) {
+        return creature.getHP() <= 10 && creature.getSpeed() > 0;
+    }
+
+    private boolean isImmobilized(Creature creature) {
+        return creature.getSpeed() <= 0;
+    }
+
     public void start() {
 
         Creature actor = c1;
         Creature defender = c2;
 
-        while(c1.getHP() > 0 && c2.getHP() > 0) {
+        while(!isDead(actor) && !isDead(defender)) {
 
-            if (actor.getHP() <= 10 && actor.getSpeed() > 0) {
+            if (isFleeing(actor)) {
                 actor.flee();
-            } else if (actor.getSpeed() > 0) {
+            } else if (!isImmobilized(actor)) {
                 actor.act(defender);
             }
 

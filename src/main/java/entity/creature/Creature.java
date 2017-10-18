@@ -167,7 +167,15 @@ public class Creature extends Entity {
 		//placeholder method for adding item to inventory
 		return true;
 	}
-    
+
+	public void act(Creature creature) {
+
+    }
+
+    public void flee() {
+
+    }
+
     public boolean doBattle(Entity visitingEntity, Entity visitedEntity){
     	
     	Creature visitingCreature = (Creature) visitingEntity;

@@ -4,10 +4,6 @@ import entity.gameMap.GameMap;
 
 public abstract class Entity {
 
-    public int getSpeed() {
-        return 0;
-    }
-
     /**
      * Resolves an interaction between the entity the method is invoked on and
      * the entity passed.

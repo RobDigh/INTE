@@ -14,9 +14,4 @@ public class HealthPotion extends Item {
     public void affect(Creature creature) {
         creature.gainHP(getBonus());
     }
-
-    @Override
-    public boolean accept(Entity entity, GameMap environment) {
-        return false;
-    }
 }

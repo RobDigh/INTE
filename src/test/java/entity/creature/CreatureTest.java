@@ -729,5 +729,14 @@ public class CreatureTest {
         createPlayerWithCustomStrengthDexterityAndConstitution(8,8,8);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidCombinationStrengthDexterityConstitutionTwoStatIsSeven(){
+        createPlayerWithCustomStrengthDexterityAndConstitution(7,7,5);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidCombinationStrengthDexterityConstitutionTwoStatsOfSix(){
+        createPlayerWithCustomStrengthDexterityAndConstitution(5,6,6);
+    }
 }
 

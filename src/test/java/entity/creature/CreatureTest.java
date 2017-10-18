@@ -738,5 +738,31 @@ public class CreatureTest {
     public void testInvalidCombinationStrengthDexterityConstitutionTwoStatsOfSix(){
         createPlayerWithCustomStrengthDexterityAndConstitution(5,6,6);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidCombinationStrengthDexterityConstitutionAllFive(){
+        createPlayerWithCustomStrengthDexterityAndConstitution(5,5,5);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidCombinationStrengthDexterityConstitutionEightAndSixTogether(){
+        createPlayerWithCustomStrengthDexterityAndConstitution(5,6,8);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidCombinationStrengthDexterityConstitutionEightAndSevenTogether(){
+        createPlayerWithCustomStrengthDexterityAndConstitution(7,8,5);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidCombinationStrengthDexterityConstitutionTwoFiveOneSix(){
+        createPlayerWithCustomStrengthDexterityAndConstitution(5,6,5);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidCombinationStrengthDexterityConstitutionTwoFiveOneSeven(){
+        createPlayerWithCustomStrengthDexterityAndConstitution(7,5,5);
+    }
+
 }
 

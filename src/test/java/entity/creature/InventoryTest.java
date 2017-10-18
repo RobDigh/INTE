@@ -28,7 +28,6 @@ public class InventoryTest {
 
         Inventory inventory = INVENTORY_FACTORY.create();
         assertTrue(inventory != null);
-
     }
 
     @Test

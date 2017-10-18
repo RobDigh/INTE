@@ -33,6 +33,10 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Dexterity must be between 5 and 8");
         }
 
+        if(consitution < 5){
+            throw new IllegalArgumentException("Constitution must be between 5 and 8");
+        }
+
         this.hp = hp;
         this.speed = speed;
         damageReduction = 0;

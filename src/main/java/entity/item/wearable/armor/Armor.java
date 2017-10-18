@@ -18,5 +18,4 @@ public class Armor extends Wearable {
     public void removeFrom(Creature creature) {
         creature.decrementDamageReduction(getBonus());
     }
-
 }

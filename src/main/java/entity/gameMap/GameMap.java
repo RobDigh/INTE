@@ -1,6 +1,7 @@
 package entity.gameMap;
 
 import entity.Entity;
+import entity.creature.Creature;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -126,16 +127,16 @@ public class GameMap extends Entity {
         }
     }
 
-    public boolean move(Entity entity, Point direction) {
+    public boolean move(Creature creature, Point direction) {
 
         if (!validDirections.contains(direction)) {
             throw new IllegalArgumentException("Invalid direction.");
         }
 
-        Point currentPosition = positionsByEntity.get(entity);
+        Point currentPosition = positionsByEntity.get(creature);
         entitiesByPosition.remove(currentPosition); // Do not change values that are used as hash keys.
 
-        boolean movementSuccessful = move(currentPosition, entity.getSpeed(), direction);
+        boolean movementSuccessful = move(currentPosition, creature.getSpeed(), direction);
 
         if (movementSuccessful) {
 
@@ -143,10 +144,10 @@ public class GameMap extends Entity {
             boolean shouldStay = true;
 
             if (existingEntity != null) {
-                shouldStay = existingEntity.accept(entity, this);
+                shouldStay = existingEntity.accept(creature, this);
             }
 
-            resolveShouldStay(entity, currentPosition, shouldStay);
+            resolveShouldStay(creature, currentPosition, shouldStay);
 
             return shouldStay;
 

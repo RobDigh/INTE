@@ -25,7 +25,7 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Speed must be positive.");
         }
 
-        if(strength < 5){
+        if(strength < 5 ||strength > 8){
             throw new IllegalArgumentException("Strength must be between 5 and 8");
         }
 

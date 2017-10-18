@@ -19,7 +19,7 @@ public class Combat {
         return creature.getHP() <= 0;
     }
 
-    private boolean comabatantsAlive(Creature actor, Creature defender) {
+    private boolean combatantsAlive(Creature actor, Creature defender) {
         return !isDead(actor) && !isDead(defender);
     }
 
@@ -36,7 +36,7 @@ public class Combat {
         Creature actor = c1;
         Creature defender = c2;
 
-        while(comabatantsAlive(actor, defender)) {
+        while(combatantsAlive(actor, defender)) {
 
             if (isFleeing(actor)) {
                 actor.flee();

@@ -1,9 +1,8 @@
 package combat;
 
 import entity.creature.Creature;
+import entity.creature.InventoryFactory;
 import org.junit.Test;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -11,8 +10,8 @@ import static org.mockito.Mockito.*;
 
 public class CombatTest {
 
-    private Creature c1 = mock(Creature.class);
-    private Creature c2 = mock(Creature.class);
+    private Creature c1 = spy(new Creature(100, 10, mock(InventoryFactory.class)));
+    private Creature c2 = spy(new Creature(100, 10, mock(InventoryFactory.class)));
 
     private Combat combat = new Combat(c1, c2);
 
@@ -32,7 +31,6 @@ public class CombatTest {
             return null;
 
         }).when(c2).act(c1);
-
 
         Combat combat = new Combat(c1, c2);
         combat.start();
@@ -57,7 +55,7 @@ public class CombatTest {
     @Test
     public void activeFleeingWin() {
 
-        when(c1.getHP()).thenReturn(10);
+        //when(c1.getHP()).thenReturn(10);
 
         doAnswer(invocation -> {
 
@@ -72,7 +70,6 @@ public class CombatTest {
                 return null;
 
         }).when(c2).act(c1);
-
 
         combat.start();
 
@@ -93,9 +90,6 @@ public class CombatTest {
 
     @Test
     public void activeFleeingImmobilizedActiveWin() {
-
-        when(c1.getHP()).thenReturn(10).thenReturn(11);
-        when(c1.getSpeed()).thenReturn(0).thenReturn(0).thenReturn(1);
 
         doAnswer(invocation -> null).doAnswer(invocation -> {
 

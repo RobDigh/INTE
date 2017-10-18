@@ -19,8 +19,8 @@ public class CombatTest {
      * not Creature state. Even more so since this behaviour would have to be controlled
      * even after we implement an AI, to be able to control combat flow.
      */
-    private Creature c1 = spy(new Creature(100, 1, mock(InventoryFactory.class)));
-    private Creature c2 = spy(new Creature(100, 1, mock(InventoryFactory.class)));
+    private Creature c1 = spy(new Creature(100, 1, 5, 8 ,5, mock(InventoryFactory.class)));
+    private Creature c2 = spy(new Creature(100, 1, 5, 8, 5, mock(InventoryFactory.class)));
 
     private Combat combat = new Combat(c1, c2);
 

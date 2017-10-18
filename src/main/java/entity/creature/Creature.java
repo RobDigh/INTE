@@ -15,7 +15,7 @@ public class Creature extends Entity {
 
     private Inventory inventory;
 
-    public Creature(int hp, int speed, InventoryFactory inventoryFactory) {
+    public Creature(int hp, int speed, int strength, int dexterity, int consitution, InventoryFactory inventoryFactory) {
 
         if (hp <= 0) {
             throw new IllegalArgumentException("HP must be positive.");
@@ -31,10 +31,6 @@ public class Creature extends Entity {
         damageBonus = 0;
 
         inventory = inventoryFactory.create();
-    }
-
-    public Creature(int hp, int speed, int strength, int dexterity, int constitution, InventoryFactory inventoryFactory){
-        this.hp = hp;
     }
 
     public int getHP() {

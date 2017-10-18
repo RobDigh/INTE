@@ -21,8 +21,8 @@ public class AcceptTest extends GameMapTest {
 
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
 
-    private Creature player = new Creature(500, 1, mockInventoryFactory);
-    private Creature monster = new Creature(50, 1, mockInventoryFactory);
+    private Creature player = new Creature(500, 1, 5, 8, 5, mockInventoryFactory);
+    private Creature monster = new Creature(50, 1, 5, 8, 5, mockInventoryFactory);
     private Armor armor = new Armor(5);
     @Test
     public void acceptValidEntity() {

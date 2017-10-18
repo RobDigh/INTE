@@ -723,5 +723,11 @@ public class CreatureTest {
     public void testConstructorWithToHighConstitutionValue(){
         createPlayerWithCustomStrengthDexterityAndConstitution(5,5,13);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidCombinationStrengthDexterityConstitutionAllEight(){
+        createPlayerWithCustomStrengthDexterityAndConstitution(8,8,8);
+    }
+
 }
 

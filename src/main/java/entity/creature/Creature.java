@@ -25,6 +25,10 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Speed must be positive.");
         }
 
+        if(strength < 5){
+            throw new IllegalArgumentException("Strength must be between 5 and 8");
+        }
+
         this.hp = hp;
         this.speed = speed;
         damageReduction = 0;

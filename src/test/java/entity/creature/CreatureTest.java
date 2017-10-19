@@ -29,11 +29,11 @@ public class CreatureTest {
     private SpeedPotion mockSpeedPotion = mock(SpeedPotion.class);
 
     private Creature createPlayerWithCustomHPAndSpeed(int hp, int speed) {
-        return new Creature(hp, speed, 5, 8, 5, mockInventoryFactory, mockAi);
+        return new Creature(hp, speed, 5, 8, 5, true, mockInventoryFactory, mockAi);
     }
 
     private Creature createPlayerWithCustomStrengthDexterityAndConstitution(int strength, int dexterity, int constitution) {
-        return new Creature(10, 100, strength, dexterity, constitution, mockInventoryFactory, mockAi);
+        return new Creature(10, 100, strength, dexterity, constitution, true, mockInventoryFactory, mockAi);
     }
 
     @Before

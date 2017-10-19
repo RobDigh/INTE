@@ -7,7 +7,10 @@ import org.junit.Test;
 import java.awt.*;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class AiTest {
 
@@ -18,9 +21,11 @@ public class AiTest {
      */
 
     private Creature testCreature;
+    private Creature mockMonster = mock(Creature.class);
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
     private Ai ai;
     private GameMap gameMap;
+    private GameMap mockGameMap = mock(GameMap.class);
 
     private Creature createCreature() {
         return new Creature(10, 2, 8, 5, 5, mockInventoryFactory, ai);
@@ -38,16 +43,25 @@ public class AiTest {
         gameMap.place(testCreature, new Point(5,5));
     }
 
-    @Test
-    public void testFlee(){
-        testCreature.flee(gameMap);
-        assertEquals(new Point(5,7), gameMap.getPosition(testCreature));
-    }
+//    @Test
+//    public void testFlee(){
+//        testCreature.flee(gameMap);
+//        assertEquals(new Point(5,7), gameMap.getPosition(testCreature));
+//    }
+//
+//    @Test
+//    public void testFleeWhileAnotherCreatureIsOnTheFirstPoint(){
+//
+//        when(mockGameMap.getEntity(new Point(5,7))).thenReturn(mockMonster);
+//        mockGameMap.place(testCreature, new Point(5,5));
+//
+//        testCreature.flee(mockGameMap);
+//        assertEquals(new Point(7,5), mockGameMap.getPosition(testCreature));
+//    }
 
     @Test
-    public void testFleeWhileAnotherCreatureIsOnTheFirstPoint(){
-        gameMap.place(monster(), new Point(5,7));
-        testCreature.flee(gameMap);
-        assertEquals(new Point(7,5), gameMap.getPosition(testCreature));
+    public void testSoFleeCallsGetAvailablePositionsFromGameMap(){
+        testCreature.flee(mockGameMap);
+        verify(mockGameMap.getAvailablePositions());
     }
 }

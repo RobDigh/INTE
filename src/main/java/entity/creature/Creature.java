@@ -295,8 +295,6 @@ public class Creature extends Entity {
     		level.remove(visitedEntity);
     		return Combat.INITIATOR_WIN;
     	}
-    	
         return false;
     }
-
 }

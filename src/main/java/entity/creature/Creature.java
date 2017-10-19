@@ -197,7 +197,7 @@ public class Creature extends Entity {
     }
 
 	public void act(Creature creature) {
-
+        ai.act();
     }
 
     public void flee() {

@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -22,6 +23,10 @@ public class PlacementTest extends GameMapTest {
 
     private Creature createCreature() {
         return new Creature(10, 2, 8, 5, 5, mockInventoryFactory, ai);
+    }
+
+    private GameMap createCustomGameMap(int xLength, int yLength){
+        return new GameMap(xLength, yLength);
     }
 
     @Before
@@ -159,5 +164,19 @@ public class PlacementTest extends GameMapTest {
     @Test
     public void testGetEntityFromEmptyPosition(){
         assertEquals(null, gameMap.getEntity(new Point(0,0)));
+    }
+
+    @Test
+    public void testGetAllEmptyPositionsForSpecificPlayerOnEmptyMap(){
+        gameMap = createCustomGameMap(2, 2);
+        ArrayList<Point> availablePositions = new ArrayList<>();
+
+        for(int x = 0; x < 2; x++){
+            for(int y = 0; y < 2; y++){
+                availablePositions.add(new Point(x, y));
+            }
+        }
+
+        assertEquals(gameMap.getAvailablePositions(testCreature), availablePositions);
     }
 }

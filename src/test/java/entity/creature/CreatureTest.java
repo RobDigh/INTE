@@ -48,9 +48,9 @@ public class CreatureTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void testCreatureFleeCallsFleeMethodInAi() {
-        testCreature.flee();
-        verify(mockAi).flee();
+    public void testCreatureFleeCallsFleeMethodInAi(){
+        testCreature.flee(null);
+        verify(mockAi).flee(testCreature, null);
     }
 
     @Test
@@ -58,6 +58,8 @@ public class CreatureTest {
         testCreature.act(testCreature);
         verify(mockAi).act();
     }
+
+
 
     @Test
     public void testConstructPlayerWithValidHPAndSpeed() {

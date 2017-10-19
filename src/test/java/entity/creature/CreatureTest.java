@@ -912,6 +912,56 @@ public class CreatureTest {
         assertEquals(Type.BULLDOG, testCreature.calculateType(6, 5, 7, true));
     }
 
+    @Test
+    public void testCalculateTypeBear() {
+        assertEquals(Type.BEAR, testCreature.calculateType(8, 5, 5, false));
+    }
+
+    @Test
+    public void testCalculateTypeCar() {
+        assertEquals(Type.CAR, testCreature.calculateType(7, 6, 5, false));
+    }
+
+    @Test
+    public void testCalculateTypeCat() {
+        assertEquals(Type.CAT, testCreature.calculateType(5, 7, 6, false));
+    }
+
+    @Test
+    public void testCalculateTypeFox() {
+        assertEquals(Type.FOX, testCreature.calculateType(6, 7, 5, false));
+    }
+
+    @Test
+    public void testCalculateTypeHuman() {
+        assertEquals(Type.HUMAN, testCreature.calculateType(6, 6, 6, false));
+    }
+
+    @Test
+    public void testCalculateTypeJogger() {
+        assertEquals(Type.JOGGER, testCreature.calculateType(6, 5, 7, false));
+    }
+
+    @Test
+    public void testCalculateTypeMailman() {
+        assertEquals(Type.MAILMAN, testCreature.calculateType(5, 6, 7, false));
+    }
+
+    @Test
+    public void testCalculateTypeMoose() {
+        assertEquals(Type.MOOSE, testCreature.calculateType(5, 5, 8, false));
+    }
+
+    @Test
+    public void testCalculateTypeSquirrel() {
+        assertEquals(Type.SQUIRREL, testCreature.calculateType(5, 8, 5, false));
+    }
+
+    @Test
+    public void testCalculateTypeWolf() {
+        assertEquals(Type.WOLF, testCreature.calculateType(7, 5, 6, false));
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateTypeInvalidValueStrength() {
         testCreature.calculateType(4, 8, 5, true);

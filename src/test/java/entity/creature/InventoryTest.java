@@ -89,5 +89,15 @@ public class InventoryTest {
         assertFalse(testInventory.getInventory().containsKey("weapon"));
     }
 
+    @Test
+    public void testRemoveNonExistingItemFromNonEmptyInventory(){
+
+        testInventory.addItem(mockArmor, "armor");
+        testInventory.removeItem(mockWeapon, "weapon");
+
+        assertFalse(testInventory.getInventory().containsKey("weapon"));
+    }
+
+
 
 }

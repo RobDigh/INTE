@@ -17,7 +17,8 @@ public class PlacementTest extends GameMapTest {
 
     private Creature testCreature;
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
-    private Ai ai;
+    private Ai ai = mock(Ai.class);
+    GameMap gameMap;
 
     private Creature createCreature() {
         return new Creature(10, 2, 8, 5, 5, mockInventoryFactory, ai);
@@ -26,6 +27,7 @@ public class PlacementTest extends GameMapTest {
     @Before
     public void setUp(){
         testCreature = createCreature();
+        gameMap =  createDefaultSizedGameMap();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -149,10 +151,13 @@ public class PlacementTest extends GameMapTest {
     }
 
     @Test
-    public void getEntityFromPosition() {
-        GameMap gameMap = createDefaultSizedGameMap();
+    public void testGetEntityFromPosition() {
         gameMap.place(testCreature, new Point(0,0));
         assertEquals(testCreature, gameMap.getEntity(new Point(0,0)));
+    }
 
+    @Test
+    public void testGetEntityFromEmptyPosition(){
+        assertEquals(null, gameMap.getEntity(new Point(0,0)));
     }
 }

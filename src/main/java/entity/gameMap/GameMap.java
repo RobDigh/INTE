@@ -99,7 +99,11 @@ public class GameMap extends Entity {
         return new Point(point);
 
     }
-    
+
+    public Entity getEntity(Point point){
+        return entitiesByPosition.get(point);
+    }
+
     private boolean move(Point currentPosition, int speed, Point direction) {
 
         int originalX = currentPosition.x;

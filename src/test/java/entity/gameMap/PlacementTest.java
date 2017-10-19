@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -194,6 +195,48 @@ public class PlacementTest extends GameMapTest {
             }
         }
 
+        assertEquals(availablePositions, gameMap.getAvailablePositions(testCreature));
+    }
+
+    private List<Point> placeSeveralCreaturesOnMap(){
+
+        List<Point> occupiedPoints = new ArrayList<>();
+        Creature c1 = mock(Creature.class);
+        Creature c2 = mock(Creature.class);
+        Creature c3 = mock(Creature.class);
+
+        Point p = new Point(1,1);
+        Point p1 = new Point(5,7);
+        Point p2 = new Point(3,1);
+        Point p3 = new Point(5,2);
+
+        occupiedPoints.add(p);
+        occupiedPoints.add(p1);
+        occupiedPoints.add(p2);
+        occupiedPoints.add(p3);
+
+        gameMap.place(testCreature, p);
+        gameMap.place(c1, p1);
+        gameMap.place(c2, p2);
+        gameMap.place(c3, p3);
+
+        return occupiedPoints;
+    }
+
+    @Test
+    public void testGetAllEmptyPositionsSeveralPlayersOnTheMap(){
+        ArrayList<Point> availablePositions = new ArrayList<>();
+        List<Point> points = placeSeveralCreaturesOnMap();
+
+        for(int x = 0; x < 10; x++){
+            for(int y = 0; y < 10; y++){
+                Point point = new Point(x,y);
+                if(!points.contains(point)){
+                    availablePositions.add(point);
+                }
+
+            }
+        }
         assertEquals(availablePositions, gameMap.getAvailablePositions(testCreature));
 
     }

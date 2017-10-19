@@ -16,7 +16,7 @@ public class AiTest {
 
     /**
      * First implementation:
-     *      Flee to a empty position as far away as possible
+     *      Flee to a empty position
      *      If no empty positions? Start combat with monster next to combat? Or stay?
      */
 

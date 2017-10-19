@@ -180,7 +180,10 @@ public class GameMap extends Entity {
 
         for(int x = 0; x < xLength; x++){
             for(int y = 0; y < yLength; y++){
-                availablePositions.add(new Point(x,y));
+                Point point = new Point(x,y);
+                if(!entitiesByPosition.containsKey(point)) {
+                    availablePositions.add(new Point(x, y));
+                }
             }
         }
         return availablePositions;

@@ -191,7 +191,6 @@ public class PlacementTest extends GameMapTest {
                 if(!(x == 1 && y == 1)){
                     availablePositions.add(new Point(x, y));
                 }
-
             }
         }
 

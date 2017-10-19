@@ -14,10 +14,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class PlacementTest extends GameMapTest {
 
     private Creature testCreature;
+    private Creature mockCreature = mock(Creature.class);
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
     private Ai ai = mock(Ai.class);
     GameMap gameMap;
@@ -29,6 +31,52 @@ public class PlacementTest extends GameMapTest {
     private GameMap createCustomGameMap(int xLength, int yLength){
         return new GameMap(xLength, yLength);
     }
+
+
+    private List<Point> placeSeveralCreaturesOnMap(){
+
+        List<Point> occupiedPoints = new ArrayList<>();
+
+        Point p = new Point(1,1);
+        Point p1 = new Point(5,7);
+        Point p2 = new Point(3,1);
+        Point p3 = new Point(5,2);
+
+        occupiedPoints.add(p);
+        occupiedPoints.add(p1);
+        occupiedPoints.add(p2);
+        occupiedPoints.add(p3);
+
+        gameMap.place(testCreature, p);
+        gameMap.place(mock(Creature.class), p1);
+        gameMap.place(mock(Creature.class), p2);
+        gameMap.place(mock(Creature.class), p3);
+
+        return occupiedPoints;
+    }
+
+    private ArrayList<Point> getAllEmptyPoints(int xAxis, int yAxis, List<Point> occupiedPoints){
+        ArrayList<Point> availablePositions = new ArrayList<>();
+
+        for(int x = 0; x < xAxis; x++){
+            for(int y = 0; y < yAxis; y++){
+                if(!occupiedPoints.contains(new Point(x, y))){
+                    availablePositions.add(new Point(x, y));
+                }
+            }
+        }
+        return availablePositions;
+    }
+
+    private boolean pointExistInList(List<Point> emptyPositions, List<Point> occupiedPoints){
+        for(Point p : emptyPositions){
+            if(occupiedPoints.contains(p)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     @Before
     public void setUp(){
@@ -169,75 +217,41 @@ public class PlacementTest extends GameMapTest {
 
     @Test
     public void testGetAllEmptyPositionsForSpecificPlayerOnSmallEmptyMap(){
-        gameMap = createCustomGameMap(2, 2);
-        ArrayList<Point> availablePositions = new ArrayList<>();
-
-        for(int x = 0; x < 2; x++){
-            for(int y = 0; y < 2; y++){
-                availablePositions.add(new Point(x, y));
-            }
-        }
-
-        assertEquals(availablePositions, gameMap.getAvailablePositions(testCreature));
+        gameMap = createCustomGameMap(3, 3);
+        assertEquals(getAllEmptyPoints(3,3, new ArrayList<>()), gameMap.getAvailablePositions(mockCreature));
     }
 
     @Test
     public void testGetAllEmptyPositionWhileAPlayerIsOnTheMap(){
         gameMap = createCustomGameMap(2, 2);
         gameMap.place(testCreature, new Point(1,1));
-        ArrayList<Point> availablePositions = new ArrayList<>();
+        ArrayList<Point> occupiedPoints = new ArrayList<>();
+        occupiedPoints.add(new Point(1,1));
 
-        for(int x = 0; x < 2; x++){
-            for(int y = 0; y < 2; y++){
-                if(!(x == 1 && y == 1)){
-                    availablePositions.add(new Point(x, y));
-                }
-            }
-        }
-
-        assertEquals(availablePositions, gameMap.getAvailablePositions(testCreature));
-    }
-
-    private List<Point> placeSeveralCreaturesOnMap(){
-
-        List<Point> occupiedPoints = new ArrayList<>();
-        Creature c1 = mock(Creature.class);
-        Creature c2 = mock(Creature.class);
-        Creature c3 = mock(Creature.class);
-
-        Point p = new Point(1,1);
-        Point p1 = new Point(5,7);
-        Point p2 = new Point(3,1);
-        Point p3 = new Point(5,2);
-
-        occupiedPoints.add(p);
-        occupiedPoints.add(p1);
-        occupiedPoints.add(p2);
-        occupiedPoints.add(p3);
-
-        gameMap.place(testCreature, p);
-        gameMap.place(c1, p1);
-        gameMap.place(c2, p2);
-        gameMap.place(c3, p3);
-
-        return occupiedPoints;
+        List<Point> emptyPlaces = gameMap.getAvailablePositions(mockCreature);
+        assertFalse(pointExistInList(emptyPlaces, occupiedPoints));
     }
 
     @Test
     public void testGetAllEmptyPositionsSeveralPlayersOnTheMap(){
-        ArrayList<Point> availablePositions = new ArrayList<>();
         List<Point> points = placeSeveralCreaturesOnMap();
+        ArrayList<Point> availablePositions = getAllEmptyPoints(10, 10, points);
+        List<Point> emptyPoints = gameMap.getAvailablePositions(mockCreature);
+        assertFalse(pointExistInList(emptyPoints, points));
+        assertEquals(availablePositions, emptyPoints);
+    }
 
-        for(int x = 0; x < 10; x++){
-            for(int y = 0; y < 10; y++){
-                Point point = new Point(x,y);
-                if(!points.contains(point)){
-                    availablePositions.add(point);
-                }
+    @Test
+    public void testGetEmptyPositionsOutsideCreaturesPositionRange(){
+        when(mockCreature.getSpeed()).thenReturn(1);
+        gameMap.place(mockCreature, new Point(3,3));
+        List<Point> occupiedPoints = new ArrayList<>();
+        occupiedPoints.add(new Point(3,3));
 
-            }
+        List<Point> emptyPositions = getAllEmptyPoints(4,4,occupiedPoints);
+        List<Point> emptyPositionsFromGameMap = gameMap.getAvailablePositions(mockCreature);
+        assertEquals(emptyPositions, emptyPositionsFromGameMap);
         }
-        assertEquals(availablePositions, gameMap.getAvailablePositions(testCreature));
+
 
     }
-}

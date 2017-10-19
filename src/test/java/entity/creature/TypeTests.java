@@ -120,4 +120,14 @@ public class TypeTests {
         assertEquals(8, Type.VIZSLA.getConstitution());
         assertTrue(Type.VIZSLA.isPC());
     }
+
+    @Test
+    public void testAllBearValues() {
+        assertEquals("Bear", Type.BEAR.getName());
+        assertEquals(8, Type.BEAR.getStrength());
+        assertEquals(5, Type.BEAR.getDexterity());
+        assertEquals(5, Type.BEAR.getConstitution());
+        assertFalse(Type.BEAR.isPC());
+    }
+
 }

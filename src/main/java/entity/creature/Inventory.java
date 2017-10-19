@@ -21,7 +21,9 @@ public class Inventory {
        if (inventoryMap.isEmpty()){
            return false;
        }
-
+       if (!inventoryMap.containsKey(key)){
+           return false;
+       }
         inventoryMap.remove(key, item);
         return true;
     }

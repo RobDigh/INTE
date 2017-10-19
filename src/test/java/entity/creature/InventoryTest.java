@@ -104,4 +104,11 @@ public class InventoryTest {
         assertFalse(testInventory.removeItem(mockArmor, "armor"));
     }
 
+    @Test
+    public void testRemoveWrongKeyAndCorrectItem(){
+
+        testInventory.addItem(mockArmor, "armor");
+
+        assertFalse(testInventory.removeItem(mockArmor, "amor"));
+    }
 }

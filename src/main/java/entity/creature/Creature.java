@@ -50,6 +50,7 @@ public class Creature extends Entity {
         this.strength = strength;
         this.dexterity = dexterity;
         this.constitution = constitution;
+        this.isPC = isPC;
 
         this.type = calculateType(strength, dexterity, constitution, isPC);
         if (type == null) {

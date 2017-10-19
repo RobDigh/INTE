@@ -51,6 +51,8 @@ public class Creature extends Entity {
         this.dexterity = dexterity;
         this.constitution = constitution;
 
+        this.type = calculateType(strength, dexterity, constitution, isPC);
+
         this.hp = hp;
         this.speed = speed;
         damageReduction = 0;

@@ -23,7 +23,7 @@ public class AiTest {
     private GameMap gameMap;
 
     private Creature createCreature() {
-        return new Creature(10, 2, 8, 5, 5, mockInventoryFactory, ai);
+        return new Creature(10, 2, 8, 5, 5, true, mockInventoryFactory, ai);
     }
 
     @Before

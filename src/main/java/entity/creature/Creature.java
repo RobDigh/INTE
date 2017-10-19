@@ -31,22 +31,6 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Speed must be positive.");
         }
 
-        if(strength < 5 ||strength > 8){
-            throw new IllegalArgumentException("Strength must be between 5 and 8");
-        }
-
-        if(dexterity < 5 || dexterity > 8){
-            throw new IllegalArgumentException("Dexterity must be between 5 and 8");
-        }
-
-        if(constitution < 5 || constitution > 8){
-            throw new IllegalArgumentException("Constitution must be between 5 and 8");
-        }
-
-        if((strength + dexterity + constitution) > 18 || (strength + dexterity + constitution) < 18){
-            throw new IllegalArgumentException("The sum of strength, dexterity and constitution have to be 18");
-        }
-
         this.strength = strength;
         this.dexterity = dexterity;
         this.constitution = constitution;
@@ -67,6 +51,22 @@ public class Creature extends Entity {
     }
 
     public Type calculateType(int strength, int dexterity, int constitution, boolean isPC) {
+        if(strength < 5 ||strength > 8){
+            throw new IllegalArgumentException("Strength must be between 5 and 8");
+        }
+
+        if(dexterity < 5 || dexterity > 8){
+            throw new IllegalArgumentException("Dexterity must be between 5 and 8");
+        }
+
+        if(constitution < 5 || constitution > 8){
+            throw new IllegalArgumentException("Constitution must be between 5 and 8");
+        }
+
+        if((strength + dexterity + constitution) > 18 || (strength + dexterity + constitution) < 18){
+            throw new IllegalArgumentException("The sum of strength, dexterity and constitution have to be 18");
+        }
+
         ArrayList<Type> temp = new ArrayList<>(EnumSet.allOf(Type.class));
         for (int i = 0; i < temp.size(); i++) {
             Type type = temp.get(i);

@@ -49,7 +49,7 @@ public class CreatureTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void testCreatureFleeCallsFleeMethodInAi(){
+    public void testCreatureFleeCallsFleeMethodInAi() {
         testCreature.flee(null);
         verify(mockAi).flee(testCreature, null);
     }
@@ -59,7 +59,6 @@ public class CreatureTest {
         testCreature.act(testCreature);
         verify(mockAi).act();
     }
-
 
 
     @Test
@@ -740,10 +739,10 @@ public class CreatureTest {
     /**
      * Add tests for constructor
      */
-//Start tests from CreatureConstructorTest
+
     @Test
     public void testCreateCreature() {
-        testCreature = createPlayerWithCustomStrengthDexterityAndConstitution(5,6,7);
+        testCreature = createPlayerWithCustomStrengthDexterityAndConstitution(5, 6, 7);
         assertEquals(5, testCreature.getStrength());
         assertEquals(6, testCreature.getDexterity());
         assertEquals(7, testCreature.getConstitution());
@@ -859,6 +858,95 @@ public class CreatureTest {
     public void testGetConstitution() {
         createPlayerWithCustomStrengthDexterityAndConstitution(6, 6, 6);
         assertEquals(5, testCreature.getConstitution());
+    }
+
+    /**
+     * Add tests for calculateType
+     */
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeInvalidValueStrength() {
+        testCreature.calculateType(4, 8, 5, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeNegativeValueStrength() {
+        testCreature.calculateType(-7, 5, 5, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeWithToHighStrengthValue() {
+        testCreature.calculateType(9, 6, 5, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeWithToLowValueDexterity() {
+        testCreature.calculateType(5, 3, 6, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeWithToNegativeValueDexterity() {
+        testCreature.calculateType(5, -3, 6, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeWithToHighDexterityValue() {
+        testCreature.calculateType(6, 23, 7, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeWithToLowValueConstitution() {
+        testCreature.calculateType(6, 7, 2, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeWithToNegativeValueConstitution() {
+        testCreature.calculateType(7, 6, -22, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeWithToHighConstitutionValue() {
+        testCreature.calculateType(5, 5, 13, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeInvalidCombinationStrengthDexterityConstitutionAllEight() {
+        testCreature.calculateType(8, 8, 8, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeInvalidCombinationStrengthDexterityConstitutionTwoStatIsSeven() {
+        testCreature.calculateType(7, 7, 5, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeInvalidCombinationStrengthDexterityConstitutionTwoStatsOfSix() {
+        testCreature.calculateType(5, 6, 6, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeInvalidCombinationStrengthDexterityConstitutionAllFive() {
+        testCreature.calculateType(5, 5, 5, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeInvalidCombinationStrengthDexterityConstitutionEightAndSixTogether() {
+        testCreature.calculateType(5, 6, 8, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeInvalidCombinationStrengthDexterityConstitutionEightAndSevenTogether() {
+        testCreature.calculateType(7, 8, 5, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeInvalidCombinationStrengthDexterityConstitutionTwoFiveOneSix() {
+        testCreature.calculateType(5, 6, 5, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateTypeInvalidCombinationStrengthDexterityConstitutionTwoFiveOneSeven() {
+        testCreature.calculateType(7, 5, 5, true);
     }
 }
 

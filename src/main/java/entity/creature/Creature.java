@@ -47,6 +47,10 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("The sum of strength, dexterity and constitution have to be 18");
         }
 
+        this.strength = strength;
+        this.dexterity = dexterity;
+        this.constitution = constitution;
+
         this.hp = hp;
         this.speed = speed;
         damageReduction = 0;

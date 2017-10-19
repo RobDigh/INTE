@@ -15,7 +15,7 @@ public class Creature extends Entity {
 
     private Inventory inventory;
 
-    public Creature(int hp, int speed, int strength, int dexterity, int consitution, InventoryFactory inventoryFactory) {
+    public Creature(int hp, int speed, int strength, int dexterity, int constitution, InventoryFactory inventoryFactory) {
 
         if (hp <= 0) {
             throw new IllegalArgumentException("HP must be positive.");
@@ -33,11 +33,11 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Dexterity must be between 5 and 8");
         }
 
-        if(consitution < 5 || consitution > 8){
+        if(constitution < 5 || constitution > 8){
             throw new IllegalArgumentException("Constitution must be between 5 and 8");
         }
 
-        if((strength + dexterity + consitution) > 18 || (strength + dexterity + consitution) < 18){
+        if((strength + dexterity + constitution) > 18 || (strength + dexterity + constitution) < 18){
             throw new IllegalArgumentException("The sum of strength, dexterity and constitution have to be 18");
         }
 

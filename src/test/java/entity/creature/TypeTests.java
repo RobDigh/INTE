@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class BreedTests {
+public class TypeTests {
 
     @Test
     public void testAllValuesAreThere() {
@@ -44,6 +44,7 @@ public class BreedTests {
         assertEquals(5, Type.DACHSHUND.getStrength());
         assertEquals(7, Type.DACHSHUND.getDexterity());
         assertEquals(6, Type.DACHSHUND.getConstitution());
+        assertTrue(Type.DACHSHUND.isPC());
     }
 
     @Test
@@ -52,6 +53,7 @@ public class BreedTests {
         assertEquals(7, Type.DOBERMANN.getStrength());
         assertEquals(6, Type.DOBERMANN.getDexterity());
         assertEquals(5, Type.DOBERMANN.getConstitution());
+        assertTrue(Type.DOBERMANN.isPC());
     }
 
     @Test
@@ -60,6 +62,7 @@ public class BreedTests {
         assertEquals(5, Type.GREYHOUND.getStrength());
         assertEquals(6, Type.GREYHOUND.getDexterity());
         assertEquals(7, Type.GREYHOUND.getConstitution());
+        assertTrue(Type.GREYHOUND.isPC());
     }
 
     @Test

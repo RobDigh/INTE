@@ -32,7 +32,7 @@ public class CreatureTest {
         return new Creature(hp, speed, 5, 8, 5, mockInventoryFactory, mockAi);
     }
 
-    private Creature createPlayerWithCustomStrengthDexterityAndConstitution(int strength, int dexterity, int constitution){
+    private Creature createPlayerWithCustomStrengthDexterityAndConstitution(int strength, int dexterity, int constitution) {
         return new Creature(10, 100, strength, dexterity, constitution, mockInventoryFactory, mockAi);
     }
 
@@ -48,13 +48,13 @@ public class CreatureTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void testCreatureFleeCallsFleeMethodInAi(){
+    public void testCreatureFleeCallsFleeMethodInAi() {
         testCreature.flee();
         verify(mockAi).flee();
     }
 
     @Test
-    public void testCreatureActCallsActMethodInAi(){
+    public void testCreatureActCallsActMethodInAi() {
         testCreature.act(testCreature);
         verify(mockAi).act();
     }
@@ -89,6 +89,7 @@ public class CreatureTest {
         createPlayerWithCustomHPAndSpeed(100, 0);
     }
 
+    //HP-tests
     @Test
     public void testGetHP() {
 
@@ -98,6 +99,7 @@ public class CreatureTest {
     }
 
     @Test
+
     public void testGetSpeed() {
 
         Creature creature = createPlayerWithCustomHPAndSpeed(500, 10);
@@ -110,6 +112,7 @@ public class CreatureTest {
      */
 
     @Test
+
     public void testGainHP() {
         Creature creature = createPlayerWithCustomHPAndSpeed(450, 8);
         creature.gainHP(50);
@@ -157,6 +160,8 @@ public class CreatureTest {
         creature.loseHP(50);
         assertEquals(0, creature.getHP());
     }
+
+    //Speed-tests
 
     @Test
     public void testGainHPSeveralTimes() {
@@ -665,36 +670,36 @@ public class CreatureTest {
     }
 
     @Test
-    public void testAddArmorToInventory() throws Exception{
+    public void testAddArmorToInventory() throws Exception {
 
         testCreature.addItemToInventory(mockArmor, "armor");
         verify(mockInventory).addItem(mockArmor, "armor");
     }
 
     @Test
-    public void testAddWeaponToInventory() throws Exception{
+    public void testAddWeaponToInventory() throws Exception {
 
         testCreature.addItemToInventory(mockWeapon, "weapon");
         verify(mockInventory).addItem(mockWeapon, "weapon");
     }
 
     @Test
-    public void testAddHealthPotionToInventory() throws Exception{
+    public void testAddHealthPotionToInventory() throws Exception {
 
         testCreature.addItemToInventory(mockHealthPotion, "health potion");
         verify(mockInventory).addItem(mockHealthPotion, "health potion");
     }
 
     @Test
-    public void testAddSpeedPotion() throws Exception{
+    public void testAddSpeedPotion() throws Exception {
 
         testCreature.addItemToInventory(mockSpeedPotion, "speed potion");
         verify(mockInventory).addItem(mockSpeedPotion, "speed potion");
     }
 
     /**
-    * Remove item from inventory
-    */
+     * Remove item from inventory
+     */
 
     @Test(expected = NullPointerException.class)
     public void testRemoveNullFromInventory() {
@@ -702,117 +707,138 @@ public class CreatureTest {
     }
 
     @Test
-    public void testRemoveArmor() throws Exception{
+    public void testRemoveArmor() throws Exception {
         testCreature.addItemToInventory(mockArmor, "armor");
         testCreature.removeItemFromInventory(mockArmor, "armor");
         verify(mockInventory).removeItem(mockArmor, "armor");
     }
 
     @Test
-    public void testRemoveWeapon() throws Exception{
+    public void testRemoveWeapon() throws Exception {
         testCreature.addItemToInventory(mockWeapon, "weapon");
         testCreature.removeItemFromInventory(mockWeapon, "weapon");
         verify(mockInventory).removeItem(mockWeapon, "weapon");
     }
 
     @Test
-    public void testRemoveHealthPotion() throws Exception{
+    public void testRemoveHealthPotion() throws Exception {
         testCreature.addItemToInventory(mockHealthPotion, "health potion");
         testCreature.removeItemFromInventory(mockHealthPotion, "health potion");
         verify(mockInventory).removeItem(mockHealthPotion, "health potion");
     }
 
     @Test
-    public void testRemoveSpeedPotion() throws Exception{
+    public void testRemoveSpeedPotion() throws Exception {
         testCreature.addItemToInventory(mockSpeedPotion, "speed potion");
         testCreature.removeItemFromInventory(mockSpeedPotion, "speed potion");
         verify(mockInventory).removeItem(mockSpeedPotion, "speed potion");
     }
 
-    @Test (expected = IllegalArgumentException.class)
-    public void testConstructorInvalidValueStrength(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(4,8,5);
-    }
-
-    @Test (expected = IllegalArgumentException.class)
-    public void testConstructorNegativeValueStrength(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(-7,5,5);
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructorInvalidValueStrength() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(4, 8, 5);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testConstructorWithToHighStrengthValue(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(9,6,5);
+    public void testConstructorNegativeValueStrength() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(-7, 5, 5);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testConstructorWithToLowValueDexterity(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(5,3,6);
+    public void testConstructorWithToHighStrengthValue() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(9, 6, 5);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testConstructorWithToNegativeValueDexterity(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(5,-3,6);
+    public void testConstructorWithToLowValueDexterity() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(5, 3, 6);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testConstructorWithToHighDexterityValue(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(6,23,7);
+    public void testConstructorWithToNegativeValueDexterity() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(5, -3, 6);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testConstructorWithToLowValueConstitution(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(6,7,2);
+    public void testConstructorWithToHighDexterityValue() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(6, 23, 7);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testConstructorWithToNegativeValueConstitution(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(7,6,-22);
+    public void testConstructorWithToLowValueConstitution() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(6, 7, 2);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testConstructorWithToHighConstitutionValue(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(5,5,13);
+    public void testConstructorWithToNegativeValueConstitution() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(7, 6, -22);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testInvalidCombinationStrengthDexterityConstitutionAllEight(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(8,8,8);
+    public void testConstructorWithToHighConstitutionValue() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(5, 5, 13);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testInvalidCombinationStrengthDexterityConstitutionTwoStatIsSeven(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(7,7,5);
+    public void testInvalidCombinationStrengthDexterityConstitutionAllEight() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(8, 8, 8);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testInvalidCombinationStrengthDexterityConstitutionTwoStatsOfSix(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(5,6,6);
+    public void testInvalidCombinationStrengthDexterityConstitutionTwoStatIsSeven() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(7, 7, 5);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testInvalidCombinationStrengthDexterityConstitutionAllFive(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(5,5,5);
+    public void testInvalidCombinationStrengthDexterityConstitutionTwoStatsOfSix() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(5, 6, 6);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testInvalidCombinationStrengthDexterityConstitutionEightAndSixTogether(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(5,6,8);
+    public void testInvalidCombinationStrengthDexterityConstitutionAllFive() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(5, 5, 5);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testInvalidCombinationStrengthDexterityConstitutionEightAndSevenTogether(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(7,8,5);
+    public void testInvalidCombinationStrengthDexterityConstitutionEightAndSixTogether() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(5, 6, 8);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testInvalidCombinationStrengthDexterityConstitutionTwoFiveOneSix(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(5,6,5);
+    public void testInvalidCombinationStrengthDexterityConstitutionEightAndSevenTogether() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(7, 8, 5);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testInvalidCombinationStrengthDexterityConstitutionTwoFiveOneSeven(){
-        createPlayerWithCustomStrengthDexterityAndConstitution(7,5,5);
+    public void testInvalidCombinationStrengthDexterityConstitutionTwoFiveOneSix() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(5, 6, 5);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidCombinationStrengthDexterityConstitutionTwoFiveOneSeven() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(7, 5, 5);
+    }
+
+    /**
+     * Add stat tests
+     */
+
+    @Test
+    public void testGetStrength() {
+        testCreature = createPlayerWithCustomStrengthDexterityAndConstitution(6, 6, 6);
+        assertEquals(6, testCreature.getStrength());
+    }
+
+    @Test
+    public void testGetDexterity() {
+        testCreature = createPlayerWithCustomStrengthDexterityAndConstitution(6, 6, 6);
+        assertEquals(6, testCreature.getDexterity());
+    }
+
+    @Test
+    public void testGetConstitution() {
+        createPlayerWithCustomStrengthDexterityAndConstitution(6, 6, 6);
+        assertEquals(5, testCreature.getConstitution());
+    }
 }
 

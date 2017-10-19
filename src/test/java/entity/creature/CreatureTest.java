@@ -683,6 +683,11 @@ public class CreatureTest {
     * Remove item from inventory
     */
 
+    @Test(expected = NullPointerException.class)
+    public void testRemoveNullFromInventory() {
+        testCreature.removeItemFromInventory(null, "null");
+    }
+
     @Test
     public void testRemoveArmor() throws Exception{
 

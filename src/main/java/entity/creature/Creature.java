@@ -186,8 +186,11 @@ public class Creature extends Entity {
 
 	public boolean removeItemFromInventory(Item item, String key) {
 
-        inventory.removeItem(item, key);
+        if(item.equals(null)){
+            throw new NullPointerException("Item can't be null");
+        }
 
+        inventory.removeItem(item, key);
         return true;
     }
 

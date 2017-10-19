@@ -12,10 +12,11 @@ public class Creature extends Entity {
     private int speed;
     private double damageReduction;
     private double damageBonus;
+    private Ai ai;
 
     private Inventory inventory;
 
-    public Creature(int hp, int speed, int strength, int dexterity, int constitution, InventoryFactory inventoryFactory) {
+    public Creature(int hp, int speed, int strength, int dexterity, int constitution, InventoryFactory inventoryFactory, Ai ai) {
 
         if (hp <= 0) {
             throw new IllegalArgumentException("HP must be positive.");

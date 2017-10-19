@@ -1,5 +1,6 @@
 package entity.gameMap;
 
+import entity.creature.Ai;
 import entity.creature.InventoryFactory;
 
 import org.junit.Test;
@@ -20,9 +21,10 @@ public class AcceptTest extends GameMapTest {
     private GameMap mockUpperLevel = mock(GameMap.class);
 
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
+    private Ai mockAi = (mock(Ai.class));
 
-    private Creature player = new Creature(500, 1, 5, 8, 5, mockInventoryFactory);
-    private Creature monster = new Creature(50, 1, 5, 8, 5, mockInventoryFactory);
+    private Creature player = new Creature(500, 1, 5, 8, 5, mockInventoryFactory, mockAi);
+    private Creature monster = new Creature(50, 1, 5, 8, 5, mockInventoryFactory, mockAi);
     private Armor armor = new Armor(5);
     @Test
     public void acceptValidEntity() {

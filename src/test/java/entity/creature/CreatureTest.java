@@ -21,6 +21,7 @@ public class CreatureTest {
 
     private Inventory mockInventory = mock(Inventory.class);
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
+    private Ai mockAi = (mock(Ai.class));
 
     private Armor mockArmor = mock(Armor.class);
     private Weapon mockWeapon = mock(Weapon.class);
@@ -28,11 +29,11 @@ public class CreatureTest {
     private SpeedPotion mockSpeedPotion = mock(SpeedPotion.class);
 
     private Creature createPlayerWithCustomHPAndSpeed(int hp, int speed) {
-        return new Creature(hp, speed, 5, 8, 5, mockInventoryFactory);
+        return new Creature(hp, speed, 5, 8, 5, mockInventoryFactory, mockAi);
     }
 
     private Creature createPlayerWithCustomStrengthDexterityAndConstitution(int strength, int dexterity, int constitution){
-        return new Creature(10, 100, strength, dexterity, constitution, mockInventoryFactory);
+        return new Creature(10, 100, strength, dexterity, constitution, mockInventoryFactory, mockAi);
     }
 
     @Before
@@ -46,6 +47,12 @@ public class CreatureTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
+    @Test
+    public void testCreateCreatureAiFlee(){
+        testCreature.flee();
+        verify(mockAi).flee();
+
+    }
     @Test
     public void testConstructPlayerWithValidHPAndSpeed() {
 

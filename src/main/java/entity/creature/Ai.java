@@ -2,7 +2,7 @@ package entity.creature;
 
 import entity.gameMap.GameMap;
 
-import java.awt.*;
+import java.awt.Point;
 
 public class Ai {
 

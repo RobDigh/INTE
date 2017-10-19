@@ -4,12 +4,17 @@ import entity.Entity;
 import entity.gameMap.GameMap;
 import entity.item.Item;
 import combat.Combat;
-
+import java.util.*;
 
 public class Creature extends Entity {
 
+    private int strength;
+    private int dexterity;
+    private int constitution;
     private int hp;
     private int speed;
+    private boolean isPC;
+    private Type type;
     private double damageReduction;
     private double damageBonus;
     private Ai ai;
@@ -42,6 +47,10 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("The sum of strength, dexterity and constitution have to be 18");
         }
 
+        this.strength = strength;
+        this.dexterity = dexterity;
+        this.constitution = constitution;
+
         this.hp = hp;
         this.speed = speed;
         damageReduction = 0;
@@ -49,6 +58,36 @@ public class Creature extends Entity {
 
         inventory = inventoryFactory.create();
         this.ai = ai;
+    }
+
+    public Creature(int strength, int dexterity, int constitution, boolean isPC) {
+        if (strength <= 0 || dexterity <= 0 || constitution <= 0) {
+            throw new IllegalArgumentException("All stats must have positive values");
+        }
+
+        this.strength = strength;
+        this.dexterity = dexterity;
+        this.constitution = constitution;
+        this.isPC = isPC;
+        type = calculateType(strength, dexterity, constitution, isPC);
+        if (type == null) {
+            throw new IllegalArgumentException("There is no type that corresponds with these stat values");
+        }
+
+        //Very primitive example of how stats may affect speed and hp
+        speed = dexterity * 2;
+        hp = constitution * 10;
+    }
+
+    public Type calculateType(int strength, int dexterity, int constitution, boolean isPC) {
+        ArrayList<Type> temp = new ArrayList<>(EnumSet.allOf(Type.class));
+        for (int i = 0; i < temp.size(); i++) {
+            Type type = temp.get(i);
+            if (type.getStrength() == strength && type.getDexterity() == dexterity && type.getConstitution() == constitution && isPC == type.isPC()) {
+                return type;
+            }
+        }
+        return null;
     }
 
     public int getHP() {
@@ -59,16 +98,36 @@ public class Creature extends Entity {
         return speed;
     }
 
-    public double getDamageReduction(){
+    public double getDamageReduction() {
         return damageReduction;
     }
 
-    public double getDamageBonus(){
+    public double getDamageBonus() {
         return damageBonus;
     }
 
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getDexterity() {
+        return dexterity;
+    }
+
+    public int getConstitution() {
+        return constitution;
+    }
+
+    public boolean isPC() {
+        return isPC;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
     public void gainHP(int amount) {
-        if(getHP() == 0){
+        if (getHP() == 0) {
             return;
         }
         if (amount <= 0) {
@@ -112,60 +171,60 @@ public class Creature extends Entity {
     }
 
     public void incrementDamageReduction(double increaseValue) {
-        if(increaseValue <= 0){
+        if (increaseValue <= 0) {
             throw new IllegalArgumentException("Increase value must be greater than 0");
         }
-        if(increaseValue > 100){
+        if (increaseValue > 100) {
             throw new IllegalArgumentException("Increase value must be less or equal to 100");
         }
-        if((damageReduction + increaseValue) >= 100){
+        if ((damageReduction + increaseValue) >= 100) {
             damageReduction = 100;
-        }else{
+        } else {
             double newDamageReduction = Math.round(increaseValue * 100);
             damageReduction += (newDamageReduction / 100);
         }
     }
 
-    public void decrementDamageReduction(double decreaseValue){
-        if(decreaseValue <= 0){
+    public void decrementDamageReduction(double decreaseValue) {
+        if (decreaseValue <= 0) {
             throw new IllegalArgumentException("Decrease value must be greater than 0");
         }
-        if(decreaseValue > 100){
+        if (decreaseValue > 100) {
             throw new IllegalArgumentException("Decrease value must be less or equal to 100");
         }
-        if((damageReduction - decreaseValue) <= 0){
+        if ((damageReduction - decreaseValue) <= 0) {
             damageReduction = 0;
-        }else {
+        } else {
             double newDamageReduction = Math.round((damageReduction - decreaseValue) * 100);
             damageReduction = newDamageReduction / 100;
         }
     }
 
     public void incrementDamageBonus(double increaseValue) {
-        if(increaseValue <= 0){
+        if (increaseValue <= 0) {
             throw new IllegalArgumentException("Damage bonus must be greater than 0");
         }
-        if(increaseValue > 100){
+        if (increaseValue > 100) {
             throw new IllegalArgumentException("Damage bonus must be lower or equal to 100");
         }
-        if((damageBonus + increaseValue) > 100){
+        if ((damageBonus + increaseValue) > 100) {
             damageBonus = 100;
-        }else {
+        } else {
             double newDamageBonus = Math.round(increaseValue * 100);
             damageBonus += (newDamageBonus / 100);
         }
     }
 
-    public void decrementDamageBonus(double decreaseValue){
-        if(decreaseValue <= 0){
+    public void decrementDamageBonus(double decreaseValue) {
+        if (decreaseValue <= 0) {
             throw new IllegalArgumentException("Decrease value must be greater than 0");
         }
-        if(decreaseValue >= 100){
+        if (decreaseValue >= 100) {
             throw new IllegalArgumentException("Decrease value must be less or equal to 100");
         }
-        if(damageBonus - decreaseValue < 0){
+        if (damageBonus - decreaseValue < 0) {
             damageBonus = 0;
-        }else {
+        } else {
             double newDamageBonus = Math.round((damageBonus - decreaseValue) * 100);
             damageBonus = newDamageBonus / 100;
         }

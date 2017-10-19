@@ -17,8 +17,13 @@ public class Inventory {
         inventoryMap.put(key, item);
     }
 
-    public void removeItem(Item item, String key) {
+    public boolean removeItem(Item item, String key) {
+       if (inventoryMap.isEmpty()){
+           return false;
+       }
+
         inventoryMap.remove(key, item);
+        return true;
     }
 
     public Map<String, Item> getInventory() {

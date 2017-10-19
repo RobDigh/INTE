@@ -98,6 +98,10 @@ public class InventoryTest {
         assertFalse(testInventory.getInventory().containsKey("weapon"));
     }
 
+    @Test
+    public void testRemoveItemFromEmptyInventory(){
 
+        assertFalse(testInventory.removeItem(mockArmor, "armor"));
+    }
 
 }

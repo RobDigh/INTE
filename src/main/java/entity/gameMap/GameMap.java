@@ -5,6 +5,8 @@ import entity.creature.Creature;
 
 import javax.swing.text.Position;
 import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -171,5 +173,9 @@ public class GameMap extends Entity {
         addEntity(entity, DEFAULT_ENTRY_POSITION);
         return false;
 
+    }
+
+    public ArrayList<Point> getAvailablePositions(Creature creature){
+        return null;
     }
 }

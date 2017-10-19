@@ -62,6 +62,6 @@ public class AiTest {
     @Test
     public void testSoFleeCallsGetAvailablePositionsFromGameMap(){
         testCreature.flee(mockGameMap);
-        verify(mockGameMap.getAvailablePositions());
+        verify(mockGameMap).getAvailablePositions(testCreature);
     }
 }

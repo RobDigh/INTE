@@ -18,6 +18,17 @@ public class TypeTests {
         assertNotNull(Type.valueOf("SIBERIANHUSKY"));
         assertNotNull(Type.valueOf("STBERNARD"));
         assertNotNull(Type.valueOf("VIZSLA"));
+
+        assertNotNull(Type.valueOf("BEAR"));
+        assertNotNull(Type.valueOf("CAR"));
+        assertNotNull(Type.valueOf("CAT"));
+        assertNotNull(Type.valueOf("FOX"));
+        assertNotNull(Type.valueOf("HUMAN"));
+        assertNotNull(Type.valueOf("JOGGER"));
+        assertNotNull(Type.valueOf("MAILMAN"));
+        assertNotNull(Type.valueOf("MOOSE"));
+        assertNotNull(Type.valueOf("SQUIRREL"));
+        assertNotNull(Type.valueOf("WOLF"));
     }
 
     @Test

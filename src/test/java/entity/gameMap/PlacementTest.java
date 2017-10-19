@@ -167,7 +167,7 @@ public class PlacementTest extends GameMapTest {
     }
 
     @Test
-    public void testGetAllEmptyPositionsForSpecificPlayerOnEmptyMap(){
+    public void testGetAllEmptyPositionsForSpecificPlayerOnSmallEmptyMap(){
         gameMap = createCustomGameMap(2, 2);
         ArrayList<Point> availablePositions = new ArrayList<>();
 
@@ -177,6 +177,25 @@ public class PlacementTest extends GameMapTest {
             }
         }
 
-        assertEquals(gameMap.getAvailablePositions(testCreature), availablePositions);
+        assertEquals(availablePositions, gameMap.getAvailablePositions(testCreature));
+    }
+
+    @Test
+    public void testGetAllEmptyPositionWhileAPlayerIsOnTheMap(){
+        gameMap = createCustomGameMap(2, 2);
+        gameMap.place(testCreature, new Point(1,1));
+        ArrayList<Point> availablePositions = new ArrayList<>();
+
+        for(int x = 0; x < 2; x++){
+            for(int y = 0; y < 2; y++){
+                if(!(x == 1 && y == 1)){
+                    availablePositions.add(new Point(x, y));
+                }
+
+            }
+        }
+
+        assertEquals(availablePositions, gameMap.getAvailablePositions(testCreature));
+
     }
 }

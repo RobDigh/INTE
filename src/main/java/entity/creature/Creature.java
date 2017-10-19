@@ -48,6 +48,7 @@ public class Creature extends Entity {
         damageBonus = 0;
 
         inventory = inventoryFactory.create();
+        this.ai = ai;
     }
 
     public int getHP() {
@@ -200,7 +201,7 @@ public class Creature extends Entity {
     }
 
     public void flee() {
-
+        ai.flee();
     }
 
     public boolean doBattle(Entity visitingEntity, Entity visitedEntity){

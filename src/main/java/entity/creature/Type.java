@@ -10,7 +10,17 @@ public enum Type {
     OVTJARKA("Ovtjarka", 8, 5, 5, true),
     SIBERIANHUSKY("Siberian husky", 6, 7, 5, true),
     STBERNARD("St. Bernard", 7, 5, 6, true),
-    VIZSLA("Vizsla", 5, 5, 8, true);
+    VIZSLA("Vizsla", 5, 5, 8, true),
+    BEAR("Bear", 8, 5, 5, false),
+    CAR("Car", 7, 6, 5, false),
+    CAT("Cat", 5, 7, 6, false),
+    FOX("Fox", 6, 7, 5, false),
+    HUMAN("Human", 6, 6, 6, false),
+    JOGGER("Jogger", 6, 5, 7, false),
+    MAILMAN("Mailman", 5, 6, 7, false),
+    MOOSE("Moose", 5, 5, 8, false),
+    SQUIRREL("Squirrel", 5, 8, 5, false),
+    WOLF("Wolf", 7, 5, 6, false);
 
     private String name;
     private int strength;
@@ -42,7 +52,7 @@ public enum Type {
         return constitution;
     }
 
-    public boolean isPC(){
+    public boolean isPC() {
         return isPC;
     }
 }

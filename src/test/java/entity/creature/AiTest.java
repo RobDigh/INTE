@@ -28,11 +28,11 @@ public class AiTest {
     private GameMap mockGameMap = mock(GameMap.class);
 
     private Creature createCreature() {
-        return new Creature(10, 2, 8, 5, 5, mockInventoryFactory, ai);
+        return new Creature(10, 2, 8, 5, 5, true, mockInventoryFactory, ai);
     }
 
     private Creature monster(){
-        return new Creature(8, 10, 6, 6, 6, mockInventoryFactory, ai);
+        return new Creature(8, 10, 6, 6, 6, false, mockInventoryFactory, ai);
     }
 
     @Before

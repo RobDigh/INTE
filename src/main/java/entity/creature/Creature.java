@@ -21,7 +21,7 @@ public class Creature extends Entity {
 
     private Inventory inventory;
 
-    public Creature(int hp, int speed, int strength, int dexterity, int constitution, InventoryFactory inventoryFactory, Ai ai) {
+    public Creature(int hp, int speed, int strength, int dexterity, int constitution, boolean isPC, InventoryFactory inventoryFactory, Ai ai) {
 
         if (hp <= 0) {
             throw new IllegalArgumentException("HP must be positive.");
@@ -31,6 +31,26 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Speed must be positive.");
         }
 
+        this.strength = strength;
+        this.dexterity = dexterity;
+        this.constitution = constitution;
+        this.isPC = isPC;
+
+        this.type = calculateType(strength, dexterity, constitution, isPC);
+        if (type == null) {
+            throw new IllegalArgumentException("There is no type that corresponds with these stat values");
+        }
+
+        this.hp = hp;
+        this.speed = speed;
+        damageReduction = 0;
+        damageBonus = 0;
+
+        inventory = inventoryFactory.create();
+        this.ai = ai;
+    }
+
+    public Type calculateType(int strength, int dexterity, int constitution, boolean isPC) {
         if(strength < 5 ||strength > 8){
             throw new IllegalArgumentException("Strength must be between 5 and 8");
         }
@@ -47,39 +67,6 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("The sum of strength, dexterity and constitution have to be 18");
         }
 
-        this.strength = strength;
-        this.dexterity = dexterity;
-        this.constitution = constitution;
-
-        this.hp = hp;
-        this.speed = speed;
-        damageReduction = 0;
-        damageBonus = 0;
-
-        inventory = inventoryFactory.create();
-        this.ai = ai;
-    }
-
-    public Creature(int strength, int dexterity, int constitution, boolean isPC) {
-        if (strength <= 0 || dexterity <= 0 || constitution <= 0) {
-            throw new IllegalArgumentException("All stats must have positive values");
-        }
-
-        this.strength = strength;
-        this.dexterity = dexterity;
-        this.constitution = constitution;
-        this.isPC = isPC;
-        type = calculateType(strength, dexterity, constitution, isPC);
-        if (type == null) {
-            throw new IllegalArgumentException("There is no type that corresponds with these stat values");
-        }
-
-        //Very primitive example of how stats may affect speed and hp
-        speed = dexterity * 2;
-        hp = constitution * 10;
-    }
-
-    public Type calculateType(int strength, int dexterity, int constitution, boolean isPC) {
         ArrayList<Type> temp = new ArrayList<>(EnumSet.allOf(Type.class));
         for (int i = 0; i < temp.size(); i++) {
             Type type = temp.get(i);

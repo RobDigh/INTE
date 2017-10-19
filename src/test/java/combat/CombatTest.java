@@ -25,8 +25,8 @@ public class CombatTest {
     private Ai mockAi = mock(Ai.class);
     private GameMap gameMap = mock(GameMap.class);
 
-    private Creature c1 = spy(new Creature(100, 1, 5, 8 ,5, mock(InventoryFactory.class), mockAi));
-    private Creature c2 = spy(new Creature(100, 1, 5, 8, 5, mock(InventoryFactory.class), mockAi));
+    private Creature c1 = spy(new Creature(100, 1, 5, 8 ,5, true, mock(InventoryFactory.class), mockAi));
+    private Creature c2 = spy(new Creature(100, 1, 5, 8, 5, true, mock(InventoryFactory.class), mockAi));
 
     private Combat combat = new Combat(c1, c2);
 

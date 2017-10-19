@@ -22,7 +22,7 @@ public class PlacementTest extends GameMapTest {
     GameMap gameMap;
 
     private Creature createCreature() {
-        return new Creature(10, 2, 8, 5, 5, mockInventoryFactory, ai);
+        return new Creature(10, 2, 5, 8, 5, true, mockInventoryFactory, ai);
     }
 
     private GameMap createCustomGameMap(int xLength, int yLength){

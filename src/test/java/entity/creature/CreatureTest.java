@@ -60,7 +60,6 @@ public class CreatureTest {
         verify(mockAi).act();
     }
 
-
     @Test
     public void testConstructPlayerWithValidHPAndSpeed() {
 

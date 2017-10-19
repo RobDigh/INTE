@@ -3,7 +3,10 @@ package entity.gameMap;
 import entity.Entity;
 import entity.creature.Creature;
 
+import javax.swing.text.Position;
 import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -99,6 +102,10 @@ public class GameMap extends Entity {
 
     }
 
+    public Entity getEntity(Point point){
+        return entitiesByPosition.get(point);
+    }
+
     private boolean move(Point currentPosition, int speed, Point direction) {
 
         int originalX = currentPosition.x;
@@ -166,5 +173,28 @@ public class GameMap extends Entity {
         addEntity(entity, DEFAULT_ENTRY_POSITION);
         return false;
 
+    }
+
+    public ArrayList<Point> getAvailablePositions(Creature creature){
+        Point creaturePosition = positionsByEntity.get(creature);
+        ArrayList<Point> availablePositions = new ArrayList<>();
+
+        int xRange = xLength;
+        int yRange = yLength;
+
+            if(!(creaturePosition == null)) {
+                xRange = creaturePosition.x + creature.getSpeed();
+                yRange = creaturePosition.y + creature.getSpeed();
+            }
+
+        for(int x = 0; x < xRange; x++){
+            for(int y = 0; y < yRange; y++){
+                Point point = new Point(x,y);
+                if(!entitiesByPosition.containsKey(point)) {
+                    availablePositions.add(new Point(x, y));
+                }
+            }
+        }
+        return availablePositions;
     }
 }

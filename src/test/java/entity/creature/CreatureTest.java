@@ -863,6 +863,55 @@ public class CreatureTest {
     /**
      * Add tests for calculateType
      */
+    @Test
+    public void testCalculateTypeLabrador() {
+        assertEquals(Type.LABRADOR, testCreature.calculateType(6, 6, 6, true));
+    }
+
+    @Test
+    public void testCalculateTypeOvtjarka() {
+        assertEquals(Type.OVTJARKA, testCreature.calculateType(8, 5, 5, true));
+    }
+
+    @Test
+    public void testCalculateTypeDobermann() {
+        assertEquals(Type.DOBERMANN, testCreature.calculateType(7, 6, 5, true));
+    }
+
+    @Test
+    public void testCalculateTypeStBernard() {
+        assertEquals(Type.STBERNARD, testCreature.calculateType(7, 5, 6, true));
+    }
+
+    @Test
+    public void testCalculateTypeChihuahua() {
+        assertEquals(Type.CHIHUAHUA, testCreature.calculateType(5, 8, 5, true));
+    }
+
+    @Test
+    public void testCalculateTypeDachshund() {
+        assertEquals(Type.DACHSHUND, testCreature.calculateType(5, 7, 6, true));
+    }
+
+    @Test
+    public void testCalculateTypeSiberianHusky() {
+        assertEquals(Type.SIBERIANHUSKY, testCreature.calculateType(6, 7, 5, true));
+    }
+
+    @Test
+    public void testCalculateTypeVizsla() {
+        assertEquals(Type.VIZSLA, testCreature.calculateType(5, 5, 8, true));
+    }
+
+    @Test
+    public void testCalculateTypeGreyhound() {
+        assertEquals(Type.GREYHOUND, testCreature.calculateType(5, 6, 7, true));
+    }
+
+    @Test
+    public void testCalculateTypeBulldog() {
+        assertEquals(Type.BULLDOG, testCreature.calculateType(6, 5, 7, true));
+    }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateTypeInvalidValueStrength() {

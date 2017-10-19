@@ -3,6 +3,7 @@ package combat;
 import entity.creature.Ai;
 import entity.creature.Creature;
 import entity.creature.InventoryFactory;
+import entity.gameMap.GameMap;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 
@@ -21,7 +22,8 @@ public class CombatTest {
      * even after we implement an AI, to be able to control combat flow.
      */
 
-    private Ai mockAi = (mock(Ai.class));
+    private Ai mockAi = mock(Ai.class);
+    private GameMap gameMap = mock(GameMap.class);
 
     private Creature c1 = spy(new Creature(100, 1, 5, 8 ,5, mock(InventoryFactory.class), mockAi));
     private Creature c2 = spy(new Creature(100, 1, 5, 8, 5, mock(InventoryFactory.class), mockAi));
@@ -67,7 +69,7 @@ public class CombatTest {
                 .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 100))
                 .when(c2).act(c1);
 
-        combat.start();
+        combat.start(gameMap);
 
         /*
          * Turn taking should be as follows:
@@ -93,7 +95,7 @@ public class CombatTest {
                 .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 100))
                 .when(c2).act(c1);
 
-        combat.start();
+        combat.start(gameMap);
 
         /*
          * Turn taking should be as follows:
@@ -105,7 +107,7 @@ public class CombatTest {
          * t1 wins.
          *
          */
-        verify(c1, times(1)).flee();
+        verify(c1, times(1)).flee(gameMap);
         assertEquals(combat.getResult(), Combat.INITIATOR_WIN);
 
     }
@@ -123,7 +125,7 @@ public class CombatTest {
                 .doAnswer(this::increaseOpponentsSpeed)
                 .when(c2).act(c1);
 
-        combat.start();
+        combat.start(gameMap);
 
         /*
          * Turn taking should be as follows:
@@ -141,7 +143,7 @@ public class CombatTest {
          */
 
         verify(c1, times(2)).act(c2);
-        verify(c1, times(1)).flee();
+        verify(c1, times(1)).flee(gameMap);
 
         verify(c2, times(4)).act(c1);
         assertEquals(Combat.INITIATOR_WIN, combat.getResult());

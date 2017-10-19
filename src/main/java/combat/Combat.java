@@ -1,6 +1,7 @@
 package combat;
 
 import entity.creature.Creature;
+import entity.gameMap.GameMap;
 
 public class Combat {
 
@@ -31,7 +32,7 @@ public class Combat {
         return creature.getSpeed() <= 0;
     }
 
-    public void start() {
+    public void start(GameMap gameMap) {
 
         Creature actor = c1;
         Creature defender = c2;
@@ -39,7 +40,7 @@ public class Combat {
         while(combatantsAlive(actor, defender)) {
 
             if (isFleeing(actor)) {
-                actor.flee();
+                actor.flee(gameMap);
             } else if (!isImmobilized(actor)) {
                 actor.act(defender);
             }

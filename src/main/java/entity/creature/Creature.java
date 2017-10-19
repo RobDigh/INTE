@@ -200,8 +200,8 @@ public class Creature extends Entity {
         ai.act();
     }
 
-    public void flee() {
-        ai.flee();
+    public void flee(GameMap gameMap) {
+        ai.flee(this, gameMap);
     }
 
     public boolean doBattle(Entity visitingEntity, Entity visitedEntity){

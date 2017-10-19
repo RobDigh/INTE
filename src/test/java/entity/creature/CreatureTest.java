@@ -49,8 +49,8 @@ public class CreatureTest {
 
     @Test
     public void testCreatureFleeCallsFleeMethodInAi(){
-        testCreature.flee();
-        verify(mockAi).flee();
+        testCreature.flee(null);
+        verify(mockAi).flee(null, null);
     }
 
     @Test
@@ -58,6 +58,8 @@ public class CreatureTest {
         testCreature.act(testCreature);
         verify(mockAi).act();
     }
+
+
 
     @Test
     public void testConstructPlayerWithValidHPAndSpeed() {

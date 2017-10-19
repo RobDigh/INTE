@@ -679,6 +679,43 @@ public class CreatureTest {
         verify(mockInventory).addItem(mockSpeedPotion, "speed potion");
     }
 
+    /**
+    * Remove item from inventory
+    */
+
+    @Test(expected = NullPointerException.class)
+    public void testRemoveNullFromInventory() {
+        testCreature.removeItemFromInventory(null, "null");
+    }
+
+    @Test
+    public void testRemoveArmor() throws Exception{
+
+        testCreature.removeItemFromInventory(mockArmor, "armor");
+        verify(mockInventory).removeItem(mockArmor, "armor");
+    }
+
+    @Test
+    public void testRemoveWeapon() throws Exception{
+
+        testCreature.removeItemFromInventory(mockWeapon, "weapon");
+        verify(mockInventory).removeItem(mockWeapon, "weapon");
+    }
+
+    @Test
+    public void testRemoveHealthPotion() throws Exception{
+
+        testCreature.removeItemFromInventory(mockHealthPotion, "health potion");
+        verify(mockInventory).removeItem(mockHealthPotion, "health potion");
+    }
+
+    @Test
+    public void testRemoveSpeedPotion() throws Exception{
+
+        testCreature.removeItemFromInventory(mockSpeedPotion, "speed potion");
+        verify(mockInventory).removeItem(mockSpeedPotion, "speed potion");
+    }
+
     @Test (expected = IllegalArgumentException.class)
     public void testConstructorInvalidValueStrength(){
         createPlayerWithCustomStrengthDexterityAndConstitution(4,8,5);

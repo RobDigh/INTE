@@ -59,7 +59,7 @@ public class InventoryTest {
     }
 
     @Test
-    public void testInventoryMapTwoItems(){
+    public void testInventoryMapAddTwoItems(){
 
         inventoryTestMap.put("armor", mockArmor);
         testInventory.addItem(mockArmor, "armor");
@@ -68,4 +68,36 @@ public class InventoryTest {
 
         assertEquals(inventoryTestMap, testInventory.getInventory());
     }
+
+    @Test
+    public void testRemoveOneItemFromInventoryContainingOneItem(){
+
+        testInventory.addItem(mockArmor, "armor");
+        testInventory.removeItem(mockArmor, "armor");
+        assertFalse(testInventory.getInventory().containsKey("armor"));
+    }
+
+    @Test
+    public void testRemoveTwoItemsFromInventoryContainingTwoItems(){
+
+        testInventory.addItem(mockArmor, "armor");
+        testInventory.addItem(mockWeapon, "weapon");
+        testInventory.removeItem(mockArmor, "armor");
+        testInventory.removeItem(mockWeapon, "weapon");
+
+        assertFalse(testInventory.getInventory().containsKey("armor"));
+        assertFalse(testInventory.getInventory().containsKey("weapon"));
+    }
+
+    @Test
+    public void testRemoveNonExistingItemFromNonEmptyInventory(){
+
+        testInventory.addItem(mockArmor, "armor");
+        testInventory.removeItem(mockWeapon, "weapon");
+
+        assertFalse(testInventory.getInventory().containsKey("weapon"));
+    }
+
+
+
 }

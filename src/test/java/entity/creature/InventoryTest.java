@@ -59,7 +59,7 @@ public class InventoryTest {
     }
 
     @Test
-    public void testInventoryMapTwoItems(){
+    public void testInventoryMapContainsTwoItems(){
 
         inventoryTestMap.put("armor", mockArmor);
         testInventory.addItem(mockArmor, "armor");
@@ -68,4 +68,13 @@ public class InventoryTest {
 
         assertEquals(inventoryTestMap, testInventory.getInventory());
     }
+
+    @Test
+    public void testRemoveOneItemFromInventory(){
+
+        testInventory.addItem(mockArmor, "armor");
+        testInventory.removeItem(mockArmor, "armor");
+        assertFalse(testInventory.getInventory().containsKey("armor"));
+    }
+
 }

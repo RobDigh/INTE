@@ -26,6 +26,10 @@ public class AiTest {
         return new Creature(10, 2, 8, 5, 5, mockInventoryFactory, ai);
     }
 
+    private Creature monster(){
+        return new Creature(8, 10, 6, 6, 6, mockInventoryFactory, ai);
+    }
+
     @Before
     public void setUp(){
         gameMap = new GameMap();
@@ -38,5 +42,12 @@ public class AiTest {
     public void testFlee(){
         testCreature.flee(gameMap);
         assertEquals(new Point(5,7), gameMap.getPosition(testCreature));
+    }
+
+    @Test
+    public void testFleeWhileAnotherCreatureIsOnTheFirstPoint(){
+        gameMap.place(monster(), new Point(5,7));
+        testCreature.flee(gameMap);
+        assertEquals(new Point(7,5), gameMap.getPosition(testCreature));
     }
 }

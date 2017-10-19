@@ -130,4 +130,84 @@ public class TypeTests {
         assertFalse(Type.BEAR.isPC());
     }
 
+    @Test
+    public void testAllCarValues() {
+        assertEquals("Car", Type.CAR.getName());
+        assertEquals(7, Type.CAR.getStrength());
+        assertEquals(6, Type.CAR.getDexterity());
+        assertEquals(5, Type.CAR.getConstitution());
+        assertFalse(Type.CAR.isPC());
+    }
+
+    @Test
+    public void testAllCatValues() {
+        assertEquals("Cat", Type.CAT.getName());
+        assertEquals(5, Type.CAT.getStrength());
+        assertEquals(7, Type.CAT.getDexterity());
+        assertEquals(6, Type.CAT.getConstitution());
+        assertFalse(Type.CAT.isPC());
+    }
+
+    @Test
+    public void testAllFoxValues() {
+        assertEquals("Fox", Type.FOX.getName());
+        assertEquals(6, Type.FOX.getStrength());
+        assertEquals(7, Type.FOX.getDexterity());
+        assertEquals(5, Type.FOX.getConstitution());
+        assertFalse(Type.FOX.isPC());
+    }
+
+    @Test
+    public void testAllHumanValues() {
+        assertEquals("Human", Type.HUMAN.getName());
+        assertEquals(6, Type.HUMAN.getStrength());
+        assertEquals(6, Type.HUMAN.getDexterity());
+        assertEquals(6, Type.HUMAN.getConstitution());
+        assertFalse(Type.HUMAN.isPC());
+    }
+
+    @Test
+    public void testAllJoggerValues() {
+        assertEquals("Jogger", Type.JOGGER.getName());
+        assertEquals(6, Type.JOGGER.getStrength());
+        assertEquals(5, Type.JOGGER.getDexterity());
+        assertEquals(7, Type.JOGGER.getConstitution());
+        assertFalse(Type.JOGGER.isPC());
+    }
+
+    @Test
+    public void testAllMailmanValues() {
+        assertEquals("Mailman", Type.MAILMAN.getName());
+        assertEquals(5, Type.MAILMAN.getStrength());
+        assertEquals(6, Type.MAILMAN.getDexterity());
+        assertEquals(7, Type.MAILMAN.getConstitution());
+        assertFalse(Type.MAILMAN.isPC());
+    }
+
+    @Test
+    public void testAllMooseValues() {
+        assertEquals("Moose", Type.MOOSE.getName());
+        assertEquals(5, Type.MOOSE.getStrength());
+        assertEquals(5, Type.MOOSE.getDexterity());
+        assertEquals(8, Type.MOOSE.getConstitution());
+        assertFalse(Type.MOOSE.isPC());
+    }
+
+    @Test
+    public void testAllSquirrelValues() {
+        assertEquals("Squirrel", Type.SQUIRREL.getName());
+        assertEquals(5, Type.SQUIRREL.getStrength());
+        assertEquals(8, Type.SQUIRREL.getDexterity());
+        assertEquals(5, Type.SQUIRREL.getConstitution());
+        assertFalse(Type.SQUIRREL.isPC());
+    }
+
+    @Test
+    public void testAllWolfValues() {
+        assertEquals("Wolf", Type.WOLF.getName());
+        assertEquals(7, Type.WOLF.getStrength());
+        assertEquals(5, Type.WOLF.getDexterity());
+        assertEquals(6, Type.WOLF.getConstitution());
+        assertFalse(Type.WOLF.isPC());
+    }
 }

@@ -3,6 +3,7 @@ package entity.gameMap;
 import entity.Entity;
 import entity.creature.Creature;
 
+import javax.swing.text.Position;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -98,7 +99,7 @@ public class GameMap extends Entity {
         return new Point(point);
 
     }
-
+    
     private boolean move(Point currentPosition, int speed, Point direction) {
 
         int originalX = currentPosition.x;

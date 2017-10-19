@@ -1,6 +1,9 @@
 package entity.gameMap;
 
+import entity.creature.Ai;
 import entity.creature.Creature;
+import entity.creature.InventoryFactory;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
@@ -11,6 +14,19 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
 public class PlacementTest extends GameMapTest {
+
+    private Creature testCreature;
+    private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
+    private Ai ai;
+
+    private Creature createCreature() {
+        return new Creature(10, 2, 8, 5, 5, mockInventoryFactory, ai);
+    }
+
+    @Before
+    public void setUp(){
+        testCreature = createCreature();
+    }
 
     @Test(expected = IllegalArgumentException.class)
     public void placeCreatureAtNegativeX() {
@@ -129,6 +145,14 @@ public class PlacementTest extends GameMapTest {
 
         DEFAULT_SIZED_MAP.place(mockItem, GameMap.DEFAULT_ENTRY_POSITION);
         assertEquals(GameMap.DEFAULT_ENTRY_POSITION, DEFAULT_SIZED_MAP.getPosition(mockItem));
+
+    }
+
+    @Test
+    public void getEntityFromPosition() {
+        GameMap gameMap = createDefaultSizedGameMap();
+        gameMap.place(testCreature, new Point(0,0));
+        assertEquals(testCreature, gameMap.getEntity(new Point(0,0)));
 
     }
 }

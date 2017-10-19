@@ -740,46 +740,15 @@ public class CreatureTest {
 //Start tests from CreatureConstructorTest
     @Test
     public void testCreateCreature() {
-        Creature creature = new Creature(5, 6, 7, true);
-        assertEquals(5, creature.getStrength());
-        assertEquals(6, creature.getDexterity());
-        assertEquals(7, creature.getConstitution());
+        testCreature = createPlayerWithCustomStrengthDexterityAndConstitution(5,6,7);
+        assertEquals(5, testCreature.getStrength());
+        assertEquals(6, testCreature.getDexterity());
+        assertEquals(7, testCreature.getConstitution());
 
-        assertEquals(12, creature.getSpeed());
-        assertEquals(70, creature.getHP());
-        assertEquals(Type.GREYHOUND, creature.getType());
+        assertEquals(100, testCreature.getSpeed());
+        assertEquals(10, testCreature.getHP());
+        assertEquals(Type.GREYHOUND, testCreature.getType());
     }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testCreatureWithNegativeStr(){
-        new Creature(-1, 6, 7, true);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testCreatureWithNegativeDex(){
-        new Creature(5, -1, 7, true);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testCreatureWithNegativeCon(){
-        new Creature(5, 6, -1, true);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testCreatureWithZeroStrength(){
-        new Creature(0, 6, 7, true);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testCreatureWithZeroDex(){
-        new Creature(5, 0, 7, true);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testCreatureWithZeroConstitution(){
-        new Creature(5, 6, 0, true);
-    }
-// End tests from CreatureConstuctorTests
 
     @Test(expected = IllegalArgumentException.class)
     public void testConstructorInvalidValueStrength() {

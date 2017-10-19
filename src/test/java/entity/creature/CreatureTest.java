@@ -703,28 +703,28 @@ public class CreatureTest {
 
     @Test
     public void testRemoveArmor() throws Exception{
-
+        testCreature.addItemToInventory(mockArmor, "armor");
         testCreature.removeItemFromInventory(mockArmor, "armor");
         verify(mockInventory).removeItem(mockArmor, "armor");
     }
 
     @Test
     public void testRemoveWeapon() throws Exception{
-
+        testCreature.addItemToInventory(mockWeapon, "weapon");
         testCreature.removeItemFromInventory(mockWeapon, "weapon");
         verify(mockInventory).removeItem(mockWeapon, "weapon");
     }
 
     @Test
     public void testRemoveHealthPotion() throws Exception{
-
+        testCreature.addItemToInventory(mockHealthPotion, "health potion");
         testCreature.removeItemFromInventory(mockHealthPotion, "health potion");
         verify(mockInventory).removeItem(mockHealthPotion, "health potion");
     }
 
     @Test
     public void testRemoveSpeedPotion() throws Exception{
-
+        testCreature.addItemToInventory(mockSpeedPotion, "speed potion");
         testCreature.removeItemFromInventory(mockSpeedPotion, "speed potion");
         verify(mockInventory).removeItem(mockSpeedPotion, "speed potion");
     }

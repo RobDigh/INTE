@@ -176,6 +176,13 @@ public class GameMap extends Entity {
     }
 
     public ArrayList<Point> getAvailablePositions(Creature creature){
-        return null;
+        ArrayList<Point> availablePositions = new ArrayList<>(positionsByEntity.values());
+
+        for(int x = 0; x < xLength; x++){
+            for(int y = 0; y < yLength; y++){
+                availablePositions.add(new Point(x,y));
+            }
+        }
+        return availablePositions;
     }
 }

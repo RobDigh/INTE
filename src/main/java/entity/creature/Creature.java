@@ -52,6 +52,9 @@ public class Creature extends Entity {
         this.constitution = constitution;
 
         this.type = calculateType(strength, dexterity, constitution, isPC);
+        if (type == null) {
+            throw new IllegalArgumentException("There is no type that corresponds with these stat values");
+        }
 
         this.hp = hp;
         this.speed = speed;

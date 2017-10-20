@@ -16,6 +16,7 @@ public class Ai {
     }
 
     public void act(){
-
+        //TODO: Implement method
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

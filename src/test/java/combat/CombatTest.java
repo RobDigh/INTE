@@ -2,6 +2,7 @@ package combat;
 
 import entity.creature.Creature;
 import entity.creature.InventoryFactory;
+
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 
@@ -58,11 +59,13 @@ public class CombatTest {
 
     @Test
     public void activeImmobilizedWin() {
-
+    	
         doAnswer(this::damageSpeed)
-                .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 100))
-                .when(c2).act(c1);
-
+        .doAnswer(invocationOnMock -> {
+        c2.loseHP(100);
+        	return null;})
+        .when(c2).act(c1);
+        
         combat.start();
 
         /*
@@ -77,16 +80,39 @@ public class CombatTest {
          * that act() was only called once proves that it was indeed
          * immobilized.
          */
+        
         verify(c1, times(1)).act(any());
         assertEquals(combat.getResult(), Combat.INITIATOR_WIN);
+        assertEquals(0, c2.getHP());
+        assertEquals(100, c1.getHP());
 
+    }
+    
+    @Test
+    
+    public void activeImmobilizedLose(){
+    	
+      doAnswer(this::damageSpeed)
+      .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 100))
+      .when(c2).act(c1);
+      
+      combat.start();
+      
+      verify(c1, times(1)).act(any());
+      
+      assertEquals(0, c1.getHP());
+      assertEquals(100, c2.getHP());
+      assertEquals(combat.getResult(), Combat.INITIATOR_LOSS);
+      
     }
 
     @Test
     public void activeFleeingWin() {
 
         doAnswer(invocationOnMock -> damageHP(invocationOnMock, 90))
-                .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 100))
+                .doAnswer(invocationOnMock -> {
+                	c2.loseHP(100);
+                	return null;})
                 .when(c2).act(c1);
 
         combat.start();
@@ -102,8 +128,25 @@ public class CombatTest {
          *
          */
         verify(c1, times(1)).flee();
+        assertEquals(10, c1.getHP());
+        assertEquals(0, c2.getHP());
         assertEquals(combat.getResult(), Combat.INITIATOR_WIN);
+    }
+    
+    @Test
+    public void activeFleeingLose(){
+        
+    	doAnswer(invocationOnMock -> damageHP(invocationOnMock, 90))
+        .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 100))
+        .when(c2).act(c1);
 
+        combat.start();
+        
+        verify(c1, times(1)).flee();
+        
+        assertEquals(0, c1.getHP());
+        assertEquals(100, c2.getHP());
+        assertEquals(combat.getResult(), Combat.INITIATOR_LOSS);
     }
 
     @Test

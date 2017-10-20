@@ -76,4 +76,12 @@ public class AiTest {
         testCreature.flee(mockGameMap);
         verify(mockGameMap).fleeMove(testCreature, new Point(2,2));
     }
+
+    @Test
+    public void testSoActMethodCallsActInAi(){
+        Ai mockAi = mock(Ai.class);
+        testCreature = new Creature(10, 2, 8, 5, 5, true, mockInventoryFactory, mockAi);
+        testCreature.act(mockMonster);
+        verify(mockAi).act();
+    }
 }

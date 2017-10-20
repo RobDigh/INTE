@@ -82,6 +82,10 @@ public class Creature extends Entity {
         return speed;
     }
 
+    public int calculateSpeed(int dexterity, int constitution){
+        return 0;
+    }
+
     public double getDamageReduction() {
         return damageReduction;
     }

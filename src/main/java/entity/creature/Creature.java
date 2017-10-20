@@ -4,6 +4,7 @@ import entity.Entity;
 import entity.gameMap.GameMap;
 import entity.item.Item;
 import combat.Combat;
+
 import java.util.*;
 
 public class Creature extends Entity {
@@ -48,19 +49,19 @@ public class Creature extends Entity {
     }
 
     public Type calculateType(int strength, int dexterity, int constitution, boolean isPC) {
-        if(strength < 5 ||strength > 8){
+        if (strength < 5 || strength > 8) {
             throw new IllegalArgumentException("Strength must be between 5 and 8");
         }
 
-        if(dexterity < 5 || dexterity > 8){
+        if (dexterity < 5 || dexterity > 8) {
             throw new IllegalArgumentException("Dexterity must be between 5 and 8");
         }
 
-        if(constitution < 5 || constitution > 8){
+        if (constitution < 5 || constitution > 8) {
             throw new IllegalArgumentException("Constitution must be between 5 and 8");
         }
 
-        if((strength + dexterity + constitution) > 18 || (strength + dexterity + constitution) < 18){
+        if ((strength + dexterity + constitution) > 18 || (strength + dexterity + constitution) < 18) {
             throw new IllegalArgumentException("The sum of strength, dexterity and constitution have to be 18");
         }
 
@@ -82,14 +83,14 @@ public class Creature extends Entity {
         return speed;
     }
 
-    public int calculateHP(int strength, int constitution){
-        return 0;
+    public int calculateHP(int strength, int constitution) {
+        return constitution * 15 + strength * 5;
     }
 
-    public int calculateSpeed(int dexterity, int constitution){
-        if(dexterity >= 8 && constitution >= 7){
+    public int calculateSpeed(int dexterity, int constitution) {
+        if (dexterity >= 8 && constitution >= 7) {
             return 3;
-        } else if(dexterity >= 8 || (dexterity == 7 && constitution >= 6)){
+        } else if (dexterity >= 8 || (dexterity == 7 && constitution >= 6)) {
             return 2;
         }
         return 1;
@@ -227,24 +228,24 @@ public class Creature extends Entity {
         }
     }
 
-    public boolean addItemToInventory(Item item, String key){
+    public boolean addItemToInventory(Item item, String key) {
 
-        if(item.equals(null)){
+        if (item.equals(null)) {
             throw new NullPointerException("Item can't be null");
         }
 
         inventory.addItem(item, key);
         return true;
     }
-    
-	public boolean addToInventory(Item item) {
-		//placeholder method for adding item to inventory
-		return true;
-	}
 
-	public boolean removeItemFromInventory(Item item, String key) {
+    public boolean addToInventory(Item item) {
+        //placeholder method for adding item to inventory
+        return true;
+    }
 
-        if(item.equals(null)){
+    public boolean removeItemFromInventory(Item item, String key) {
+
+        if (item.equals(null)) {
             throw new NullPointerException("Item can't be null");
         }
 
@@ -252,7 +253,7 @@ public class Creature extends Entity {
         return true;
     }
 
-	public void act(Creature creature) {
+    public void act(Creature creature) {
         behaviour.act();
     }
 
@@ -260,38 +261,38 @@ public class Creature extends Entity {
         behaviour.flee(this, gameMap, isPC);
     }
 
-    public boolean doBattle(Entity visitingEntity, Entity visitedEntity){
-    	
-    	Creature visitingCreature = (Creature) visitingEntity;
-    	Creature visitedCreature = (Creature) visitedEntity;
-    	
-    	if(visitingCreature.getHP() > visitedCreature.getHP()){
-    		return true;
-    	}
-    	if(visitingCreature.getHP() < visitedCreature.getHP()){
-    		return false;
-    	}
-    	if(visitingCreature.getHP() == visitedCreature.getHP()){
-    		//TO-DO What happens when neither Creature is killed?
-    	}
-    	
-    	return false;
+    public boolean doBattle(Entity visitingEntity, Entity visitedEntity) {
+
+        Creature visitingCreature = (Creature) visitingEntity;
+        Creature visitedCreature = (Creature) visitedEntity;
+
+        if (visitingCreature.getHP() > visitedCreature.getHP()) {
+            return true;
+        }
+        if (visitingCreature.getHP() < visitedCreature.getHP()) {
+            return false;
+        }
+        if (visitingCreature.getHP() == visitedCreature.getHP()) {
+            //TO-DO What happens when neither Creature is killed?
+        }
+
+        return false;
     }
 
     @Override
     public boolean accept(Entity entity, GameMap environment) {
-    	
-    	Entity visitingEntity = entity;
-    	Entity visitedEntity = this;
-    	
-    	GameMap level = environment;
-    	
-    	boolean battleResultIsPositive = ((Creature) visitingEntity).doBattle(visitingEntity, visitedEntity);
-    	
-    	if (battleResultIsPositive == true){
-    		level.remove(visitedEntity);
-    		return Combat.INITIATOR_WIN;
-    	}
+
+        Entity visitingEntity = entity;
+        Entity visitedEntity = this;
+
+        GameMap level = environment;
+
+        boolean battleResultIsPositive = ((Creature) visitingEntity).doBattle(visitingEntity, visitedEntity);
+
+        if (battleResultIsPositive == true) {
+            level.remove(visitedEntity);
+            return Combat.INITIATOR_WIN;
+        }
         return false;
     }
 }

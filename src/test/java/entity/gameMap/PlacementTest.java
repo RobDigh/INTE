@@ -254,6 +254,7 @@ public class PlacementTest extends GameMapTest {
         gameMap.place(testCreature, new Point(3,3));
         gameMap.fleeMove(testCreature, new Point(4,4));
         assertEquals(testCreature, gameMap.getEntity(new Point(4,4)));
+        assertEquals(new Point(4,4), gameMap.getPosition(testCreature));
     }
 
     @Test (expected = IllegalArgumentException.class)

@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -63,5 +64,15 @@ public class AiTest {
     public void testSoFleeCallsGetAvailablePositionsFromGameMap(){
         testCreature.flee(mockGameMap);
         verify(mockGameMap).getAvailablePositions(testCreature);
+    }
+
+    @Test
+    public void testFleeToFirstAvailablePointFindInListOfEmptyPoints(){
+        ArrayList<Point> availablePositions = new ArrayList<>();
+        availablePositions.add(new Point(2,2));
+        availablePositions.add(new Point(3,3));
+        when(mockGameMap.getAvailablePositions(testCreature)).thenReturn(availablePositions);
+        
+        verify(mockGameMap).fleeMove(testCreature, new Point(2,2));
     }
 }

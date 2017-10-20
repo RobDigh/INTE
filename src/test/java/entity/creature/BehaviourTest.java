@@ -11,28 +11,23 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class AiTest {
-
-    /**
-     * First implementation: Flee to first empty position
-     * TODO: Implement AI logic
-     */
+public class BehaviourTest {
 
     private GameMap mockGameMap = mock(GameMap.class);
     private Creature mockMonster = mock(Creature.class);
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
 
-    private Ai ai;
+    private Behaviour behaviour;
     private GameMap gameMap;
     private Creature testCreature;
 
     private Creature createCreature() {
-        return new Creature(10, 2, 8, 5, 5, true, mockInventoryFactory, ai);
+        return new Creature(10, 2, 8, 5, 5, true, mockInventoryFactory, behaviour);
     }
 
     @Before
     public void setUp(){
-        ai = new Ai();
+        behaviour = new Behaviour();
         gameMap = new GameMap();
         testCreature = createCreature();
         gameMap.place(testCreature, new Point(5,5));
@@ -56,15 +51,20 @@ public class AiTest {
     }
 
     @Test
-    public void testSoActMethodCallsActInAi(){
-        Ai mockAi = mock(Ai.class);
-        testCreature = new Creature(10, 2, 8, 5, 5, true, mockInventoryFactory, mockAi);
+    public void testSoActMethodCallsActInBehaviour(){
+        Behaviour mockBehaviour = mock(Behaviour.class);
+        testCreature = new Creature(10, 2, 8, 5, 5, false, mockInventoryFactory, mockBehaviour);
         testCreature.act(mockMonster);
-        verify(mockAi).act();
+        verify(mockBehaviour).act();
     }
 
-    @Test (expected = UnsupportedOperationException.class)
+    @Test(expected = UnsupportedOperationException.class)
     public void actNotImplemented(){
         testCreature.act(mockMonster);
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testBehaviourFleeWithPlayer(){
+        testCreature.flee(mockGameMap);
     }
 }

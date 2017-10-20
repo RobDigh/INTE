@@ -48,7 +48,6 @@ public class Combat {
             Creature temp = actor;
             actor = defender;
             defender = temp;
-
         }
     }
 

@@ -17,11 +17,11 @@ public class Creature extends Entity {
     private Type type;
     private double damageReduction;
     private double damageBonus;
-    private Ai ai;
+    private Behaviour behaviour;
 
     private Inventory inventory;
 
-    public Creature(int hp, int speed, int strength, int dexterity, int constitution, boolean isPC, InventoryFactory inventoryFactory, Ai ai) {
+    public Creature(int hp, int speed, int strength, int dexterity, int constitution, boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour) {
 
         if (hp <= 0) {
             throw new IllegalArgumentException("HP must be positive.");
@@ -44,7 +44,7 @@ public class Creature extends Entity {
         damageBonus = 0;
 
         inventory = inventoryFactory.create();
-        this.ai = ai;
+        this.behaviour = behaviour;
     }
 
     public Type calculateType(int strength, int dexterity, int constitution, boolean isPC) {
@@ -240,11 +240,11 @@ public class Creature extends Entity {
     }
 
 	public void act(Creature creature) {
-        ai.act();
+        behaviour.act();
     }
 
     public void flee(GameMap gameMap) {
-        ai.flee(this, gameMap);
+        behaviour.flee(this, gameMap);
     }
 
     public boolean doBattle(Entity visitingEntity, Entity visitedEntity){

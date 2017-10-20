@@ -22,7 +22,7 @@ public class CreatureTest {
 
     private Inventory mockInventory = mock(Inventory.class);
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
-    private Ai mockAi = (mock(Ai.class));
+    private Behaviour mockBehaviour = (mock(Behaviour.class));
 
     private Armor mockArmor = mock(Armor.class);
     private Weapon mockWeapon = mock(Weapon.class);
@@ -30,11 +30,11 @@ public class CreatureTest {
     private SpeedPotion mockSpeedPotion = mock(SpeedPotion.class);
 
     private Creature createPlayerWithCustomHPAndSpeed(int hp, int speed) {
-        return new Creature(hp, speed, 5, 8, 5, true, mockInventoryFactory, mockAi);
+        return new Creature(hp, speed, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
     }
 
     private Creature createPlayerWithCustomStrengthDexterityAndConstitution(int strength, int dexterity, int constitution) {
-        return new Creature(10, 100, strength, dexterity, constitution, true, mockInventoryFactory, mockAi);
+        return new Creature(10, 100, strength, dexterity, constitution, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Before
@@ -51,13 +51,13 @@ public class CreatureTest {
     @Test
     public void testCreatureFleeCallsFleeMethodInAi() {
         testCreature.flee(null);
-        verify(mockAi).flee(testCreature, null);
+        verify(mockBehaviour).flee(testCreature, null);
     }
 
     @Test
     public void testCreatureActCallsActMethodInAi() {
         testCreature.act(testCreature);
-        verify(mockAi).act();
+        verify(mockBehaviour).act();
     }
 
     @Test

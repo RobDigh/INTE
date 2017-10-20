@@ -1,9 +1,8 @@
 package entity.gameMap;
 
-import entity.creature.Ai;
+import entity.creature.Behaviour;
 import entity.creature.Creature;
 import entity.creature.InventoryFactory;
-import net.bytebuddy.pool.TypePool;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,18 +14,17 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class PlacementTest extends GameMapTest {
 
     private Creature testCreature;
     private Creature mockCreature = mock(Creature.class);
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
-    private Ai ai = mock(Ai.class);
+    private Behaviour behaviour = mock(Behaviour.class);
     GameMap gameMap;
 
     private Creature createCreature() {
-        return new Creature(10, 2, 5, 8, 5, true, mockInventoryFactory, ai);
+        return new Creature(10, 2, 5, 8, 5, true, mockInventoryFactory, behaviour);
     }
 
     private GameMap createCustomGameMap(int xLength, int yLength){

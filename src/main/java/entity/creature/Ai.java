@@ -11,7 +11,7 @@ public class Ai {
         //Här ska det väljas ut vilken plats som är "bäst" att flytta till. Kom även på att move-metoden tar en direction
         //och inte en point. Så måste se över hur det ska lösas.
         List<Point> availablePositions = gameMap.getAvailablePositions(creature);
-
+        gameMap.fleeMove(creature, new Point(2,2));
     }
 
     public void act(){

@@ -72,7 +72,8 @@ public class AiTest {
         availablePositions.add(new Point(2,2));
         availablePositions.add(new Point(3,3));
         when(mockGameMap.getAvailablePositions(testCreature)).thenReturn(availablePositions);
-        
+
+        testCreature.flee(mockGameMap);
         verify(mockGameMap).fleeMove(testCreature, new Point(2,2));
     }
 }

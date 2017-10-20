@@ -64,8 +64,8 @@ public class BehaviourTest {
     @Test
     public void testSoActMethodCallsActInBehaviour(){
         Behaviour mockBehaviour = mock(Behaviour.class);
-        testPlayer = new Creature(10, 2, 8, 5, 5, false, mockInventoryFactory, mockBehaviour);
-        testPlayer.act(mockMonster);
+        testMonster = new Creature(10, 2, 8, 5, 5, false, mockInventoryFactory, mockBehaviour);
+        testMonster.act(mockMonster);
         verify(mockBehaviour).act();
     }
 

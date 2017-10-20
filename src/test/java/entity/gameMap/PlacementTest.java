@@ -221,7 +221,7 @@ public class PlacementTest extends GameMapTest {
     }
 
     @Test
-    public void testGetAllEmptyPositionWhileAPlayerIsOnTheMap(){
+    public void testGetAllEmptyPositionsWhileAPlayerIsOnTheMap(){
         gameMap = createCustomGameMap(2, 2);
         gameMap.place(testCreature, new Point(1,1));
         ArrayList<Point> occupiedPoints = new ArrayList<>();

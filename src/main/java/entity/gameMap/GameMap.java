@@ -191,7 +191,7 @@ public class GameMap extends Entity {
         int xRange = xLength;
         int yRange = yLength;
 
-            if(!(creaturePosition == null)) {
+            if(creaturePosition != null) {
                 xRange = creaturePosition.x + creature.getSpeed();
                 yRange = creaturePosition.y + creature.getSpeed();
             }

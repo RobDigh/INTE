@@ -9,7 +9,7 @@ public class Behaviour {
 
     /**
      * First implementation: Flee to first empty position
-     * TODO: Implement AI logic if creature is a monster. And handle player instructions.
+     * TODO: Implement AI logic if creature is a monster and handle player actions. Maybe as sub classes?
      */
 
     public void flee(Creature creature, GameMap gameMap, boolean isPlayer) {

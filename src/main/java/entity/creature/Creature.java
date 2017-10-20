@@ -83,7 +83,12 @@ public class Creature extends Entity {
     }
 
     public int calculateSpeed(int dexterity, int constitution){
-        return 0;
+        if(dexterity >= 8 && constitution >= 7){
+            return 3;
+        } else if(dexterity >= 8 || (dexterity == 7 && constitution >= 6)){
+            return 2;
+        }
+        return 1;
     }
 
     public double getDamageReduction() {

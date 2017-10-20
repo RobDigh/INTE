@@ -44,22 +44,6 @@ public class AiTest {
         gameMap.place(testCreature, new Point(5,5));
     }
 
-//    @Test
-//    public void testFlee(){
-//        testCreature.flee(gameMap);
-//        assertEquals(new Point(5,7), gameMap.getPosition(testCreature));
-//    }
-//
-//    @Test
-//    public void testFleeWhileAnotherCreatureIsOnTheFirstPoint(){
-//
-//        when(mockGameMap.getEntity(new Point(5,7))).thenReturn(mockMonster);
-//        mockGameMap.place(testCreature, new Point(5,5));
-//
-//        testCreature.flee(mockGameMap);
-//        assertEquals(new Point(7,5), mockGameMap.getPosition(testCreature));
-//    }
-
     @Test
     public void testSoFleeCallsGetAvailablePositionsFromGameMap(){
         testCreature.flee(mockGameMap);

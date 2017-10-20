@@ -98,6 +98,14 @@ public class CreatureTest {
         assertEquals(500, creature.getHP());
     }
 
+    @Test
+    public void testCalculateHp(){
+        assertEquals(8*15+5*5, testCreature.calculateHP(8, 5));
+        assertEquals(6*15+7*7, testCreature.calculateHP(6, 7));
+        assertEquals(5*15+5*5, testCreature.calculateHP(5, 5));
+        assertEquals((-10)*15+99*5, testCreature.calculateHP((-10), 99));
+    }
+
     /**
      *  Add tests for Speed
      */

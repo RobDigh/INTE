@@ -7,8 +7,6 @@ import org.junit.Test;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -16,30 +14,26 @@ import static org.mockito.Mockito.when;
 public class AiTest {
 
     /**
-     * First implementation:
-     *      Flee to a empty position
-     *      If no empty positions? Start combat with monster next to combat? Or stay?
+     * First implementation: Flee to first empty position
+     * TODO: Implement AI logic
      */
 
-    private Creature testCreature;
+    private GameMap mockGameMap = mock(GameMap.class);
     private Creature mockMonster = mock(Creature.class);
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
+
     private Ai ai;
     private GameMap gameMap;
-    private GameMap mockGameMap = mock(GameMap.class);
+    private Creature testCreature;
 
     private Creature createCreature() {
         return new Creature(10, 2, 8, 5, 5, true, mockInventoryFactory, ai);
     }
 
-    private Creature monster(){
-        return new Creature(8, 10, 6, 6, 6, false, mockInventoryFactory, ai);
-    }
-
     @Before
     public void setUp(){
-        gameMap = new GameMap();
         ai = new Ai();
+        gameMap = new GameMap();
         testCreature = createCreature();
         gameMap.place(testCreature, new Point(5,5));
     }

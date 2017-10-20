@@ -251,8 +251,7 @@ public class PlacementTest extends GameMapTest {
     @Test
     public void testMoveWhileFleeing(){
         gameMap.place(testCreature, new Point(3,3));
-        List<Point> emptyPositionsFromGameMap = gameMap.getAvailablePositions(testCreature);
         gameMap.fleeMove(testCreature, new Point(4,4));
-        assertEquals(gameMap.getEntity(new Point(4,4)), testCreature);
+        assertEquals(testCreature, gameMap.getEntity(new Point(4,4)));
     }
 }

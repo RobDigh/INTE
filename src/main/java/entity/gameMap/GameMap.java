@@ -175,6 +175,14 @@ public class GameMap extends Entity {
 
     }
 
+    public void fleeMove(Creature creature, Point newPosition){
+        Point currentPoint = positionsByEntity.get(creature);
+        entitiesByPosition.remove(currentPoint);
+        place(creature, newPosition);
+        positionsByEntity.put(creature, newPosition);
+        entitiesByPosition.put(newPosition, creature);
+    }
+
     public ArrayList<Point> getAvailablePositions(Creature creature){
         Point creaturePosition = positionsByEntity.get(creature);
         ArrayList<Point> availablePositions = new ArrayList<>();

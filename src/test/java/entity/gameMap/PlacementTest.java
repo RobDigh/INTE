@@ -3,6 +3,7 @@ package entity.gameMap;
 import entity.creature.Ai;
 import entity.creature.Creature;
 import entity.creature.InventoryFactory;
+import net.bytebuddy.pool.TypePool;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -253,5 +254,11 @@ public class PlacementTest extends GameMapTest {
         gameMap.place(testCreature, new Point(3,3));
         gameMap.fleeMove(testCreature, new Point(4,4));
         assertEquals(testCreature, gameMap.getEntity(new Point(4,4)));
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void testFleeToAInvalidPoint(){
+        gameMap.place(testCreature, new Point(3,3));
+        gameMap.fleeMove(testCreature, new Point(22,10));
     }
 }

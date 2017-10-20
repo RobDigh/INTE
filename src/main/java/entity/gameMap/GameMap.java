@@ -175,6 +175,8 @@ public class GameMap extends Entity {
 
     }
 
+
+    //We already have a move method, should they be different?
     public void fleeMove(Creature creature, Point newPosition){
         Point currentPoint = positionsByEntity.get(creature);
         entitiesByPosition.remove(currentPoint);

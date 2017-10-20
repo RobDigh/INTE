@@ -12,6 +12,7 @@ public class Ai {
         //och inte en point. Så måste se över hur det ska lösas.
         List<Point> availablePositions = gameMap.getAvailablePositions(creature);
         gameMap.fleeMove(creature, new Point(2,2));
+        
     }
 
     public void act(){

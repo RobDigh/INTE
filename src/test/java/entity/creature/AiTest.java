@@ -84,4 +84,9 @@ public class AiTest {
         testCreature.act(mockMonster);
         verify(mockAi).act();
     }
+
+    @Test (expected = UnsupportedOperationException.class)
+    public void actNotImplemented(){
+        testCreature.act(mockMonster);
+    }
 }

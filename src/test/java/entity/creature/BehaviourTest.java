@@ -50,7 +50,7 @@ public class BehaviourTest {
         ArrayList<Point> availablePositions = new ArrayList<>();
         availablePositions.add(new Point(2,2));
         availablePositions.add(new Point(3,3));
-        when(mockGameMap.getAvailablePositions(testPlayer)).thenReturn(availablePositions);
+        when(mockGameMap.getAvailablePositions(testMonster)).thenReturn(availablePositions);
 
         testMonster.flee(mockGameMap);
         verify(mockGameMap).fleeMove(testMonster, new Point(2,2));
@@ -62,6 +62,12 @@ public class BehaviourTest {
         testPlayer = new Creature(10, 2, 8, 5, 5, false, mockInventoryFactory, mockBehaviour);
         testPlayer.act(mockMonster);
         verify(mockBehaviour).act();
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testNoEmptyPositionsAvailableFlee(){
+        when(mockGameMap.getAvailablePositions(testMonster)).thenReturn(new ArrayList<>());
+        testMonster.flee(mockGameMap);
     }
 
     @Test(expected = UnsupportedOperationException.class)

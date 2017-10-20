@@ -9,8 +9,7 @@ public class Behaviour {
 
     /**
      * First implementation: Flee to first empty position
-     * TODO: Implement AI logic if creature is a monster
-     * TODO: Implement act method
+     * TODO: Implement AI logic if creature is a monster. Maybe as sub classes?
      */
 
     public void flee(Creature creature, GameMap gameMap, boolean isPlayer) {
@@ -19,7 +18,9 @@ public class Behaviour {
         if (isPlayer) {
             throw new UnsupportedOperationException("Not implemented yet");
         } else {
-            gameMap.fleeMove(creature, new Point(2, 2));
+            if(!availablePositions.isEmpty()) {
+                gameMap.fleeMove(creature, availablePositions.get(0));
+            }
         }
     }
 

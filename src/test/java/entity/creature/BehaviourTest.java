@@ -45,7 +45,7 @@ public class BehaviourTest {
         availablePositions.add(new Point(2,2));
         availablePositions.add(new Point(3,3));
         when(mockGameMap.getAvailablePositions(testMonster)).thenReturn(availablePositions);
-        
+
         testMonster.flee(mockGameMap);
         verify(mockGameMap).getAvailablePositions(testMonster);
     }

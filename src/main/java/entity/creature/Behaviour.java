@@ -15,14 +15,10 @@ public class Behaviour {
     public void flee(Creature creature, GameMap gameMap, boolean isPlayer) {
         List<Point> availablePositions = gameMap.getAvailablePositions(creature);
 
-        if (isPlayer) {
-            throw new UnsupportedOperationException("Not implemented yet");
+        if (!(isPlayer || availablePositions.isEmpty())) {
+            gameMap.fleeMove(creature, availablePositions.get(0));
         } else {
-            if(!availablePositions.isEmpty()) {
-                gameMap.fleeMove(creature, availablePositions.get(0));
-            }else{
-                throw new UnsupportedOperationException("Not implemented yet");
-            }
+            throw new UnsupportedOperationException("Not implemented yet");
         }
     }
 

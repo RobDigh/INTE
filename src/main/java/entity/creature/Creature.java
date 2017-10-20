@@ -82,6 +82,10 @@ public class Creature extends Entity {
         return speed;
     }
 
+    public int calculateHP(int strength, int constitution){
+        return 0;
+    }
+
     public int calculateSpeed(int dexterity, int constitution){
         if(dexterity >= 8 && constitution >= 7){
             return 3;

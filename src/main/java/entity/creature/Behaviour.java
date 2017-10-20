@@ -13,9 +13,14 @@ public class Behaviour {
      * TODO: Implement act method
      */
 
-    public void flee(Creature creature, GameMap gameMap){
+    public void flee(Creature creature, GameMap gameMap, boolean isPlayer) {
         List<Point> availablePositions = gameMap.getAvailablePositions(creature);
-        gameMap.fleeMove(creature, new Point(2,2));
+
+        if (isPlayer) {
+            throw new UnsupportedOperationException("Not implemented yet");
+        } else {
+            gameMap.fleeMove(creature, new Point(2, 2));
+        }
     }
 
     public void act(){

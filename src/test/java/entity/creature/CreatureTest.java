@@ -51,7 +51,7 @@ public class CreatureTest {
     @Test
     public void testCreatureFleeCallsFleeMethodInAi() {
         testCreature.flee(null);
-        verify(mockBehaviour).flee(testCreature, null);
+        verify(mockBehaviour).flee(testCreature, null, true);
     }
 
     @Test

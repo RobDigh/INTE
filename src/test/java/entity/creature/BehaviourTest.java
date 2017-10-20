@@ -19,24 +19,30 @@ public class BehaviourTest {
 
     private Behaviour behaviour;
     private GameMap gameMap;
-    private Creature testCreature;
+    private Creature testPlayer;
+    private Creature testMonster;
 
-    private Creature createCreature() {
+    private Creature createPlayer() {
         return new Creature(10, 2, 8, 5, 5, true, mockInventoryFactory, behaviour);
+    }
+
+    private Creature createMonster() {
+        return new Creature(10, 2, 8, 5, 5, false, mockInventoryFactory, behaviour);
     }
 
     @Before
     public void setUp(){
         behaviour = new Behaviour();
         gameMap = new GameMap();
-        testCreature = createCreature();
-        gameMap.place(testCreature, new Point(5,5));
+        testPlayer = createPlayer();
+        testMonster = createMonster();
+        gameMap.place(testPlayer, new Point(5,5));
     }
 
     @Test
     public void testSoFleeCallsGetAvailablePositionsFromGameMap(){
-        testCreature.flee(mockGameMap);
-        verify(mockGameMap).getAvailablePositions(testCreature);
+        testMonster.flee(mockGameMap);
+        verify(mockGameMap).getAvailablePositions(testMonster);
     }
 
     @Test
@@ -44,27 +50,27 @@ public class BehaviourTest {
         ArrayList<Point> availablePositions = new ArrayList<>();
         availablePositions.add(new Point(2,2));
         availablePositions.add(new Point(3,3));
-        when(mockGameMap.getAvailablePositions(testCreature)).thenReturn(availablePositions);
+        when(mockGameMap.getAvailablePositions(testPlayer)).thenReturn(availablePositions);
 
-        testCreature.flee(mockGameMap);
-        verify(mockGameMap).fleeMove(testCreature, new Point(2,2));
+        testMonster.flee(mockGameMap);
+        verify(mockGameMap).fleeMove(testMonster, new Point(2,2));
     }
 
     @Test
     public void testSoActMethodCallsActInBehaviour(){
         Behaviour mockBehaviour = mock(Behaviour.class);
-        testCreature = new Creature(10, 2, 8, 5, 5, false, mockInventoryFactory, mockBehaviour);
-        testCreature.act(mockMonster);
+        testPlayer = new Creature(10, 2, 8, 5, 5, false, mockInventoryFactory, mockBehaviour);
+        testPlayer.act(mockMonster);
         verify(mockBehaviour).act();
     }
 
     @Test(expected = UnsupportedOperationException.class)
     public void actNotImplemented(){
-        testCreature.act(mockMonster);
+        testPlayer.act(mockMonster);
     }
 
     @Test(expected = UnsupportedOperationException.class)
     public void testBehaviourFleeWithPlayer(){
-        testCreature.flee(mockGameMap);
+        testPlayer.flee(mockGameMap);
     }
 }

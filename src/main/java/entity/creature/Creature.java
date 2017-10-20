@@ -244,7 +244,7 @@ public class Creature extends Entity {
     }
 
     public void flee(GameMap gameMap) {
-        behaviour.flee(this, gameMap);
+        behaviour.flee(this, gameMap, isPC);
     }
 
     public boolean doBattle(Entity visitingEntity, Entity visitedEntity){

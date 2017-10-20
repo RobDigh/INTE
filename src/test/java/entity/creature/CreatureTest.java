@@ -39,9 +39,7 @@ public class CreatureTest {
 
     @Before
     public void setUp() {
-
         when(mockInventoryFactory.create()).thenReturn(mockInventory);
-
         testCreature = createPlayerWithCustomHPAndSpeed(100, 10);
     }
 
@@ -90,22 +88,49 @@ public class CreatureTest {
         createPlayerWithCustomHPAndSpeed(100, 0);
     }
 
-    //HP-tests
+    /**
+     *  Add tests for HP
+     */
+
     @Test
     public void testGetHP() {
-
         Creature creature = createPlayerWithCustomHPAndSpeed(500, 10);
         assertEquals(500, creature.getHP());
+    }
 
+    /**
+     *  Add tests for Speed
+     */
+
+    @Test
+    public void testGetSpeed() {
+        Creature creature = createPlayerWithCustomHPAndSpeed(500, 10);
+        assertEquals(10, creature.getSpeed());
     }
 
     @Test
+    public void testCalculateSpeedLowDex(){
+        assertEquals(1, testCreature.calculateSpeed(6, 12));
+    }
 
-    public void testGetSpeed() {
+    @Test
+    public void testCalculateSpeedDexSevenHighCon(){
+        assertEquals(2, testCreature.calculateSpeed(7, 6));
+    }
 
-        Creature creature = createPlayerWithCustomHPAndSpeed(500, 10);
-        assertEquals(10, creature.getSpeed());
+    @Test
+    public void testCalculateSpeedDexSevenLowCon(){
+        assertEquals(1, testCreature.calculateSpeed(7, 3));
+    }
 
+    @Test
+    public void testCalculateSpeedHighDexHighCon(){
+        assertEquals(3, testCreature.calculateSpeed(8, 7));
+    }
+
+    @Test
+    public void testCalculateSpeedHighDexLowCon(){
+        assertEquals(2, testCreature.calculateSpeed(8, 6));
     }
 
     /**
@@ -113,7 +138,6 @@ public class CreatureTest {
      */
 
     @Test
-
     public void testGainHP() {
         Creature creature = createPlayerWithCustomHPAndSpeed(450, 8);
         creature.gainHP(50);
@@ -161,8 +185,6 @@ public class CreatureTest {
         creature.loseHP(50);
         assertEquals(0, creature.getHP());
     }
-
-    //Speed-tests
 
     @Test
     public void testGainHPSeveralTimes() {

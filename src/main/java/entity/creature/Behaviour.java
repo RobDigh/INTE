@@ -20,6 +20,8 @@ public class Behaviour {
         } else {
             if(!availablePositions.isEmpty()) {
                 gameMap.fleeMove(creature, availablePositions.get(0));
+            }else{
+                throw new UnsupportedOperationException("Not implemented yet");
             }
         }
     }

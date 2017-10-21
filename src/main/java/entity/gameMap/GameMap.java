@@ -2,6 +2,7 @@ package entity.gameMap;
 
 import entity.Entity;
 import entity.creature.Creature;
+import org.mockito.internal.matchers.Null;
 
 import javax.swing.text.Position;
 import java.awt.*;
@@ -172,13 +173,14 @@ public class GameMap extends Entity {
 
         addEntity(entity, DEFAULT_ENTRY_POSITION);
         return false;
-
     }
 
     //We already have a move method, should flee be different?
     public boolean fleeMove(Creature creature, Point newPosition){
 
-        if(creature == null)
+        if(creature == null){
+            throw new NullPointerException("The creature can't be null");
+        }
         if(entitiesByPosition.get(newPosition) != null){
             return false;
         }
@@ -198,10 +200,10 @@ public class GameMap extends Entity {
         int xRange = xLength;
         int yRange = yLength;
 
-            if(creaturePosition != null) {
-                xRange = creaturePosition.x + creature.getSpeed();
-                yRange = creaturePosition.y + creature.getSpeed();
-            }
+        if(creaturePosition != null) {
+            xRange = creaturePosition.x + creature.getSpeed();
+            yRange = creaturePosition.y + creature.getSpeed();
+        }
 
         for(int x = 0; x < xRange; x++){
             for(int y = 0; y < yRange; y++){

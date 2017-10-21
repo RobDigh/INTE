@@ -271,4 +271,9 @@ public class PlacementTest extends GameMapTest {
     public void testFleeWithNullCreature(){
         gameMap.fleeMove(null, new Point(3,3));
     }
+
+    @Test(expected = NullPointerException.class)
+    public void testFleeWithNullPoint(){
+        gameMap.fleeMove(testCreature, null);
+    }
 }

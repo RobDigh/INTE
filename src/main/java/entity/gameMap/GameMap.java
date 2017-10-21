@@ -2,7 +2,6 @@ package entity.gameMap;
 
 import entity.Entity;
 import entity.creature.Creature;
-import org.mockito.internal.matchers.Null;
 
 import javax.swing.text.Position;
 import java.awt.*;

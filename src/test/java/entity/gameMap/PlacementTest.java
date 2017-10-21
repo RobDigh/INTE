@@ -258,7 +258,7 @@ public class PlacementTest extends GameMapTest {
     @Test
     public void testFleeMoveToNotEmptyPoint(){
         gameMap.place(testCreature, new Point(3,3));
-        assertFalse(gameMap.fleeMove(mockMonster, new Point(3,3)));
+        assertFalse(gameMap.fleeMove(testCreature, new Point(3,3)));
     }
 
     @Test (expected = IllegalArgumentException.class)

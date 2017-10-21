@@ -255,6 +255,12 @@ public class PlacementTest extends GameMapTest {
         assertEquals(new Point(4,4), gameMap.getPosition(testCreature));
     }
 
+    @Test
+    public void testFleeMoveToNotEmptyPoint(){
+        gameMap.place(testCreature, new Point(3,3));
+        assertFalse(gameMap.fleeMove(mockMonster, new Point(3,3)));
+    }
+
     @Test (expected = IllegalArgumentException.class)
     public void testFleeToAInvalidPoint(){
         gameMap.place(testCreature, new Point(3,3));

@@ -176,12 +176,14 @@ public class GameMap extends Entity {
     }
 
     //We already have a move method, should flee be different?
-    public void fleeMove(Creature creature, Point newPosition){
+    public boolean fleeMove(Creature creature, Point newPosition){
         Point currentPoint = positionsByEntity.get(creature);
         entitiesByPosition.remove(currentPoint);
         place(creature, newPosition);
         positionsByEntity.put(creature, newPosition);
         entitiesByPosition.put(newPosition, creature);
+
+        return false;
     }
 
     public ArrayList<Point> getAvailablePositions(Creature creature){

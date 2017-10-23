@@ -52,7 +52,7 @@ public class Creature extends Entity {
 
         this.type = calculateType();
 
-        this.hp = hp;
+        this.hp = calculateMaxHP();
         this.speed = speed;
         damageReduction = 0;
         damageBonus = 0;
@@ -98,6 +98,10 @@ public class Creature extends Entity {
     }
 
     public int calculateMaxHP(int strength, int constitution) {
+        return constitution * magicConstitutionHPNumber + strength * magicStrengthHPNumber;
+    }
+
+    private int calculateMaxHP(){
         return constitution * magicConstitutionHPNumber + strength * magicStrengthHPNumber;
     }
 

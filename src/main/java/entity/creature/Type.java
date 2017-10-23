@@ -1,26 +1,26 @@
 package entity.creature;
 
 public enum Type {
-    BULLDOG("Bulldog", 6, 5, 7, true),
-    CHIHUAHUA("Chihuahua", 5, 8, 5, true),
-    DACHSHUND("Dachshund", 5, 7, 6, true),
-    DOBERMANN("Dobermann", 7, 6, 5, true),
-    GREYHOUND("Greyhound", 5, 6, 7, true),
-    LABRADOR("Labrador", 6, 6, 6, true),
-    OVTJARKA("Ovtjarka", 8, 5, 5, true),
-    SIBERIANHUSKY("Siberian husky", 6, 7, 5, true),
-    STBERNARD("St. Bernard", 7, 5, 6, true),
-    VIZSLA("Vizsla", 5, 5, 8, true),
-    BEAR("Bear", 8, 5, 5, false),
-    CAR("Car", 7, 6, 5, false),
-    CAT("Cat", 5, 7, 6, false),
-    FOX("Fox", 6, 7, 5, false),
-    HUMAN("Human", 6, 6, 6, false),
-    JOGGER("Jogger", 6, 5, 7, false),
-    MAILMAN("Mailman", 5, 6, 7, false),
-    MOOSE("Moose", 5, 5, 8, false),
-    SQUIRREL("Squirrel", 5, 8, 5, false),
-    WOLF("Wolf", 7, 5, 6, false);
+    BULLDOG("Bulldog", Creature.lowMidRangeStatValue, Creature.minInitialStatValue, Creature.highMidRangeStatValue, true),
+    CHIHUAHUA("Chihuahua", Creature.minInitialStatValue, Creature.maxInitialStatValue, Creature.minInitialStatValue, true),
+    DACHSHUND("Dachshund", Creature.minInitialStatValue, Creature.highMidRangeStatValue, Creature.lowMidRangeStatValue, true),
+    DOBERMANN("Dobermann", Creature.highMidRangeStatValue, Creature.lowMidRangeStatValue, Creature.minInitialStatValue, true),
+    GREYHOUND("Greyhound", Creature.minInitialStatValue, Creature.lowMidRangeStatValue, Creature.highMidRangeStatValue, true),
+    LABRADOR("Labrador", Creature.lowMidRangeStatValue, Creature.lowMidRangeStatValue, Creature.lowMidRangeStatValue, true),
+    OVTJARKA("Ovtjarka", Creature.maxInitialStatValue, Creature.minInitialStatValue, Creature.minInitialStatValue, true),
+    SIBERIANHUSKY("Siberian husky", Creature.lowMidRangeStatValue, Creature.highMidRangeStatValue, Creature.minInitialStatValue, true),
+    STBERNARD("St. Bernard", Creature.highMidRangeStatValue, Creature.minInitialStatValue, Creature.lowMidRangeStatValue, true),
+    VIZSLA("Vizsla", Creature.minInitialStatValue, Creature.minInitialStatValue, Creature.maxInitialStatValue, true),
+    BEAR("Bear", Creature.maxInitialStatValue, Creature.minInitialStatValue, Creature.minInitialStatValue, false),
+    CAR("Car", Creature.highMidRangeStatValue, Creature.lowMidRangeStatValue, Creature.minInitialStatValue, false),
+    CAT("Cat", Creature.minInitialStatValue, Creature.highMidRangeStatValue, Creature.lowMidRangeStatValue, false),
+    FOX("Fox", Creature.lowMidRangeStatValue, Creature.highMidRangeStatValue, Creature.minInitialStatValue, false),
+    HUMAN("Human", Creature.lowMidRangeStatValue, Creature.lowMidRangeStatValue, Creature.lowMidRangeStatValue, false),
+    JOGGER("Jogger", Creature.lowMidRangeStatValue, Creature.minInitialStatValue, Creature.highMidRangeStatValue, false),
+    MAILMAN("Mailman", Creature.minInitialStatValue, Creature.lowMidRangeStatValue, Creature.highMidRangeStatValue, false),
+    MOOSE("Moose", Creature.minInitialStatValue, Creature.minInitialStatValue, Creature.maxInitialStatValue, false),
+    SQUIRREL("Squirrel", Creature.minInitialStatValue, Creature.maxInitialStatValue, Creature.minInitialStatValue, false),
+    WOLF("Wolf", Creature.highMidRangeStatValue, Creature.minInitialStatValue, Creature.lowMidRangeStatValue, false);
 
     private String name;
     private int strength;

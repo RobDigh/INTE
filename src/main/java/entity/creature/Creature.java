@@ -27,7 +27,6 @@ public class Creature extends Entity {
     private double damageReduction;
     private double damageBonus;
     private Behaviour behaviour;
-
     private Inventory inventory;
 
     public Creature(int hp, int speed, int strength, int dexterity, int constitution,

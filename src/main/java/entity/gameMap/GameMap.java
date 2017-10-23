@@ -203,14 +203,18 @@ public class GameMap extends Entity {
 
         int xRange = xLength;
         int yRange = yLength;
+        int xStart = 0;
+        int yStart = 0;
 
         if(creaturePosition != null) {
             xRange = creaturePosition.x + creature.getSpeed();
             yRange = creaturePosition.y + creature.getSpeed();
+            xStart = creaturePosition.x - creature.getSpeed();
+            yStart = creaturePosition.y - creature.getSpeed();
         }
 
-        for(int x = 0; x < xRange; x++){
-            for(int y = 0; y < yRange; y++){
+        for(int x = xStart; x < xRange; x++){
+            for(int y = yStart; y < yRange; y++){
                 Point point = new Point(x,y);
                 if(!entitiesByPosition.containsKey(point)) {
                     availablePositions.add(point);

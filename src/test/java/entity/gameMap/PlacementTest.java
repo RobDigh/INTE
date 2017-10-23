@@ -249,6 +249,7 @@ public class PlacementTest extends GameMapTest {
     public void testGetEmptyPositionsOutsideCreaturesPositionRangeSouthwest(){
         gameMap.place(testCreature, new Point(7,6));
         List<Point> emptyPositionsFromGameMap = gameMap.getAvailablePositions(testCreature);
+        System.out.println(emptyPositionsFromGameMap);
         assertFalse(emptyPositionsFromGameMap.contains(new Point(0,0)));
     }
 

@@ -53,7 +53,7 @@ public class Creature extends Entity {
         this.type = calculateType();
 
         this.hp = calculateMaxHP();
-        this.speed = speed;
+        this.speed = calculateDefaultSpeed();
         damageReduction = 0;
         damageBonus = 0;
 
@@ -102,6 +102,15 @@ public class Creature extends Entity {
     }
 
     public int calculateDefaultSpeed(int dexterity, int constitution) {
+        if (shouldHaveMaxSpeed(dexterity, constitution)) {
+            return 3;
+        } else if (shouldHaveHighSpeed(dexterity, constitution)) {
+            return 2;
+        }
+        return 1;
+    }
+
+    private int calculateDefaultSpeed() {
         if (shouldHaveMaxSpeed(dexterity, constitution)) {
             return 3;
         } else if (shouldHaveHighSpeed(dexterity, constitution)) {

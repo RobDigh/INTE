@@ -50,7 +50,7 @@ public class Creature extends Entity {
         checkInitialStatValues(strength, dexterity, constitution);
         this.isPC = isPC;
 
-        this.type = calculateType(strength, dexterity, constitution, isPC);
+        this.type = calculateType();
 
         this.hp = hp;
         this.speed = speed;
@@ -62,14 +62,15 @@ public class Creature extends Entity {
     }
 
     private Type calculateType() {
+        Type type = null;
         ArrayList<Type> temp = new ArrayList<>(EnumSet.allOf(Type.class));
         for (int i = 0; i < temp.size(); i++) {
-            Type type = temp.get(i);
-            if (type.getStrength() == strength && type.getDexterity() == dexterity && type.getConstitution() == constitution && isPC == type.isPC()) {
-                return type;
+            Type tempType = temp.get(i);
+            if (tempType.getStrength() == strength && tempType.getDexterity() == dexterity && tempType.getConstitution() == constitution && isPC == tempType.isPC()) {
+                type = tempType;
             }
         }
-        return null;
+        return type;
     }
 
     private void checkInitialStatValues(int strength, int dexterity, int constitution) {

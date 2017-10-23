@@ -108,8 +108,8 @@ public class CreatureTest {
 
     @Test
     public void testGetHP() {
-        Creature creature = createPlayerWithCustomHPAndSpeed(500, 10);
-        assertEquals(500, creature.getHP());
+        testCreature = new Creature(100, 10, 6, 6, 6, true, mockInventoryFactory, mockBehaviour);
+        assertEquals(6 * Creature.magicConstitutionHPNumber + 6 * Creature.magicStrengthHPNumber, testCreature.getHP());
     }
 
     @Test
@@ -161,9 +161,9 @@ public class CreatureTest {
 
     @Test
     public void testGainHP() {
-        Creature creature = createPlayerWithCustomHPAndSpeed(450, 8);
-        creature.gainHP(50);
-        assertEquals(500, creature.getHP());
+        testCreature = new Creature(100, 10, 6, 6, 6, true, mockInventoryFactory, mockBehaviour);
+        testCreature.gainHP(50);
+        assertEquals((6 * Creature.magicConstitutionHPNumber + 6 * Creature.magicStrengthHPNumber) + 50, testCreature.getHP());
     }
 
     @Test
@@ -182,9 +182,9 @@ public class CreatureTest {
 
     @Test
     public void testLoseHP() {
-        Creature creature = createPlayerWithCustomHPAndSpeed(450, 8);
-        creature.loseHP(50);
-        assertEquals(400, creature.getHP());
+        testCreature = new Creature(100, 10, 6, 6, 6, true, mockInventoryFactory, mockBehaviour);
+        testCreature.loseHP(50);
+        assertEquals((6 * Creature.magicConstitutionHPNumber + 6 * Creature.magicStrengthHPNumber) - 50, testCreature.getHP());
     }
 
     @Test
@@ -203,9 +203,9 @@ public class CreatureTest {
 
     @Test
     public void testGoBelowZeroHP() {
-        Creature creature = createPlayerWithCustomHPAndSpeed(50, 8);
-        creature.loseHP(50);
-        assertEquals(0, creature.getHP());
+        testCreature = new Creature(100, 10, 6, 6, 6, true, mockInventoryFactory, mockBehaviour);
+        testCreature.loseHP(testCreature.getHP() + 50);
+        assertEquals(0, testCreature.getHP());
     }
 
     @Test
@@ -791,7 +791,7 @@ public class CreatureTest {
         assertEquals(7, testCreature.getConstitution());
 
         assertEquals(100, testCreature.getSpeed());
-        assertEquals(10, testCreature.getHP());
+        assertEquals(7 * Creature.magicConstitutionHPNumber + 5 * Creature.magicStrengthHPNumber, testCreature.getHP());
         assertEquals(Type.GREYHOUND, testCreature.getType());
         assertTrue(testCreature.isPC());
     }

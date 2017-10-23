@@ -73,6 +73,31 @@ public class CreatureTest {
     }
 
     /**
+     * Add tests for stat increase and decrease
+     */
+
+    @Test
+    public void testGainStrength() {
+        testCreature = new Creature(100, 10, 6, 5, 7, true, mockInventoryFactory, mockBehaviour);
+        testCreature.gainStrength(2);
+        assertEquals(8, testCreature.getStrength());
+    }
+
+    @Test
+    public void testGainDexterity() {
+        testCreature = new Creature(100, 10, 5, 5, 8, true, mockInventoryFactory, mockBehaviour);
+        testCreature.gainDexterity(2);
+        assertEquals(7, testCreature.getDexterity());
+    }
+
+    @Test
+    public void testGainConstitution() {
+        testCreature = new Creature(100, 10, 5, 5, 8, true, mockInventoryFactory, mockBehaviour);
+        testCreature.gainConstitution(2);
+        assertEquals(10, testCreature.getConstitution());
+    }
+
+    /**
      * Add tests for HP
      */
 
@@ -98,7 +123,7 @@ public class CreatureTest {
 
     @Test
     public void testGetSpeed() {
-        testCreature = new Creature (100, 2, 5,8,5,true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(100, 2, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
         assertEquals(2, testCreature.getSpeed());
     }
 
@@ -242,7 +267,7 @@ public class CreatureTest {
 
     @Test
     public void testGainSpeed() {
-        testCreature = new Creature (100, 2, 5,8,5,true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(100, 2, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
         testCreature.gainSpeed(5);
         assertEquals(7, testCreature.getSpeed());
     }
@@ -263,7 +288,7 @@ public class CreatureTest {
 
     @Test
     public void testLoseSpeed() {
-        testCreature = new Creature (100, 2, 5,8,5,true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(100, 2, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
         testCreature.loseSpeed(2);
         assertEquals(0, testCreature.getSpeed());
     }
@@ -301,7 +326,7 @@ public class CreatureTest {
 
     @Test
     public void testLoseSpeedSeveralTimes() {
-        testCreature = new Creature (100, 2, 5,8,5,true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(100, 2, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
         testCreature.gainSpeed(10);
         int speedTotal = testCreature.getSpeed();
         testCreature.loseSpeed(1);

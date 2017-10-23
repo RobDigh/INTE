@@ -208,7 +208,7 @@ public class GameMap extends Entity {
             for(int y = 0; y < yRange; y++){
                 Point point = new Point(x,y);
                 if(!entitiesByPosition.containsKey(point)) {
-                    availablePositions.add(new Point(x, y));
+                    availablePositions.add(point);
                 }
             }
         }

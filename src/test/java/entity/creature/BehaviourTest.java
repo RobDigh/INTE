@@ -23,11 +23,11 @@ public class BehaviourTest {
     private Creature testMonster;
 
     private Creature createPlayer() {
-        return new Creature(10, 2, 8, 5, 5, true, mockInventoryFactory, behaviour);
+        return new Creature(5, 8, 5, true, mockInventoryFactory, behaviour);
     }
 
     private Creature createMonster() {
-        return new Creature(10, 2, 8, 5, 5, false, mockInventoryFactory, behaviour);
+        return new Creature(5, 8, 5, false, mockInventoryFactory, behaviour);
     }
 
     @Before

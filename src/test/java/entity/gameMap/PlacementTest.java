@@ -14,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class PlacementTest extends GameMapTest {
 
@@ -243,6 +244,14 @@ public class PlacementTest extends GameMapTest {
         gameMap.place(testCreature, new Point(3,3));
         List<Point> emptyPositionsFromGameMap = gameMap.getAvailablePositions(testCreature);
         assertFalse(emptyPositionsFromGameMap.contains(new Point(7,6)));
+    }
+
+    @Test
+    public void testGetEmptyPositionsOutSideGameMap(){
+        gameMap.place(testCreature, new Point(0,0));
+        List<Point> availablePositions = gameMap.getAvailablePositions(testCreature);
+        assertTrue(availablePositions.contains(new Point(1,1)));
+        assertFalse(availablePositions.contains(new Point(1, -1)));
     }
 
     @Test

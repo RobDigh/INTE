@@ -24,7 +24,7 @@ public class PlacementTest extends GameMapTest {
     GameMap gameMap;
 
     private Creature createCreature() {
-        return new Creature(10, 2, 5, 8, 5, true, mockInventoryFactory, behaviour);
+        return new Creature(5, 8, 5, true, mockInventoryFactory, behaviour);
     }
 
     private GameMap createCustomGameMap(int xLength, int yLength){

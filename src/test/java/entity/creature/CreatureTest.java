@@ -29,18 +29,14 @@ public class CreatureTest {
     private HealthPotion mockHealthPotion = mock(HealthPotion.class);
     private SpeedPotion mockSpeedPotion = mock(SpeedPotion.class);
 
-    private Creature createPlayerWithCustomHPAndSpeed(int hp, int speed) {
-        return new Creature(hp, speed, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
-    }
-
     private Creature createPlayerWithCustomStrengthDexterityAndConstitution(int strength, int dexterity, int constitution) {
-        return new Creature(10, 100, strength, dexterity, constitution, true, mockInventoryFactory, mockBehaviour);
+        return new Creature(strength, dexterity, constitution, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Before
     public void setUp() {
         when(mockInventoryFactory.create()).thenReturn(mockInventory);
-        testCreature = createPlayerWithCustomHPAndSpeed(100, 10);
+        testCreature = createPlayerWithCustomStrengthDexterityAndConstitution(6,6,6);
     }
 
     @Rule
@@ -62,45 +58,14 @@ public class CreatureTest {
      * Add constructor tests
      */
 
-
-    @Test
-    public void testConstructPlayerWithValidHPAndSpeed() {
-
-        Creature creature = createPlayerWithCustomHPAndSpeed(100, 2);
-
-        assertEquals(100, creature.getHP());
-        assertEquals(2, creature.getSpeed());
-
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testConstructPlayerWithNegativeHP() {
-        createPlayerWithCustomHPAndSpeed(-1, 1);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testConstructPlayerWithZeroHP() {
-        createPlayerWithCustomHPAndSpeed(0, 1);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testConstructPlayerWithNegativeSpeed() {
-        createPlayerWithCustomHPAndSpeed(100, -1);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testConstructPlayerWithZeroSpeed() {
-        createPlayerWithCustomHPAndSpeed(100, 0);
-    }
-
     @Test(expected = IllegalArgumentException.class)
     public void testConstructPlayerWithNullInventoryFactory() {
-        new Creature(10, 10, 6, 6, 6, true, null, new Behaviour());
+        new Creature(6, 6, 6, true, null, new Behaviour());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testConstructPlayerWithNullBehaviour() {
-        new Creature(10, 10, 6, 6, 6, true, new InventoryFactory(), null);
+        new Creature(6, 6, 6, true, new InventoryFactory(), null);
     }
 
     /**
@@ -109,21 +74,21 @@ public class CreatureTest {
 
     @Test
     public void testGainStrength() {
-        testCreature = new Creature(100, 10, 6, 5, 7, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(6, 5, 7, true, mockInventoryFactory, mockBehaviour);
         testCreature.gainStrength(2);
         assertEquals(8, testCreature.getStrength());
     }
 
     @Test
     public void testGainDexterity() {
-        testCreature = new Creature(100, 10, 5, 5, 8, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(5, 5, 8, true, mockInventoryFactory, mockBehaviour);
         testCreature.gainDexterity(2);
         assertEquals(7, testCreature.getDexterity());
     }
 
     @Test
     public void testGainConstitution() {
-        testCreature = new Creature(100, 10, 5, 5, 8, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(5, 5, 8, true, mockInventoryFactory, mockBehaviour);
         testCreature.gainConstitution(2);
         assertEquals(10, testCreature.getConstitution());
     }
@@ -134,17 +99,17 @@ public class CreatureTest {
 
     @Test
     public void testGetHP() {
-        testCreature = new Creature(100, 10, 6, 6, 6, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(6, 6, 6, true, mockInventoryFactory, mockBehaviour);
         assertEquals(6 * Creature.magicConstitutionHPNumber + 6 * Creature.magicStrengthHPNumber, testCreature.getHP());
     }
 
     @Test
     public void testCalculateHp() {
-        testCreature = new Creature(100, 1, 5, 5, 8, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(5, 5, 8, true, mockInventoryFactory, mockBehaviour);
         assertEquals(8 * 15 + 5 * 5, testCreature.getHP());
-        testCreature = new Creature(100, 1, 7, 5, 6, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(7, 5, 6, true, mockInventoryFactory, mockBehaviour);
         assertEquals(6 * 15 + 7 * 5, testCreature.getHP());
-        testCreature = new Creature(100, 2, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(5, 8, 5, true, mockInventoryFactory, mockBehaviour);
         assertEquals(5 * 15 + 5 * 5, testCreature.getHP());
     }
 
@@ -154,7 +119,7 @@ public class CreatureTest {
 
     @Test
     public void testGetSpeed() {
-        testCreature = new Creature(100, 2, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(5, 8, 5, true, mockInventoryFactory, mockBehaviour);
         assertEquals(2, testCreature.getSpeed());
     }
 
@@ -197,7 +162,7 @@ public class CreatureTest {
 
     @Test
     public void testGainHP() {
-        testCreature = new Creature(100, 10, 6, 6, 6, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(6, 6, 6, true, mockInventoryFactory, mockBehaviour);
         testCreature.gainHP(50);
         assertEquals((6 * Creature.magicConstitutionHPNumber + 6 * Creature.magicStrengthHPNumber) + 50, testCreature.getHP());
     }
@@ -205,20 +170,18 @@ public class CreatureTest {
     @Test
     public void testGainNegativeHP() {
         thrown.expect(IllegalArgumentException.class);
-        Creature creature = createPlayerWithCustomHPAndSpeed(320, 45);
-        creature.gainHP(-5);
+        testCreature.gainHP(-5);
     }
 
     @Test
     public void testGainZeroHP() {
         thrown.expect(IllegalArgumentException.class);
-        Creature creature = createPlayerWithCustomHPAndSpeed(258, 12);
-        creature.gainHP(0);
+        testCreature.gainHP(0);
     }
 
     @Test
     public void testLoseHP() {
-        testCreature = new Creature(100, 10, 6, 6, 6, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(6, 6, 6, true, mockInventoryFactory, mockBehaviour);
         testCreature.loseHP(50);
         assertEquals((6 * Creature.magicConstitutionHPNumber + 6 * Creature.magicStrengthHPNumber) - 50, testCreature.getHP());
     }
@@ -226,20 +189,18 @@ public class CreatureTest {
     @Test
     public void testLoseNegativeHP() {
         thrown.expect(IllegalArgumentException.class);
-        Creature creature = createPlayerWithCustomHPAndSpeed(450, 10);
-        creature.loseHP(-5);
+        testCreature.loseHP(-5);
     }
 
     @Test
     public void testLoseZeroHP() {
         thrown.expect(IllegalArgumentException.class);
-        Creature creature = createPlayerWithCustomHPAndSpeed(500, 10);
-        creature.loseHP(0);
+        testCreature.loseHP(0);
     }
 
     @Test
     public void testGoBelowZeroHP() {
-        testCreature = new Creature(100, 10, 6, 6, 6, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(6, 6, 6, true, mockInventoryFactory, mockBehaviour);
         testCreature.loseHP(testCreature.getHP() + 50);
         assertEquals(0, testCreature.getHP());
     }
@@ -306,7 +267,7 @@ public class CreatureTest {
 
     @Test
     public void testGainSpeed() {
-        testCreature = new Creature(100, 2, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(5, 8, 5, true, mockInventoryFactory, mockBehaviour);
         testCreature.gainSpeed(5);
         assertEquals(7, testCreature.getSpeed());
     }
@@ -314,20 +275,18 @@ public class CreatureTest {
     @Test
     public void testGainNegativeSpeed() {
         thrown.expect(IllegalArgumentException.class);
-        Creature creature = createPlayerWithCustomHPAndSpeed(500, 8);
-        creature.gainSpeed(-5);
+        testCreature.gainSpeed(-5);
     }
 
     @Test
     public void testGainZeroSpeed() {
         thrown.expect(IllegalArgumentException.class);
-        Creature creature = createPlayerWithCustomHPAndSpeed(500, 8);
-        creature.gainSpeed(0);
+        testCreature.gainSpeed(0);
     }
 
     @Test
     public void testLoseSpeed() {
-        testCreature = new Creature(100, 2, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(5, 8, 5, true, mockInventoryFactory, mockBehaviour);
         testCreature.loseSpeed(2);
         assertEquals(0, testCreature.getSpeed());
     }
@@ -335,22 +294,19 @@ public class CreatureTest {
     @Test
     public void testLoseNegativeSpeed() {
         thrown.expect(IllegalArgumentException.class);
-        Creature creature = createPlayerWithCustomHPAndSpeed(800, 15);
-        creature.loseSpeed(-5);
+        testCreature.loseSpeed(-5);
     }
 
     @Test
     public void testLoseZeroSpeed() {
         thrown.expect(IllegalArgumentException.class);
-        Creature creature = createPlayerWithCustomHPAndSpeed(450, 7);
-        creature.loseSpeed(0);
+        testCreature.loseSpeed(0);
     }
 
     @Test
     public void testGoBelowZeroSpeed() {
-        Creature creature = createPlayerWithCustomHPAndSpeed(450, 7);
-        creature.loseSpeed(9);
-        assertEquals(0, creature.getSpeed());
+        testCreature.loseSpeed(9);
+        assertEquals(0, testCreature.getSpeed());
     }
 
     @Test
@@ -365,7 +321,7 @@ public class CreatureTest {
 
     @Test
     public void testLoseSpeedSeveralTimes() {
-        testCreature = new Creature(100, 2, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(5, 8, 5, true, mockInventoryFactory, mockBehaviour);
         testCreature.gainSpeed(10);
         int speedTotal = testCreature.getSpeed();
         testCreature.loseSpeed(1);
@@ -388,7 +344,7 @@ public class CreatureTest {
 
     @Test
     public void testGainSpeedThenLoseSpeed() {
-        testCreature = new Creature(100, 2, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(5, 8, 5, true, mockInventoryFactory, mockBehaviour);
         int speedTotal = testCreature.getSpeed();
         testCreature.gainSpeed(3);
         testCreature.loseSpeed(2);
@@ -420,8 +376,7 @@ public class CreatureTest {
 
     @Test
     public void testGetDamageReduction() {
-        Creature creature = createPlayerWithCustomHPAndSpeed(100, 10);
-        assertEquals(0, creature.getDamageReduction(), 0.0);
+        assertEquals(0, testCreature.getDamageReduction(), 0.0);
     }
 
     @Test
@@ -598,8 +553,7 @@ public class CreatureTest {
 
     @Test
     public void testGetDamageBonus() {
-        Creature creature = createPlayerWithCustomHPAndSpeed(100, 10);
-        assertEquals(0, creature.getDamageBonus(), 0.0);
+        assertEquals(0, testCreature.getDamageBonus(), 0.0);
     }
 
     @Test
@@ -939,7 +893,7 @@ public class CreatureTest {
     @Test
     public void testGetConstitution() {
         createPlayerWithCustomStrengthDexterityAndConstitution(6, 6, 6);
-        assertEquals(5, testCreature.getConstitution());
+        assertEquals(6, testCreature.getConstitution());
     }
 
     /**
@@ -947,292 +901,292 @@ public class CreatureTest {
      */
     @Test
     public void testCalculateTypeLabrador() {
-        Creature creature = new Creature(100, 1, 6, 6, 6, true, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature(6, 6, 6, true, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.LABRADOR, creature.getType());
     }
 
     @Test
     public void testCalculateTypeOvtjarka() {
-        Creature creature = new Creature(100, 1, 8, 5, 5, true, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature( 8, 5, 5, true, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.OVTJARKA, creature.getType());
     }
 
     @Test
     public void testCalculateTypeDobermann() {
-        Creature creature = new Creature(100, 1, 7, 6, 5, true, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature( 7, 6, 5, true, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.DOBERMANN, creature.getType());
     }
 
     @Test
     public void testCalculateTypeStBernard() {
-        Creature creature = new Creature(100, 1, 7, 5, 6, true, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature(7, 5, 6, true, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.STBERNARD, creature.getType());
     }
 
     @Test
     public void testCalculateTypeChihuahua() {
-        Creature creature = new Creature(100, 1, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature( 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.CHIHUAHUA, creature.getType());
     }
 
     @Test
     public void testCalculateTypeDachshund() {
-        Creature creature = new Creature(100, 1, 5, 7, 6, true, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature( 5, 7, 6, true, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.DACHSHUND, creature.getType());
     }
 
     @Test
     public void testCalculateTypeSiberianHusky() {
-        Creature creature = new Creature(100, 1, 6, 7, 5, true, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature(6, 7, 5, true, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.SIBERIANHUSKY, creature.getType());
     }
 
     @Test
     public void testCalculateTypeVizsla() {
-        Creature creature = new Creature(100, 1, 5, 5, 8, true, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature( 5, 5, 8, true, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.VIZSLA, creature.getType());
     }
 
     @Test
     public void testCalculateTypeGreyhound() {
-        Creature creature = new Creature(100, 1, 5, 6, 7, true, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature( 5, 6, 7, true, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.GREYHOUND, creature.getType());
     }
 
     @Test
     public void testCalculateTypeBulldog() {
-        Creature creature = new Creature(100, 1, 6, 5, 7, true, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature( 6, 5, 7, true, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.BULLDOG, creature.getType());
     }
 
     @Test
     public void testCalculateTypeBear() {
-        Creature creature = new Creature(100, 1, 8, 5, 5, false, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature( 8, 5, 5, false, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.BEAR, creature.getType());
     }
 
     @Test
     public void testCalculateTypeCar() {
-        Creature creature = new Creature(100, 1, 7, 6, 5, false, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature(7, 6, 5, false, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.CAR, creature.getType());
     }
 
     @Test
     public void testCalculateTypeCat() {
-        Creature creature = new Creature(100, 1, 5, 7, 6, false, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature( 5, 7, 6, false, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.CAT, creature.getType());
     }
 
     @Test
     public void testCalculateTypeFox() {
-        Creature creature = new Creature(100, 1, 6, 7, 5, false, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature( 6, 7, 5, false, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.FOX, creature.getType());
     }
 
     @Test
     public void testCalculateTypeHuman() {
-        Creature creature = new Creature(100, 1, 6, 6, 6, false, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature(6, 6, 6, false, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.HUMAN, creature.getType());
     }
 
     @Test
     public void testCalculateTypeJogger() {
-        Creature creature = new Creature(100, 1, 6, 5, 7, false, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature(6, 5, 7, false, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.JOGGER, creature.getType());
     }
 
     @Test
     public void testCalculateTypeMailman() {
-        Creature creature = new Creature(100, 1, 5, 6, 7, false, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature(5, 6, 7, false, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.MAILMAN, creature.getType());
     }
 
     @Test
     public void testCalculateTypeMoose() {
-        Creature creature = new Creature(100, 1, 5, 5, 8, false, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature(5, 5, 8, false, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.MOOSE, creature.getType());
     }
 
     @Test
     public void testCalculateTypeSquirrel() {
-        Creature creature = new Creature(100, 1, 5, 8, 5, false, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature(5, 8, 5, false, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.SQUIRREL, creature.getType());
     }
 
     @Test
     public void testCalculateTypeWolf() {
-        Creature creature = new Creature(100, 1, 7, 5, 6, false, mockInventoryFactory, mockBehaviour);
+        Creature creature = new Creature(7, 5, 6, false, mockInventoryFactory, mockBehaviour);
         assertEquals(Type.WOLF, creature.getType());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeInvalidValueStrength() {
-        new Creature(100, 1, 4, 8, 5, true, mockInventoryFactory, mockBehaviour);
+        new Creature( 4, 8, 5, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeNegativeValueStrength() {
-        new Creature(100, 1, -7, 5, 5, true, mockInventoryFactory, mockBehaviour);
+        new Creature( -7, 5, 5, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeWithToHighStrengthValue() {
-        new Creature(100, 1, 9, 6, 5, true, mockInventoryFactory, mockBehaviour);
+        new Creature(9, 6, 5, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeWithToLowValueDexterity() {
-        new Creature(100, 1, 5, 3, 6, true, mockInventoryFactory, mockBehaviour);
+        new Creature( 5, 3, 6, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeWithToNegativeValueDexterity() {
-        new Creature(100, 1, 5, -3, 6, true, mockInventoryFactory, mockBehaviour);
+        new Creature( 5, -3, 6, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeWithToHighDexterityValue() {
-        new Creature(100, 1, 6, 23, 7, true, mockInventoryFactory, mockBehaviour);
+        new Creature(6, 23, 7, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeWithToLowValueConstitution() {
-        new Creature(100, 1, 6, 7, 2, true, mockInventoryFactory, mockBehaviour);
+        new Creature(6, 7, 2, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeWithToNegativeValueConstitution() {
-        new Creature(100, 1, 7, 6, -22, true, mockInventoryFactory, mockBehaviour);
+        new Creature(7, 6, -22, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeWithToHighConstitutionValue() {
-        new Creature(100, 1, 5, 5, 13, true, mockInventoryFactory, mockBehaviour);
+        new Creature(5, 5, 13, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeInvalidCombinationStrengthDexterityConstitutionAllEight() {
-        new Creature(100, 1, 8, 8, 8, true, mockInventoryFactory, mockBehaviour);
+        new Creature(8, 8, 8, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeInvalidCombinationStrengthDexterityConstitutionTwoStatIsSeven() {
-        new Creature(100, 1, 7, 7, 5, true, mockInventoryFactory, mockBehaviour);
+        new Creature(7, 7, 5, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeInvalidCombinationStrengthDexterityConstitutionTwoStatsOfSix() {
-        new Creature(100, 1, 5, 6, 6, true, mockInventoryFactory, mockBehaviour);
+        new Creature(5, 6, 6, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeInvalidCombinationStrengthDexterityConstitutionAllFive() {
-        new Creature(100, 1, 5, 5, 5, true, mockInventoryFactory, mockBehaviour);
+        new Creature( 5, 5, 5, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeInvalidCombinationStrengthDexterityConstitutionEightAndSixTogether() {
-        new Creature(100, 1, 5, 6, 8, true, mockInventoryFactory, mockBehaviour);
+        new Creature( 5, 6, 8, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeInvalidCombinationStrengthDexterityConstitutionEightAndSevenTogether() {
-        new Creature(100, 1, 7, 8, 5, true, mockInventoryFactory, mockBehaviour);
+        new Creature(7, 8, 5, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeInvalidCombinationStrengthDexterityConstitutionTwoFiveOneSix() {
-        new Creature(100, 1, 5, 6, 5, true, mockInventoryFactory, mockBehaviour);
+        new Creature(5, 6, 5, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculatePCTypeInvalidCombinationStrengthDexterityConstitutionTwoFiveOneSeven() {
-        new Creature(100, 1, 7, 5, 5, true, mockInventoryFactory, mockBehaviour);
+        new Creature(7, 5, 5, true, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeInvalidValueStrength() {
-        new Creature(100, 1, 4, 8, 5, false, mockInventoryFactory, mockBehaviour);
+        new Creature( 4, 8, 5, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeNegativeValueStrength() {
-        new Creature(100, 1, -7, 5, 5, false, mockInventoryFactory, mockBehaviour);
+        new Creature(-7, 5, 5, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeWithToHighStrengthValue() {
-        new Creature(100, 1, 9, 6, 5, false, mockInventoryFactory, mockBehaviour);
+        new Creature(9, 6, 5, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeWithToLowValueDexterity() {
-        new Creature(100, 1, 5, 3, 6, false, mockInventoryFactory, mockBehaviour);
+        new Creature(5, 3, 6, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeWithToNegativeValueDexterity() {
-        new Creature(100, 1, 5, -3, 6, false, mockInventoryFactory, mockBehaviour);
+        new Creature(5, -3, 6, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeWithToHighDexterityValue() {
-        new Creature(100, 1, 6, 23, 7, false, mockInventoryFactory, mockBehaviour);
+        new Creature(6, 23, 7, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeWithToLowValueConstitution() {
-        new Creature(100, 1, 6, 7, 2, false, mockInventoryFactory, mockBehaviour);
+        new Creature(6, 7, 2, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeWithToNegativeValueConstitution() {
-        new Creature(100, 1, 7, 6, -22, false, mockInventoryFactory, mockBehaviour);
+        new Creature(7, 6, -22, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeWithToHighConstitutionValue() {
-        new Creature(100, 1, 5, 5, 13, false, mockInventoryFactory, mockBehaviour);
+        new Creature(5, 5, 13, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeInvalidCombinationStrengthDexterityConstitutionAllEight() {
-        new Creature(100, 1, 8, 8, 8, false, mockInventoryFactory, mockBehaviour);
+        new Creature(8, 8, 8, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeInvalidCombinationStrengthDexterityConstitutionTwoStatIsSeven() {
-        new Creature(100, 1, 7, 7, 5, false, mockInventoryFactory, mockBehaviour);
+        new Creature(7, 7, 5, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeInvalidCombinationStrengthDexterityConstitutionTwoStatsOfSix() {
-        new Creature(100, 1, 5, 6, 6, false, mockInventoryFactory, mockBehaviour);
+        new Creature(5, 6, 6, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeInvalidCombinationStrengthDexterityConstitutionAllFive() {
-        new Creature(100, 1, 5, 5, 5, false, mockInventoryFactory, mockBehaviour);
+        new Creature(5, 5, 5, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeInvalidCombinationStrengthDexterityConstitutionEightAndSixTogether() {
-        new Creature(100, 1, 5, 6, 8, false, mockInventoryFactory, mockBehaviour);
+        new Creature( 5, 6, 8, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeInvalidCombinationStrengthDexterityConstitutionEightAndSevenTogether() {
-        new Creature(100, 1, 7, 8, 5, false, mockInventoryFactory, mockBehaviour);
+        new Creature(7, 8, 5, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeInvalidCombinationStrengthDexterityConstitutionTwoFiveOneSix() {
-        new Creature(100, 1, 5, 6, 5, false, mockInventoryFactory, mockBehaviour);
+        new Creature(5, 6, 5, false, mockInventoryFactory, mockBehaviour);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCalculateMonsterTypeInvalidCombinationStrengthDexterityConstitutionTwoFiveOneSeven() {
-        new Creature(100, 1, 7, 5, 5, false, mockInventoryFactory, mockBehaviour);
+        new Creature(7, 5, 5, false, mockInventoryFactory, mockBehaviour);
     }
 }
 

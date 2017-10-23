@@ -9,6 +9,10 @@ import java.util.*;
 
 public class Creature extends Entity {
 
+    public static final int minInitialStatValue = 5;
+    public static final int maxInitialStatValue = 8;
+    private static final int sumOfInitialStats = 18;
+
     private int strength;
     private int dexterity;
     private int constitution;
@@ -22,7 +26,8 @@ public class Creature extends Entity {
 
     private Inventory inventory;
 
-    public Creature(int hp, int speed, int strength, int dexterity, int constitution, boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour) {
+    public Creature(int hp, int speed, int strength, int dexterity, int constitution,
+                    boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour) {
         if (inventoryFactory == null) {
             throw new IllegalArgumentException("InventoryFactory cannot be null");
         }
@@ -53,19 +58,19 @@ public class Creature extends Entity {
     }
 
     public Type calculateType(int strength, int dexterity, int constitution, boolean isPC) {
-        if (strength < 5 || strength > 8) {
+        if (strength < minInitialStatValue || strength > maxInitialStatValue) {
             throw new IllegalArgumentException("Strength must be between 5 and 8");
         }
 
-        if (dexterity < 5 || dexterity > 8) {
+        if (dexterity < minInitialStatValue || dexterity > maxInitialStatValue) {
             throw new IllegalArgumentException("Dexterity must be between 5 and 8");
         }
 
-        if (constitution < 5 || constitution > 8) {
+        if (constitution < minInitialStatValue || constitution > maxInitialStatValue) {
             throw new IllegalArgumentException("Constitution must be between 5 and 8");
         }
 
-        if ((strength + dexterity + constitution) > 18 || (strength + dexterity + constitution) < 18) {
+        if ((strength + dexterity + constitution) > sumOfInitialStats || (strength + dexterity + constitution) < sumOfInitialStats) {
             throw new IllegalArgumentException("The sum of strength, dexterity and constitution have to be 18");
         }
 

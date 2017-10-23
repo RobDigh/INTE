@@ -10,6 +10,8 @@ import java.util.*;
 public class Creature extends Entity {
 
     public static final int minInitialStatValue = 5;
+    public static final int lowMidRangeStatValue = 6;
+    public static final int highMidRangeStatValue = 7;
     public static final int maxInitialStatValue = 8;
     private static final int sumOfInitialStats = 18;
 
@@ -70,7 +72,7 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Constitution must be between 5 and 8");
         }
 
-        if ((strength + dexterity + constitution) > sumOfInitialStats || (strength + dexterity + constitution) < sumOfInitialStats) {
+        if ((strength + dexterity + constitution) != sumOfInitialStats) {
             throw new IllegalArgumentException("The sum of strength, dexterity and constitution have to be 18");
         }
 

@@ -61,7 +61,7 @@ public class Creature extends Entity {
         this.behaviour = behaviour;
     }
 
-    private Type calculateType(int strength, int dexterity, int constitution, boolean isPC) {
+    private Type calculateType() {
         ArrayList<Type> temp = new ArrayList<>(EnumSet.allOf(Type.class));
         for (int i = 0; i < temp.size(); i++) {
             Type type = temp.get(i);

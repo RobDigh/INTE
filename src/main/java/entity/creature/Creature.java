@@ -23,11 +23,15 @@ public class Creature extends Entity {
     private Inventory inventory;
 
     public Creature(int hp, int speed, int strength, int dexterity, int constitution, boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour) {
-
+        if (inventoryFactory == null) {
+            throw new IllegalArgumentException("InventoryFactory cannot be null");
+        }
+        if (behaviour == null) {
+            throw new IllegalArgumentException("Behaviour cannot be null");
+        }
         if (hp <= 0) {
             throw new IllegalArgumentException("HP must be positive.");
         }
-
         if (speed <= 0) {
             throw new IllegalArgumentException("Speed must be positive.");
         }

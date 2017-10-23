@@ -14,6 +14,8 @@ public class Creature extends Entity {
     public static final int highMidRangeStatValue = 7;
     public static final int maxInitialStatValue = 8;
     private static final int sumOfInitialStats = 18;
+    private static final int magicConstitutionHPNumber = 15;
+    private static final int magicStrengthHPNumber = 5;
 
     private int strength;
     private int dexterity;
@@ -95,7 +97,7 @@ public class Creature extends Entity {
     }
 
     public int calculateHP(int strength, int constitution) {
-        return constitution * 15 + strength * 5;
+        return constitution * magicConstitutionHPNumber + strength * magicStrengthHPNumber;
     }
 
     public int calculateSpeed(int dexterity, int constitution) {

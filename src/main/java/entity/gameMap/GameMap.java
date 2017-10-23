@@ -197,7 +197,7 @@ public class GameMap extends Entity {
         if(creature == null){
             throw new IllegalArgumentException("Creature can't be null");
         }
-        
+
         Point creaturePosition = positionsByEntity.get(creature);
         ArrayList<Point> availablePositions = new ArrayList<>();
 

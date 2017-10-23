@@ -24,13 +24,12 @@ public class PlacementTest extends GameMapTest {
     GameMap gameMap;
 
     private Creature createCreature() {
-        return new Creature(5, 8, 5, true, mockInventoryFactory, behaviour);
+        return new Creature(6, 7, 5, true, mockInventoryFactory, behaviour);
     }
 
     private GameMap createCustomGameMap(int xLength, int yLength){
         return new GameMap(xLength, yLength);
     }
-
 
     private List<Point> placeSeveralCreaturesOnMap(){
 
@@ -75,7 +74,6 @@ public class PlacementTest extends GameMapTest {
         }
         return false;
     }
-
 
     @Before
     public void setUp(){
@@ -241,10 +239,17 @@ public class PlacementTest extends GameMapTest {
     }
 
     @Test
-    public void testGetEmptyPositionsOutsideCreaturesPositionRange(){
+    public void testGetEmptyPositionsOutsideCreaturesPositionRangeNortheast(){
         gameMap.place(testCreature, new Point(3,3));
         List<Point> emptyPositionsFromGameMap = gameMap.getAvailablePositions(testCreature);
         assertFalse(emptyPositionsFromGameMap.contains(new Point(7,6)));
+    }
+
+    @Test
+    public void testGetEmptyPositionsOutsideCreaturesPositionRangeSouthwest(){
+        gameMap.place(testCreature, new Point(7,6));
+        List<Point> emptyPositionsFromGameMap = gameMap.getAvailablePositions(testCreature);
+        assertFalse(emptyPositionsFromGameMap.contains(new Point(0,0)));
     }
 
     @Test (expected = IllegalArgumentException.class)

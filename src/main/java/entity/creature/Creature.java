@@ -156,6 +156,27 @@ public class Creature extends Entity {
         return type;
     }
 
+    public void gainStrength(int amount){
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount must be greater than 0");
+        }
+        this.strength += amount;
+    }
+
+    public void gainDexterity(int amount){
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount must be greater than 0");
+        }
+        this.dexterity += amount;
+    }
+
+    public void gainConstitution(int amount){
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount must be greater than 0");
+        }
+        this.constitution += amount;
+    }
+
     public void gainHP(int amount) {
         if (getHP() == 0) {
             return;

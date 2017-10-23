@@ -28,39 +28,7 @@ public class Creature extends Entity {
     private double damageBonus;
     private Behaviour behaviour;
     private Inventory inventory;
-
-    public Creature(int hp, int speed, int strength, int dexterity, int constitution,
-                    boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour) {
-        if (inventoryFactory == null) {
-            throw new IllegalArgumentException("InventoryFactory cannot be null");
-        }
-        if (behaviour == null) {
-            throw new IllegalArgumentException("Behaviour cannot be null");
-        }
-        if (hp <= 0) {
-            throw new IllegalArgumentException("HP must be positive.");
-        }
-        if (speed <= 0) {
-            throw new IllegalArgumentException("Speed must be positive.");
-        }
-
-        this.strength = strength;
-        this.dexterity = dexterity;
-        this.constitution = constitution;
-        checkInitialStatValues(strength, dexterity, constitution);
-        this.isPC = isPC;
-
-        this.type = calculateType();
-
-        this.hp = calculateMaxHP();
-        this.speed = calculateDefaultSpeed();
-        damageReduction = 0;
-        damageBonus = 0;
-
-        inventory = inventoryFactory.create();
-        this.behaviour = behaviour;
-    }
-
+    
     public Creature(int strength, int dexterity, int constitution,
                     boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour) {
         if (inventoryFactory == null) {

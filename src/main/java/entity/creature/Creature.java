@@ -101,7 +101,7 @@ public class Creature extends Entity {
         return constitution * magicConstitutionHPNumber + strength * magicStrengthHPNumber;
     }
 
-    public int calculateSpeed(int dexterity, int constitution) {
+    public int calculateDefaultSpeed(int dexterity, int constitution) {
         if (shouldHaveMaxSpeed(dexterity, constitution)) {
             return 3;
         } else if (shouldHaveHighSpeed(dexterity, constitution)) {

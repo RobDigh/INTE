@@ -118,7 +118,7 @@ public class CreatureTest {
         assertEquals(8 * 15 + 5 * 5, testCreature.getHP());
         testCreature = new Creature(100, 1, 7, 5, 6, true, mockInventoryFactory, mockBehaviour);
         assertEquals(6 * 15 + 7 * 5, testCreature.getHP());
-        testCreature = new Creature(100, 1, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
+        testCreature = new Creature(100, 2, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
         assertEquals(5 * 15 + 5 * 5, testCreature.getHP());
     }
 
@@ -134,27 +134,27 @@ public class CreatureTest {
 
     @Test
     public void testCalculateSpeedLowDex() {
-        assertEquals(1, testCreature.calculateSpeed(6, 12));
+        assertEquals(1, testCreature.calculateDefaultSpeed(6, 12));
     }
 
     @Test
     public void testCalculateSpeedDexSevenHighCon() {
-        assertEquals(2, testCreature.calculateSpeed(7, 6));
+        assertEquals(2, testCreature.calculateDefaultSpeed(7, 6));
     }
 
     @Test
     public void testCalculateSpeedDexSevenLowCon() {
-        assertEquals(1, testCreature.calculateSpeed(7, 3));
+        assertEquals(1, testCreature.calculateDefaultSpeed(7, 3));
     }
 
     @Test
     public void testCalculateSpeedHighDexHighCon() {
-        assertEquals(3, testCreature.calculateSpeed(8, 7));
+        assertEquals(3, testCreature.calculateDefaultSpeed(8, 7));
     }
 
     @Test
     public void testCalculateSpeedHighDexLowCon() {
-        assertEquals(2, testCreature.calculateSpeed(8, 6));
+        assertEquals(2, testCreature.calculateDefaultSpeed(8, 6));
     }
 
     /**

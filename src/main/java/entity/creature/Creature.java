@@ -99,12 +99,16 @@ public class Creature extends Entity {
     }
 
     public int calculateSpeed(int dexterity, int constitution) {
-        if (dexterity >= 8 && constitution >= 7) {
+        if (shouldHaveMaxSpeed(dexterity, constitution)) {
             return 3;
-        } else if (dexterity >= 8 || (dexterity == 7 && constitution >= 6)) {
+        } else if (dexterity >= maxInitialStatValue || (dexterity == highMidRangeStatValue && constitution >= lowMidRangeStatValue)) {
             return 2;
         }
         return 1;
+    }
+
+    private boolean shouldHaveMaxSpeed(int dexterity, int constitution){
+        return (dexterity >= maxInitialStatValue && constitution >= highMidRangeStatValue);
     }
 
     public double getDamageReduction() {

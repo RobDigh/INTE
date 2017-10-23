@@ -58,6 +58,10 @@ public class CreatureTest {
         verify(mockBehaviour).act();
     }
 
+    /**
+     * Add constructor tests
+     */
+
     @Test
     public void testConstructPlayerWithValidHPAndSpeed() {
 
@@ -88,8 +92,18 @@ public class CreatureTest {
         createPlayerWithCustomHPAndSpeed(100, 0);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructPlayerWithNullInventoryFactory() {
+        new Creature(10, 10, 6, 6, 6, true, null, new Behaviour());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructPlayerWithNullBehaviour() {
+        new Creature(10, 10, 6, 6, 6, true, new InventoryFactory(), null);
+    }
+
     /**
-     *  Add tests for HP
+     * Add tests for HP
      */
 
     @Test
@@ -99,15 +113,15 @@ public class CreatureTest {
     }
 
     @Test
-    public void testCalculateHp(){
-        assertEquals(8*15+5*5, testCreature.calculateHP(5, 8));
-        assertEquals(6*15+7*5, testCreature.calculateHP(7, 6));
-        assertEquals(5*15+5*5, testCreature.calculateHP(5, 5));
-        assertEquals((-10)*15+99*5, testCreature.calculateHP(99, (-10)));
+    public void testCalculateHp() {
+        assertEquals(8 * 15 + 5 * 5, testCreature.calculateHP(5, 8));
+        assertEquals(6 * 15 + 7 * 5, testCreature.calculateHP(7, 6));
+        assertEquals(5 * 15 + 5 * 5, testCreature.calculateHP(5, 5));
+        assertEquals((-10) * 15 + 99 * 5, testCreature.calculateHP(99, (-10)));
     }
 
     /**
-     *  Add tests for Speed
+     * Add tests for Speed
      */
 
     @Test
@@ -117,27 +131,27 @@ public class CreatureTest {
     }
 
     @Test
-    public void testCalculateSpeedLowDex(){
+    public void testCalculateSpeedLowDex() {
         assertEquals(1, testCreature.calculateSpeed(6, 12));
     }
 
     @Test
-    public void testCalculateSpeedDexSevenHighCon(){
+    public void testCalculateSpeedDexSevenHighCon() {
         assertEquals(2, testCreature.calculateSpeed(7, 6));
     }
 
     @Test
-    public void testCalculateSpeedDexSevenLowCon(){
+    public void testCalculateSpeedDexSevenLowCon() {
         assertEquals(1, testCreature.calculateSpeed(7, 3));
     }
 
     @Test
-    public void testCalculateSpeedHighDexHighCon(){
+    public void testCalculateSpeedHighDexHighCon() {
         assertEquals(3, testCreature.calculateSpeed(8, 7));
     }
 
     @Test
-    public void testCalculateSpeedHighDexLowCon(){
+    public void testCalculateSpeedHighDexLowCon() {
         assertEquals(2, testCreature.calculateSpeed(8, 6));
     }
 

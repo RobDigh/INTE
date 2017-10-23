@@ -53,7 +53,7 @@ public class PlacementTest extends GameMapTest {
         return occupiedPoints;
     }
 
-    private ArrayList<Point> getAllEmptyPoints(int xAxis, int yAxis, List<Point> occupiedPoints){
+    private ArrayList<Point> getAllEmptyPointsWholeMap(int xAxis, int yAxis, List<Point> occupiedPoints){
         ArrayList<Point> availablePositions = new ArrayList<>();
 
         for(int x = 0; x < xAxis; x++){
@@ -215,7 +215,7 @@ public class PlacementTest extends GameMapTest {
     @Test
     public void testGetAllEmptyPositionsForSpecificPlayerOnSmallEmptyMap(){
         gameMap = createCustomGameMap(3, 3);
-        assertEquals(getAllEmptyPoints(3,3, new ArrayList<>()), gameMap.getAvailablePositions(mockCreature));
+        assertEquals(getAllEmptyPointsWholeMap(3,3, new ArrayList<>()), gameMap.getAvailablePositions(mockCreature));
     }
 
     @Test
@@ -232,7 +232,7 @@ public class PlacementTest extends GameMapTest {
     @Test
     public void testGetAllEmptyPositionsSeveralPlayersOnTheMap(){
         List<Point> points = placeSeveralCreaturesOnMap();
-        ArrayList<Point> availablePositions = getAllEmptyPoints(10, 10, points);
+        ArrayList<Point> availablePositions = getAllEmptyPointsWholeMap(10, 10, points);
         List<Point> emptyPoints = gameMap.getAvailablePositions(mockCreature);
         assertFalse(pointExistInList(emptyPoints, points));
         assertEquals(availablePositions, emptyPoints);
@@ -249,7 +249,6 @@ public class PlacementTest extends GameMapTest {
     public void testGetEmptyPositionsOutsideCreaturesPositionRangeSouthwest(){
         gameMap.place(testCreature, new Point(7,6));
         List<Point> emptyPositionsFromGameMap = gameMap.getAvailablePositions(testCreature);
-        System.out.println(emptyPositionsFromGameMap);
         assertFalse(emptyPositionsFromGameMap.contains(new Point(0,0)));
         assertTrue(emptyPositionsFromGameMap.contains(new Point(6,5)));
         assertTrue(emptyPositionsFromGameMap.contains(new Point(7,7)));

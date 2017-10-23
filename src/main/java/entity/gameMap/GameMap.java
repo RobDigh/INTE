@@ -201,8 +201,8 @@ public class GameMap extends Entity {
         Point creaturePosition = positionsByEntity.get(creature);
         ArrayList<Point> availablePositions = new ArrayList<>();
 
-        int xRange = xLength;
-        int yRange = yLength;
+        int xRange = xLength -1;
+        int yRange = yLength -1;
         int xStart = 0;
         int yStart = 0;
 
@@ -213,8 +213,8 @@ public class GameMap extends Entity {
             yStart = creaturePosition.y - creature.getSpeed();
         }
 
-        for(int x = xStart; x < xRange; x++){
-            for(int y = yStart; y < yRange; y++){
+        for(int x = xStart; x <= xRange; x++){
+            for(int y = yStart; y <= yRange; y++){
                 Point point = new Point(x,y);
                 if(!entitiesByPosition.containsKey(point)) {
                     availablePositions.add(point);

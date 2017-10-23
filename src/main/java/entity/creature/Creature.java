@@ -48,6 +48,7 @@ public class Creature extends Entity {
         this.strength = strength;
         this.dexterity = dexterity;
         this.constitution = constitution;
+        checkInitialStatValues(strength, dexterity, constitution);
         this.isPC = isPC;
 
         this.type = calculateType(strength, dexterity, constitution, isPC);
@@ -62,7 +63,6 @@ public class Creature extends Entity {
     }
 
     public Type calculateType(int strength, int dexterity, int constitution, boolean isPC) {
-        checkInitialStatValues(strength, dexterity, constitution);
 
         ArrayList<Type> temp = new ArrayList<>(EnumSet.allOf(Type.class));
         for (int i = 0; i < temp.size(); i++) {

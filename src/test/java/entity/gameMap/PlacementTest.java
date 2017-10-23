@@ -251,6 +251,8 @@ public class PlacementTest extends GameMapTest {
         List<Point> emptyPositionsFromGameMap = gameMap.getAvailablePositions(testCreature);
         System.out.println(emptyPositionsFromGameMap);
         assertFalse(emptyPositionsFromGameMap.contains(new Point(0,0)));
+        assertTrue(emptyPositionsFromGameMap.contains(new Point(6,5)));
+        assertTrue(emptyPositionsFromGameMap.contains(new Point(7,7)));
     }
 
     @Test (expected = IllegalArgumentException.class)

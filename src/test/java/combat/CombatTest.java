@@ -33,7 +33,7 @@ public class CombatTest {
     private Void damageSpeed(InvocationOnMock invocationOnMock) {
 
         Creature opponent = invocationOnMock.getArgument(0);
-        opponent.loseSpeed(1);
+        opponent.loseSpeed(10);
 
         return null;
     }

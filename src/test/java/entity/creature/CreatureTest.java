@@ -62,36 +62,6 @@ public class CreatureTest {
      * Add constructor tests
      */
 
-    @Test
-    public void testConstructPlayerWithValidHPAndSpeed() {
-
-        Creature creature = createPlayerWithCustomHPAndSpeed(100, 1);
-
-        assertEquals(100, creature.getHP());
-        assertEquals(1, creature.getSpeed());
-
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testConstructPlayerWithNegativeHP() {
-        createPlayerWithCustomHPAndSpeed(-1, 1);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testConstructPlayerWithZeroHP() {
-        createPlayerWithCustomHPAndSpeed(0, 1);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testConstructPlayerWithNegativeSpeed() {
-        createPlayerWithCustomHPAndSpeed(100, -1);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testConstructPlayerWithZeroSpeed() {
-        createPlayerWithCustomHPAndSpeed(100, 0);
-    }
-
     @Test(expected = IllegalArgumentException.class)
     public void testConstructPlayerWithNullInventoryFactory() {
         new Creature(10, 10, 6, 6, 6, true, null, new Behaviour());
@@ -128,8 +98,8 @@ public class CreatureTest {
 
     @Test
     public void testGetSpeed() {
-        Creature creature = createPlayerWithCustomHPAndSpeed(500, 10);
-        assertEquals(10, creature.getSpeed());
+        testCreature = new Creature (100, 2, 5,8,5,true, mockInventoryFactory, mockBehaviour);
+        assertEquals(2, testCreature.getSpeed());
     }
 
     @Test
@@ -272,9 +242,9 @@ public class CreatureTest {
 
     @Test
     public void testGainSpeed() {
-        Creature creature = createPlayerWithCustomHPAndSpeed(50, 10);
-        creature.gainSpeed(5);
-        assertEquals(15, creature.getSpeed());
+        testCreature = new Creature (100, 2, 5,8,5,true, mockInventoryFactory, mockBehaviour);
+        testCreature.gainSpeed(5);
+        assertEquals(7, testCreature.getSpeed());
     }
 
     @Test
@@ -293,9 +263,9 @@ public class CreatureTest {
 
     @Test
     public void testLoseSpeed() {
-        Creature creature = createPlayerWithCustomHPAndSpeed(50, 10);
-        creature.loseSpeed(5);
-        assertEquals(5, creature.getSpeed());
+        testCreature = new Creature (100, 2, 5,8,5,true, mockInventoryFactory, mockBehaviour);
+        testCreature.loseSpeed(2);
+        assertEquals(0, testCreature.getSpeed());
     }
 
     @Test
@@ -331,6 +301,8 @@ public class CreatureTest {
 
     @Test
     public void testLoseSpeedSeveralTimes() {
+        testCreature = new Creature (100, 2, 5,8,5,true, mockInventoryFactory, mockBehaviour);
+        testCreature.gainSpeed(10);
         int speedTotal = testCreature.getSpeed();
         testCreature.loseSpeed(1);
         testCreature.loseSpeed(2);
@@ -352,12 +324,13 @@ public class CreatureTest {
 
     @Test
     public void testGainSpeedThenLoseSpeed() {
+        testCreature = new Creature(100, 2, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
         int speedTotal = testCreature.getSpeed();
+        testCreature.gainSpeed(3);
+        testCreature.loseSpeed(2);
+        testCreature.loseSpeed(2);
         testCreature.gainSpeed(5);
-        testCreature.loseSpeed(7);
-        testCreature.loseSpeed(7);
-        testCreature.gainSpeed(5);
-        speedTotal = speedTotal + 5 - 7 - 7 + 5;
+        speedTotal = speedTotal + 3 - 2 - 2 + 5;
         assertEquals(speedTotal, testCreature.getSpeed());
     }
 
@@ -792,7 +765,7 @@ public class CreatureTest {
         assertEquals(6, testCreature.getDexterity());
         assertEquals(7, testCreature.getConstitution());
 
-        assertEquals(100, testCreature.getSpeed());
+        assertEquals(1, testCreature.getSpeed());
         assertEquals(7 * Creature.magicConstitutionHPNumber + 5 * Creature.magicStrengthHPNumber, testCreature.getHP());
         assertEquals(Type.GREYHOUND, testCreature.getType());
         assertTrue(testCreature.isPC());

@@ -62,21 +62,7 @@ public class Creature extends Entity {
     }
 
     public Type calculateType(int strength, int dexterity, int constitution, boolean isPC) {
-        if (strength < minInitialStatValue || strength > maxInitialStatValue) {
-            throw new IllegalArgumentException("Strength must be between 5 and 8");
-        }
-
-        if (dexterity < minInitialStatValue || dexterity > maxInitialStatValue) {
-            throw new IllegalArgumentException("Dexterity must be between 5 and 8");
-        }
-
-        if (constitution < minInitialStatValue || constitution > maxInitialStatValue) {
-            throw new IllegalArgumentException("Constitution must be between 5 and 8");
-        }
-
-        if ((strength + dexterity + constitution) != sumOfInitialStats) {
-            throw new IllegalArgumentException("The sum of strength, dexterity and constitution have to be 18");
-        }
+        checkInitialStatValues(strength, dexterity, constitution);
 
         ArrayList<Type> temp = new ArrayList<>(EnumSet.allOf(Type.class));
         for (int i = 0; i < temp.size(); i++) {
@@ -86,6 +72,22 @@ public class Creature extends Entity {
             }
         }
         return null;
+    }
+
+    private void checkInitialStatValues(int strength, int dexterity, int constitution) {
+        checkStatValueIsInAllowedInitialRange(strength, "Strength");
+        checkStatValueIsInAllowedInitialRange(dexterity, "Dexterity");
+        checkStatValueIsInAllowedInitialRange(constitution, "Constitution");
+
+        if ((strength + dexterity + constitution) != sumOfInitialStats) {
+            throw new IllegalArgumentException("The sum of strength, dexterity and constitution have to be 18");
+        }
+    }
+
+    private void checkStatValueIsInAllowedInitialRange(int statValue, String statname) {
+        if (statValue < minInitialStatValue || statValue > maxInitialStatValue) {
+            throw new IllegalArgumentException(statname + " must be between 5 and 8");
+        }
     }
 
     public int getHP() {

@@ -62,6 +62,37 @@ public class CreatureTest {
      * Add constructor tests
      */
 
+
+    @Test
+    public void testConstructPlayerWithValidHPAndSpeed() {
+
+        Creature creature = createPlayerWithCustomHPAndSpeed(100, 2);
+
+        assertEquals(100, creature.getHP());
+        assertEquals(2, creature.getSpeed());
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructPlayerWithNegativeHP() {
+        createPlayerWithCustomHPAndSpeed(-1, 1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructPlayerWithZeroHP() {
+        createPlayerWithCustomHPAndSpeed(0, 1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructPlayerWithNegativeSpeed() {
+        createPlayerWithCustomHPAndSpeed(100, -1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructPlayerWithZeroSpeed() {
+        createPlayerWithCustomHPAndSpeed(100, 0);
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testConstructPlayerWithNullInventoryFactory() {
         new Creature(10, 10, 6, 6, 6, true, null, new Behaviour());

@@ -61,6 +61,32 @@ public class Creature extends Entity {
         this.behaviour = behaviour;
     }
 
+    public Creature(int strength, int dexterity, int constitution,
+                    boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour) {
+        if (inventoryFactory == null) {
+            throw new IllegalArgumentException("InventoryFactory cannot be null");
+        }
+        if (behaviour == null) {
+            throw new IllegalArgumentException("Behaviour cannot be null");
+        }
+
+        this.strength = strength;
+        this.dexterity = dexterity;
+        this.constitution = constitution;
+        checkInitialStatValues(strength, dexterity, constitution);
+        this.isPC = isPC;
+
+        this.type = calculateType();
+
+        this.hp = calculateMaxHP();
+        this.speed = calculateDefaultSpeed();
+        damageReduction = 0;
+        damageBonus = 0;
+
+        inventory = inventoryFactory.create();
+        this.behaviour = behaviour;
+    }
+
     private Type calculateType() {
         Type type = null;
         ArrayList<Type> temp = new ArrayList<>(EnumSet.allOf(Type.class));

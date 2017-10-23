@@ -25,8 +25,8 @@ public class CombatTest {
     private Behaviour mockBehaviour = mock(Behaviour.class);
     private GameMap gameMap = mock(GameMap.class);
 
-    private Creature c1 = spy(new Creature(100, 1, 5, 8 ,5, true, mock(InventoryFactory.class), mockBehaviour));
-    private Creature c2 = spy(new Creature(100, 1, 5, 8, 5, true, mock(InventoryFactory.class), mockBehaviour));
+    private Creature c1 = spy(new Creature(5, 6 ,7, true, mock(InventoryFactory.class), mockBehaviour));
+    private Creature c2 = spy(new Creature(5, 6, 7, true, mock(InventoryFactory.class), mockBehaviour));
 
     private Combat combat = new Combat(c1, c2);
 
@@ -91,8 +91,8 @@ public class CombatTest {
     @Test
     public void activeFleeingWin() {
 
-        doAnswer(invocationOnMock -> damageHP(invocationOnMock, 90))
-                .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 100))
+        doAnswer(invocationOnMock -> damageHP(invocationOnMock, 120))
+                .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 130))
                 .when(c2).act(c1);
 
         combat.start(gameMap);
@@ -116,10 +116,10 @@ public class CombatTest {
     public void activeFleeingImmobilizedActiveWin() {
 
         doAnswer(invocationOnMock -> null)
-                .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 100))
+                .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 130))
                 .when(c1).act(c2);
 
-        doAnswer(invocationOnMock -> damageHP(invocationOnMock, 90))
+        doAnswer(invocationOnMock -> damageHP(invocationOnMock, 120))
                 .doAnswer(this::damageSpeed)
                 .doAnswer(this::increaseOpponentsHP)
                 .doAnswer(this::increaseOpponentsSpeed)

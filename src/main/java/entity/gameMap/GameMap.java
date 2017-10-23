@@ -207,13 +207,19 @@ public class GameMap extends Entity {
         int yStart = 0;
 
         if(creaturePosition != null) {
-            xRange = creaturePosition.x + creature.getSpeed();
-            yRange = creaturePosition.y + creature.getSpeed();
 
-            if((creaturePosition.x - creature.getSpeed()) > 0){
+            if(creaturePosition.x + creature.getSpeed() < xRange){
+                xRange = creaturePosition.x + creature.getSpeed();
+            }
+
+            if(creaturePosition.y + creature.getSpeed() < yRange){
+                yRange = creaturePosition.y + creature.getSpeed();
+            }
+
+            if((creaturePosition.x - creature.getSpeed()) > xStart){
                 xStart = creaturePosition.x - creature.getSpeed();
             }
-            if((creaturePosition.y - creature.getSpeed()) > 0) {
+            if((creaturePosition.y - creature.getSpeed()) > yStart) {
                 yStart = creaturePosition.y - creature.getSpeed();
             }
         }

@@ -247,6 +247,11 @@ public class PlacementTest extends GameMapTest {
         assertFalse(emptyPositionsFromGameMap.contains(new Point(7,6)));
     }
 
+    @Test (expected = IllegalArgumentException.class)
+    public void testGetAvailablePointsWithNullCreature(){
+        gameMap.getAvailablePositions(null);
+    }
+
     @Test
     public void testMoveWhileFleeing(){
         gameMap.place(testCreature, new Point(3,3));

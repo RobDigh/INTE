@@ -129,27 +129,35 @@ public class CreatureTest {
 
     @Test
     public void testCalculateSpeedLowDex() {
-        assertEquals(1, testCreature.calculateDefaultSpeed(6, 12));
+        testCreature = createPlayerWithCustomStrengthDexterityAndConstitution(5, 6, 7);
+        testCreature.gainConstitution(5);
+        assertEquals(1, testCreature.getSpeed());
     }
 
     @Test
     public void testCalculateSpeedDexSevenHighCon() {
-        assertEquals(2, testCreature.calculateDefaultSpeed(7, 6));
+        testCreature = createPlayerWithCustomStrengthDexterityAndConstitution(5, 7, 6);
+        assertEquals(2, testCreature.getSpeed());
     }
 
     @Test
     public void testCalculateSpeedDexSevenLowCon() {
-        assertEquals(1, testCreature.calculateDefaultSpeed(7, 3));
+        testCreature = createPlayerWithCustomStrengthDexterityAndConstitution(6, 7, 5);
+        assertEquals(1, testCreature.getSpeed());
     }
 
     @Test
     public void testCalculateSpeedHighDexHighCon() {
-        assertEquals(3, testCreature.calculateDefaultSpeed(8, 7));
+        testCreature = createPlayerWithCustomStrengthDexterityAndConstitution(5, 8, 5);
+        testCreature.gainConstitution(2);
+        assertEquals(3, testCreature.getSpeed());
     }
 
     @Test
     public void testCalculateSpeedHighDexLowCon() {
-        assertEquals(2, testCreature.calculateDefaultSpeed(8, 6));
+        testCreature = createPlayerWithCustomStrengthDexterityAndConstitution(5, 8, 5);
+        testCreature.gainConstitution(1);
+        assertEquals(2, testCreature.getSpeed());
     }
 
     /**

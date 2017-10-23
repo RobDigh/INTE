@@ -101,15 +101,6 @@ public class Creature extends Entity {
         return constitution * magicConstitutionHPNumber + strength * magicStrengthHPNumber;
     }
 
-    public int calculateDefaultSpeed(int dexterity, int constitution) {
-        if (shouldHaveMaxSpeed(dexterity, constitution)) {
-            return 3;
-        } else if (shouldHaveHighSpeed(dexterity, constitution)) {
-            return 2;
-        }
-        return 1;
-    }
-
     private int calculateDefaultSpeed() {
         if (shouldHaveMaxSpeed(dexterity, constitution)) {
             return 3;
@@ -161,6 +152,7 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
         this.strength += amount;
+        this.hp = calculateMaxHP();
     }
 
     public void gainDexterity(int amount){
@@ -168,6 +160,7 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
         this.dexterity += amount;
+        this.speed = calculateDefaultSpeed();
     }
 
     public void gainConstitution(int amount){
@@ -175,6 +168,8 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
         this.constitution += amount;
+        this.speed = calculateDefaultSpeed();
+        this.hp = calculateMaxHP();
     }
 
     public void gainHP(int amount) {

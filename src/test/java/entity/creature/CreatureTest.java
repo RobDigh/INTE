@@ -114,10 +114,12 @@ public class CreatureTest {
 
     @Test
     public void testCalculateHp() {
-        assertEquals(8 * 15 + 5 * 5, testCreature.calculateMaxHP(5, 8));
-        assertEquals(6 * 15 + 7 * 5, testCreature.calculateMaxHP(7, 6));
-        assertEquals(5 * 15 + 5 * 5, testCreature.calculateMaxHP(5, 5));
-        assertEquals((-10) * 15 + 99 * 5, testCreature.calculateMaxHP(99, (-10)));
+        testCreature = new Creature(100, 1, 5, 5, 8, true, mockInventoryFactory, mockBehaviour);
+        assertEquals(8 * 15 + 5 * 5, testCreature.getHP());
+        testCreature = new Creature(100, 1, 7, 5, 6, true, mockInventoryFactory, mockBehaviour);
+        assertEquals(6 * 15 + 7 * 5, testCreature.getHP());
+        testCreature = new Creature(100, 1, 5, 8, 5, true, mockInventoryFactory, mockBehaviour);
+        assertEquals(5 * 15 + 5 * 5, testCreature.getHP());
     }
 
     /**

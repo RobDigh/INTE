@@ -13,6 +13,11 @@ public class Behaviour {
      */
 
     public void flee(Creature creature, GameMap gameMap, boolean isPlayer) {
+
+        if(gameMap == null){
+            throw new IllegalArgumentException("Game map can't be null");
+        }
+        
         List<Point> availableDirections = gameMap.getAvailableDirections(creature);
 
         if(isPlayer){

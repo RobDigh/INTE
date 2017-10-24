@@ -170,14 +170,14 @@ public class Creature extends Entity {
         if (getHP() == 0) {
             return;
         }
-        if (amount <= 0) {
+        if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
         this.hp += amount;
     }
 
     public void loseHP(int amount) {
-        if (amount <= 0) {
+        if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
         hp = Math.max(0, hp - amount);

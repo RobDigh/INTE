@@ -42,6 +42,11 @@ public class MovementTest extends GameMapTest {
      */
 
     @Test(expected = IllegalArgumentException.class)
+    public void moveNullCreature() {
+        DEFAULT_SIZED_MAP.move(null, GameMap.NORTH);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void moveCreatureInInvalidDirection() {
         placeAndMoveCreature(DEFAULT_SIZED_MAP, 0, 0, new Point(2, 2));
     }

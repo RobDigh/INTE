@@ -28,7 +28,7 @@ public class GameMapTest {
     protected GameMap placeCreature(GameMap gameMap, int x, int y) {
 
         Creature creature = mock(Creature.class);
-        gameMap.place(creature, new Point(x, y));
+        gameMap.placeEntity(creature, new Point(x, y));
 
         return gameMap;
 
@@ -39,21 +39,21 @@ public class GameMapTest {
         Creature creature = mock(Creature.class);
 
         GameMap gameMap = createDefaultSizedGameMap();
-        gameMap.place(creature, new Point(x, y));
+        gameMap.placeEntity(creature, new Point(x, y));
 
         return gameMap;
     }
 
     protected boolean placeAndMoveCreature(GameMap gameMap, int x, int y, Point direction) {
 
-        gameMap.place(mockCreature, new Point(x, y));
+        gameMap.placeEntity(mockCreature, new Point(x, y));
         return gameMap.move(mockCreature, direction);
 
     }
 
     protected boolean placeAndMoveMonster(GameMap gameMap, int x, int y, Point direction) {
 
-        gameMap.place(mockMonster, new Point(x, y));
+        gameMap.placeEntity(mockMonster, new Point(x, y));
         return gameMap.move(mockMonster, direction);
 
     }

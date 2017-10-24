@@ -295,7 +295,7 @@ public class MovementTest extends GameMapTest {
 
         when(mockMonster.accept(mockCreature, DEFAULT_SIZED_MAP)).then(this::removeAcceptant);
 
-        DEFAULT_SIZED_MAP.place(mockMonster, new Point(0, 1));
+        DEFAULT_SIZED_MAP.placeEntity(mockMonster, new Point(0, 1));
 
         assertTrue(placeAndMoveCreature(DEFAULT_SIZED_MAP, 0, 0, GameMap.NORTH));
 
@@ -309,7 +309,7 @@ public class MovementTest extends GameMapTest {
 
         when(mockMonster.accept(mockCreature, DEFAULT_SIZED_MAP)).then(this::removeVisitor);
 
-        DEFAULT_SIZED_MAP.place(mockMonster, new Point(0, 1));
+        DEFAULT_SIZED_MAP.placeEntity(mockMonster, new Point(0, 1));
 
         assertFalse(placeAndMoveCreature(DEFAULT_SIZED_MAP, 0, 0, GameMap.NORTH));
 

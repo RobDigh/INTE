@@ -36,7 +36,7 @@ public class BehaviourTest {
         gameMap = new GameMap();
         testPlayer = createPlayer();
         testMonster = createMonster();
-        gameMap.place(testPlayer, new Point(5,5));
+        gameMap.placeEntity(testPlayer, new Point(5,5));
     }
 
     @Test

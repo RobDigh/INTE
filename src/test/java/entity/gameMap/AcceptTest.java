@@ -41,8 +41,8 @@ public class AcceptTest extends GameMapTest {
     
     @Test
     public void acceptCreatureByMonsterAndWinBattle(){
-    	DEFAULT_SIZED_MAP.place(player, GameMap.DEFAULT_ENTRY_POSITION);
-    	DEFAULT_SIZED_MAP.place(monster, new Point(0,1));
+    	DEFAULT_SIZED_MAP.placeEntity(player, GameMap.DEFAULT_ENTRY_POSITION);
+    	DEFAULT_SIZED_MAP.placeEntity(monster, new Point(0,1));
     	DEFAULT_SIZED_MAP.move(player, GameMap.NORTH);
     	
     	assertEquals(new Point(0,1), DEFAULT_SIZED_MAP.getPosition(player));
@@ -51,8 +51,8 @@ public class AcceptTest extends GameMapTest {
     
     @Test
     public void acceptCreatureByMonsterAndLoseBattle(){
-    	DEFAULT_SIZED_MAP.place(monster, new Point(0,1));
-    	DEFAULT_SIZED_MAP.place(player, new Point(0,0));
+    	DEFAULT_SIZED_MAP.placeEntity(monster, new Point(0,1));
+    	DEFAULT_SIZED_MAP.placeEntity(player, new Point(0,0));
     	player.loseHP(451);
     	DEFAULT_SIZED_MAP.move(player, GameMap.NORTH);
     	
@@ -62,8 +62,8 @@ public class AcceptTest extends GameMapTest {
     
     @Test
     public void acceptCreatureByItemAndLeaveBoard(){
-    	DEFAULT_SIZED_MAP.place(armor, GameMap.NORTH);
-    	DEFAULT_SIZED_MAP.place(player, new Point(0,0));
+    	DEFAULT_SIZED_MAP.placeEntity(armor, GameMap.NORTH);
+    	DEFAULT_SIZED_MAP.placeEntity(player, new Point(0,0));
     	DEFAULT_SIZED_MAP.move(player, GameMap.NORTH);
     	
     	assertEquals(null, DEFAULT_SIZED_MAP.getPosition(armor));

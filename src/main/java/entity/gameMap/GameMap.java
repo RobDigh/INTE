@@ -52,7 +52,7 @@ public class GameMap extends Entity {
         return yLength;
     }
 
-    public boolean place(Entity entity, Point point) {
+    public boolean placeEntity(Entity entity, Point point) {
 
         if (entity == null) {
             throw new IllegalArgumentException("Entity may not be null.");
@@ -187,7 +187,7 @@ public class GameMap extends Entity {
         }
         Point currentPoint = positionsByEntity.get(creature);
         entitiesByPosition.remove(currentPoint);
-        place(creature, newPosition);
+        placeEntity(creature, newPosition);
         positionsByEntity.put(creature, newPosition);
         entitiesByPosition.put(newPosition, creature);
 

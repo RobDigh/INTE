@@ -121,4 +121,16 @@ public class BehaviourTest {
         assertTrue(validDirections.contains(new Point(-1,0)));
         assertTrue(validDirections.contains(new Point(1,0)));
     }
+
+    @Test
+    public void testGetAvailableDirectionsWhileBothItemAndMonstersAreOnValidDirections(){
+        gameMap.placeEntity(new HealthPotion(5), new Point(3,5));
+        gameMap.placeEntity(testMonster, new Point(7,5));
+        ArrayList<Point> validDirections = gameMap.getAvailableDirections(testPlayer);
+
+        assertTrue(validDirections.contains(new Point(0,1)));
+        assertTrue(validDirections.contains(new Point(0,-1)));
+        assertTrue(validDirections.contains(new Point(-1,0)));
+        assertFalse(validDirections.contains(new Point(1,0)));
+    }
 }

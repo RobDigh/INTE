@@ -158,6 +158,8 @@ public class GameMap extends Entity {
 
     public boolean move(Creature creature, Point direction) {
 
+        makeNullCheck(creature, "Creature");
+
         if (!validDirections.contains(direction)) {
             throw new IllegalArgumentException("Invalid direction.");
         }

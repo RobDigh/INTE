@@ -17,7 +17,7 @@ public class Combat {
     }
 
     private boolean isDead(Creature creature) {
-        return creature.getHP() <= 0;
+        return creature.getCurrentHP() <= 0;
     }
 
     private boolean combatantsAlive(Creature actor, Creature defender) {
@@ -25,7 +25,7 @@ public class Combat {
     }
 
     private boolean isFleeing(Creature creature) {
-        return creature.getHP() <= 10 && creature.getSpeed() > 0;
+        return creature.getCurrentHP() <= 10 && creature.getSpeed() > 0;
     }
 
     private boolean isImmobilized(Creature creature) {

@@ -17,18 +17,19 @@ public class Creature extends Entity {
     public static final int magicConstitutionHPNumber = 15;
     public static final int magicStrengthHPNumber = 5;
 
+    private final Type type;
+    private final Behaviour behaviour;
+    private final Inventory inventory;
+
     private int strength;
     private int dexterity;
     private int constitution;
-    private int hp;
+    private int maxHP;
+    private int currentHP;
     private int speed;
-    private boolean isPC;
-    private Type type;
     private double damageReduction;
     private double damageBonus;
-    private Behaviour behaviour;
-    private Inventory inventory;
-    
+
     public Creature(int strength, int dexterity, int constitution,
                     boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour) {
         if (inventoryFactory == null) {
@@ -42,11 +43,11 @@ public class Creature extends Entity {
         this.dexterity = dexterity;
         this.constitution = constitution;
         checkInitialStatValues(strength, dexterity, constitution);
-        this.isPC = isPC;
 
-        this.type = calculateType();
+        this.type = calculateType(isPC);
 
-        this.hp = calculateMaxHP();
+        this.maxHP = calculateMaxHP();
+        this.currentHP = calculateMaxHP();
         this.speed = calculateDefaultSpeed();
         damageReduction = 0;
         damageBonus = 0;
@@ -55,7 +56,7 @@ public class Creature extends Entity {
         this.behaviour = behaviour;
     }
 
-    private Type calculateType() {
+    private Type calculateType(boolean isPC) {
         Type type = null;
         ArrayList<Type> temp = new ArrayList<>(EnumSet.allOf(Type.class));
         for (int i = 0; i < temp.size(); i++) {
@@ -83,15 +84,19 @@ public class Creature extends Entity {
         }
     }
 
-    public int getHP() {
-        return hp;
+    public int getMaxHP() {
+        return maxHP;
+    }
+
+    public int getCurrentHP() {
+        return currentHP;
     }
 
     public int getSpeed() {
         return speed;
     }
 
-    private int calculateMaxHP(){
+    private int calculateMaxHP() {
         return constitution * magicConstitutionHPNumber + strength * magicStrengthHPNumber;
     }
 
@@ -133,23 +138,19 @@ public class Creature extends Entity {
         return constitution;
     }
 
-    public boolean isPC() {
-        return isPC;
-    }
-
     public Type getType() {
         return type;
     }
 
-    public void gainStrength(int amount){
+    public void gainStrength(int amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
         this.strength += amount;
-        this.hp = calculateMaxHP();
+        this.maxHP = calculateMaxHP();
     }
 
-    public void gainDexterity(int amount){
+    public void gainDexterity(int amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
@@ -157,57 +158,56 @@ public class Creature extends Entity {
         this.speed = calculateDefaultSpeed();
     }
 
-    public void gainConstitution(int amount){
+    public void gainConstitution(int amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
         this.constitution += amount;
         this.speed = calculateDefaultSpeed();
-        this.hp = calculateMaxHP();
+        this.maxHP = calculateMaxHP();
     }
 
     public void gainHP(int amount) {
-        if (getHP() == 0) {
+        if (isDead()) {
             return;
         }
-        if (amount <= 0) {
+        if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
-        this.hp += amount;
+        this.currentHP = Math.min(maxHP, currentHP + amount);
+    }
+
+    private boolean isDead() {
+        //HP can never go below 0.
+        return (getCurrentHP() == 0);
     }
 
     public void loseHP(int amount) {
-        if (amount <= 0) {
+        if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
-        if (amount >= hp) {
-            hp = 0;
+        currentHP = Math.max(0, currentHP - amount);
+        if (currentHP == 0) {
             die();
-            return;
         }
-        this.hp -= amount;
     }
 
-    public void die() {
-
+    private void die() {
+        //ToDo: Not implemented yet. What happens when a creature dies?
     }
 
     public void gainSpeed(int amount) {
-        if (amount <= 0) {
+        if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
         this.speed += amount;
     }
 
     public void loseSpeed(int amount) {
-        if (amount <= 0) {
+        if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
-        if (amount > speed) {
-            this.speed = 0;
-        } else {
-            this.speed -= amount;
-        }
+        speed = Math.max(0, speed - amount);
     }
 
     public void incrementDamageReduction(double increaseValue) {
@@ -300,7 +300,7 @@ public class Creature extends Entity {
     }
 
     public void flee(GameMap gameMap) {
-        behaviour.flee(this, gameMap, isPC);
+        behaviour.flee(this, gameMap, type.isPC());
     }
 
     public boolean doBattle(Entity visitingEntity, Entity visitedEntity) {
@@ -308,13 +308,13 @@ public class Creature extends Entity {
         Creature visitingCreature = (Creature) visitingEntity;
         Creature visitedCreature = (Creature) visitedEntity;
 
-        if (visitingCreature.getHP() > visitedCreature.getHP()) {
+        if (visitingCreature.getCurrentHP() > visitedCreature.getCurrentHP()) {
             return true;
         }
-        if (visitingCreature.getHP() < visitedCreature.getHP()) {
+        if (visitingCreature.getCurrentHP() < visitedCreature.getCurrentHP()) {
             return false;
         }
-        if (visitingCreature.getHP() == visitedCreature.getHP()) {
+        if (visitingCreature.getCurrentHP() == visitedCreature.getCurrentHP()) {
             //TO-DO What happens when neither Creature is killed?
         }
 

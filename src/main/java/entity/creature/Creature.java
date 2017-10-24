@@ -20,14 +20,13 @@ public class Creature extends Entity {
     private final Type type;
     private final Behaviour behaviour;
     private final Inventory inventory;
-    
+
     private int strength;
     private int dexterity;
     private int constitution;
     private int maxHP;
     private int currentHP;
     private int speed;
-    private boolean isPC;
     private double damageReduction;
     private double damageBonus;
 
@@ -44,9 +43,8 @@ public class Creature extends Entity {
         this.dexterity = dexterity;
         this.constitution = constitution;
         checkInitialStatValues(strength, dexterity, constitution);
-        this.isPC = isPC;
 
-        this.type = calculateType();
+        this.type = calculateType(isPC);
 
         this.maxHP = calculateMaxHP();
         this.currentHP = calculateMaxHP();
@@ -58,7 +56,7 @@ public class Creature extends Entity {
         this.behaviour = behaviour;
     }
 
-    private Type calculateType() {
+    private Type calculateType(boolean isPC) {
         Type type = null;
         ArrayList<Type> temp = new ArrayList<>(EnumSet.allOf(Type.class));
         for (int i = 0; i < temp.size(); i++) {
@@ -138,10 +136,6 @@ public class Creature extends Entity {
 
     public int getConstitution() {
         return constitution;
-    }
-
-    public boolean isPC() {
-        return isPC;
     }
 
     public Type getType() {
@@ -306,7 +300,7 @@ public class Creature extends Entity {
     }
 
     public void flee(GameMap gameMap) {
-        behaviour.flee(this, gameMap, isPC);
+        behaviour.flee(this, gameMap, type.isPC());
     }
 
     public boolean doBattle(Entity visitingEntity, Entity visitedEntity) {

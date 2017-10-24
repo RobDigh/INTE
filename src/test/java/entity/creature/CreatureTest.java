@@ -833,7 +833,6 @@ public class CreatureTest {
         assertEquals(1, testCreature.getSpeed());
         assertEquals(7 * Creature.magicConstitutionHPNumber + 5 * Creature.magicStrengthHPNumber, testCreature.getCurrentHP());
         assertEquals(Type.GREYHOUND, testCreature.getType());
-        assertTrue(testCreature.isPC());
     }
 
     @Test(expected = IllegalArgumentException.class)

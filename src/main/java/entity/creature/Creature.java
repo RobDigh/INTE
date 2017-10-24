@@ -203,11 +203,7 @@ public class Creature extends Entity {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
-        if (amount > speed) {
-            this.speed = 0;
-        } else {
-            this.speed -= amount;
-        }
+        speed = Math.max(0, speed - amount);
     }
 
     public void incrementDamageReduction(double increaseValue) {

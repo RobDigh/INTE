@@ -103,6 +103,8 @@ public class GameMap extends Entity {
 
     public Point getPosition(Entity entity) {
 
+        makeNullCheck(entity, "Entity");
+
         Point point = positionsByEntity.get(entity);
 
         if (point == null) {

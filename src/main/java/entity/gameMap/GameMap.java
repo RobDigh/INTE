@@ -202,67 +202,6 @@ public class GameMap extends Entity {
         return false;
     }
 
-//    //We already have a move method, should flee be different?
-//    public boolean fleeMove(Creature creature, Point newPosition){
-//
-//        if(creature == null){
-//            throw new NullPointerException("The creature can't be null");
-//        }
-//        if(entitiesByPosition.get(newPosition) != null){
-//            return false;
-//        }
-//        Point currentPoint = positionsByEntity.get(creature);
-//        entitiesByPosition.remove(currentPoint);
-//        placeEntity(creature, newPosition);
-//        positionsByEntity.put(creature, newPosition);
-//        entitiesByPosition.put(newPosition, creature);
-//
-//        return true;
-//    }
-
-    public ArrayList<Point> getAvailablePositions(Creature creature){
-
-        if(creature == null){
-            throw new IllegalArgumentException("Creature can't be null");
-        }
-
-        Point creaturePosition = positionsByEntity.get(creature);
-        ArrayList<Point> availablePositions = new ArrayList<>();
-
-        int xRange = xLength -1;
-        int yRange = yLength -1;
-        int xStart = 0;
-        int yStart = 0;
-
-        if(creaturePosition != null) {
-
-            if(creaturePosition.x + creature.getSpeed() < xRange){
-                xRange = creaturePosition.x + creature.getSpeed();
-            }
-
-            if(creaturePosition.y + creature.getSpeed() < yRange){
-                yRange = creaturePosition.y + creature.getSpeed();
-            }
-
-            if((creaturePosition.x - creature.getSpeed()) > xStart){
-                xStart = creaturePosition.x - creature.getSpeed();
-            }
-            if((creaturePosition.y - creature.getSpeed()) > yStart) {
-                yStart = creaturePosition.y - creature.getSpeed();
-            }
-        }
-
-        for(int x = xStart; x <= xRange; x++){
-            for(int y = yStart; y <= yRange; y++){
-                Point point = new Point(x,y);
-                if(!entitiesByPosition.containsKey(point)) {
-                    availablePositions.add(point);
-                }
-            }
-        }
-        return availablePositions;
-    }
-
     public ArrayList<Point> getAvailableDirections(Creature creature){
         ArrayList<Point> availableDirections = new ArrayList<Point>();
 
@@ -280,10 +219,5 @@ public class GameMap extends Entity {
         }
 
         return availableDirections;
-
-
-
-//
-//
     }
 }

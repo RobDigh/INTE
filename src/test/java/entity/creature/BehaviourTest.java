@@ -49,21 +49,25 @@ public class BehaviourTest {
         ArrayList<Point> availablePositions = new ArrayList<>();
         availablePositions.add(new Point(2,2));
         availablePositions.add(new Point(3,3));
-        when(mockGameMap.getAvailablePositions(testMonster)).thenReturn(availablePositions);
+        when(mockGameMap.getAvailableDirections(testMonster)).thenReturn(availablePositions);
 
         testMonster.flee(mockGameMap);
-        verify(mockGameMap).getAvailablePositions(testMonster);
+        verify(mockGameMap).getAvailableDirections(testMonster);
     }
 
     @Test
-    public void testFleeToFirstAvailablePointFindInListOfEmptyPoints(){
-        ArrayList<Point> availablePositions = new ArrayList<>();
-        availablePositions.add(new Point(2,2));
-        availablePositions.add(new Point(3,3));
-        when(mockGameMap.getAvailablePositions(testMonster)).thenReturn(availablePositions);
+    public void testFleeToInFirstAvailableDirectionFindInListOfValidDirections(){
+        ArrayList<Point> validDirections = new ArrayList<>();
+        validDirections.add(new Point(0,1));
+        validDirections.add(new Point(0,-1));
+        validDirections.add(new Point(-1,0));
+        validDirections.add(new Point(1,0));
 
+        when(mockGameMap.getAvailableDirections(testMonster)).thenReturn(validDirections);
         testMonster.flee(mockGameMap);
-        //verify(mockGameMap).fleeMove(testMonster, new Point(2,2));
+
+        verify(mockGameMap).move(testMonster, new Point(0,1));
+
     }
 
     @Test
@@ -75,62 +79,19 @@ public class BehaviourTest {
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void testNoEmptyPositionsAvailableFlee(){
-        when(mockGameMap.getAvailablePositions(testMonster)).thenReturn(new ArrayList<>());
+    public void testNoEmptyDirectionsAvailableFlee(){
+        when(mockGameMap.getAvailableDirections(testMonster)).thenReturn(new ArrayList<>());
         testMonster.flee(mockGameMap);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void actNotImplemented(){
+    public void testBehaviourActMethodNotImplemented(){
         testPlayer.act(mockMonster);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void testBehaviourFleeWithPlayer(){
+    public void testBehaviourFleeWithPlayerMethodNotImplemented(){
         testPlayer.flee(mockGameMap);
     }
 
-    @Test
-    public void testGetAvailableDirectionsEmptyMap(){
-        gameMap.placeEntity(testPlayer, new Point(3,3));
-        ArrayList<Point> directions = new ArrayList<Point>();
-        directions.add(new Point(0,1));
-        directions.add(new Point(0,-1));
-        directions.add(new Point(-1,0));
-        directions.add(new Point(1,0));
-
-        assertEquals(directions, gameMap.getAvailableDirections(testPlayer));
-    }
-
-    @Test
-    public void testGetAvailableDirectionsWhileMonsterIsOnAValidDirection(){
-        gameMap.placeEntity(testMonster, new Point(5,7));
-
-        ArrayList<Point> availableDirections = gameMap.getAvailableDirections(testPlayer);
-        assertFalse(availableDirections.contains(new Point(0,1)));
-    }
-
-    @Test
-    public void testGetAvailableDirectionsWhileItemIsOnValidDirection(){
-        Item item = new HealthPotion(5);
-        gameMap.placeEntity(item, new Point(5,3));
-
-        ArrayList<Point> validDirections = gameMap.getAvailableDirections(testPlayer);
-        assertTrue(validDirections.contains(new Point(0,1)));
-        assertTrue(validDirections.contains(new Point(0,-1)));
-        assertTrue(validDirections.contains(new Point(-1,0)));
-        assertTrue(validDirections.contains(new Point(1,0)));
-    }
-
-    @Test
-    public void testGetAvailableDirectionsWhileBothItemAndMonstersAreOnValidDirections(){
-        gameMap.placeEntity(new HealthPotion(5), new Point(3,5));
-        gameMap.placeEntity(testMonster, new Point(7,5));
-        ArrayList<Point> validDirections = gameMap.getAvailableDirections(testPlayer);
-
-        assertTrue(validDirections.contains(new Point(0,1)));
-        assertTrue(validDirections.contains(new Point(0,-1)));
-        assertTrue(validDirections.contains(new Point(-1,0)));
-        assertFalse(validDirections.contains(new Point(1,0)));
-    }
 }

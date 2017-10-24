@@ -207,7 +207,7 @@ public class PlacementTest extends GameMapTest {
         DEFAULT_SIZED_MAP.place(null, new Point(0, 0));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void testPlaceCreatureAtNullPoint() {
         DEFAULT_SIZED_MAP.place(mockCreature, null);
     }

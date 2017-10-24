@@ -2,6 +2,7 @@ package entity.gameMap;
 
 import entity.Entity;
 import entity.creature.Creature;
+import entity.item.Item;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -275,7 +276,7 @@ public class GameMap extends Entity {
             int positionToCheckX = currentPosition.x + (p.x * creature.getSpeed());
             int positionToCheckY = currentPosition.y + (p.y * creature.getSpeed());
 
-            if(getEntity(new Point(positionToCheckX, positionToCheckY)) == null){
+            if(getEntity(new Point(positionToCheckX, positionToCheckY)) == null || getEntity(new Point(positionToCheckX, positionToCheckY)) instanceof Item){
                 availableDirections.add(p);
             }
         }

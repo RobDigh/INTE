@@ -303,7 +303,7 @@ public class MovementTest extends GameMapTest {
     @Test
     public void moveCreatureOntoCreatureAndWinCombat() {
 
-        when(mockMonster.accept(mockCreature, DEFAULT_SIZED_MAP)).then(this::removeAcceptant);
+        when(mockMonster.interact(mockCreature, DEFAULT_SIZED_MAP)).then(this::removeAcceptant);
 
         DEFAULT_SIZED_MAP.placeEntity(mockMonster, new Point(0, 1));
 
@@ -317,7 +317,7 @@ public class MovementTest extends GameMapTest {
     @Test
     public void moveCreatureOntoCreatureAndLoseCombat() {
 
-        when(mockMonster.accept(mockCreature, DEFAULT_SIZED_MAP)).then(this::removeVisitor);
+        when(mockMonster.interact(mockCreature, DEFAULT_SIZED_MAP)).then(this::removeVisitor);
 
         DEFAULT_SIZED_MAP.placeEntity(mockMonster, new Point(0, 1));
 

@@ -128,7 +128,7 @@ public class GameMap extends Entity {
 
     }
 
-    private boolean move(Point currentPosition, int speed, Point direction) {
+    private boolean updatePosition(Point currentPosition, int speed, Point direction) {
 
         checkForNullPoint(currentPosition);
         checkForNullPoint(direction);
@@ -170,7 +170,7 @@ public class GameMap extends Entity {
         Point currentPosition = positionsByEntity.get(creature);
         entitiesByPosition.remove(currentPosition); // Do not change values that are used as hash keys.
 
-        boolean movementSuccessful = move(currentPosition, creature.getSpeed(), direction);
+        boolean movementSuccessful = updatePosition(currentPosition, creature.getSpeed(), direction);
 
         if (movementSuccessful) {
 
@@ -178,7 +178,7 @@ public class GameMap extends Entity {
             boolean shouldStay = true;
 
             if (existingEntity != null) {
-                shouldStay = existingEntity.accept(creature, this);
+                shouldStay = existingEntity.interact(creature, this);
             }
 
             resolveShouldStay(creature, currentPosition, shouldStay);
@@ -191,7 +191,7 @@ public class GameMap extends Entity {
     }
 
     @Override
-    public boolean accept(Entity entity, GameMap environment) {
+    public boolean interact(Entity entity, GameMap environment) {
 
         if (entity == null) {
             throw new IllegalArgumentException("Entity may not be null.");

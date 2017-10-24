@@ -15,7 +15,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.mock;
 
-public class AcceptTest extends GameMapTest {
+public class InteractTest extends GameMapTest {
 
     private GameMap lowerLevel = createDefaultSizedGameMap();
     private GameMap mockUpperLevel = mock(GameMap.class);
@@ -29,18 +29,18 @@ public class AcceptTest extends GameMapTest {
     @Test
     public void acceptValidEntity() {
 
-        assertFalse(lowerLevel.accept(mockCreature, mockUpperLevel));
+        assertFalse(lowerLevel.interact(mockCreature, mockUpperLevel));
         assertNotEquals(null, lowerLevel.getPosition(mockCreature));
 
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void acceptNullEntity() {
-        lowerLevel.accept(null, mockUpperLevel);
+    public void interactWithNullEntity() {
+        lowerLevel.interact(null, mockUpperLevel);
     }
     
     @Test
-    public void acceptCreatureByMonsterAndWinBattle(){
+    public void interactWithCreatureByMonsterAndWinBattle(){
     	DEFAULT_SIZED_MAP.placeEntity(player, GameMap.DEFAULT_ENTRY_POSITION);
     	DEFAULT_SIZED_MAP.placeEntity(monster, new Point(0,1));
     	DEFAULT_SIZED_MAP.move(player, GameMap.NORTH);
@@ -50,7 +50,7 @@ public class AcceptTest extends GameMapTest {
     }
     
     @Test
-    public void acceptCreatureByMonsterAndLoseBattle(){
+    public void interactWithCreatureByMonsterAndLoseBattle(){
     	DEFAULT_SIZED_MAP.placeEntity(monster, new Point(0,1));
     	DEFAULT_SIZED_MAP.placeEntity(player, new Point(0,0));
     	player.loseHP(451);
@@ -61,7 +61,7 @@ public class AcceptTest extends GameMapTest {
     }
     
     @Test
-    public void acceptCreatureByItemAndLeaveBoard(){
+    public void interactWithCreatureByItemAndLeaveBoard(){
     	DEFAULT_SIZED_MAP.placeEntity(armor, GameMap.NORTH);
     	DEFAULT_SIZED_MAP.placeEntity(player, new Point(0,0));
     	DEFAULT_SIZED_MAP.move(player, GameMap.NORTH);

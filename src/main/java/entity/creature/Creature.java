@@ -322,7 +322,7 @@ public class Creature extends Entity {
     }
 
     @Override
-    public boolean accept(Entity entity, GameMap environment) {
+    public boolean interact(Entity entity, GameMap environment) {
 
         Entity visitingEntity = entity;
         Entity visitedEntity = this;

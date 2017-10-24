@@ -17,6 +17,6 @@ public abstract class Entity {
      * environment, false if the visiting entity should be removed from the
      * environment.
      */
-    public abstract boolean accept(Entity entity, GameMap environment);
+    public abstract boolean interact(Entity entity, GameMap environment);
 
 }

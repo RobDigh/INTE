@@ -181,6 +181,11 @@ public class PlacementTest extends GameMapTest {
 
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testRemoveNullCreature() {
+        DEFAULT_SIZED_MAP.remove(null);
+    }
+
     @Test
     public void testPlaceGameMap() {
 

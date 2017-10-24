@@ -167,13 +167,17 @@ public class Creature extends Entity {
     }
 
     public void gainHP(int amount) {
-        if (getHP() == 0) {
+        if (isDead()) {
             return;
         }
         if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
         this.hp += amount;
+    }
+
+    private boolean isDead(){
+        return (getHP() == 0);
     }
 
     public void loseHP(int amount) {

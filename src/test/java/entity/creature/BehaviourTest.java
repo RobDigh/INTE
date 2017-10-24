@@ -95,6 +95,6 @@ public class BehaviourTest {
         directions.add(new Point(-1,0));
         directions.add(new Point(1,0));
 
-        assertEquals(directions, testPlayer.getAvailableDirections());
+        assertEquals(directions, gameMap.getAvailableDirections(testPlayer));
     }
 }

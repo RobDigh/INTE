@@ -261,4 +261,8 @@ public class GameMap extends Entity {
         }
         return availablePositions;
     }
+
+    public ArrayList<Point> getAvailableDirections(Creature creature){
+        return null;
+    }
 }

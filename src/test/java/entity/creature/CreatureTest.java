@@ -245,6 +245,21 @@ public class CreatureTest {
     }
 
     @Test
+    public void testGainHPAboveHPMax(){
+        damagedTestCreature.gainHP(11000);
+        assertEquals(damagedTestCreature.getMaxHP(), damagedTestCreature.getCurrentHP());
+    }
+
+    @Test
+    public void testGainHPSeveralTimesWithResultOverMaxHp(){
+        damagedTestCreature.gainHP(10);
+        damagedTestCreature.gainHP(30);
+        damagedTestCreature.gainHP(10000);
+        damagedTestCreature.gainHP(3);
+        assertEquals(damagedTestCreature.getMaxHP(), damagedTestCreature.getCurrentHP());
+    }
+
+    @Test
     public void testLoseHPSeveralTimes() {
         int hpTotal = testCreature.getCurrentHP();
         testCreature.loseHP(10);

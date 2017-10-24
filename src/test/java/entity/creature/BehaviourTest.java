@@ -101,10 +101,10 @@ public class BehaviourTest {
 
     @Test
     public void testGetAvailableDirectionsWhileMonsterIsOnAValidDirection(){
-        gameMap.placeEntity(testPlayer, new Point(3,3));
-        gameMap.placeEntity(testMonster, new Point(3,5));
+        gameMap.placeEntity(testMonster, new Point(5,7));
 
         ArrayList<Point> availableDirections = gameMap.getAvailableDirections(testPlayer);
-        assertFalse(availableDirections.contains(new Point(0,-1)));
+        System.out.println(availableDirections);
+        assertFalse(availableDirections.contains(new Point(0,1)));
     }
 }

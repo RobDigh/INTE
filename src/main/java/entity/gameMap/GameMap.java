@@ -265,12 +265,28 @@ public class GameMap extends Entity {
     public ArrayList<Point> getAvailableDirections(Creature creature){
         ArrayList<Point> availableDirections = new ArrayList<Point>();
 
+        Point currentPosition = getPosition(creature);
+
+//        int positionToCheckX = currentPosition.x;
+//        int positionToCheckY = currentPosition.y;
+
         for(Point p : validDirections){
-            availableDirections.add(p);
+
+            int positionToCheckX = currentPosition.x + (p.x * creature.getSpeed());
+            int positionToCheckY = currentPosition.y + (p.y * creature.getSpeed());
+
+            System.out.println(new Point(positionToCheckX, positionToCheckY));
+
+            if(getEntity(new Point(positionToCheckX, positionToCheckY)) == null){
+                availableDirections.add(p);
+            }
         }
 
         return availableDirections;
+
+
+
+//
+//
     }
-
-
 }

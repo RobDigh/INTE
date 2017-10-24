@@ -91,7 +91,7 @@ public class GameMap extends Entity {
 
     }
 
-    public void remove(Entity entity) {
+    public boolean remove(Entity entity) {
 
         makeNullCheck(entity, "Entity");
 
@@ -100,6 +100,7 @@ public class GameMap extends Entity {
         positionsByEntity.remove(entity);
         entitiesByPosition.remove(point);
 
+        return false;
     }
 
     public Point getPosition(Entity entity) {

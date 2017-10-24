@@ -93,6 +93,8 @@ public class GameMap extends Entity {
 
     public void remove(Entity entity) {
 
+        makeNullCheck(entity, "Entity");
+
         Point point = positionsByEntity.get(entity);
 
         positionsByEntity.remove(entity);

@@ -179,7 +179,7 @@ public class Creature extends Entity {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
-        this.currentHP += amount;
+        this.currentHP = Math.min(maxHP, currentHP + amount);
     }
 
     private boolean isDead() {

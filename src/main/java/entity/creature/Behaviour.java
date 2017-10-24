@@ -8,7 +8,7 @@ import java.util.List;
 public class Behaviour {
 
     /**
-     * First implementation: Flee to first empty position
+     * First implementation: Flee in first valid direction found
      * TODO: Implement AI logic if creature is a monster and handle player actions. Maybe as sub classes?
      */
 

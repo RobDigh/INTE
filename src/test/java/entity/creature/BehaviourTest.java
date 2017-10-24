@@ -44,16 +44,16 @@ public class BehaviourTest {
         gameMap.placeEntity(testPlayer, new Point(5,5));
     }
 
-    @Test
-    public void testSoFleeCallsGetAvailablePositionsFromGameMap(){
-        ArrayList<Point> availablePositions = new ArrayList<>();
-        availablePositions.add(new Point(2,2));
-        availablePositions.add(new Point(3,3));
-        when(mockGameMap.getAvailableDirections(testMonster)).thenReturn(availablePositions);
+    @Test(expected = IllegalArgumentException.class)
+        public void testFleeWithNullCreature(){
+            behaviour.flee(null, gameMap, true);
+        }
 
-        testMonster.flee(mockGameMap);
-        verify(mockGameMap).getAvailableDirections(testMonster);
+    @Test(expected = IllegalArgumentException.class)
+    public void testFleeNullGameMap(){
+        behaviour.flee(testPlayer, null, true);
     }
+
 
     @Test
     public void testFleeToInFirstAvailableDirectionFindInListOfValidDirections(){
@@ -67,7 +67,6 @@ public class BehaviourTest {
         testMonster.flee(mockGameMap);
 
         verify(mockGameMap).move(testMonster, new Point(0,1));
-
     }
 
     @Test

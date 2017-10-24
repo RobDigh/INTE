@@ -314,8 +314,9 @@ public class CreatureTest {
 
     @Test
     public void testLoseZeroSpeed() {
-        thrown.expect(IllegalArgumentException.class);
+        int originalSpeed = testCreature.getSpeed();
         testCreature.loseSpeed(0);
+        assertEquals(originalSpeed, testCreature.getSpeed());
     }
 
     @Test

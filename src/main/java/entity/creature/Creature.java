@@ -180,12 +180,10 @@ public class Creature extends Entity {
         if (amount <= 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
-        if (amount >= hp) {
-            hp = 0;
+        hp = Math.max(0, hp - amount);
+        if (hp == 0) {
             die();
-            return;
         }
-        this.hp -= amount;
     }
 
     private void die() {

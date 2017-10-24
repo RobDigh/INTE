@@ -1,6 +1,8 @@
 package entity.creature;
 
 import entity.gameMap.GameMap;
+import entity.item.Item;
+import entity.item.consumable.hp.HealthPotion;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -104,7 +107,19 @@ public class BehaviourTest {
         gameMap.placeEntity(testMonster, new Point(5,7));
 
         ArrayList<Point> availableDirections = gameMap.getAvailableDirections(testPlayer);
-        System.out.println(availableDirections);
         assertFalse(availableDirections.contains(new Point(0,1)));
+    }
+
+    @Test
+    public void testGetAvailableDirectionsWhileItemIsOnValidDirection(){
+        Item item = new HealthPotion(5);
+        gameMap.placeEntity(item, new Point(5,3));
+
+        ArrayList<Point> validDirections = gameMap.getAvailableDirections(testPlayer);
+        assertTrue(validDirections.contains(new Point(0,1)));
+        assertTrue(validDirections.contains(new Point(0,-1)));
+        assertTrue(validDirections.contains(new Point(-1,0)));
+        assertTrue(validDirections.contains(new Point(1,0)));
+
     }
 }

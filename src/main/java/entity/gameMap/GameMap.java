@@ -275,8 +275,6 @@ public class GameMap extends Entity {
             int positionToCheckX = currentPosition.x + (p.x * creature.getSpeed());
             int positionToCheckY = currentPosition.y + (p.y * creature.getSpeed());
 
-            System.out.println(new Point(positionToCheckX, positionToCheckY));
-
             if(getEntity(new Point(positionToCheckX, positionToCheckY)) == null){
                 availableDirections.add(p);
             }

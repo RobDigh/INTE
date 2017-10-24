@@ -252,6 +252,11 @@ public class PlacementTest extends GameMapTest {
         assertEquals(null, gameMap.getEntity(new Point(0,0)));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetEntityFromNullPosition() {
+        DEFAULT_SIZED_MAP.getEntity(null);
+    }
+
     @Test
     public void testGetAllEmptyPositionsForSpecificPlayerOnSmallEmptyMap(){
         gameMap = createCustomGameMap(3, 3);

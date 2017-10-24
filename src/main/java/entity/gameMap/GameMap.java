@@ -130,6 +130,9 @@ public class GameMap extends Entity {
 
     private boolean move(Point currentPosition, int speed, Point direction) {
 
+        checkForNullPoint(currentPosition);
+        checkForNullPoint(direction);
+
         int originalX = currentPosition.x;
         int originalY = currentPosition.y;
 

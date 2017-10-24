@@ -296,7 +296,7 @@ public class Creature extends Entity {
     }
 
     public void act(Creature creature) {
-        behaviour.act();
+        behaviour.act(creature);
     }
 
     public void flee(GameMap gameMap) {

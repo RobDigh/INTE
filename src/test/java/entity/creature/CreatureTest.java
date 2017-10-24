@@ -43,15 +43,15 @@ public class CreatureTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void testCreatureFleeCallsFleeMethodInAi() {
+    public void testCreatureFleeCallsFleeMethodInBehaviour() {
         testCreature.flee(null);
         verify(mockBehaviour).flee(testCreature, null, true);
     }
 
     @Test
-    public void testCreatureActCallsActMethodInAi() {
+    public void testCreatureActCallsActMethodInBehaviour() {
         testCreature.act(testCreature);
-        verify(mockBehaviour).act();
+        verify(mockBehaviour).act(testCreature);
     }
 
     /**

@@ -25,7 +25,7 @@ public class Behaviour {
         }
     }
 
-    public void act(){
+    public void act(Creature creature){
         //TODO: Implement method
         throw new UnsupportedOperationException("Not implemented yet");
     }

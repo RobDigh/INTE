@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -83,5 +84,17 @@ public class BehaviourTest {
     @Test(expected = UnsupportedOperationException.class)
     public void testBehaviourFleeWithPlayer(){
         testPlayer.flee(mockGameMap);
+    }
+
+    @Test
+    public void testGetAvailableDirectionsEmptyMap(){
+        gameMap.placeEntity(testPlayer, new Point(3,3));
+        ArrayList<Point> directions = new ArrayList<Point>();
+        directions.add(new Point(0,1));
+        directions.add(new Point(0,-1));
+        directions.add(new Point(-1,0));
+        directions.add(new Point(1,0));
+
+        assertEquals(directions, testPlayer.getAvailableDirections());
     }
 }

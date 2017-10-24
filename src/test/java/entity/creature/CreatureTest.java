@@ -19,6 +19,7 @@ import static org.mockito.Mockito.when;
 
 public class CreatureTest {
     private Creature testCreature;
+    private Creature damagedTestCreature;
 
     private Inventory mockInventory = mock(Inventory.class);
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
@@ -37,6 +38,8 @@ public class CreatureTest {
     public void setUp() {
         when(mockInventoryFactory.create()).thenReturn(mockInventory);
         testCreature = createPlayerWithCustomStrengthDexterityAndConstitution(6, 6, 6);
+        damagedTestCreature = createPlayerWithCustomStrengthDexterityAndConstitution(6, 6, 6);
+        damagedTestCreature.loseHP(50);
     }
 
     @Rule
@@ -188,12 +191,12 @@ public class CreatureTest {
 
     @Test
     public void testGainHP() {
-        testCreature = new Creature(6, 6, 6, true, mockInventoryFactory, mockBehaviour);
-        testCreature.gainHP(50);
-        assertEquals((6 * Creature.magicConstitutionHPNumber + 6 * Creature.magicStrengthHPNumber) + 50, testCreature.getCurrentHP());
+        int originalHP = damagedTestCreature.getCurrentHP();
+        damagedTestCreature.gainHP(10);
+        assertEquals(originalHP + 10, damagedTestCreature.getCurrentHP());
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testGainNegativeHP() {
         testCreature.gainHP(-5);
     }
@@ -234,12 +237,11 @@ public class CreatureTest {
 
     @Test
     public void testGainHPSeveralTimes() {
-        int hpTotal = testCreature.getCurrentHP();
-        testCreature.gainHP(50);
-        testCreature.gainHP(10);
-        testCreature.gainHP(80);
-        hpTotal += (50 + 10 + 80);
-        assertEquals(hpTotal, testCreature.getCurrentHP());
+        int startingHP = damagedTestCreature.getCurrentHP();
+        damagedTestCreature.gainHP(5);
+        damagedTestCreature.gainHP(10);
+        damagedTestCreature.gainHP(8);
+        assertEquals(startingHP + 5 + 10 + 8, damagedTestCreature.getCurrentHP());
     }
 
     @Test
@@ -264,18 +266,19 @@ public class CreatureTest {
 
     @Test
     public void testIncreaseThenDecreaseThenIncreaseAgain() {
-        int hpTotal = testCreature.getCurrentHP();
-        testCreature.gainHP(50);
-        testCreature.gainHP(70);
-        hpTotal += (50 + 70);
-        assertEquals(hpTotal, testCreature.getCurrentHP());
-        testCreature.loseHP(40);
-        testCreature.loseHP(30);
-        hpTotal -= (40 + 30);
-        assertEquals(hpTotal, testCreature.getCurrentHP());
-        testCreature.gainHP(50);
+        int hpTotal = damagedTestCreature.getCurrentHP();
+        damagedTestCreature.gainHP(10);
+        damagedTestCreature.gainHP(5);
+        hpTotal += (10+5);
+        assertEquals(hpTotal, damagedTestCreature.getCurrentHP());
+        assertEquals(hpTotal, damagedTestCreature.getCurrentHP());
+        damagedTestCreature.loseHP(30);
+        damagedTestCreature.loseHP(20);
+        hpTotal -= (30 + 20);
+        assertEquals(hpTotal, damagedTestCreature.getCurrentHP());
+        damagedTestCreature.gainHP(50);
         hpTotal += 50;
-        assertEquals(hpTotal, testCreature.getCurrentHP());
+        assertEquals(hpTotal, damagedTestCreature.getCurrentHP());
     }
 
     @Test

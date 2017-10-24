@@ -72,6 +72,14 @@ public class GameMap extends Entity {
 
     private boolean addEntity(Entity entity, Point point) {
 
+        if (entity == null) {
+            throw new IllegalArgumentException("Entity may not be null.");
+        }
+
+        if (point == null) {
+            throw new IllegalArgumentException("Point may not be null.");
+        }
+
         if (positionsByEntity.get(entity) == null && entitiesByPosition.get(point) == null) {
 
             positionsByEntity.put(entity, point);

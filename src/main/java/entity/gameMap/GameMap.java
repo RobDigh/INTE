@@ -52,11 +52,15 @@ public class GameMap extends Entity {
         return yLength;
     }
 
+    private void makeNullCheck(Object object, String name) {
+        if (object == null) {
+            throw new IllegalArgumentException(name + " may not be null.");
+        }
+    }
+
     public boolean placeEntity(Entity entity, Point point) {
 
-        if (entity == null) {
-            throw new IllegalArgumentException("Entity may not be null.");
-        }
+        makeNullCheck(entity, "Entity");
 
         if (point.x < 0 || point.y < 0) {
             throw new IllegalArgumentException("Point may only have positive coordinates.");
@@ -72,13 +76,8 @@ public class GameMap extends Entity {
 
     private boolean addEntity(Entity entity, Point point) {
 
-        if (entity == null) {
-            throw new IllegalArgumentException("Entity may not be null.");
-        }
-
-        if (point == null) {
-            throw new IllegalArgumentException("Point may not be null.");
-        }
+        makeNullCheck(entity, "Entity");
+        makeNullCheck(point, "Point");
 
         if (positionsByEntity.get(entity) == null && entitiesByPosition.get(point) == null) {
 

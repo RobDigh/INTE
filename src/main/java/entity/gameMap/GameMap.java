@@ -54,6 +54,10 @@ public class GameMap extends Entity {
 
     public boolean place(Entity entity, Point point) {
 
+        if (entity == null) {
+            throw new IllegalArgumentException("Entity may not be null.");
+        }
+
         if (point.x < 0 || point.y < 0) {
             throw new IllegalArgumentException("Point may only have positive coordinates.");
         }

@@ -97,10 +97,10 @@ public class GameMap extends Entity {
 
         Point point = positionsByEntity.get(entity);
 
-        positionsByEntity.remove(entity);
+        Point removedPoint = positionsByEntity.remove(entity);
         entitiesByPosition.remove(point);
 
-        return false;
+        return removedPoint != null;
     }
 
     public Point getPosition(Entity entity) {

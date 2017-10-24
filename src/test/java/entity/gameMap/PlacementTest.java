@@ -236,7 +236,7 @@ public class PlacementTest extends GameMapTest {
         DEFAULT_SIZED_MAP.placeEntity(null, new Point(0, 0));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testPlaceCreatureAtNullPoint() {
         DEFAULT_SIZED_MAP.placeEntity(mockCreature, null);
     }
@@ -361,7 +361,7 @@ public class PlacementTest extends GameMapTest {
         gameMap.fleeMove(null, new Point(3,3));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testFleeWithNullPoint(){
         gameMap.fleeMove(testCreature, null);
     }

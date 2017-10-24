@@ -268,7 +268,7 @@ public class GameMap extends Entity {
         for(Point p : validDirections){
             availableDirections.add(p);
         }
-        
+
         return availableDirections;
     }
 

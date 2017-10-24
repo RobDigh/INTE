@@ -8,6 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -96,5 +97,14 @@ public class BehaviourTest {
         directions.add(new Point(1,0));
 
         assertEquals(directions, gameMap.getAvailableDirections(testPlayer));
+    }
+
+    @Test
+    public void testGetAvailableDirectionsWhileMonsterIsOnAValidDirection(){
+        gameMap.placeEntity(testPlayer, new Point(3,3));
+        gameMap.placeEntity(testMonster, new Point(3,5));
+
+        ArrayList<Point> availableDirections = gameMap.getAvailableDirections(testPlayer);
+        assertFalse(availableDirections.contains(new Point(0,-1)));
     }
 }

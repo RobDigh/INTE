@@ -119,7 +119,10 @@ public class GameMap extends Entity {
     }
 
     public Entity getEntity(Point point){
+
+        makeNullCheck(point, "Point");
         return entitiesByPosition.get(point);
+
     }
 
     private boolean move(Point currentPosition, int speed, Point direction) {

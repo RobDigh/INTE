@@ -201,23 +201,23 @@ public class GameMap extends Entity {
         return false;
     }
 
-    //We already have a move method, should flee be different?
-    public boolean fleeMove(Creature creature, Point newPosition){
-
-        if(creature == null){
-            throw new NullPointerException("The creature can't be null");
-        }
-        if(entitiesByPosition.get(newPosition) != null){
-            return false;
-        }
-        Point currentPoint = positionsByEntity.get(creature);
-        entitiesByPosition.remove(currentPoint);
-        placeEntity(creature, newPosition);
-        positionsByEntity.put(creature, newPosition);
-        entitiesByPosition.put(newPosition, creature);
-
-        return true;
-    }
+//    //We already have a move method, should flee be different?
+//    public boolean fleeMove(Creature creature, Point newPosition){
+//
+//        if(creature == null){
+//            throw new NullPointerException("The creature can't be null");
+//        }
+//        if(entitiesByPosition.get(newPosition) != null){
+//            return false;
+//        }
+//        Point currentPoint = positionsByEntity.get(creature);
+//        entitiesByPosition.remove(currentPoint);
+//        placeEntity(creature, newPosition);
+//        positionsByEntity.put(creature, newPosition);
+//        entitiesByPosition.put(newPosition, creature);
+//
+//        return true;
+//    }
 
     public ArrayList<Point> getAvailablePositions(Creature creature){
 

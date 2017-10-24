@@ -18,7 +18,7 @@ public class Behaviour {
         if(isPlayer){
             throw new UnsupportedOperationException("Not implemented yet");
         }else if(!availablePositions.isEmpty()){
-            gameMap.fleeMove(creature, availablePositions.get(0));
+          //  gameMap.fleeMove(creature, availablePositions.get(0));
         }else {
             //TODO: implement what should happen if no empty points are available
             throw new UnsupportedOperationException("Not implemented yet");

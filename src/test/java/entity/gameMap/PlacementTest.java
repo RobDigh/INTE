@@ -27,18 +27,18 @@ public class PlacementTest extends GameMapTest {
         return new Creature(6, 7, 5, true, mockInventoryFactory, behaviour);
     }
 
-    private GameMap createCustomGameMap(int xLength, int yLength){
+    private GameMap createCustomGameMap(int xLength, int yLength) {
         return new GameMap(xLength, yLength);
     }
 
-    private List<Point> placeSeveralCreaturesOnMap(){
+    private List<Point> placeSeveralCreaturesOnMap() {
 
         List<Point> occupiedPoints = new ArrayList<>();
 
-        Point p = new Point(1,1);
-        Point p1 = new Point(5,7);
-        Point p2 = new Point(3,1);
-        Point p3 = new Point(5,2);
+        Point p = new Point(1, 1);
+        Point p1 = new Point(5, 7);
+        Point p2 = new Point(3, 1);
+        Point p3 = new Point(5, 2);
 
         occupiedPoints.add(p);
         occupiedPoints.add(p1);
@@ -53,12 +53,12 @@ public class PlacementTest extends GameMapTest {
         return occupiedPoints;
     }
 
-    private ArrayList<Point> getAllEmptyPointsWholeMap(int xAxis, int yAxis, List<Point> occupiedPoints){
+    private ArrayList<Point> getAllEmptyPointsWholeMap(int xAxis, int yAxis, List<Point> occupiedPoints) {
         ArrayList<Point> availablePositions = new ArrayList<>();
 
-        for(int x = 0; x < xAxis; x++){
-            for(int y = 0; y < yAxis; y++){
-                if(!occupiedPoints.contains(new Point(x, y))){
+        for (int x = 0; x < xAxis; x++) {
+            for (int y = 0; y < yAxis; y++) {
+                if (!occupiedPoints.contains(new Point(x, y))) {
                     availablePositions.add(new Point(x, y));
                 }
             }
@@ -66,9 +66,9 @@ public class PlacementTest extends GameMapTest {
         return availablePositions;
     }
 
-    private boolean pointExistInList(List<Point> emptyPositions, List<Point> occupiedPoints){
-        for(Point p : emptyPositions){
-            if(occupiedPoints.contains(p)){
+    private boolean pointExistInList(List<Point> emptyPositions, List<Point> occupiedPoints) {
+        for (Point p : emptyPositions) {
+            if (occupiedPoints.contains(p)) {
                 return true;
             }
         }
@@ -76,9 +76,9 @@ public class PlacementTest extends GameMapTest {
     }
 
     @Before
-    public void setUp(){
+    public void setUp() {
         testCreature = createCreature();
-        gameMap =  createDefaultSizedGameMap();
+        gameMap = createDefaultSizedGameMap();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -243,13 +243,13 @@ public class PlacementTest extends GameMapTest {
 
     @Test
     public void testGetEntityFromPosition() {
-        gameMap.placeEntity(testCreature, new Point(0,0));
-        assertEquals(testCreature, gameMap.getEntity(new Point(0,0)));
+        gameMap.placeEntity(testCreature, new Point(0, 0));
+        assertEquals(testCreature, gameMap.getEntity(new Point(0, 0)));
     }
 
     @Test
-    public void testGetEntityFromEmptyPosition(){
-        assertEquals(null, gameMap.getEntity(new Point(0,0)));
+    public void testGetEntityFromEmptyPosition() {
+        assertEquals(null, gameMap.getEntity(new Point(0, 0)));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -258,24 +258,24 @@ public class PlacementTest extends GameMapTest {
     }
 
     @Test
-    public void testGetAllEmptyPositionsForSpecificPlayerOnSmallEmptyMap(){
+    public void testGetAllEmptyPositionsForSpecificPlayerOnSmallEmptyMap() {
         gameMap = createCustomGameMap(3, 3);
-        assertEquals(getAllEmptyPointsWholeMap(3,3, new ArrayList<>()), gameMap.getAvailablePositions(mockCreature));
+        assertEquals(getAllEmptyPointsWholeMap(3, 3, new ArrayList<>()), gameMap.getAvailablePositions(mockCreature));
     }
 
     @Test
-    public void testGetAllEmptyPositionsWhileAPlayerIsOnTheMap(){
+    public void testGetAllEmptyPositionsWhileAPlayerIsOnTheMap() {
         gameMap = createCustomGameMap(2, 2);
-        gameMap.placeEntity(testCreature, new Point(1,1));
+        gameMap.placeEntity(testCreature, new Point(1, 1));
         ArrayList<Point> occupiedPoints = new ArrayList<>();
-        occupiedPoints.add(new Point(1,1));
+        occupiedPoints.add(new Point(1, 1));
 
         List<Point> emptyPlaces = gameMap.getAvailablePositions(mockCreature);
         assertFalse(pointExistInList(emptyPlaces, occupiedPoints));
     }
 
     @Test
-    public void testGetAllEmptyPositionsSeveralPlayersOnTheMap(){
+    public void testGetAllEmptyPositionsSeveralPlayersOnTheMap() {
         List<Point> points = placeSeveralCreaturesOnMap();
         ArrayList<Point> availablePositions = getAllEmptyPointsWholeMap(10, 10, points);
         List<Point> emptyPoints = gameMap.getAvailablePositions(mockCreature);
@@ -284,85 +284,86 @@ public class PlacementTest extends GameMapTest {
     }
 
     @Test
-    public void testGetEmptyPositionsOutsideCreaturesPositionRangeNortheast(){
-        gameMap.placeEntity(testCreature, new Point(3,3));
+    public void testGetEmptyPositionsOutsideCreaturesPositionRangeNortheast() {
+        gameMap.placeEntity(testCreature, new Point(3, 3));
         List<Point> emptyPositionsFromGameMap = gameMap.getAvailablePositions(testCreature);
-        assertFalse(emptyPositionsFromGameMap.contains(new Point(7,6)));
+        assertFalse(emptyPositionsFromGameMap.contains(new Point(7, 6)));
     }
 
     @Test
-    public void testGetEmptyPositionsOutSideGameMapSouthwestCorner(){
-        gameMap.placeEntity(testCreature, new Point(0,0));
+    public void testGetEmptyPositionsOutSideGameMapSouthwestCorner() {
+        gameMap.placeEntity(testCreature, new Point(0, 0));
         List<Point> availablePositions = gameMap.getAvailablePositions(testCreature);
-        assertTrue(availablePositions.contains(new Point(1,1)));
-        assertFalse(availablePositions.contains(new Point(1,-1)));
+        assertTrue(availablePositions.contains(new Point(1, 1)));
+        assertFalse(availablePositions.contains(new Point(1, -1)));
     }
 
     @Test
-    public void testGetEmptyPositionsOutSideGameMapNortheastCorner(){
-        gameMap.placeEntity(testCreature, new Point(9,9));
+    public void testGetEmptyPositionsOutSideGameMapNortheastCorner() {
+        gameMap.placeEntity(testCreature, new Point(9, 9));
         List<Point> availablePositions = gameMap.getAvailablePositions(testCreature);
-        assertTrue(availablePositions.contains(new Point(8,8)));
-        assertFalse(availablePositions.contains(new Point(10,10)));
+        assertTrue(availablePositions.contains(new Point(8, 8)));
+        assertFalse(availablePositions.contains(new Point(10, 10)));
     }
 
     @Test
-    public void testGetEmptyPositionsOutSideGameMapEast(){
-        gameMap.placeEntity(testCreature, new Point(9,5));
+    public void testGetEmptyPositionsOutSideGameMapEast() {
+        gameMap.placeEntity(testCreature, new Point(9, 5));
         List<Point> availablePositions = gameMap.getAvailablePositions(testCreature);
-        assertTrue(availablePositions.contains(new Point(9,4)));
-        assertFalse(availablePositions.contains(new Point(10,5)));
+        assertTrue(availablePositions.contains(new Point(9, 4)));
+        assertFalse(availablePositions.contains(new Point(10, 5)));
     }
 
     @Test
-    public void testGetEmptyPositionsOutSideGameMapWest(){
-        gameMap.placeEntity(testCreature, new Point(0,5));
+    public void testGetEmptyPositionsOutSideGameMapWest() {
+        gameMap.placeEntity(testCreature, new Point(0, 5));
         List<Point> availablePositions = gameMap.getAvailablePositions(testCreature);
-        assertTrue(availablePositions.contains(new Point(0,6)));
-        assertFalse(availablePositions.contains(new Point(-1,5)));
+        assertTrue(availablePositions.contains(new Point(0, 6)));
+        assertFalse(availablePositions.contains(new Point(-1, 5)));
     }
 
     @Test
-    public void testGetEmptyPositionsOutsideCreaturesPositionRangeSouthwest(){
-        gameMap.placeEntity(testCreature, new Point(7,6));
+    public void testGetEmptyPositionsOutsideCreaturesPositionRangeSouthwest() {
+        gameMap.placeEntity(testCreature, new Point(7, 6));
         List<Point> emptyPositionsFromGameMap = gameMap.getAvailablePositions(testCreature);
-        assertFalse(emptyPositionsFromGameMap.contains(new Point(0,0)));
-        assertTrue(emptyPositionsFromGameMap.contains(new Point(6,5)));
-        assertTrue(emptyPositionsFromGameMap.contains(new Point(7,7)));
-    }
-
-    @Test (expected = IllegalArgumentException.class)
-    public void testGetAvailablePointsWithNullCreature(){
-        gameMap.getAvailablePositions(null);
-    }
-
-    @Test
-    public void testMoveWhileFleeing(){
-        gameMap.placeEntity(testCreature, new Point(3,3));
-        gameMap.fleeMove(testCreature, new Point(4,4));
-        assertEquals(testCreature, gameMap.getEntity(new Point(4,4)));
-        assertEquals(new Point(4,4), gameMap.getPosition(testCreature));
-    }
-
-    @Test
-    public void testFleeMoveToNotEmptyPoint(){
-        gameMap.placeEntity(testCreature, new Point(3,3));
-        assertFalse(gameMap.fleeMove(testCreature, new Point(3,3)));
-    }
-
-    @Test (expected = IllegalArgumentException.class)
-    public void testFleeToAInvalidPoint(){
-        gameMap.placeEntity(testCreature, new Point(3,3));
-        gameMap.fleeMove(testCreature, new Point(22,10));
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void testFleeWithNullCreature(){
-        gameMap.fleeMove(null, new Point(3,3));
+        assertFalse(emptyPositionsFromGameMap.contains(new Point(0, 0)));
+        assertTrue(emptyPositionsFromGameMap.contains(new Point(6, 5)));
+        assertTrue(emptyPositionsFromGameMap.contains(new Point(7, 7)));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testFleeWithNullPoint(){
-        gameMap.fleeMove(testCreature, null);
+    public void testGetAvailablePointsWithNullCreature() {
+        gameMap.getAvailablePositions(null);
     }
 }
+
+//    @Test
+//    public void testMoveWhileFleeing(){
+//        gameMap.placeEntity(testCreature, new Point(3,3));
+//        gameMap.fleeMove(testCreature, new Point(4,4));
+//        assertEquals(testCreature, gameMap.getEntity(new Point(4,4)));
+//        assertEquals(new Point(4,4), gameMap.getPosition(testCreature));
+//    }
+
+//    @Test
+//    public void testFleeMoveToNotEmptyPoint(){
+//        gameMap.placeEntity(testCreature, new Point(3,3));
+//        assertFalse(gameMap.fleeMove(testCreature, new Point(3,3)));
+//    }
+//
+//    @Test (expected = IllegalArgumentException.class)
+//    public void testFleeToAInvalidPoint(){
+//        gameMap.placeEntity(testCreature, new Point(3,3));
+//        gameMap.fleeMove(testCreature, new Point(22,10));
+//    }
+//
+//    @Test(expected = NullPointerException.class)
+//    public void testFleeWithNullCreature(){
+//        gameMap.fleeMove(null, new Point(3,3));
+//    }
+//
+//    @Test(expected = IllegalArgumentException.class)
+//    public void testFleeWithNullPoint(){
+//        gameMap.fleeMove(testCreature, null);
+//    }
+//}

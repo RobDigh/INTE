@@ -58,7 +58,7 @@ public class BehaviourTest {
         when(mockGameMap.getAvailablePositions(testMonster)).thenReturn(availablePositions);
 
         testMonster.flee(mockGameMap);
-        verify(mockGameMap).fleeMove(testMonster, new Point(2,2));
+        //verify(mockGameMap).fleeMove(testMonster, new Point(2,2));
     }
 
     @Test
@@ -66,7 +66,7 @@ public class BehaviourTest {
         Behaviour mockBehaviour = mock(Behaviour.class);
         testMonster = new Creature(5, 8, 5, false, mockInventoryFactory, mockBehaviour);
         testMonster.act(mockMonster);
-        verify(mockBehaviour).act();
+        verify(mockBehaviour).act(mockMonster);
     }
 
     @Test(expected = UnsupportedOperationException.class)

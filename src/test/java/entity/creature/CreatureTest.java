@@ -109,23 +109,34 @@ public class CreatureTest {
     }
 
     /**
-     * Add tests for HP
+     * Add tests for MaxHP
      */
 
     @Test
-    public void testGetHP() {
+    public void testGetMaxHP() {
         testCreature = new Creature(6, 6, 6, true, mockInventoryFactory, mockBehaviour);
-        assertEquals(6 * Creature.magicConstitutionHPNumber + 6 * Creature.magicStrengthHPNumber, testCreature.getHP());
+        assertEquals(6 * Creature.magicConstitutionHPNumber + 6 * Creature.magicStrengthHPNumber, testCreature.getMaxHP());
+    }
+
+    /**
+     * Add tests for CurrentHP
+     */
+
+    @Test
+    public void testGetCurrentHP() {
+        testCreature = new Creature(6, 6, 6, true, mockInventoryFactory, mockBehaviour);
+        testCreature.loseHP(30);
+        assertEquals(6 * Creature.magicConstitutionHPNumber + 6 * Creature.magicStrengthHPNumber - 30, testCreature.getCurrentHP());
     }
 
     @Test
     public void testCalculateHp() {
         testCreature = new Creature(5, 5, 8, true, mockInventoryFactory, mockBehaviour);
-        assertEquals(8 * 15 + 5 * 5, testCreature.getHP());
+        assertEquals(8 * 15 + 5 * 5, testCreature.getMaxHP());
         testCreature = new Creature(7, 5, 6, true, mockInventoryFactory, mockBehaviour);
-        assertEquals(6 * 15 + 7 * 5, testCreature.getHP());
+        assertEquals(6 * 15 + 7 * 5, testCreature.getMaxHP());
         testCreature = new Creature(5, 8, 5, true, mockInventoryFactory, mockBehaviour);
-        assertEquals(5 * 15 + 5 * 5, testCreature.getHP());
+        assertEquals(5 * 15 + 5 * 5, testCreature.getMaxHP());
     }
 
     /**
@@ -179,27 +190,26 @@ public class CreatureTest {
     public void testGainHP() {
         testCreature = new Creature(6, 6, 6, true, mockInventoryFactory, mockBehaviour);
         testCreature.gainHP(50);
-        assertEquals((6 * Creature.magicConstitutionHPNumber + 6 * Creature.magicStrengthHPNumber) + 50, testCreature.getHP());
+        assertEquals((6 * Creature.magicConstitutionHPNumber + 6 * Creature.magicStrengthHPNumber) + 50, testCreature.getCurrentHP());
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void testGainNegativeHP() {
-        thrown.expect(IllegalArgumentException.class);
         testCreature.gainHP(-5);
     }
 
     @Test
     public void testGainZeroHP() {
-        int originalHP = testCreature.getHP();
+        int originalHP = testCreature.getMaxHP();
         testCreature.gainHP(0);
-        assertEquals(originalHP, testCreature.getHP());
+        assertEquals(originalHP, testCreature.getCurrentHP());
     }
 
     @Test
     public void testLoseHP() {
         testCreature = new Creature(6, 6, 6, true, mockInventoryFactory, mockBehaviour);
         testCreature.loseHP(50);
-        assertEquals((6 * Creature.magicConstitutionHPNumber + 6 * Creature.magicStrengthHPNumber) - 50, testCreature.getHP());
+        assertEquals((6 * Creature.magicConstitutionHPNumber + 6 * Creature.magicStrengthHPNumber) - 50, testCreature.getCurrentHP());
     }
 
     @Test
@@ -210,36 +220,36 @@ public class CreatureTest {
 
     @Test
     public void testLoseZeroHP() {
-        int originalHP = testCreature.getHP();
+        int originalHP = testCreature.getCurrentHP();
         testCreature.loseHP(0);
-        assertEquals(originalHP, testCreature.getHP());
+        assertEquals(originalHP, testCreature.getCurrentHP());
     }
 
     @Test
     public void testGoBelowZeroHP() {
         testCreature = new Creature(6, 6, 6, true, mockInventoryFactory, mockBehaviour);
-        testCreature.loseHP(testCreature.getHP() + 50);
-        assertEquals(0, testCreature.getHP());
+        testCreature.loseHP(testCreature.getCurrentHP() + 50);
+        assertEquals(0, testCreature.getCurrentHP());
     }
 
     @Test
     public void testGainHPSeveralTimes() {
-        int hpTotal = testCreature.getHP();
+        int hpTotal = testCreature.getCurrentHP();
         testCreature.gainHP(50);
         testCreature.gainHP(10);
         testCreature.gainHP(80);
         hpTotal += (50 + 10 + 80);
-        assertEquals(hpTotal, testCreature.getHP());
+        assertEquals(hpTotal, testCreature.getCurrentHP());
     }
 
     @Test
     public void testLoseHPSeveralTimes() {
-        int hpTotal = testCreature.getHP();
+        int hpTotal = testCreature.getCurrentHP();
         testCreature.loseHP(10);
         testCreature.loseHP(5);
         testCreature.loseHP(70);
         hpTotal -= (10 + 5 + 70);
-        assertEquals(hpTotal, testCreature.getHP());
+        assertEquals(hpTotal, testCreature.getCurrentHP());
     }
 
     @Test
@@ -249,33 +259,33 @@ public class CreatureTest {
         testCreature.loseHP(8);
         testCreature.loseHP(90);
         testCreature.loseHP(80);
-        assertEquals(0, testCreature.getHP());
+        assertEquals(0, testCreature.getCurrentHP());
     }
 
     @Test
     public void testIncreaseThenDecreaseThenIncreaseAgain() {
-        int hpTotal = testCreature.getHP();
+        int hpTotal = testCreature.getCurrentHP();
         testCreature.gainHP(50);
         testCreature.gainHP(70);
         hpTotal += (50 + 70);
-        assertEquals(hpTotal, testCreature.getHP());
+        assertEquals(hpTotal, testCreature.getCurrentHP());
         testCreature.loseHP(40);
         testCreature.loseHP(30);
         hpTotal -= (40 + 30);
-        assertEquals(hpTotal, testCreature.getHP());
+        assertEquals(hpTotal, testCreature.getCurrentHP());
         testCreature.gainHP(50);
         hpTotal += 50;
-        assertEquals(hpTotal, testCreature.getHP());
+        assertEquals(hpTotal, testCreature.getCurrentHP());
     }
 
     @Test
     public void testDecreaseBelowZeroHPThenIncreaseAgain() {
-        while (0 < testCreature.getHP()) {
+        while (0 < testCreature.getCurrentHP()) {
             testCreature.loseHP(9);
         }
-        assertEquals(0, testCreature.getHP());
+        assertEquals(0, testCreature.getCurrentHP());
         testCreature.gainHP(5);
-        assertEquals(0, testCreature.getHP());
+        assertEquals(0, testCreature.getCurrentHP());
     }
 
     /**
@@ -803,7 +813,7 @@ public class CreatureTest {
         assertEquals(7, testCreature.getConstitution());
 
         assertEquals(1, testCreature.getSpeed());
-        assertEquals(7 * Creature.magicConstitutionHPNumber + 5 * Creature.magicStrengthHPNumber, testCreature.getHP());
+        assertEquals(7 * Creature.magicConstitutionHPNumber + 5 * Creature.magicStrengthHPNumber, testCreature.getCurrentHP());
         assertEquals(Type.GREYHOUND, testCreature.getType());
         assertTrue(testCreature.isPC());
     }

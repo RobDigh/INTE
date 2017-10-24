@@ -15,7 +15,7 @@ public class CombatTest {
 
     /*
      * Creating Creature spies is mainly done to control combat behaviour while avoiding
-     * having to exactly program which values should be returned on getHP() and getSpeed()
+     * having to exactly program which values should be returned on getCurrentHP() and getSpeed()
      * at different times. A better way of solving this would probably be to just use real
      * Creatures and pass them a mock AI, since it's the behaviour we need to control and
      * not Creature state. Even more so since this behaviour would have to be controlled

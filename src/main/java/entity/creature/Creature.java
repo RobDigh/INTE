@@ -47,6 +47,7 @@ public class Creature extends Entity {
 
         this.type = calculateType();
 
+        this.maxHP = calculateMaxHP();
         this.currentHP = calculateMaxHP();
         this.speed = calculateDefaultSpeed();
         damageReduction = 0;
@@ -84,7 +85,11 @@ public class Creature extends Entity {
         }
     }
 
-    public int getHP() {
+    public int getMaxHP() {
+        return maxHP;
+    }
+
+    public int getCurrentHP() {
         return currentHP;
     }
 
@@ -147,7 +152,7 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
         this.strength += amount;
-        this.currentHP = calculateMaxHP();
+        this.maxHP = calculateMaxHP();
     }
 
     public void gainDexterity(int amount) {
@@ -164,7 +169,7 @@ public class Creature extends Entity {
         }
         this.constitution += amount;
         this.speed = calculateDefaultSpeed();
-        this.currentHP = calculateMaxHP();
+        this.maxHP = calculateMaxHP();
     }
 
     public void gainHP(int amount) {
@@ -177,9 +182,9 @@ public class Creature extends Entity {
         this.currentHP += amount;
     }
 
-    private boolean isDead(){
+    private boolean isDead() {
         //HP can never go below 0.
-        return (getHP() == 0);
+        return (getCurrentHP() == 0);
     }
 
     public void loseHP(int amount) {
@@ -308,13 +313,13 @@ public class Creature extends Entity {
         Creature visitingCreature = (Creature) visitingEntity;
         Creature visitedCreature = (Creature) visitedEntity;
 
-        if (visitingCreature.getHP() > visitedCreature.getHP()) {
+        if (visitingCreature.getCurrentHP() > visitedCreature.getCurrentHP()) {
             return true;
         }
-        if (visitingCreature.getHP() < visitedCreature.getHP()) {
+        if (visitingCreature.getCurrentHP() < visitedCreature.getCurrentHP()) {
             return false;
         }
-        if (visitingCreature.getHP() == visitedCreature.getHP()) {
+        if (visitingCreature.getCurrentHP() == visitedCreature.getCurrentHP()) {
             //TO-DO What happens when neither Creature is killed?
         }
 

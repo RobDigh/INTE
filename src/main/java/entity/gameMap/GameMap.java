@@ -268,15 +268,13 @@ public class GameMap extends Entity {
 
         Point currentPosition = getPosition(creature);
 
-//        int positionToCheckX = currentPosition.x;
-//        int positionToCheckY = currentPosition.y;
-
         for(Point p : validDirections){
 
             int positionToCheckX = currentPosition.x + (p.x * creature.getSpeed());
             int positionToCheckY = currentPosition.y + (p.y * creature.getSpeed());
 
-            if(getEntity(new Point(positionToCheckX, positionToCheckY)) == null || getEntity(new Point(positionToCheckX, positionToCheckY)) instanceof Item){
+            Entity entityOnPosition = getEntity(new Point(positionToCheckX, positionToCheckY));
+            if(entityOnPosition == null || entityOnPosition instanceof Item){
                 availableDirections.add(p);
             }
         }

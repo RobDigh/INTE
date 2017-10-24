@@ -120,6 +120,5 @@ public class BehaviourTest {
         assertTrue(validDirections.contains(new Point(0,-1)));
         assertTrue(validDirections.contains(new Point(-1,0)));
         assertTrue(validDirections.contains(new Point(1,0)));
-
     }
 }

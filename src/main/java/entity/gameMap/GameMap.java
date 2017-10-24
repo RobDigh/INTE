@@ -20,7 +20,7 @@ public class GameMap extends Entity {
 
     public static final Point DEFAULT_ENTRY_POSITION = new Point(0, 0);
 
-    private HashSet<Point> validDirections = new HashSet<>();
+    private static final HashSet<Point> validDirections = new HashSet<>();
 
     private int xLength;
     private int yLength;

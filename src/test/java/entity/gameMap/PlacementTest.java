@@ -181,6 +181,18 @@ public class PlacementTest extends GameMapTest {
 
     }
 
+    @Test
+    public void testRemoveNonExistingCreatureFromOccupiedPoint() {
+
+        DEFAULT_SIZED_MAP.placeEntity(mockCreature, new Point(0, 0));
+
+        Creature anotherMockCreature = mock(Creature.class);
+
+        assertFalse(DEFAULT_SIZED_MAP.remove(anotherMockCreature));
+        assertEquals(new Point(0, 0), DEFAULT_SIZED_MAP.getPosition(mockCreature));
+
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testRemoveNullCreature() {
         DEFAULT_SIZED_MAP.remove(null);

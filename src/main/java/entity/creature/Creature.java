@@ -17,6 +17,10 @@ public class Creature extends Entity {
     public static final int magicConstitutionHPNumber = 15;
     public static final int magicStrengthHPNumber = 5;
 
+    private final Type type;
+    private final Behaviour behaviour;
+    private final Inventory inventory;
+    
     private int strength;
     private int dexterity;
     private int constitution;
@@ -24,11 +28,8 @@ public class Creature extends Entity {
     private int currentHP;
     private int speed;
     private boolean isPC;
-    private Type type;
     private double damageReduction;
     private double damageBonus;
-    private Behaviour behaviour;
-    private Inventory inventory;
 
     public Creature(int strength, int dexterity, int constitution,
                     boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour) {

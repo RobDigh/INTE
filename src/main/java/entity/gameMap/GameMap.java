@@ -58,9 +58,13 @@ public class GameMap extends Entity {
         }
     }
 
+    private void checkForNullEntity(Entity entity) {
+        makeNullCheck(entity, "Entity");
+    }
+
     public boolean placeEntity(Entity entity, Point point) {
 
-        makeNullCheck(entity, "Entity");
+        checkForNullEntity(entity);
 
         if (point.x < 0 || point.y < 0) {
             throw new IllegalArgumentException("Point may only have positive coordinates.");
@@ -76,7 +80,7 @@ public class GameMap extends Entity {
 
     private boolean addEntity(Entity entity, Point point) {
 
-        makeNullCheck(entity, "Entity");
+        checkForNullEntity(entity);
         makeNullCheck(point, "Point");
 
         if (positionsByEntity.get(entity) == null && entitiesByPosition.get(point) == null) {
@@ -93,7 +97,7 @@ public class GameMap extends Entity {
 
     public boolean remove(Entity entity) {
 
-        makeNullCheck(entity, "Entity");
+        checkForNullEntity(entity);
 
         Point point = positionsByEntity.remove(entity);
         entitiesByPosition.remove(point);
@@ -103,7 +107,7 @@ public class GameMap extends Entity {
 
     public Point getPosition(Entity entity) {
 
-        makeNullCheck(entity, "Entity");
+        checkForNullEntity(entity);
 
         Point point = positionsByEntity.get(entity);
 

@@ -175,7 +175,7 @@ public class PlacementTest extends GameMapTest {
     public void removeCreature() {
 
         placeCreature(DEFAULT_SIZED_MAP, 0, 0);
-        DEFAULT_SIZED_MAP.remove(mockCreature);
+        assertTrue(DEFAULT_SIZED_MAP.remove(mockCreature));
 
         assertEquals(null, DEFAULT_SIZED_MAP.getPosition(mockCreature));
 

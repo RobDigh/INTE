@@ -74,24 +74,22 @@ public class GameMap extends Entity {
             throw new IllegalArgumentException("Point must be less than the map's size.");
         }
 
-        return addEntity(entity, point);
+
+        if (positionsByEntity.get(entity) == null && entitiesByPosition.get(point) == null) {
+            addEntity(entity, point);
+            return true;
+        }
+        return false;
 
     }
 
-    private boolean addEntity(Entity entity, Point point) {
+    private void addEntity(Entity entity, Point point) {
 
         checkForNullEntity(entity);
         makeNullCheck(point, "Point");
 
-        if (positionsByEntity.get(entity) == null && entitiesByPosition.get(point) == null) {
-
-            positionsByEntity.put(entity, point);
-            entitiesByPosition.put(point, entity);
-
-            return true;
-
-        }
-        return false;
+        positionsByEntity.put(entity, point);
+        entitiesByPosition.put(point, entity);
 
     }
 

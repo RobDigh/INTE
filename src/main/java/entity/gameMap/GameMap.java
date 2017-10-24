@@ -3,9 +3,7 @@ package entity.gameMap;
 import entity.Entity;
 import entity.creature.Creature;
 
-import javax.swing.text.Position;
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;

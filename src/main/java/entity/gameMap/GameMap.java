@@ -263,6 +263,12 @@ public class GameMap extends Entity {
     }
 
     public ArrayList<Point> getAvailableDirections(Creature creature){
-        return null;
+        ArrayList<Point> availableDirections = new ArrayList<Point>();
+        availableDirections.add(new Point(0,1));
+        availableDirections.add(new Point(0,-1));
+        availableDirections.add(new Point(-1,0));
+        availableDirections.add(new Point(1,0));
+
+        return availableDirections;
     }
 }

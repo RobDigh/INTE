@@ -20,7 +20,8 @@ public class Creature extends Entity {
     private int strength;
     private int dexterity;
     private int constitution;
-    private int hp;
+    private int maxHP;
+    private int currentHP;
     private int speed;
     private boolean isPC;
     private Type type;
@@ -46,7 +47,7 @@ public class Creature extends Entity {
 
         this.type = calculateType();
 
-        this.hp = calculateMaxHP();
+        this.currentHP = calculateMaxHP();
         this.speed = calculateDefaultSpeed();
         damageReduction = 0;
         damageBonus = 0;
@@ -84,7 +85,7 @@ public class Creature extends Entity {
     }
 
     public int getHP() {
-        return hp;
+        return currentHP;
     }
 
     public int getSpeed() {
@@ -146,7 +147,7 @@ public class Creature extends Entity {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
         this.strength += amount;
-        this.hp = calculateMaxHP();
+        this.currentHP = calculateMaxHP();
     }
 
     public void gainDexterity(int amount) {
@@ -163,7 +164,7 @@ public class Creature extends Entity {
         }
         this.constitution += amount;
         this.speed = calculateDefaultSpeed();
-        this.hp = calculateMaxHP();
+        this.currentHP = calculateMaxHP();
     }
 
     public void gainHP(int amount) {
@@ -173,10 +174,11 @@ public class Creature extends Entity {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
-        this.hp += amount;
+        this.currentHP += amount;
     }
 
     private boolean isDead(){
+        //HP can never go below 0.
         return (getHP() == 0);
     }
 
@@ -184,8 +186,8 @@ public class Creature extends Entity {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
-        hp = Math.max(0, hp - amount);
-        if (hp == 0) {
+        currentHP = Math.max(0, currentHP - amount);
+        if (currentHP == 0) {
             die();
         }
     }

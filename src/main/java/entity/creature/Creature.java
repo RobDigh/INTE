@@ -28,7 +28,7 @@ public class Creature extends Entity {
     private double damageBonus;
     private Behaviour behaviour;
     private Inventory inventory;
-    
+
     public Creature(int strength, int dexterity, int constitution,
                     boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour) {
         if (inventoryFactory == null) {
@@ -91,7 +91,7 @@ public class Creature extends Entity {
         return speed;
     }
 
-    private int calculateMaxHP(){
+    private int calculateMaxHP() {
         return constitution * magicConstitutionHPNumber + strength * magicStrengthHPNumber;
     }
 
@@ -141,7 +141,7 @@ public class Creature extends Entity {
         return type;
     }
 
-    public void gainStrength(int amount){
+    public void gainStrength(int amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
@@ -149,7 +149,7 @@ public class Creature extends Entity {
         this.hp = calculateMaxHP();
     }
 
-    public void gainDexterity(int amount){
+    public void gainDexterity(int amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
@@ -157,7 +157,7 @@ public class Creature extends Entity {
         this.speed = calculateDefaultSpeed();
     }
 
-    public void gainConstitution(int amount){
+    public void gainConstitution(int amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
         }
@@ -188,8 +188,8 @@ public class Creature extends Entity {
         this.hp -= amount;
     }
 
-    public void die() {
-
+    private void die() {
+        //ToDo: Not implemented yet. What happens when a creature dies?
     }
 
     public void gainSpeed(int amount) {

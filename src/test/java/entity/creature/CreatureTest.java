@@ -190,8 +190,9 @@ public class CreatureTest {
 
     @Test
     public void testGainZeroHP() {
-        thrown.expect(IllegalArgumentException.class);
+        int originalHP = testCreature.getHP();
         testCreature.gainHP(0);
+        assertEquals(originalHP, testCreature.getHP());
     }
 
     @Test
@@ -209,8 +210,9 @@ public class CreatureTest {
 
     @Test
     public void testLoseZeroHP() {
-        thrown.expect(IllegalArgumentException.class);
+        int originalHP = testCreature.getHP();
         testCreature.loseHP(0);
+        assertEquals(originalHP, testCreature.getHP());
     }
 
     @Test

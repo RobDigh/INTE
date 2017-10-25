@@ -1,5 +1,7 @@
-package entity;
+package entity.gameMap;
 
+import entity.creature.Creature;
+import entity.item.Item;
 import org.junit.Before;
 import java.awt.*;
 
@@ -11,8 +13,9 @@ public class GameMapTest {
 
     protected final GameMap DEFAULT_SIZED_MAP = createDefaultSizedGameMap();
 
-    protected Player mockPlayer = mock(Player.class);
-    protected Monster mockMonster = mock(Monster.class);
+    protected Creature mockCreature = mock(Creature.class);
+    protected Creature mockMonster = mock(Creature.class);
+    protected Item mockItem = mock(Item.class);
 
     protected GameMap createDefaultSizedGameMap() {
         return new GameMap();
@@ -22,34 +25,32 @@ public class GameMapTest {
         return new GameMap(xLength, yLength);
     }
 
-    protected GameMap placePlayer(GameMap gameMap, int x, int y) {
+    protected GameMap placeCreature(GameMap gameMap, int x, int y) {
 
-        Player player = mock(Player.class);
-        gameMap.place(player, new Point(x, y));
+        Creature creature = mock(Creature.class);
+        gameMap.place(creature, new Point(x, y));
 
         return gameMap;
 
     }
 
-    protected GameMap createGameMapAndPlacePlayer(int x, int y) {
+    protected GameMap createGameMapAndPlaceCreature(int x, int y) {
 
-        Player player = mock(Player.class);
+        Creature creature = mock(Creature.class);
 
         GameMap gameMap = createDefaultSizedGameMap();
-        gameMap.place(player, new Point(x, y));
+        gameMap.place(creature, new Point(x, y));
 
         return gameMap;
     }
 
-    //protected boolean placeAndMovePlayer(GameMap gameMap, int x, int y, int direction) {
-    protected boolean placeAndMovePlayer(GameMap gameMap, int x, int y, Point direction) {
+    protected boolean placeAndMoveCreature(GameMap gameMap, int x, int y, Point direction) {
 
-        gameMap.place(mockPlayer, new Point(x, y));
-        return gameMap.move(mockPlayer, direction);
+        gameMap.place(mockCreature, new Point(x, y));
+        return gameMap.move(mockCreature, direction);
 
     }
 
-    //protected boolean placeAndMoveMonster(GameMap gameMap, int x, int y, int direction) {
     protected boolean placeAndMoveMonster(GameMap gameMap, int x, int y, Point direction) {
 
         gameMap.place(mockMonster, new Point(x, y));
@@ -60,7 +61,7 @@ public class GameMapTest {
     @Before
     public void setup() {
 
-        when(mockPlayer.getSpeed()).thenReturn(1);
+        when(mockCreature.getSpeed()).thenReturn(1);
         when(mockMonster.getSpeed()).thenReturn(1);
 
     }

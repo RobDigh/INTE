@@ -210,6 +210,38 @@ public class Creature extends Entity {
         speed = Math.max(0, speed - amount);
     }
 
+    private void incrementDamageValues(double increaseAmount, String valueToBeIncremented){
+        double value;
+        boolean incrementBonus = false;
+
+        if(valueToBeIncremented.equalsIgnoreCase("Bonus")){
+            value = damageBonus;
+            incrementBonus = true;
+        }else if(valueToBeIncremented.equalsIgnoreCase("Reduction")){
+            value = damageReduction;
+        }else{
+            return;
+        }
+
+        if (increaseAmount <= 0) {
+            throw new IllegalArgumentException("Increase value must be greater than 0");
+        }
+        if (increaseAmount > 100) {
+            throw new IllegalArgumentException("Increase value must be less or equal to 100");
+        }
+
+        if ((value + increaseAmount) >= 100) {
+            value = 100;
+        } else {
+            double newDamageValue = Math.round(increaseAmount * 100);
+            value += (newDamageValue / 100);
+        }
+
+        if(incrementBonus){
+            damageBonus = value;
+        }
+    }
+
     public void incrementDamageReduction(double increaseValue) {
         if (increaseValue <= 0) {
             throw new IllegalArgumentException("Increase value must be greater than 0");
@@ -241,18 +273,7 @@ public class Creature extends Entity {
     }
 
     public void incrementDamageBonus(double increaseValue) {
-        if (increaseValue <= 0) {
-            throw new IllegalArgumentException("Damage bonus must be greater than 0");
-        }
-        if (increaseValue > 100) {
-            throw new IllegalArgumentException("Damage bonus must be lower or equal to 100");
-        }
-        if ((damageBonus + increaseValue) > 100) {
-            damageBonus = 100;
-        } else {
-            double newDamageBonus = Math.round(increaseValue * 100);
-            damageBonus += (newDamageBonus / 100);
-        }
+       incrementDamageValues(increaseValue, "Bonus");
     }
 
     public void decrementDamageBonus(double decreaseValue) {

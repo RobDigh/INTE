@@ -31,6 +31,10 @@ public class Behaviour {
     }
 
     public void act(Creature creature){
+
+        if(creature == null){
+            throw new IllegalArgumentException("Creature can't be null");
+        }
         //TODO: Implement method
         throw new UnsupportedOperationException("Not implemented yet");
     }

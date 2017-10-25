@@ -60,7 +60,8 @@ public class CreatureTest {
 
     @Test (expected = IllegalArgumentException.class)
     public void testCallActWithNullCreature(){
-        testCreature.act(null);
+        Creature creature = new Creature(5, 5, 5, true, mockInventoryFactory, new Behaviour());
+        creature.act(null);
     }
 
     /**

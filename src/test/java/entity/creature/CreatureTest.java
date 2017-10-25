@@ -4,6 +4,7 @@ import entity.item.consumable.hp.HealthPotion;
 import entity.item.consumable.speed.SpeedPotion;
 import entity.item.wearable.armor.Armor;
 import entity.item.wearable.weapon.Weapon;
+import net.bytebuddy.pool.TypePool;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -55,6 +56,11 @@ public class CreatureTest {
     public void testCreatureActCallsActMethodInBehaviour() {
         testCreature.act(testCreature);
         verify(mockBehaviour).act(testCreature);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void testCallActWithNullCreature(){
+        testCreature.act(null);
     }
 
     /**

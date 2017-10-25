@@ -1,6 +1,4 @@
-package entity.gameMap;
-
-import entity.Entity;
+package entity;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -15,8 +13,6 @@ public class GameMap extends Entity {
     public static final Point SOUTH = new Point(0, -1);
     public static final Point WEST = new Point(1, 0);
     public static final Point EAST = new Point(-1, 0);
-
-    public static final Point DEFAULT_ENTRY_POSITION = new Point(0, 0);
 
     private HashSet<Point> validDirections = new HashSet<>();
 
@@ -116,16 +112,6 @@ public class GameMap extends Entity {
 
     }
 
-    private void resolveShouldStay(Entity entity, Point currentPosition, boolean shouldStay) {
-
-        if (shouldStay) {
-            // Put entity back after position has been updated.
-            addEntity(entity, currentPosition); // ToDo: What happens if this fails?
-        } else {
-            remove(entity);
-        }
-    }
-
     public boolean move(Entity entity, Point direction) {
 
         if (!validDirections.contains(direction)) {
@@ -146,7 +132,10 @@ public class GameMap extends Entity {
                 shouldStay = existingEntity.accept(entity, this);
             }
 
-            resolveShouldStay(entity, currentPosition, shouldStay);
+            if (shouldStay) {
+                // Put entity back after position has been updated.
+                addEntity(entity, currentPosition); // ToDo: What happens if this fails?
+            }
 
             return shouldStay;
 
@@ -157,13 +146,6 @@ public class GameMap extends Entity {
 
     @Override
     public boolean accept(Entity entity, GameMap environment) {
-
-        if (entity == null) {
-            throw new IllegalArgumentException("Entity may not be null.");
-        }
-
-        addEntity(entity, DEFAULT_ENTRY_POSITION);
         return false;
-
     }
 }

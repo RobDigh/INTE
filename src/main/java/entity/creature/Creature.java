@@ -210,60 +210,30 @@ public class Creature extends Entity {
         speed = Math.max(0, speed - amount);
     }
 
-    private void incrementDamageValues(double increaseAmount, String valueToBeIncremented){
-        double value;
-        boolean incrementBonus = false;
-
-        if(valueToBeIncremented.equalsIgnoreCase("Bonus")){
-            value = damageBonus;
-            incrementBonus = true;
-        }else if(valueToBeIncremented.equalsIgnoreCase("Reduction")){
-            value = damageReduction;
-        }else{
-            return;
+    private boolean checkValueSize(double value, int lowest, int highest, String valueName){
+        if (value <= lowest) {
+            throw new IllegalArgumentException(valueName + " value must be greater than 0");
         }
-
-        if (increaseAmount <= 0) {
-            throw new IllegalArgumentException("Increase value must be greater than 0");
+        if (value > highest) {
+            throw new IllegalArgumentException(valueName + " value must be less or equal to 100");
         }
-        if (increaseAmount > 100) {
-            throw new IllegalArgumentException("Increase value must be less or equal to 100");
-        }
-
-        if ((value + increaseAmount) >= 100) {
-            value = 100;
-        } else {
-            double newDamageValue = Math.round(increaseAmount * 100);
-            value += (newDamageValue / 100);
-        }
-
-        if(incrementBonus){
-            damageBonus = value;
-        }
+        return true;
     }
 
     public void incrementDamageReduction(double increaseValue) {
-        if (increaseValue <= 0) {
-            throw new IllegalArgumentException("Increase value must be greater than 0");
-        }
-        if (increaseValue > 100) {
-            throw new IllegalArgumentException("Increase value must be less or equal to 100");
-        }
+        checkValueSize(increaseValue, 0, 100, "Increase");
+        
         if ((damageReduction + increaseValue) >= 100) {
             damageReduction = 100;
         } else {
-            double newDamageReduction = Math.round(increaseValue * 100);
-            damageReduction += (newDamageReduction / 100);
+            double newDamageValue = Math.round(increaseValue * 100);
+            damageReduction += (newDamageValue / 100);
         }
     }
 
     public void decrementDamageReduction(double decreaseValue) {
-        if (decreaseValue <= 0) {
-            throw new IllegalArgumentException("Decrease value must be greater than 0");
-        }
-        if (decreaseValue > 100) {
-            throw new IllegalArgumentException("Decrease value must be less or equal to 100");
-        }
+        checkValueSize(decreaseValue, 0, 100, "Decrease");
+
         if ((damageReduction - decreaseValue) <= 0) {
             damageReduction = 0;
         } else {
@@ -273,16 +243,19 @@ public class Creature extends Entity {
     }
 
     public void incrementDamageBonus(double increaseValue) {
-       incrementDamageValues(increaseValue, "Bonus");
+        checkValueSize(increaseValue, 0, 100, "Increase");
+
+        if ((damageBonus + increaseValue) >= 100) {
+            damageBonus = 100;
+        } else {
+            double newDamageValue = Math.round(increaseValue * 100);
+            damageBonus += (newDamageValue / 100);
+        }
     }
 
     public void decrementDamageBonus(double decreaseValue) {
-        if (decreaseValue <= 0) {
-            throw new IllegalArgumentException("Decrease value must be greater than 0");
-        }
-        if (decreaseValue >= 100) {
-            throw new IllegalArgumentException("Decrease value must be less or equal to 100");
-        }
+        checkValueSize(decreaseValue, 0, 100, "Decrease");
+
         if (damageBonus - decreaseValue < 0) {
             damageBonus = 0;
         } else {

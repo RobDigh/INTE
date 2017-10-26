@@ -23,7 +23,6 @@ public abstract class Item extends Entity {
 
     @Override
     public boolean interact(Entity entity, GameMap environment){
-
         Creature visitingCreature = (Creature) entity;
         Item item = this;
         GameMap level = environment;

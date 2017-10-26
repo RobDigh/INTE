@@ -257,8 +257,7 @@ public class Creature extends Entity {
 
     public boolean removeItemFromInventory(Item item, String key) {
 
-        inventory.removeItem(item, key);
-        return true;
+        return inventory.removeItem(item, key);
     }
 
     public void act(Creature creature) {

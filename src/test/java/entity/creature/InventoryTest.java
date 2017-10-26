@@ -95,7 +95,6 @@ public class InventoryTest {
 
     @Test
     public void testRemoveItemFromEmptyInventory(){
-
         assertFalse(testInventory.removeItem(mockArmor, "armor"));
     }
 

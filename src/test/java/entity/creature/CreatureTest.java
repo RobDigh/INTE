@@ -756,7 +756,7 @@ public class CreatureTest {
      * Add item tests
      */
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testAddNullToInventory() {
         testCreature.addItemToInventory(null, "null");
     }
@@ -793,7 +793,7 @@ public class CreatureTest {
      * Remove item from inventory
      */
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testRemoveNullFromInventory() {
         testCreature.removeItemFromInventory(null, "null");
     }

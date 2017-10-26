@@ -30,8 +30,9 @@ public class Creature extends Entity {
     private double damageReduction;
     private double damageBonus;
 
-    public Creature(int strength, int dexterity, int constitution,
-                    boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour) {
+
+    public Creature(int  strength, int dexterity, int constitution, boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour) {
+
         if (inventoryFactory == null) {
             throw new IllegalArgumentException("InventoryFactory cannot be null");
         }
@@ -222,7 +223,7 @@ public class Creature extends Entity {
 
     public void incrementDamageReduction(double increaseValue) {
         checkValueSize(increaseValue, 0, 100, "Increase");
-        
+
         if ((damageReduction + increaseValue) >= 100) {
             damageReduction = 100;
         } else {
@@ -266,8 +267,8 @@ public class Creature extends Entity {
 
     public boolean addItemToInventory(Item item, String key) {
 
-        if (item.equals(null)) {
-            throw new NullPointerException("Item can't be null");
+        if (item == (null)) {
+            throw new IllegalArgumentException("Item can't be null");
         }
 
         inventory.addItem(item, key);
@@ -281,8 +282,8 @@ public class Creature extends Entity {
 
     public boolean removeItemFromInventory(Item item, String key) {
 
-        if (item.equals(null)) {
-            throw new NullPointerException("Item can't be null");
+        if (item == (null)) {
+            throw new IllegalArgumentException("Item can't be null");
         }
 
         inventory.removeItem(item, key);

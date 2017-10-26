@@ -14,6 +14,11 @@ public class Inventory {
     }
 
     public void addItem(Item item, String key) {
+
+        if (item == null) {
+            throw new IllegalArgumentException("Item can't be null");
+        }
+
         inventoryMap.put(key, item);
     }
 

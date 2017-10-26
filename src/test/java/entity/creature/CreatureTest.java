@@ -488,7 +488,7 @@ public class CreatureTest {
             if (damageReduction > 100) {
                 assertEquals(100, testCreature.getDamageReduction(), 0.0);
             } else {
-                assertEquals(damageReduction, testCreature.getDamageReduction(), 0.0);
+                    assertEquals(damageReduction, testCreature.getDamageReduction(), 0.0);
             }
         }
     }
@@ -756,8 +756,9 @@ public class CreatureTest {
      * Add item tests
      */
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testAddNullToInventory() {
+        testCreature = new Creature(6,6,6, true, new InventoryFactory(), new Behaviour());
         testCreature.addItemToInventory(null, "null");
     }
 
@@ -1242,4 +1243,3 @@ public class CreatureTest {
         new Creature(7, 5, 5, false, mockInventoryFactory, mockBehaviour);
     }
 }
-

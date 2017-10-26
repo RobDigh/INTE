@@ -204,7 +204,6 @@ public class GameMap extends Entity {
 
     public ArrayList<Point> getAvailableDirections(Creature creature){
         ArrayList<Point> availableDirections = new ArrayList<Point>();
-
         Point currentPosition = getPosition(creature);
 
         for(Point p : validDirections){
@@ -217,7 +216,6 @@ public class GameMap extends Entity {
                 availableDirections.add(p);
             }
         }
-
         return availableDirections;
     }
 }

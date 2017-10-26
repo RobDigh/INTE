@@ -210,66 +210,44 @@ public class Creature extends Entity {
         speed = Math.max(0, speed - amount);
     }
 
-    private boolean checkValueSize(double value, int lowest, int highest, String valueName){
+    private void checkValueSize(double value, int lowest, int highest, String valueName){
         if (value <= lowest) {
             throw new IllegalArgumentException(valueName + " value must be greater than 0");
         }
         if (value > highest) {
             throw new IllegalArgumentException(valueName + " value must be less or equal to 100");
         }
-        return true;
     }
 
     public void incrementDamageReduction(double increaseValue) {
         checkValueSize(increaseValue, 0, 100, "Increase");
-        
-        if ((damageReduction + increaseValue) >= 100) {
-            damageReduction = 100;
-        } else {
-            double newDamageValue = Math.round(increaseValue * 100);
-            damageReduction += (newDamageValue / 100);
-        }
+
+        double newDamageReduction = damageReduction + Math.round(increaseValue * 100.0) / 100.0;
+        damageReduction = Math.min(newDamageReduction, 100);
     }
 
     public void decrementDamageReduction(double decreaseValue) {
         checkValueSize(decreaseValue, 0, 100, "Decrease");
 
-        if ((damageReduction - decreaseValue) <= 0) {
-            damageReduction = 0;
-        } else {
-            double newDamageReduction = Math.round((damageReduction - decreaseValue) * 100);
-            damageReduction = newDamageReduction / 100;
-        }
+        double newDamageReduction = (Math.round((damageReduction - decreaseValue) * 100.0) / 100.0);
+        damageReduction = Math.max(newDamageReduction, 0);
     }
 
     public void incrementDamageBonus(double increaseValue) {
         checkValueSize(increaseValue, 0, 100, "Increase");
 
-        if ((damageBonus + increaseValue) >= 100) {
-            damageBonus = 100;
-        } else {
-            double newDamageValue = Math.round(increaseValue * 100);
-            damageBonus += (newDamageValue / 100);
-        }
+        double newDamageBonus = damageBonus + Math.round(increaseValue * 100.0) / 100.0;
+        damageBonus = Math.min(newDamageBonus, 100);
     }
 
     public void decrementDamageBonus(double decreaseValue) {
         checkValueSize(decreaseValue, 0, 100, "Decrease");
 
-        if (damageBonus - decreaseValue < 0) {
-            damageBonus = 0;
-        } else {
-            double newDamageBonus = Math.round((damageBonus - decreaseValue) * 100);
-            damageBonus = newDamageBonus / 100;
-        }
+        double newDamageBonus = (Math.round((damageBonus - decreaseValue) * 100.0) / 100.0);
+        damageBonus = Math.max(newDamageBonus, 0);
     }
 
     public boolean addItemToInventory(Item item, String key) {
-
-        if (item.equals(null)) {
-            throw new NullPointerException("Item can't be null");
-        }
-
         inventory.addItem(item, key);
         return true;
     }

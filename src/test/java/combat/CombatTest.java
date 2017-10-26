@@ -168,4 +168,27 @@ public class CombatTest {
         assertEquals(Combat.INITIATOR_WIN, combat.getResult());
 
     }
+    
+    @Test
+    public void activeFleeingImmobilizedActiveLose(){
+    
+        doAnswer(this::damageSpeed)
+        	.doAnswer(invocationOnMock -> damageHP(invocationOnMock, 120))
+        	.doAnswer(this::increaseOpponentsSpeed)
+        	.doAnswer(this::increaseOpponentsHP)
+        	.doAnswer(invocationOnMock -> damageHP(invocationOnMock, 121))
+        	.when(c2).act(c1);
+
+        doAnswer(invocationOnMock -> null)
+        	.when(c1).act(c2);
+        
+          combat.start(gameMap);
+        
+          verify(c1, times(2)).act(c2);
+          verify(c1, times(1)).flee(gameMap);
+          verify(c2, times(5)).act(c1);
+          assertEquals(Combat.INITIATOR_LOSS, combat.getResult());
+        
+        
+    }
 }

@@ -267,10 +267,6 @@ public class Creature extends Entity {
 
     public boolean addItemToInventory(Item item, String key) {
 
-        if (item == (null)) {
-            throw new IllegalArgumentException("Item can't be null");
-        }
-
         inventory.addItem(item, key);
         return true;
     }
@@ -281,10 +277,6 @@ public class Creature extends Entity {
     }
 
     public boolean removeItemFromInventory(Item item, String key) {
-
-        if (item == (null)) {
-            throw new IllegalArgumentException("Item can't be null");
-        }
 
         inventory.removeItem(item, key);
         return true;

@@ -21,6 +21,8 @@ import static org.mockito.Mockito.when;
 public class CreatureTest {
     private Creature testCreature;
     private Creature damagedTestCreature;
+    private Inventory testInventory;
+    private InventoryFactory testInventoryFactory;
 
     private Inventory mockInventory = mock(Inventory.class);
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
@@ -757,8 +759,15 @@ public class CreatureTest {
      */
 
     @Test(expected = IllegalArgumentException.class)
-    public void testAddNullToInventory() {
-        testCreature.addItemToInventory(null, "null");
+    public void testAddNullItemToInventory() {
+        testCreature = new Creature(6,6, 6, true, new InventoryFactory(), new Behaviour());
+        testCreature.addItemToInventory(null, "weapon");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAddNullKeyToInventory() {
+        testCreature = new Creature(6,6, 6, true, new InventoryFactory(), new Behaviour());
+        testCreature.addItemToInventory(mockWeapon, null);
     }
 
     @Test
@@ -794,8 +803,15 @@ public class CreatureTest {
      */
 
     @Test(expected = IllegalArgumentException.class)
-    public void testRemoveNullFromInventory() {
-        testCreature.removeItemFromInventory(null, "null");
+    public void testRemoveWithNullItemFromInventory() {
+        testCreature = new Creature(6,6, 6, true, new InventoryFactory(), new Behaviour());
+        testCreature.removeItemFromInventory(null, "weapon");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testRemoveWithNullKeyFromInventory() {
+        testCreature = new Creature(6,6, 6, true, new InventoryFactory(), new Behaviour());
+        testCreature.removeItemFromInventory(mockWeapon, null);
     }
 
     @Test

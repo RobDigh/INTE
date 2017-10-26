@@ -13,12 +13,30 @@ public class Inventory {
         inventoryMap = new HashMap<>();
     }
 
-    public void addItem(Item item, String key) {
+    public boolean addItem(Item item, String key) {
+
+        if (item == (null)) {
+            throw new IllegalArgumentException("Item can't be null");
+        }
+        if (key == (null)) {
+            throw new IllegalArgumentException("Key can't be null");
+        }
+
         inventoryMap.put(key, item);
+    return true;
     }
 
+
     public boolean removeItem(Item item, String key) {
-       if (inventoryMap.isEmpty()){
+
+        if (item == (null)) {
+            throw new IllegalArgumentException("Item can't be null");
+        }
+        if (key == (null)) {
+            throw new IllegalArgumentException("Key can't be null");
+        }
+
+        if (inventoryMap.isEmpty()){
            return false;
        }
        if (!inventoryMap.containsKey(key)){

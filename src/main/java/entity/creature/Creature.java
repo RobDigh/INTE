@@ -299,7 +299,11 @@ public class Creature extends Entity {
         Entity visitingEntity = entity;
         Entity visitedEntity = this;
 
-        boolean battleResultIsPositive = ((Creature) visitingEntity).doBattle(visitingEntity, visitedEntity);
+        Combat combat = combatFactory.create((Creature) entity, this);
+        combat.start(environment);
+
+        //boolean battleResultIsPositive = ((Creature) visitingEntity).doBattle(visitingEntity, visitedEntity);
+        boolean battleResultIsPositive = combat.getResult();
 
         if (battleResultIsPositive == true) {
             environment.remove(visitedEntity);

@@ -93,4 +93,8 @@ public class BehaviourTest {
         testPlayer.flee(mockGameMap);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testActWithNullCreature(){
+        behaviour.act(null);
+    }
 }

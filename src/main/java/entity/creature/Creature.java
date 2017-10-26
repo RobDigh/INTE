@@ -275,34 +275,14 @@ public class Creature extends Entity {
         behaviour.flee(this, gameMap, type.isPC());
     }
 
-    public boolean doBattle(Entity visitingEntity, Entity visitedEntity) {
-
-        Creature visitingCreature = (Creature) visitingEntity;
-        Creature visitedCreature = (Creature) visitedEntity;
-
-        if (visitingCreature.getCurrentHP() > visitedCreature.getCurrentHP()) {
-            return true;
-        }
-        if (visitingCreature.getCurrentHP() < visitedCreature.getCurrentHP()) {
-            return false;
-        }
-        if (visitingCreature.getCurrentHP() == visitedCreature.getCurrentHP()) {
-            //TO-DO What happens when neither Creature is killed?
-        }
-
-        return false;
-    }
-
     @Override
     public boolean interact(Entity entity, GameMap environment) {
 
-        Entity visitingEntity = entity;
         Entity visitedEntity = this;
 
         Combat combat = combatFactory.create((Creature) entity, this);
         combat.start(environment);
 
-        //boolean battleResultIsPositive = ((Creature) visitingEntity).doBattle(visitingEntity, visitedEntity);
         boolean battleResultIsPositive = combat.getResult();
 
         if (battleResultIsPositive == true) {

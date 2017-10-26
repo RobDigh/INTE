@@ -104,4 +104,10 @@ public class InventoryTest {
         testInventory.addItem(mockArmor, "armor");
         assertFalse(testInventory.removeItem(mockArmor, "amor"));
     }
-}
+
+    @Test
+    public void testRemoveItemFromInventoryRightKeyAndWrongItem(){
+
+        testInventory.addItem(mockWeapon, "weapon");
+        assertFalse(testInventory.removeItem(mockArmor, "weapon"));
+    }}

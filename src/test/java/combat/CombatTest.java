@@ -87,6 +87,21 @@ public class CombatTest {
         assertEquals(combat.getResult(), Combat.INITIATOR_WIN);
 
     }
+    
+ @Test
+    
+    public void activeImmobilizedLose(){
+    	
+      doAnswer(this::damageSpeed)
+      .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 100))
+      .when(c2).act(c1);
+      
+      combat.start(gameMap);
+      
+      verify(c1, times(1)).act(any());
+      assertEquals(combat.getResult(), Combat.INITIATOR_LOSS);
+      
+    }
 
     @Test
     public void activeFleeingWin() {

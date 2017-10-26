@@ -1,5 +1,6 @@
 package entity.creature;
 
+import combat.CombatFactory;
 import entity.Entity;
 import entity.gameMap.GameMap;
 import entity.item.Item;
@@ -20,6 +21,7 @@ public class Creature extends Entity {
     private final Type type;
     private final Behaviour behaviour;
     private final Inventory inventory;
+    private final CombatFactory combatFactory;
 
     private int strength;
     private int dexterity;
@@ -31,7 +33,7 @@ public class Creature extends Entity {
     private double damageBonus;
 
 
-    public Creature(int  strength, int dexterity, int constitution, boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour) {
+    public Creature(int  strength, int dexterity, int constitution, boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour, CombatFactory combatFactory) {
 
         if (inventoryFactory == null) {
             throw new IllegalArgumentException("InventoryFactory cannot be null");
@@ -55,6 +57,7 @@ public class Creature extends Entity {
 
         inventory = inventoryFactory.create();
         this.behaviour = behaviour;
+        this.combatFactory = combatFactory;
     }
 
     private Type calculateType(boolean isPC) {

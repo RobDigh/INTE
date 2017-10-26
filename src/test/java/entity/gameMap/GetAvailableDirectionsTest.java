@@ -1,5 +1,6 @@
 package entity.gameMap;
 
+import combat.CombatFactory;
 import entity.creature.Behaviour;
 import entity.creature.Creature;
 import entity.creature.InventoryFactory;
@@ -20,17 +21,18 @@ public class GetAvailableDirectionsTest extends GameMapTest {
 
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
 
+    private CombatFactory mockCombatFactory = mock(CombatFactory.class);
     private Behaviour behaviour;
     private GameMap gameMap;
     private Creature testPlayer;
     private Creature testMonster;
 
     private Creature createPlayer() {
-        return new Creature(5, 8, 5, true, mockInventoryFactory, behaviour);
+        return new Creature(5, 8, 5, true, mockInventoryFactory, behaviour, mockCombatFactory);
     }
 
     private Creature createMonster() {
-        return new Creature(5, 8, 5, false, mockInventoryFactory, behaviour);
+        return new Creature(5, 8, 5, false, mockInventoryFactory, behaviour, mockCombatFactory);
     }
 
     @Before

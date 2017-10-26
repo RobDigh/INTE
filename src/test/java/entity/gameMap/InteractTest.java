@@ -1,5 +1,6 @@
 package entity.gameMap;
 
+import combat.CombatFactory;
 import entity.creature.Behaviour;
 import entity.creature.InventoryFactory;
 
@@ -22,9 +23,10 @@ public class InteractTest extends GameMapTest {
 
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
     private Behaviour mockBehaviour = (mock(Behaviour.class));
+    private CombatFactory mockCombatFactory = mock(CombatFactory.class);
 
-    private Creature player = new Creature(6, 5, 7, true, mockInventoryFactory, mockBehaviour);
-    private Creature monster = new Creature(7, 5, 6, false, mockInventoryFactory, mockBehaviour);
+    private Creature player = new Creature(6, 5, 7, true, mockInventoryFactory, mockBehaviour, mockCombatFactory);
+    private Creature monster = new Creature(7, 5, 6, false, mockInventoryFactory, mockBehaviour, mockCombatFactory);
     private Armor armor = new Armor(5);
     @Test
     public void acceptValidEntity() {

@@ -1,5 +1,6 @@
 package entity.gameMap;
 
+import combat.CombatFactory;
 import entity.creature.Behaviour;
 import entity.creature.Creature;
 import entity.creature.InventoryFactory;
@@ -21,10 +22,11 @@ public class PlacementTest extends GameMapTest {
     private Creature mockCreature = mock(Creature.class);
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
     private Behaviour behaviour = mock(Behaviour.class);
+    private CombatFactory mockCombatFactory = mock(CombatFactory.class);
     GameMap gameMap;
 
     private Creature createCreature() {
-        return new Creature(6, 7, 5, true, mockInventoryFactory, behaviour);
+        return new Creature(6, 7, 5, true, mockInventoryFactory, behaviour, mockCombatFactory);
     }
 
     @Before

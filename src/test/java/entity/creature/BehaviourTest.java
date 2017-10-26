@@ -1,5 +1,6 @@
 package entity.creature;
 
+import combat.CombatFactory;
 import entity.gameMap.GameMap;
 import entity.item.Item;
 import entity.item.consumable.hp.HealthPotion;
@@ -21,6 +22,7 @@ public class BehaviourTest {
     private GameMap mockGameMap = mock(GameMap.class);
     private Creature mockMonster = mock(Creature.class);
     private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
+    private CombatFactory mockCombatFactory = mock(CombatFactory.class);
 
     private Behaviour behaviour;
     private GameMap gameMap;
@@ -28,11 +30,11 @@ public class BehaviourTest {
     private Creature testMonster;
 
     private Creature createPlayer() {
-        return new Creature(5, 8, 5, true, mockInventoryFactory, behaviour);
+        return new Creature(5, 8, 5, true, mockInventoryFactory, behaviour, mockCombatFactory);
     }
 
     private Creature createMonster() {
-        return new Creature(5, 8, 5, false, mockInventoryFactory, behaviour);
+        return new Creature(5, 8, 5, false, mockInventoryFactory, behaviour, mockCombatFactory);
     }
 
     @Before
@@ -72,9 +74,14 @@ public class BehaviourTest {
     @Test
     public void testSoActMethodCallsActInBehaviour(){
         Behaviour mockBehaviour = mock(Behaviour.class);
-        testMonster = new Creature(5, 8, 5, false, mockInventoryFactory, mockBehaviour);
+        testMonster = new Creature(5, 8, 5, false, mockInventoryFactory, mockBehaviour, mockCombatFactory);
         testMonster.act(mockMonster);
         verify(mockBehaviour).act(mockMonster);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testActOnNullCreature() {
+        behaviour.act(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)

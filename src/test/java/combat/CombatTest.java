@@ -22,11 +22,12 @@ public class CombatTest {
      * even after we implement an AI, to be able to control combat flow.
      */
 
+    private CombatFactory mockCombatFactory = mock(CombatFactory.class);
     private Behaviour mockBehaviour = mock(Behaviour.class);
     private GameMap gameMap = mock(GameMap.class);
 
-    private Creature c1 = spy(new Creature(5, 6 ,7, true, mock(InventoryFactory.class), mockBehaviour));
-    private Creature c2 = spy(new Creature(5, 6, 7, true, mock(InventoryFactory.class), mockBehaviour));
+    private Creature c1 = spy(new Creature(5, 6 ,7, true, mock(InventoryFactory.class), mockBehaviour, mockCombatFactory));
+    private Creature c2 = spy(new Creature(5, 6, 7, true, mock(InventoryFactory.class), mockBehaviour, mockCombatFactory));
 
     private Combat combat = new Combat(c1, c2);
 

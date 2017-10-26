@@ -1,5 +1,6 @@
 package entity.creature;
 
+import combat.CombatFactory;
 import entity.Entity;
 import entity.gameMap.GameMap;
 import entity.item.Item;
@@ -20,6 +21,7 @@ public class Creature extends Entity {
     private final Type type;
     private final Behaviour behaviour;
     private final Inventory inventory;
+    private final CombatFactory combatFactory;
 
     private int strength;
     private int dexterity;
@@ -31,7 +33,7 @@ public class Creature extends Entity {
     private double damageBonus;
 
 
-    public Creature(int  strength, int dexterity, int constitution, boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour) {
+    public Creature(int  strength, int dexterity, int constitution, boolean isPC, InventoryFactory inventoryFactory, Behaviour behaviour, CombatFactory combatFactory) {
 
         if (inventoryFactory == null) {
             throw new IllegalArgumentException("InventoryFactory cannot be null");
@@ -55,6 +57,7 @@ public class Creature extends Entity {
 
         inventory = inventoryFactory.create();
         this.behaviour = behaviour;
+        this.combatFactory = combatFactory;
     }
 
     private Type calculateType(boolean isPC) {
@@ -272,36 +275,16 @@ public class Creature extends Entity {
         behaviour.flee(this, gameMap, type.isPC());
     }
 
-    public boolean doBattle(Entity visitingEntity, Entity visitedEntity) {
-
-        Creature visitingCreature = (Creature) visitingEntity;
-        Creature visitedCreature = (Creature) visitedEntity;
-
-        if (visitingCreature.getCurrentHP() > visitedCreature.getCurrentHP()) {
-            return true;
-        }
-        if (visitingCreature.getCurrentHP() < visitedCreature.getCurrentHP()) {
-            return false;
-        }
-        if (visitingCreature.getCurrentHP() == visitedCreature.getCurrentHP()) {
-            //TO-DO What happens when neither Creature is killed?
-        }
-
-        return false;
-    }
-
     @Override
     public boolean interact(Entity entity, GameMap environment) {
 
-        Entity visitingEntity = entity;
-        Entity visitedEntity = this;
+        Combat combat = combatFactory.create((Creature) entity, this);
+        combat.start(environment);
 
-        GameMap level = environment;
+        boolean battleResultIsPositive = combat.getResult();
 
-        boolean battleResultIsPositive = ((Creature) visitingEntity).doBattle(visitingEntity, visitedEntity);
-
-        if (battleResultIsPositive == true) {
-            level.remove(visitedEntity);
+        if (battleResultIsPositive == Combat.INITIATOR_WIN) {
+            environment.remove(this);
             return Combat.INITIATOR_WIN;
         }
         return false;

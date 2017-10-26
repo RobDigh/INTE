@@ -66,9 +66,11 @@ public class CombatTest {
     public void activeImmobilizedWin() {
 
         doAnswer(this::damageSpeed)
-                .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 100))
-                .when(c2).act(c1);
-
+        .doAnswer(invocationOnMock -> {
+        c2.loseHP(100);
+        	return null;})
+        .when(c2).act(c1);
+        
         combat.start(gameMap);
 
         /*
@@ -105,10 +107,12 @@ public class CombatTest {
 
     @Test
     public void activeFleeingWin() {
-
+        
         doAnswer(invocationOnMock -> damageHP(invocationOnMock, 120))
-                .doAnswer(invocationOnMock -> damageHP(invocationOnMock, 130))
-                .when(c2).act(c1);
+        .doAnswer(invocationOnMock -> {
+        	c2.loseHP(100);
+        	return null;})
+        .when(c2).act(c1);
 
         combat.start(gameMap);
 
@@ -122,7 +126,7 @@ public class CombatTest {
          * t1 wins.
          *
          */
-        verify(c1, times(1)).flee(gameMap);
+        verify(c1, times(2)).flee(gameMap);
         assertEquals(combat.getResult(), Combat.INITIATOR_WIN);
 
     }

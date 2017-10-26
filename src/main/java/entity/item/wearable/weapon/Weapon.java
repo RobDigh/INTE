@@ -5,7 +5,7 @@ import entity.item.wearable.Wearable;
 
 public class Weapon extends Wearable {
 	
-	private String type = "Weapon";
+	private static final String type = "Weapon";
 
 	public String getType(){
 		return type;

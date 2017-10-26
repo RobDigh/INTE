@@ -5,7 +5,7 @@ import entity.item.Item;
 
 public class SpeedPotion extends Item {
 	
-	private String type = "Potion";
+	private static final String type = "Potion";
 
 	public String getType(){
 		return type;

@@ -33,6 +33,12 @@ public class HealthPotionTest {
     }
 
     @Test
+    public void testGetType(){
+        HealthPotion healthPotion = createHealthPotion(2);
+        assertEquals("Potion", healthPotion.getType());
+    }
+
+    @Test
     public void constructFakeHealthPotion() {
 
         HealthPotion healthPot = createHealthPotion(NEGATIVE_HEALTH_BONUS);

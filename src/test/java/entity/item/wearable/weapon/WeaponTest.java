@@ -3,6 +3,7 @@ package entity.item.wearable.weapon;
 import entity.creature.Creature;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -33,6 +34,12 @@ public class WeaponTest {
 
         return weapon;
 
+    }
+
+    @Test
+    public void testGetType(){
+        Weapon weapon = createWeapon();
+        assertEquals("Weapon", weapon.getType());
     }
 
     @Test(expected = IllegalArgumentException.class)

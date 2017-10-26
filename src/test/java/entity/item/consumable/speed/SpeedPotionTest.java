@@ -33,6 +33,12 @@ public class SpeedPotionTest {
     }
 
     @Test
+    public void testGetType(){
+        SpeedPotion speedPotion = createSpeedPotion(2);
+        assertEquals("Potion", speedPotion.getType());
+    }
+
+    @Test
     public void constructFakeSpeedPotion() {
 
         SpeedPotion speedPot = createSpeedPotion(NEGATIVE_SPEED_BONUS);

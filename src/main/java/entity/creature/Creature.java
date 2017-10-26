@@ -299,12 +299,10 @@ public class Creature extends Entity {
         Entity visitingEntity = entity;
         Entity visitedEntity = this;
 
-        GameMap level = environment;
-
         boolean battleResultIsPositive = ((Creature) visitingEntity).doBattle(visitingEntity, visitedEntity);
 
         if (battleResultIsPositive == true) {
-            level.remove(visitedEntity);
+            environment.remove(visitedEntity);
             return Combat.INITIATOR_WIN;
         }
         return false;

@@ -25,13 +25,13 @@ public class InteractTest extends GameMapTest {
     private GameMap lowerLevel = createDefaultSizedGameMap();
     private GameMap mockUpperLevel = mock(GameMap.class);
 
-    private InventoryFactory mockInventoryFactory = mock(InventoryFactory.class);
+    private InventoryFactory inventory = new InventoryFactory();
     private Behaviour mockBehaviour = (mock(Behaviour.class));
     private CombatFactory mockCombatFactory = mock(CombatFactory.class);
     private Combat mockCombat = mock(Combat.class);
 
-    private Creature player = new Creature(6, 5, 7, true, mockInventoryFactory, mockBehaviour, mockCombatFactory);
-    private Creature monster = new Creature(7, 5, 6, false, mockInventoryFactory, mockBehaviour, mockCombatFactory);
+    private Creature player = new Creature(6, 5, 7, true, inventory, mockBehaviour, mockCombatFactory);
+    private Creature monster = new Creature(7, 5, 6, false, inventory, mockBehaviour, mockCombatFactory);
     private Armor armor = new Armor(5);
 
     @Before

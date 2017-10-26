@@ -252,19 +252,14 @@ public class Creature extends Entity {
     }
 
     public boolean addItemToInventory(Item item, String key) {
-        inventory.addItem(item, key);
-        return true;
-    }
 
-    public boolean addToInventory(Item item) {
-        //placeholder method for adding item to inventory
-        return true;
+       return inventory.addItem(item, key);
+
     }
 
     public boolean removeItemFromInventory(Item item, String key) {
 
-        inventory.removeItem(item, key);
-        return true;
+        return inventory.removeItem(item, key);
     }
 
     public void act(Creature creature) {

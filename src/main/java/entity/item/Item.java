@@ -30,12 +30,8 @@ public abstract class Item extends Entity {
     	Item item = this;
     	GameMap level = environment;
     	
-    	if(item instanceof Item){
     		visitingCreature.addItemToInventory(item, item.getType());
     		level.remove(item);
     		return true;
-    	}
-    	
-    	return false;
     }
 }

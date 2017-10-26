@@ -765,14 +765,25 @@ public class CreatureTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testAddNullItemToInventory() {
-        testCreature = new Creature(6,6, 6, true, new InventoryFactory(), new Behaviour(), mockCombatFactory);
+        testCreature = new Creature(6,6, 6,
+                true, new InventoryFactory(), new Behaviour(), mockCombatFactory);
         testCreature.addItemToInventory(null, "weapon");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testAddNullKeyToInventory() {
-        testCreature = new Creature(6,6, 6, true, new InventoryFactory(), new Behaviour(), mockCombatFactory);
+        testCreature = new Creature(6,6, 6,
+                true, new InventoryFactory(), new Behaviour(), mockCombatFactory);
         testCreature.addItemToInventory(mockWeapon, null);
+    }
+
+    @Test
+    public void testAddTwoItemsToInventory() throws Exception {
+
+        testCreature.addItemToInventory(mockWeapon, "weapon");
+        testCreature.addItemToInventory(mockArmor, "armor");
+        verify(mockInventory).addItem(mockArmor, "armor");
+        verify(mockInventory).addItem(mockWeapon, "weapon");
     }
 
     @Test

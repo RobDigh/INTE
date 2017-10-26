@@ -22,7 +22,7 @@ public class Inventory {
             throw new IllegalArgumentException("Key can't be null");
         }
         inventoryMap.put(key, item);
-    return true;
+        return true;
     }
 
 
@@ -36,11 +36,15 @@ public class Inventory {
         }
 
         if (inventoryMap.isEmpty()){
-           return false;
-       }
-       if (!inventoryMap.containsKey(key)){
-           return false;
-       }
+            return false;
+        }
+        if (!inventoryMap.containsKey(key)){
+            return false;
+        }
+        if (!inventoryMap.containsValue(item)){
+            return false;
+        }
+
         inventoryMap.remove(key, item);
         return true;
     }

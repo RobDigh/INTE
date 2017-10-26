@@ -52,10 +52,10 @@ public class Combat {
     }
 
     public boolean getResult() {
-        
-	if(isDead(c2) == true){
-		return INITIATOR_WIN;	
-	}
-		return false;
-}
+
+        if(isDead(c2)){
+            return INITIATOR_WIN;
+        }
+        return INITIATOR_LOSS;
+    }
 }

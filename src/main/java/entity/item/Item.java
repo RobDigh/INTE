@@ -7,6 +7,11 @@ import entity.Entity;
 public abstract class Item extends Entity {
 
     private int bonus;
+    private String type;
+
+	public String getType(){
+		return type;
+	}
 
     public Item(int bonus) {
         this.bonus = bonus;
@@ -26,7 +31,7 @@ public abstract class Item extends Entity {
     	GameMap level = environment;
     	
     	if(item instanceof Item){
-    		visitingCreature.addToInventory(item);
+    		visitingCreature.addItemToInventory(item, item.getType());
     		level.remove(item);
     		return true;
     	}

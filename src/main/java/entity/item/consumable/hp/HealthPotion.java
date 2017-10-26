@@ -1,12 +1,16 @@
 package entity.item.consumable.hp;
 
 import entity.creature.Creature;
-import entity.Entity;
-import entity.gameMap.GameMap;
 import entity.item.Item;
 
 public class HealthPotion extends Item {
+	
+	private String type = "Potion";
 
+	public String getType(){
+		return type;
+	}
+	
     public HealthPotion(int bonus) {
         super(bonus);
     }

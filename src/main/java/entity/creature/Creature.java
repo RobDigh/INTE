@@ -278,15 +278,13 @@ public class Creature extends Entity {
     @Override
     public boolean interact(Entity entity, GameMap environment) {
 
-        Entity visitedEntity = this;
-
         Combat combat = combatFactory.create((Creature) entity, this);
         combat.start(environment);
 
         boolean battleResultIsPositive = combat.getResult();
 
-        if (battleResultIsPositive == true) {
-            environment.remove(visitedEntity);
+        if (battleResultIsPositive == Combat.INITIATOR_WIN) {
+            environment.remove(this);
             return Combat.INITIATOR_WIN;
         }
         return false;

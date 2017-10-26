@@ -79,6 +79,11 @@ public class BehaviourTest {
         verify(mockBehaviour).act(mockMonster);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testActOnNullCreature() {
+        behaviour.act(null);
+    }
+
     @Test(expected = UnsupportedOperationException.class)
     public void testNoEmptyDirectionsAvailableFlee(){
         when(mockGameMap.getAvailableDirections(testMonster)).thenReturn(new ArrayList<>());
